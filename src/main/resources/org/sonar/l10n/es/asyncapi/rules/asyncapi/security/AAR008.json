@@ -1,0 +1,13 @@
+{
+    "title": "AAR008 - DefinedServer - Los servidores deben estar definidos",
+    "type": "VULNERABILITY",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "10min"
+    },
+    "tags": [
+      "safety"
+    ],
+    "defaultSeverity": "CRITICAL"
+  }

@@ -1,0 +1,7 @@
+# Noncompliant {{AAR008: Define 'servers' is mandatory}}
+asyncapi: '2.4.0'
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+channels:
+  /pets: {}

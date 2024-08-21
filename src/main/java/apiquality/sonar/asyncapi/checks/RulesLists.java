@@ -33,8 +33,8 @@ public final class RulesLists {
 
     public static List<Class<?>> getSecurityChecks() {
         return Arrays.asList(
-            AAR001MandatoryHttpsProtocolCheck.class
-            
+            AAR001MandatoryHttpsProtocolCheck.class,
+            AAR008DefinedServerCheck.class
         );
     }
 
@@ -68,10 +68,7 @@ public final class RulesLists {
     }
     public static List<Class<?>> getWSO2Checks() {
         return Arrays.asList(
-            OAR002ValidWso2ScopesCheck.class,
-            OAR003DefinedWso2ScopesDescriptionCheck.class,
-            OAR004ValidWso2ScopesRolesCheck.class,
-            OAR005UndefinedWso2ScopeUseCheck.class
+            
         );
     }
 

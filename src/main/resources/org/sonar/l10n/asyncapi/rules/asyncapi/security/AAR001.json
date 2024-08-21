@@ -1,5 +1,5 @@
 {
-  "title": "OAR001 - MandatoryHttpsProtocol - Https protocol is mandatory",
+  "title": "AAR001 - MandatoryHttpsProtocol - Https protocol is mandatory",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

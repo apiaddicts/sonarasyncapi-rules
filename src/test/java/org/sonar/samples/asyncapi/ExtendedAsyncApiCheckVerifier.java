@@ -37,7 +37,7 @@ public class ExtendedAsyncApiCheckVerifier {
         ExtendedAsyncApiCheckVerifier verifier = new ExtendedAsyncApiCheckVerifier();
         AsyncApiVisitor collector = new ExtendedAsyncApiCheckVerifier.ExpectedIssueCollector(verifier);
         File file = new File(path);
-        TestOpenApiVisitorRunner.scanFileForComments(file, isV2, isV3, isV31, new OpenApiVisitor[]{collector});
+        TestAsyncApiVisitorRunner.scanFileForComments(file, new AsyncApiVisitor[]{collector});
         Iterator<PreciseIssue> actualIssues = getActualIssues(file, check, isV2, isV3, isV31);
         verifier.checkIssues(actualIssues);
         if (actualIssues.hasNext()) {
@@ -111,7 +111,7 @@ public class ExtendedAsyncApiCheckVerifier {
         return Ordering.natural().sortedCopy(result);
     }
 
-    private static Iterator<PreciseIssue> getActualIssues(File file, OpenApiCheck check, boolean isV2, boolean isV3, boolean isV31) {
+    private static Iterator<PreciseIssue> getActualIssues(File file, AsyncApiCheck check, boolean isV2, boolean isV3, boolean isV31) {
         List<PreciseIssue> issues = scanFileForIssues(file, check, isV2, isV3, isV31);
         List<PreciseIssue> sortedIssues = Ordering.natural().onResultOf(ExtendedAsyncApiCheckVerifier::line).sortedCopy(issues);
         return sortedIssues.iterator();
@@ -244,7 +244,7 @@ public class ExtendedAsyncApiCheckVerifier {
         return Collections.unmodifiableList(this.expectedIssues);
     }
 
-    private static final class ExpectedIssueCollector extends OpenApiVisitor {
+    private static final class ExpectedIssueCollector extends AsyncApiVisitor {
         private final ExtendedAsyncApiCheckVerifier verifier;
 
         private ExpectedIssueCollector(ExtendedAsyncApiCheckVerifier verifier) {

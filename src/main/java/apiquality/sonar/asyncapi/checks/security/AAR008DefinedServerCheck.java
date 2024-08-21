@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@Rule(key = AAR001MandatoryHttpsProtocolCheck.KEY)
-public class AAR001MandatoryHttpsProtocolCheck extends BaseCheck {
+@Rule(key = AAR008DefinedServerCheck.KEY)
+public class AAR008DefinedServerCheck extends BaseCheck {
 
-    public static final String KEY = "AAR001";
+    public static final String KEY = "AAR008";
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
@@ -25,17 +25,7 @@ public class AAR001MandatoryHttpsProtocolCheck extends BaseCheck {
     public void visitNode(JsonNode node) {
         JsonNode serversNode = node.get("servers");
         if (serversNode.isMissing() || serversNode.isNull()) {
-        } else {
-            	Map<String, JsonNode> serverNodes = serversNode.propertyMap();
-
-				for (Map.Entry<String, JsonNode> entry : serverNodes.entrySet()) {
-					JsonNode serverNode = entry.getValue();
-					JsonNode protocolNode = serverNode.get("protocol");
-
-					if (protocolNode.isMissing() || !protocolNode.getTokenValue().equals("https")) {
-						addIssue(KEY, translate("AAR001.error-v2-https"), protocolNode.key());
-					}
-				}
-		}
+            addIssue(KEY, translate("AAR008.error-v2-servers"), serversNode.key());
+        }
 	}
 }

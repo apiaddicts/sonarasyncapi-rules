@@ -12,10 +12,10 @@ import static apiquality.sonar.asyncapi.AsyncAPICustomRulesDefinition.REPOSITORY
 import java.util.List;
 
 /**
- * Makes the rules visible to the OpenAPI scanner sensor,
+ * Makes the rules visible to the AsyncAPI scanner sensor,
  * hence adds to the classes that are going to be executed during source code analysis.
  * <p>
- * This class is a batch extension by implementing the {@link OpenApiCustomRuleRepository}
+ * This class is a batch extension by implementing the {@link AsyncApiCustomRuleRepository}
  */
 @SonarLintSide
 @ScannerSide
