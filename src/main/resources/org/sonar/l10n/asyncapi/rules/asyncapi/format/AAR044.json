@@ -1,0 +1,14 @@
+{
+    "title": "AAR044 - DeclaredTag - Each operation SHOULD have a tag.",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "BLOCKER"
+  }
+  

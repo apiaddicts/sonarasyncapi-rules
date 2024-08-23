@@ -21,7 +21,28 @@ public final class RulesLists {
 
     public static List<Class<?>> getFormatChecks() {
         return Arrays.asList(
-            
+            AAR011DefinedLicenseCheck.class,
+            AAR012DeclaredOperationIDCheck.class,
+            AAR013DuplicateOperationIDCheck.class,
+            AAR015UndefiendContactCheck.class,
+            AAR016ContactPropertiesCheck.class,
+            AAR017UndefiendUrlLinceseCheck.class,
+            AAR020DefineIDCheck.class,
+            AAR021ProvideOpSummaryCheck.class,
+            AAR022DescriptionDiffersSummaryCheck.class,
+            AAR023ProvideOpNameCheck.class,
+            AAR027ExtenarlDocsUrlCheck.class,
+            AAR028ProtocolVersionCheck.class,
+            AAR029MandatoryDescriptionCheck.class,
+            AAR032NumericParameterIntegrityCheck.class,
+            AAR033StringParameterIntegrityCheck.class,
+            AAR034NumericFormatCheck.class,
+            AAR035MessageTitleCheck.class,
+            AAR036BadDescriptionCheck.class,
+            AAR037BidingVersionCheck.class,
+            AAR038ProtocolSeverCheck.class,
+            AAR042MessageIdentifierCheck.class,
+            AAR044TagServerCheck.class         
         );
     }
 
@@ -34,18 +55,27 @@ public final class RulesLists {
     public static List<Class<?>> getSecurityChecks() {
         return Arrays.asList(
             AAR001MandatoryHttpsProtocolCheck.class,
-            AAR008DefinedServerCheck.class
+            AAR008DefinedServerCheck.class,
+            AAR018SecuritySchemasCheck.class,
+            AAR043SecurityChannelCheck.class
         );
     }
 
     public static List<Class<?>> getOperationsChecks() {
         return Arrays.asList(
-            
+            AAR009DeclaredTagCheck.class,
+            AAR010DocumentedTagCheck.class,
+            AAR030UniqueChannelNamesCheck.class,
+            AAR040DefinedChannelServersCheck.class,
+            AAR041ComponetChannelServerCheck.class           
         );
     }
 
     public static List<Class<?>> getSchemasChecks() {
         return Arrays.asList(
+            AAR019IDSchemasCheck.class,
+            AAR029MandatoryDescriptionCheck.class,
+            AAR026MessageSchemasCheck.class
             
             );
     }
@@ -57,7 +87,8 @@ public final class RulesLists {
 
     public static List<Class<?>> getExamplesChcecks() {
         return Arrays.asList(
-            
+            AAR031ExamplesCheck.class,
+            AAR039MoreExamplesCheck.class           
         );
     }
 
