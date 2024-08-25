@@ -1,5 +1,5 @@
 {
-    "title": "AAR021 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR021 - ProvideOpSummary - Proporcione un resumen para cada operación",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

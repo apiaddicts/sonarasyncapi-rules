@@ -1,5 +1,5 @@
 {
-    "title": "AAR032 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR032 - NumericParameterIntegrity - Los parámetros numéricos deben tener restricción de mínimo, máximo o formato",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

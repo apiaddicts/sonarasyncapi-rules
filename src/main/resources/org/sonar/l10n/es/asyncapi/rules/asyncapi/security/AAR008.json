@@ -1,5 +1,5 @@
 {
-    "title": "AAR008 - DefinedServer - Los servidores deben estar definidos",
+    "title": "AAR008 - DefinedServer - Definir ''servers'' es obligatorio",
     "type": "VULNERABILITY",
     "status": "ready",
     "remediation": {

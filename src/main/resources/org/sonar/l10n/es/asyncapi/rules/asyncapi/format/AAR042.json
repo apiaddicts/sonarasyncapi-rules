@@ -1,5 +1,5 @@
 {
-    "title": "AAR042 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR042 - MessageIdentifier - Se recomienda tener un identificador único por mensaje",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

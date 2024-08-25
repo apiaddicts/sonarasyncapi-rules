@@ -1,5 +1,5 @@
 {
-    "title": "AAR027 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR027 - ExtenarlDocsUrl - ExternalDocs debe contener una URL",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

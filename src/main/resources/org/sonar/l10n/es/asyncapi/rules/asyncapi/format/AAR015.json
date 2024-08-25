@@ -1,5 +1,5 @@
 {
-    "title": "AAR015 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR015 - UndefiendContact - La API debe indicar el contacto en el objeto de información",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

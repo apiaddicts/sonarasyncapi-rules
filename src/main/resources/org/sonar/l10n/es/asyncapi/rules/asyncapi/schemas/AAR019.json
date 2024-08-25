@@ -1,5 +1,5 @@
 {
-    "title": "AAR019 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR019 - IDSchemas - El identificador debe estar definido",
     "type": "BUG",
     "status": "ready",
     "remediation": {

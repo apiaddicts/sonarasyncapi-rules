@@ -1,5 +1,5 @@
 {
-    "title": "AAR009 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR030 - UniqueChannelNames - Los nombres de los channels deben ser únicos en toda la especificación de AsyncAPI",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "operations"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
 }
+  

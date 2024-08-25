@@ -1,5 +1,5 @@
 {
-    "title": "AAR018 - MandatoryHttpsProtocol - El protocolo https es obligatorio",
+    "title": "AAR018 - SecuritySchemas - El esquema de seguridad debe estar entre los permitidos por la organización y debe estar completo",
     "type": "VULNERABILITY",
     "status": "ready",
     "remediation": {

@@ -1,5 +1,5 @@
 {
-    "title": "AAR041 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR041 - ComponetChannelServer - Se recomienda agregar los servidores y channels al componente",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "operations"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

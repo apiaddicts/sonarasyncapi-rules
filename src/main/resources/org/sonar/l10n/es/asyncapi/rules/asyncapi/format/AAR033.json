@@ -1,5 +1,5 @@
 {
-    "title": "AAR033 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR033 - StringParameterIntegrity - Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

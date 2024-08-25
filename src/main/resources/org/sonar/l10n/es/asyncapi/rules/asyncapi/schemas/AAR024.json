@@ -1,5 +1,5 @@
 {
-    "title": "AAR024 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR024 - MessageValidation - Todos los mensajes enviados y recibidos deben cumplir con el esquema de mensaje especificado en la documentación",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "schemas"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
 }
   

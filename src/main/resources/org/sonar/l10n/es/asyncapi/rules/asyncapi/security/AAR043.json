@@ -1,5 +1,5 @@
 {
-    "title": "AAR043 - MandatoryHttpsProtocol - El protocolo https es obligatorio",
+    "title": "AAR018 - SecurityChannel - Se recomienda agregar el esquema de seguridad que se va a usar a cada canal",
     "type": "VULNERABILITY",
     "status": "ready",
     "remediation": {

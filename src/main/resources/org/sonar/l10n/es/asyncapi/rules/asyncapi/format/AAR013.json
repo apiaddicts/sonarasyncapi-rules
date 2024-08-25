@@ -1,5 +1,5 @@
 {
-    "title": "AAR013 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR013 - DuplicateOperationID - No puede haber dos operaciones únicas que sean iguales",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
 }
+  

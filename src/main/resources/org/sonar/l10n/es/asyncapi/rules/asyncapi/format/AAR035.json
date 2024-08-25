@@ -1,5 +1,5 @@
 {
-    "title": "AAR035 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR035 - MessageTitle - Se recomienda tener un título por mensaje",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

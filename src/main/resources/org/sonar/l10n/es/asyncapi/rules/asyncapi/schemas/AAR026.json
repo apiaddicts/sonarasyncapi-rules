@@ -1,5 +1,5 @@
 {
-    "title": "AAR024 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR026 - MessageSchemas - Se recomienda que los esquemas de mensajes se encuentren en los componentes",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "schemas"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
 }
   

@@ -1,5 +1,5 @@
 {
-    "title": "AAR036 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR036 - BadDescription - La descripción debe comenzar con la primera letra en mayúscula y terminar con un punto",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  

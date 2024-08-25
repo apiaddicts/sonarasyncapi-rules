@@ -1,5 +1,5 @@
 {
-    "title": "AAR010 - DeclaredTag - Una operación debe de tener como mínimo un tag",
+    "title": "AAR010 - DocumentedTag - Los tags deben estar documentados",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,5 +9,6 @@
     "tags": [
       "operations"
     ],
-    "defaultSeverity": "BLOCKER"
-}
+    "defaultSeverity": "MAJOR"
+  }
+  
