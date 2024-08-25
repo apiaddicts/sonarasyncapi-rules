@@ -1,5 +1,5 @@
 {
-    "title": "AAR019 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR019 - IDSchemas - The identifier must be defined",
     "type": "BUG",
     "status": "ready",
     "remediation": {

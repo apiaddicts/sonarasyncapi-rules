@@ -1,5 +1,5 @@
 {
-    "title": "AAR018 - MandatoryHttpsProtocol - Https protocol is mandatory",
+    "title": "AAR018 - SecuritySchemas - The security scheme must be among those allowed by the organization and must be complete",
     "type": "VULNERABILITY",
     "status": "ready",
     "remediation": {

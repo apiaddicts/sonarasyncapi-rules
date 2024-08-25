@@ -1,5 +1,5 @@
 {
-    "title": "AAR020 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR020 - DefineID - It must conform to the URI format , according to RFC3986",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "operations"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

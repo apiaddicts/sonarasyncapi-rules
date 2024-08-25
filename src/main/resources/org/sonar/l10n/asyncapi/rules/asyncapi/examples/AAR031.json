@@ -1,5 +1,5 @@
 {
-    "title": "AAR031 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR031 - ExamplesCheck - There must be examples for each channel and operation",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "examples"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

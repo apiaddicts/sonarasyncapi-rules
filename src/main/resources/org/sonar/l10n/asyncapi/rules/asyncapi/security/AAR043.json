@@ -1,5 +1,5 @@
 {
-    "title": "AAR018 - MandatoryHttpsProtocol - Https protocol is mandatory",
+    "title": "AAR018 - SecurityChannel - It is recommended to add the security scheme to be used to each channel",
     "type": "VULNERABILITY",
     "status": "ready",
     "remediation": {

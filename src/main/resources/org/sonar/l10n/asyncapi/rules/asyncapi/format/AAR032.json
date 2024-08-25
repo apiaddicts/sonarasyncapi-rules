@@ -1,5 +1,5 @@
 {
-    "title": "AAR032 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR032 - NumericParameterIntegrity - Numeric parameters should have minimum, maximum, or format restriction",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

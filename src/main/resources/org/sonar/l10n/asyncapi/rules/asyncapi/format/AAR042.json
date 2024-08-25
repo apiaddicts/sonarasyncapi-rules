@@ -1,5 +1,5 @@
 {
-    "title": "AAR042 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR042 - MessageIdentifier - It is recommended to have a unique identifier per message",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

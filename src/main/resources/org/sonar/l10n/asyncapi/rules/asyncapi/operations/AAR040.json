@@ -1,5 +1,5 @@
 {
-    "title": "AAR040 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR040 - DefinedChannelServers - Channel server must be defined in the servers object",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "operations"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

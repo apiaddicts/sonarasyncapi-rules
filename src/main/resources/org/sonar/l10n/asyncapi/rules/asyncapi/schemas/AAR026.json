@@ -1,5 +1,5 @@
 {
-    "title": "AAR026 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR026 - MessageSchemas - Message schemas are recommended to be found in components",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "schemas"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
 }
   

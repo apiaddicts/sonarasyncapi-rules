@@ -1,7 +1,21 @@
 <p></p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+asyncapi: '2.4.0'
+info:   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR011: License should be documented}}</span>
+  title: Mi API Asíncrona
+  version: '1.0.0'
+  description: Esta es una descripción de mi API asíncrona.
+channels: {}
 <pre>
 </pre>
 <h2>Compliant Solution (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Mi API Asíncrona
+  version: '1.0.0'
+  description: Esta es una descripción de mi API asíncrona.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
 </pre>

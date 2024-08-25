@@ -1,5 +1,5 @@
 {
-    "title": "AAR039 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR039 - MoreExamples - It is recommended to have more than 2 examples of the cases that may appear",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "examples"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

@@ -1,5 +1,5 @@
 {
-    "title": "AAR013 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR013 - DuplicateOperationID - There cannot be two unique operations that are the same",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
-  }
+    "defaultSeverity": "MAJOR"
+}
   

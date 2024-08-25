@@ -1,5 +1,5 @@
 {
-    "title": "AAR037 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR037 - BidingVersion - You must specify the version of the biding",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

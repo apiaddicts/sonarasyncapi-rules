@@ -1,5 +1,5 @@
 {
-    "title": "AAR024 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR024 - MessageValidation - All messages sent and received must comply with the message schema specified in the documentation",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "schemas"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
 }
   

@@ -1,5 +1,5 @@
 {
-    "title": "AAR036 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR036 - BadDescription - The description must begin with the first capital letter and end with point",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

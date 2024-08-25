@@ -1,5 +1,5 @@
 {
-    "title": "AAR021 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR021 - ProvideOpSummary - Provide a summary for each operation",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -9,6 +9,6 @@
     "tags": [
       "format"
     ],
-    "defaultSeverity": "BLOCKER"
+    "defaultSeverity": "MAJOR"
   }
   

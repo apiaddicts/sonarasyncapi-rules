@@ -65,6 +65,7 @@ public final class RulesLists {
         return Arrays.asList(
             AAR009DeclaredTagCheck.class,
             AAR010DocumentedTagCheck.class,
+            AAR020DefineIDCheck.class,
             AAR030UniqueChannelNamesCheck.class,
             AAR040DefinedChannelServersCheck.class,
             AAR041ComponetChannelServerCheck.class           
@@ -74,6 +75,7 @@ public final class RulesLists {
     public static List<Class<?>> getSchemasChecks() {
         return Arrays.asList(
             AAR019IDSchemasCheck.class,
+            AAR024MessageValidationCheck.class,
             AAR029MandatoryDescriptionCheck.class,
             AAR026MessageSchemasCheck.class
             
