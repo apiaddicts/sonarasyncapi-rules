@@ -12,7 +12,7 @@ public class AAR039MoreExamplesCheckTest extends BaseCheckTest {
 
     @Before
     public void init() {
-        ruleName = "AAR031";
+        ruleName = "AAR039";
         check = new AAR039MoreExamplesCheck();
         v2Path = getV2Path("examples");
         v3Path = getV3Path("examples");
@@ -25,6 +25,6 @@ public class AAR039MoreExamplesCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR039 - DeclaredTag - Each operation SHOULD have a tag.", RuleType.BUG, Severity.BLOCKER, tags("operations"));
+        assertRuleProperties("AAR039 - MoreExamples - It is recommended to have more than 2 examples of the cases that may appear", RuleType.BUG, Severity.MAJOR, tags("examples"));
     }
 }

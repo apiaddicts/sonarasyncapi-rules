@@ -6,24 +6,24 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.samples.asyncapi.BaseCheckTest;
 
-import apiquality.sonar.asyncapi.checks.format.AAR011DefinedLicenseCheck;
+import apiquality.sonar.asyncapi.checks.format.AAR027ExtenarlDocsUrlCheck;
 
-public class AAR011DefinedLicenseCheckTest extends BaseCheckTest {
+public class AAR027ExtenarlDocsUrlCheckTest extends BaseCheckTest {
 
     @Before
     public void init() {
-        ruleName = "AAR011";
-        check = new AAR011DefinedLicenseCheck();
+        ruleName = "AAR027";
+        check = new AAR027ExtenarlDocsUrlCheck();
         v2Path = getV2Path("format");
     }
 
     @Test
     public void verifyInV2() {
-        verifyV2("defined-license.yaml");
+        verifyV2("external-docs-url.yaml");
     }
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR011 - DefinedLicense - License should be documented", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR027 - ExternalDocsUrl - ExternalDocs must contain a url", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

@@ -25,6 +25,6 @@ public class AAR009DeclaredTagCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR009 - DeclaredTag - Each operation SHOULD have a tag.", RuleType.BUG, Severity.BLOCKER, tags("operations"));
+        assertRuleProperties("AAR009 - DeclaredTag - Each operation should have a tag.", RuleType.BUG, Severity.BLOCKER, tags("operations"));
     }
 }

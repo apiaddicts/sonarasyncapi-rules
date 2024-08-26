@@ -25,6 +25,6 @@ public class AAR031ExamplesCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR031 - DeclaredTag - Each operation SHOULD have a tag.", RuleType.BUG, Severity.BLOCKER, tags("operations"));
+        assertRuleProperties("AAR031 - Examples - There must be examples for each channel and operation", RuleType.BUG, Severity.MAJOR, tags("examples"));
     }
 }

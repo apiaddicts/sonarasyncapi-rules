@@ -6,24 +6,24 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.samples.asyncapi.BaseCheckTest;
 
-import apiquality.sonar.asyncapi.checks.format.AAR011DefinedLicenseCheck;
+import apiquality.sonar.asyncapi.checks.format.AAR034NumericFormatCheck;
 
-public class AAR011DefinedLicenseCheckTest extends BaseCheckTest {
+public class AAR034NumericFormatCheckTest extends BaseCheckTest {
 
     @Before
     public void init() {
-        ruleName = "AAR011";
-        check = new AAR011DefinedLicenseCheck();
+        ruleName = "AAR034";
+        check = new AAR034NumericFormatCheck();
         v2Path = getV2Path("format");
     }
 
     @Test
     public void verifyInV2() {
-        verifyV2("defined-license.yaml");
+        verifyV2("numeric-format.yaml");
     }
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR011 - DefinedLicense - License should be documented", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR034 - NumericFormat - Numeric types requires a valid format", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

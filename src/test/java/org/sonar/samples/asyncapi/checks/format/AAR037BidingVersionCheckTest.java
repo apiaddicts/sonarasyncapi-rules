@@ -6,24 +6,24 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.samples.asyncapi.BaseCheckTest;
 
-import apiquality.sonar.asyncapi.checks.format.AAR011DefinedLicenseCheck;
+import apiquality.sonar.asyncapi.checks.format.AAR037BidingVersionCheck;
 
-public class AAR011DefinedLicenseCheckTest extends BaseCheckTest {
+public class AAR037BidingVersionCheckTest extends BaseCheckTest {
 
     @Before
     public void init() {
-        ruleName = "AAR011";
-        check = new AAR011DefinedLicenseCheck();
+        ruleName = "AAR037";
+        check = new AAR037BidingVersionCheck();
         v2Path = getV2Path("format");
     }
 
     @Test
     public void verifyInV2() {
-        verifyV2("defined-license.yaml");
+        verifyV2("biding-version.yaml");
     }
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR011 - DefinedLicense - License should be documented", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR037 - BidingVersion - You must specify the version of the biding", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }
