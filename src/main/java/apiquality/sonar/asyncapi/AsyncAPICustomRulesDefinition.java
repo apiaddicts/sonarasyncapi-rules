@@ -37,10 +37,10 @@ public class AsyncAPICustomRulesDefinition implements RulesDefinition {
                 .setName(REPOSITORY_NAME);
 
         // Carga de reglas para cada grupo
+        new RuleMetadataLoader(getPath(EXAMPLES_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getExamplesChcecks());
         new RuleMetadataLoader(getPath(SECURITY_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getSecurityChecks());
         new RuleMetadataLoader(getPath(FORMAT_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getFormatChecks());
         new RuleMetadataLoader(getPath(SCHEMAS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getSchemasChecks());
-        new RuleMetadataLoader(getPath(EXAMPLES_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getExamplesChcecks());
         new RuleMetadataLoader(getPath(OWASP_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getOWASPChecks());
         new RuleMetadataLoader(getPath(OPERATIONS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getOperationsChecks());
         new RuleMetadataLoader(getPath(PARAMETERS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getParametersChecks());

@@ -1,0 +1,9 @@
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  license: # Noncompliant {{AAR017: The license object must have the url field}}
+    name: Apache 2.0
+channels:
+  /pets: {}

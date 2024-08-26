@@ -4,13 +4,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import apiquality.sonar.asyncapi.checks.apim.wso2.*;
 import apiquality.sonar.asyncapi.checks.examples.*;
 import apiquality.sonar.asyncapi.checks.format.*;
 import apiquality.sonar.asyncapi.checks.operations.*;
-import apiquality.sonar.asyncapi.checks.owasp.*;
-import apiquality.sonar.asyncapi.checks.parameters.*;
-import apiquality.sonar.asyncapi.checks.regex.*;
+
 import apiquality.sonar.asyncapi.checks.schemas.*;
 import apiquality.sonar.asyncapi.checks.security.*;
 
@@ -27,10 +24,8 @@ public final class RulesLists {
             AAR015UndefiendContactCheck.class,
             AAR016ContactPropertiesCheck.class,
             AAR017UndefiendUrlLinceseCheck.class,
-            AAR020DefineIDCheck.class,
             AAR021ProvideOpSummaryCheck.class,
             AAR022DescriptionDiffersSummaryCheck.class,
-            AAR023ProvideOpNameCheck.class,
             AAR027ExtenarlDocsUrlCheck.class,
             AAR028ProtocolVersionCheck.class,
             AAR029MandatoryDescriptionCheck.class,
@@ -65,7 +60,6 @@ public final class RulesLists {
         return Arrays.asList(
             AAR009DeclaredTagCheck.class,
             AAR010DocumentedTagCheck.class,
-            AAR020DefineIDCheck.class,
             AAR030UniqueChannelNamesCheck.class,
             AAR040DefinedChannelServersCheck.class,
             AAR041ComponetChannelServerCheck.class           
@@ -76,7 +70,6 @@ public final class RulesLists {
         return Arrays.asList(
             AAR019IDSchemasCheck.class,
             AAR024MessageValidationCheck.class,
-            AAR029MandatoryDescriptionCheck.class,
             AAR026MessageSchemasCheck.class
             
             );

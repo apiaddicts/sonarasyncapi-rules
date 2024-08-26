@@ -1,0 +1,25 @@
+asyncapi: '2.4.0'
+info:
+  title: Simple Petstore API
+  version: '1.0.0'
+  description: API para publicar información sobre mascotas.
+
+channels:
+  /pets:
+    description: Canal para publicar información de nuevas mascotas.
+    publish: # Noncompliant {{AAR031: There must be examples for each channel and operation}}
+      summary: Publica la creación de una nueva mascota.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID de la mascota.
+            name:
+              type: string
+              description: Nombre de la mascota.
+            species:
+              type: string
+              description: Especie de la mascota.

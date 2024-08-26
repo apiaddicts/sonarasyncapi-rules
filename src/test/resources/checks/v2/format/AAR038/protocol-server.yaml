@@ -1,22 +1,16 @@
 asyncapi: '2.4.0'
 info:
-  title: Server Tags Example API
+  title: Server Protocol Example API
   version: '1.0.0'
-  description: API de ejemplo que incluye el uso de etiquetas para los servidores.
+  description: API de ejemplo que incluye la definición del protocolo del servidor.
 servers:
-  production: #Noncompliant {{AAR044: It is recommended use tags of server}}
+  production: #Noncompliant {{AAR038: It is mandatory to define the server protocol}}
     url: 'https://api.example.com'
-    protocol: 'https'
     description: Servidor de producción utilizando HTTPS.
   development:
     url: 'ws://localhost:8080'
     protocol: 'ws'
     description: Servidor de desarrollo utilizando WebSocket.
-    tags:
-      - name: environment
-        description: Development environment server
-      - name: websocket
-        description: Uses WebSocket for communication
 channels:
   /notifications:
     description: Canal para enviar notificaciones a los usuarios.

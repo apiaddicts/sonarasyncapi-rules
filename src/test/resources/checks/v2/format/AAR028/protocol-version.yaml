@@ -1,0 +1,12 @@
+asyncapi: '2.4.0'
+info:
+  title: Simple API with Protocol Version
+  version: '1.0.0'
+  description: API de ejemplo que especifica la versión del protocolo utilizado.
+servers:
+  production: # Noncompliant {{AAR028: The version of the protocol used must be specified to avoid compatibility errors}}
+    url: 'https://api.example.com'
+    protocol: 'mqtt'
+    description: Servidor de producción utilizando MQTT versión 3.1.1
+channels:
+  /events: {}

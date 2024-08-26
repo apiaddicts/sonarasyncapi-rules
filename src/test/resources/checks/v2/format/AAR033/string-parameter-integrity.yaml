@@ -1,0 +1,34 @@
+asyncapi: '2.4.0'
+info:
+  title: String Parameter Restrictions Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye restricciones para parámetros de tipo string.
+channels:
+  /user-data:
+    description: Canal para enviar datos de usuario.
+    publish:
+      operationId: sendUserData
+      summary: Publica información sobre un usuario.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            username:
+              type: string #Noncompliant {{AAR033: String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction}}
+              description: Nombre de usuario.
+            email:
+              type: string
+              description: Dirección de correo electrónico del usuario.
+              pattern: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+            role:
+              type: string
+              description: Rol del usuario en la aplicación.
+              enum:
+                - admin
+                - user
+                - guest
+            phoneNumber:
+              type: string
+              description: Número de teléfono del usuario.
+              pattern: '^\+?[0-9]{10,15}$'

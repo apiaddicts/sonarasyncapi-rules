@@ -1,0 +1,36 @@
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets:
+    description: Canal para operaciones relacionadas con mascotas.
+    subscribe: # Noncompliant {{AAR021: Provide a summary for each operation}}
+      operationId: getPets
+      message:
+        contentType: application/json
+        examples:
+          example1:
+            summary: Ejemplo de lista de mascotas.
+            value:
+              - id: "1"
+                name: "Fido"
+                species: "dog"
+              - id: "2"
+                name: "Whiskers"
+                species: "cat"
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.

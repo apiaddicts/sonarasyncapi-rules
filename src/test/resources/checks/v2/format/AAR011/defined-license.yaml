@@ -1,0 +1,7 @@
+asyncapi: '2.4.0'
+info: # Noncompliant {{AAR011: License should be documented}}
+  title: Simple Petstore API
+  version: '1.0.0'
+  description: API para publicar información sobre mascotas.
+channels:
+  /pets: {}

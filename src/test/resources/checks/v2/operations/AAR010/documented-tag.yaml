@@ -1,0 +1,30 @@
+asyncapi: '2.4.0'
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+servers:
+  production:
+    url: 'https://api.petstore.com'
+    protocol: 'https'
+    description: Servidor de producción para la API de la tienda de mascotas
+channels:
+    /pets:
+      description: Canal de comunicación para operaciones relacionadas con mascotas
+      subscribe: # Noncompliant {{AAR010: Tags should be documented.}}
+        operationId: receivePets
+        tags:
+        - name: order
+        summary: Operación para recibir la lista de mascotas
+        message:
+          contentType: application/json
+          payload:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ID de la mascota
+                name:
+                  type: string
+                  description: Nombre de la mascota
