@@ -27,8 +27,30 @@ import apiquality.sonar.asyncapi.checks.BaseCheck;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
+import java.util.HashSet;
 
 @Rule(key = AAR013DuplicateOperationIDCheck.CHECK_KEY)
 public class AAR013DuplicateOperationIDCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR013";
+    private Set<String> operationIds = new HashSet<>();
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.OPERATION);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode operationIdNode = node.at("/operationId");
+
+        if (!operationIdNode.isMissing() && !operationIdNode.isNull()) {
+            String operationId = operationIdNode.stringValue();
+
+            if (operationIds.contains(operationId)) {
+                addIssue(CHECK_KEY, translate("AAR013.error", operationId), node.key());
+            } else {
+                operationIds.add(operationId);
+            }
+        }
+    }
 }

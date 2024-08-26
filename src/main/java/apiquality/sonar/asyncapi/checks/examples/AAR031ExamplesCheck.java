@@ -42,7 +42,7 @@ public class AAR031ExamplesCheck extends BaseCheck {
     if (node.getType() == AsyncApiGrammar.OPERATION) {
       JsonNode examplesNode = node.at("/message/examples").value();
       if (examplesNode.isMissing() || examplesNode.isNull() || !examplesNode.isArray()) {
-        addIssue(CHECK_KEY, translate("AAR010.error"), node.key());
+        addIssue(CHECK_KEY, translate("AAR031.error"), node.key());
       }
     }
   }

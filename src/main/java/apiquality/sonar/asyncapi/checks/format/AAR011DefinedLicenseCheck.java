@@ -31,4 +31,18 @@ import java.util.Set;
 @Rule(key = AAR011DefinedLicenseCheck.CHECK_KEY)
 public class AAR011DefinedLicenseCheck extends BaseCheck {
   public static final String CHECK_KEY = "AAR011";
+
+  @Override
+  public Set<AstNodeType> subscribedKinds() {
+    return Sets.newHashSet(AsyncApiGrammar.INFO);
+  }
+
+  @Override
+  protected void visitNode(JsonNode node) {
+    JsonNode licenseNode = node.at("/license");
+    
+    if (licenseNode.isMissing() || licenseNode.isNull()) {
+      addIssue(CHECK_KEY, translate("AAR011.error"), node.key());
+    }
+  }
 }

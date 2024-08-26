@@ -6,14 +6,14 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.samples.asyncapi.BaseCheckTest;
 
-import apiquality.sonar.asyncapi.checks.format.AAR017UndefiendUrlLinceseCheck;
+import apiquality.sonar.asyncapi.checks.format.AAR017UndefinedUrlLicenseCheck;
 
 public class AAR017UndefiendUrlLinceseCheckTest extends BaseCheckTest {
 
     @Before
     public void init() {
         ruleName = "AAR017";
-        check = new AAR017UndefiendUrlLinceseCheck();
+        check = new AAR017UndefinedUrlLicenseCheck();
         v2Path = getV2Path("format");
     }
 

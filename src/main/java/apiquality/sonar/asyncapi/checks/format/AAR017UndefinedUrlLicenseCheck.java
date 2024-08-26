@@ -28,7 +28,25 @@ import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
 
-@Rule(key = AAR016ContactPropertiesCheck.CHECK_KEY)
-public class AAR016ContactPropertiesCheck extends BaseCheck {
-    public static final String CHECK_KEY = "AAR016";
+@Rule(key = AAR017UndefinedUrlLicenseCheck.CHECK_KEY)
+public class AAR017UndefinedUrlLicenseCheck extends BaseCheck {
+    public static final String CHECK_KEY = "AAR017";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.INFO);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode licenseNode = node.at("/license");
+        
+        // Check if the license node is present and if it contains a URL field
+        if (!licenseNode.isMissing() && !licenseNode.isNull()) {
+            JsonNode urlNode = licenseNode.at("/url");
+            if (urlNode.isMissing() || urlNode.isNull()) {
+                addIssue(CHECK_KEY, translate("AAR017.error"), licenseNode.key());
+            }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 {
-    "title": "AAR017 - UndefiendUrlLincese - The license object must have the url field",
+    "title": "AAR017 - UndefinedUrlLicense - The license object must have the url field",
     "type": "BUG",
     "status": "ready",
     "remediation": {

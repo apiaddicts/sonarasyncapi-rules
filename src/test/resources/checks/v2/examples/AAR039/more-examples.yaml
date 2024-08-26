@@ -12,12 +12,12 @@ channels:
       message:
         contentType: application/json
         examples: # Noncompliant {{AAR039: It is recommended to have more than 2 examples of the cases that may appear}}
-          example1:
-            summary: Ejemplo de creación de mascota.
-            value:
-              id: "1"
-              name: "Fido"
-              species: "dog"
+          - example1:
+              summary: Ejemplo de creación de mascota.
+              value:
+                id: "1"
+                name: "Fido"
+                species: "dog"
         payload:
           type: object
           properties:

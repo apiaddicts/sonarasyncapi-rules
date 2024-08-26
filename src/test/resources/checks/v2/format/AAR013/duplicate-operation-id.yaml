@@ -4,23 +4,13 @@ info:
   version: '1.0.0'
   description: API que demuestra el uso de operationId único en cada operación.
 channels:
-  /pets: # Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}
+  /pets: 
     description: Canal para operaciones relacionadas con mascotas.    
     subscribe:
       operationId: hola
       summary: Operación para recibir la lista de mascotas.
       message:
         contentType: application/json
-        examples:
-          example1:
-            summary: Ejemplo de lista de mascotas.
-            value:
-              - id: "1"
-                name: "Fido"
-                species: "dog"
-              - id: "2"
-                name: "Whiskers"
-                species: "cat"
         payload:
           type: array
           items:
@@ -35,18 +25,11 @@ channels:
               species:
                 type: string
                 description: Especie de la mascota.
-    publish:
+    publish: # Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}
       operationId: hola
       summary: Operación para crear una nueva mascota.
       message:
         contentType: application/json
-        examples:
-          example1:
-            summary: Ejemplo de creación de una mascota.
-            value:
-              id: "3"
-              name: "Bella"
-              species: "rabbit"
         payload:
           type: object
           properties:

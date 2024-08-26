@@ -31,4 +31,18 @@ import java.util.Set;
 @Rule(key = AAR012DeclaredOperationIDCheck.CHECK_KEY)
 public class AAR012DeclaredOperationIDCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR012";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.OPERATION);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode operationIdNode = node.at("/operationId");
+        
+        if (operationIdNode.isMissing() || operationIdNode.isNull()) {
+            addIssue(CHECK_KEY, translate("AAR012.error"), node.key());
+        }
+    }
 }

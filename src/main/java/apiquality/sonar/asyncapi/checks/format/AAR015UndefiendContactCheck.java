@@ -31,4 +31,19 @@ import java.util.Set;
 @Rule(key = AAR015UndefiendContactCheck.CHECK_KEY)
 public class AAR015UndefiendContactCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR015";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.INFO);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode contactNode = node.at("/contact");
+
+        // Check if the contact node is missing or null
+        if (contactNode.isMissing() || contactNode.isNull()) {
+            addIssue(CHECK_KEY, translate("AAR015.error"), node.key());
+        }
+    }
 }
