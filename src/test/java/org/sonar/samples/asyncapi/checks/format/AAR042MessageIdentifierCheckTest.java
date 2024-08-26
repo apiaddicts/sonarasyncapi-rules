@@ -19,7 +19,7 @@ public class AAR042MessageIdentifierCheckTest extends BaseCheckTest {
 
     @Test
     public void verifyInV2() {
-        verifyV2("message-identifier.yaml");
+        verifyV2("message-id.yaml");
     }
 
     @Override

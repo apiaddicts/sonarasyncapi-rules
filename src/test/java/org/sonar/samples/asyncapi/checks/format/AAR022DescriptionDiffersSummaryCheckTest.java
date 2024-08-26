@@ -19,7 +19,7 @@ public class AAR022DescriptionDiffersSummaryCheckTest extends BaseCheckTest {
 
     @Test
     public void verifyInV2() {
-        verifyV2("description-differs-summary.yaml");
+        verifyV2("description-differ-summary.yaml");
     }
 
     @Override

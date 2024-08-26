@@ -31,4 +31,25 @@ import java.util.Set;
 @Rule(key = AAR022DescriptionDiffersSummaryCheck.CHECK_KEY)
 public class AAR022DescriptionDiffersSummaryCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR022";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.OPERATION);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode summaryNode = node.at("/summary");
+        JsonNode descriptionNode = node.at("/description");
+
+        if (!summaryNode.isMissing() && !summaryNode.isNull() && 
+            !descriptionNode.isMissing() && !descriptionNode.isNull()) {
+            String summary = summaryNode.stringValue();
+            String description = descriptionNode.stringValue();
+
+            if (summary.equals(description)) {
+                addIssue(CHECK_KEY, translate("AAR022.error"), node.key());
+            }
+        }
+    }
 }

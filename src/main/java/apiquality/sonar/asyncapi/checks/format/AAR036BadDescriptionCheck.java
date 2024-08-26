@@ -31,4 +31,48 @@ import java.util.Set;
 @Rule(key = AAR036BadDescriptionCheck.CHECK_KEY)
 public class AAR036BadDescriptionCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR036";
+    private static final String MESSAGE = "AAR036.error";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.ROOT, AsyncApiGrammar.CHANNEL, AsyncApiGrammar.OPERATION);
+    }
+
+    @Override
+    public void visitNode(JsonNode node) {
+        if (AsyncApiGrammar.ROOT.equals(node.getType())) {
+            checkInfoDescription(node);
+        }
+        if (AsyncApiGrammar.CHANNEL.equals(node.getType())) {
+            checkDescriptionFormat(node.get("description"));
+        }
+        if (AsyncApiGrammar.OPERATION.equals(node.getType())) {
+            checkDescriptionFormat(node.get("description"));
+        }
+    }
+
+    private void checkInfoDescription(JsonNode rootNode) {
+        JsonNode infoNode = rootNode.get("info");
+        if (infoNode != null) {
+            checkDescriptionFormat(infoNode.get("description"));
+        }
+    }
+
+    private void checkDescriptionFormat(JsonNode descriptionNode) {
+        if (descriptionNode == null || descriptionNode.isMissing()) {
+            return;
+        }
+    
+        String description = descriptionNode.getTokenValue();
+        description = description == null ? "" : description.trim();
+    
+        if (description.isEmpty()) {
+            addIssue(CHECK_KEY, translate(MESSAGE), descriptionNode);
+            return;
+        }
+    
+        if (!Character.isUpperCase(description.charAt(0)) || !description.endsWith(".")) {
+            addIssue(CHECK_KEY, translate(MESSAGE), descriptionNode);
+        }
+    }
 }

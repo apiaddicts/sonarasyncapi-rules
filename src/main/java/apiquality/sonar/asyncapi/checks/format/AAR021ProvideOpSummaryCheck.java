@@ -31,4 +31,17 @@ import java.util.Set;
 @Rule(key = AAR021ProvideOpSummaryCheck.CHECK_KEY)
 public class AAR021ProvideOpSummaryCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR021";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.OPERATION);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode summaryNode = node.at("/summary");
+        if (summaryNode.isMissing() || summaryNode.isNull()) {
+            addIssue(CHECK_KEY, translate("AAR021.error"), node.key());
+        }
+    }
 }

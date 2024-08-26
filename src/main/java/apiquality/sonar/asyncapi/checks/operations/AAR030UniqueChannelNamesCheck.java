@@ -26,10 +26,30 @@ import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Rule(key = AAR030UniqueChannelNamesCheck.CHECK_KEY)
 public class AAR030UniqueChannelNamesCheck extends BaseCheck {
-  public static final String CHECK_KEY = "AAR030";
+    public static final String CHECK_KEY = "AAR030";
 
+    private final Set<String> channelNames = new HashSet<>();
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.CHANNEL);
+    }
+
+    @Override
+    public void visitNode(JsonNode node) {
+        for (JsonNode channelNode : node.getJsonChildren()) {
+            String channelName = channelNode.key().getTokenValue();
+            
+            if (channelNames.contains(channelName)) {
+                addIssue(CHECK_KEY, translate("AAR030.error"), node.key());
+            } else {
+                channelNames.add(channelName);
+            }
+        }
+    }
 }

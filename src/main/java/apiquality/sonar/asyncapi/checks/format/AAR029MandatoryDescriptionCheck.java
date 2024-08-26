@@ -31,4 +31,18 @@ import java.util.Set;
 @Rule(key = AAR029MandatoryDescriptionCheck.CHECK_KEY)
 public class AAR029MandatoryDescriptionCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR029";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.OPERATION, AsyncApiGrammar.CHANNEL);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode descriptionNode = node.at("/description");
+
+        if (descriptionNode.isMissing() || descriptionNode.isNull()) {
+            addIssue(CHECK_KEY, translate("AAR029.error"), node.key());
+        }
+    }
 }

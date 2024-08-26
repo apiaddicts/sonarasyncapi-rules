@@ -31,4 +31,18 @@ import java.util.Set;
 @Rule(key = AAR035MessageTitleCheck.CHECK_KEY)
 public class AAR035MessageTitleCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR035";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.MESSAGE);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode titleNode = node.get("title");
+
+        if (titleNode == null || titleNode.isNull()) {
+            addIssue(CHECK_KEY, translate("AAR035.error"), node.key());
+        }
+    }
 }

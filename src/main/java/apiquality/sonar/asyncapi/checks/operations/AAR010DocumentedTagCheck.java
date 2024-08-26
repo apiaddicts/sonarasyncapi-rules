@@ -30,6 +30,28 @@ import java.util.Set;
 
 @Rule(key = AAR010DocumentedTagCheck.CHECK_KEY)
 public class AAR010DocumentedTagCheck extends BaseCheck {
-  public static final String CHECK_KEY = "AAR010";
+    public static final String CHECK_KEY = "AAR010";
 
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.OPERATION);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode tagsNode = node.get("tags");
+
+        if (tagsNode != null && !tagsNode.isMissing()) {
+            for (JsonNode tag : tagsNode.getJsonChildren()) {
+                JsonNode nameNode = tag.get("name");
+                JsonNode descriptionNode = tag.get("description");
+                System.out.println("Hola: "+ nameNode);
+
+                if (nameNode != null && !nameNode.isMissing() &&
+                        (descriptionNode == null || descriptionNode.isMissing())) {
+                    addIssue(CHECK_KEY, translate("AAR010.error"), tag.key());
+                }
+            }
+        }
+    }
 }

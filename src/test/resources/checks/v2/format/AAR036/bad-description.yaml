@@ -4,23 +4,13 @@ info:
   version: '1.0.0'
   description: API que demuestra el uso de operationId único en cada operación.
 channels:
-  /pets: # Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}
-    description: hola
-    subscribe: #Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}
-      description: hola
+  /pets: 
+    description: hola # Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}
+    subscribe: 
+      description: hola # Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}
       operationId: getPets
       message:
         contentType: application/json
-        examples:
-          example1:
-            summary: Ejemplo de lista de mascotas.
-            value:
-              - id: "1"
-                name: "Fido"
-                species: "dog"
-              - id: "2"
-                name: "Whiskers"
-                species: "cat"
         payload:
           type: array
           items:

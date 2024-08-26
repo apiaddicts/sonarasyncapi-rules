@@ -31,4 +31,26 @@ import java.util.Set;
 @Rule(key = AAR032NumericParameterIntegrityCheck.CHECK_KEY)
 public class AAR032NumericParameterIntegrityCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR032";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.MESSAGES);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode typeNode = node.get("type");
+
+        if (typeNode != null && (typeNode.stringValue().equals("number") || typeNode.stringValue().equals("integer"))) {
+            JsonNode minimumNode = node.get("minimum");
+            JsonNode maximumNode = node.get("maximum");
+            JsonNode formatNode = node.get("format");
+
+            if ((minimumNode == null || minimumNode.isNull()) &&
+                (maximumNode == null || maximumNode.isNull()) &&
+                (formatNode == null || formatNode.isNull())) {
+                addIssue(CHECK_KEY, translate("AAR032.error.numeric.parameter.restriction.missing"), node.key());
+            }
+        }
+    }
 }

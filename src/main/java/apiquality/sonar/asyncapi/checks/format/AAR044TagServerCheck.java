@@ -31,4 +31,18 @@ import java.util.Set;
 @Rule(key = AAR044TagServerCheck.CHECK_KEY)
 public class AAR044TagServerCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR044";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.SERVER);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode tagsNode = node.get("tags");
+
+        if (tagsNode == null || tagsNode.isMissing() || tagsNode.getJsonChildren().isEmpty()) {
+            addIssue(CHECK_KEY, translate("AAR044.error"), node.key());
+        }
+    }
 }

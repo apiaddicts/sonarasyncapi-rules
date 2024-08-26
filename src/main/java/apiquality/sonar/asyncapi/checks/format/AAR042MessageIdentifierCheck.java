@@ -31,4 +31,18 @@ import java.util.Set;
 @Rule(key = AAR042MessageIdentifierCheck.CHECK_KEY)
 public class AAR042MessageIdentifierCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR042";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.MESSAGE);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode messageIdNode = node.get("messageId");
+
+        if (messageIdNode == null || messageIdNode.isMissing()) {
+            addIssue(CHECK_KEY, translate("AAR042.error"), node.key());
+        }
+    }
 }
