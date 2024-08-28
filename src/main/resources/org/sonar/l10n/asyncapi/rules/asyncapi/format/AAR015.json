@@ -1,5 +1,5 @@
 {
-    "title": "AAR015 - UndefiendContact - Api should indicate  the contact in the info object",
+    "title": "AAR015 - UndefinedContact - Api should indicate the contact in the info object",
     "type": "BUG",
     "status": "ready",
     "remediation": {

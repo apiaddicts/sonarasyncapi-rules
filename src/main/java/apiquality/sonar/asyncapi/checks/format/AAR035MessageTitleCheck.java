@@ -41,7 +41,7 @@ public class AAR035MessageTitleCheck extends BaseCheck {
     protected void visitNode(JsonNode node) {
         JsonNode titleNode = node.get("title");
 
-        if (titleNode == null || titleNode.isNull()) {
+        if (titleNode == null || titleNode.isNull()|| titleNode.isMissing()) {
             addIssue(CHECK_KEY, translate("AAR035.error"), node.key());
         }
     }

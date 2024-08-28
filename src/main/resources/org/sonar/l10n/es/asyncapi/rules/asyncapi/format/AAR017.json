@@ -1,5 +1,5 @@
 {
-    "title": "AAR017 - UndefiendUrlLincese - El objeto de licencia debe tener el campo URL",
+    "title": "AAR017 - UndefinedUrlLincese - El objeto de licencia debe tener el campo URL",
     "type": "BUG",
     "status": "ready",
     "remediation": {

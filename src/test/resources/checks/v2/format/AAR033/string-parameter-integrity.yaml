@@ -15,7 +15,7 @@ channels:
           type: object
           properties:
             username:
-              type: string #Noncompliant {{AAR033: String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction}}
+              type: string 
               description: Nombre de usuario.
             email:
               type: string

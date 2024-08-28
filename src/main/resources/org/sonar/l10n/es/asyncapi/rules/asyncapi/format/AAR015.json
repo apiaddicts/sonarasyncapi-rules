@@ -1,5 +1,5 @@
 {
-    "title": "AAR015 - UndefiendContact - La API debe indicar el contacto en el objeto de información",
+    "title": "AAR015 - UndefinedContact - La API debe indicar el contacto en el objeto de información",
     "type": "BUG",
     "status": "ready",
     "remediation": {

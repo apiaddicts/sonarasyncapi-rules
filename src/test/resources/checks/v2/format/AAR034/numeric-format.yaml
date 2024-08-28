@@ -20,5 +20,4 @@ channels:
               type: object
               properties:
                 value:
-                  type: number # Noncompliant {{AAR034: Numeric types require a valid format}}
-
+                  type: number 

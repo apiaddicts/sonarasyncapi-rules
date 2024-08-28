@@ -16,7 +16,7 @@ channels:
           type: object
           properties: 
             temperature:
-              type: number #Noncompliant {{AAR032: Numeric parameters should have minimum, maximum, or format restriction}}
+              type: number 
               description: Temperatura medida por el sensor.
             humidity:
               type: number
@@ -28,7 +28,7 @@ channels:
               description: Presión atmosférica medida.
               minimum: 900
               maximum: 1100
-            sensorId: #Noncompliant {{AAR032: Numeric parameters should have minimum, maximum, or format restriction}}
+            sensorId: 
               type: integer
               description: ID único del sensor.
 

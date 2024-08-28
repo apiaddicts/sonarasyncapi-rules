@@ -24,6 +24,6 @@ public class AAR029MandatoryDescriptionCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR029 - MandatoryDescription -  Each channel and each operation must have a description that explains its purpose and function", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR029 - MandatoryDescription - Each channel and each operation must have a description that explains its purpose and function", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

@@ -49,7 +49,7 @@ public class AAR032NumericParameterIntegrityCheck extends BaseCheck {
             if ((minimumNode == null || minimumNode.isNull()) &&
                 (maximumNode == null || maximumNode.isNull()) &&
                 (formatNode == null || formatNode.isNull())) {
-                addIssue(CHECK_KEY, translate("AAR032.error.numeric.parameter.restriction.missing"), node.key());
+                addIssue(CHECK_KEY, translate("AAR032.error"), node.key());
             }
         }
     }

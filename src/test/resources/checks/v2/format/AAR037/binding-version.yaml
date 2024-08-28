@@ -7,13 +7,5 @@ servers:
     url: mqtt://broker.example.com
     protocol: mqtt
 channels:
-  /example-channel:
-    description: Example channel for testing.
-    bindings: # Noncompliant {{AAR037: You must specify the version of the binding}}
-      mqtt:
-        qos: 1
-    subscribe:
-      summary: Example subscription
-      operationId: exampleSubscription
-      message:
-        contentType: application/json
+  /example-channel: {}
+    
