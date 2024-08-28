@@ -6,24 +6,24 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.samples.asyncapi.BaseCheckTest;
 
-import apiquality.sonar.asyncapi.checks.format.AAR037BidingVersionCheck;
+import apiquality.sonar.asyncapi.checks.format.AAR037BindingVersionCheck;
 
-public class AAR037BidingVersionCheckTest extends BaseCheckTest {
+public class AAR037BindingVersionCheckTest extends BaseCheckTest {
 
     @Before
     public void init() {
         ruleName = "AAR037";
-        check = new AAR037BidingVersionCheck();
+        check = new AAR037BindingVersionCheck();
         v2Path = getV2Path("format");
     }
 
     @Test
     public void verifyInV2() {
-        verifyV2("biding-version.yaml");
+        verifyV2("binding-version.yaml");
     }
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR037 - BidingVersion - You must specify the version of the biding", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR037 - BindingVersion - You must specify the version of the binding", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

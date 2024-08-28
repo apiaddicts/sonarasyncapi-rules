@@ -1,7 +1,95 @@
-<p></p>
+<p>It is recommended to have a title per message</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Message Title Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye un título por cada mensaje.
+
+channels:
+  /order:
+    description: Canal para enviar y recibir información de pedidos.
+    publish:
+      operationId: sendOrder
+      summary: Publica información sobre un nuevo pedido.
+      message: <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR035: It is recommended to have a title per message}}</span>
+        description: Mensaje que contiene los detalles de un nuevo pedido realizado.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            product:
+              type: string
+              description: Nombre del producto.
+            quantity:
+              type: integer
+              description: Cantidad del producto pedido.
+    subscribe:
+      operationId: receiveOrderConfirmation
+      summary: Suscripción para recibir confirmación de pedidos.
+      message:
+        title: Confirmación de Pedido
+        description: Mensaje que contiene la confirmación de un pedido.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            status:
+              type: string
+              description: Estado de la confirmación del pedido.
 </pre>
 <h2>Compliant Solution (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Message Title Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye un título por cada mensaje.
+
+channels:
+  /order:
+    description: Canal para enviar y recibir información de pedidos.
+    publish:
+      operationId: sendOrder
+      summary: Publica información sobre un nuevo pedido.
+      message: 
+        title: message title
+        description: Mensaje que contiene los detalles de un nuevo pedido realizado.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            product:
+              type: string
+              description: Nombre del producto.
+            quantity:
+              type: integer
+              description: Cantidad del producto pedido.
+    subscribe:
+      operationId: receiveOrderConfirmation
+      summary: Suscripción para recibir confirmación de pedidos.
+      message:
+        title: Confirmación de Pedido
+        description: Mensaje que contiene la confirmación de un pedido.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            status:
+              type: string
+              description: Estado de la confirmación del pedido.
+
 </pre>

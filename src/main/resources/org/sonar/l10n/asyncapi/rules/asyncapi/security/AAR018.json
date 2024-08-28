@@ -9,5 +9,5 @@
     "tags": [
       "safety"
     ],
-    "defaultSeverity": "CRITICAL"
+    "defaultSeverity": "MAJOR"
   }

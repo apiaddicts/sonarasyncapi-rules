@@ -1,5 +1,5 @@
 {
-    "title": "AAR037 - BidingVersion - Debe especificar la versión del binding",
+    "title": "AAR037 - BindingVersion - Debe especificar la versión del binding",
     "type": "BUG",
     "status": "ready",
     "remediation": {

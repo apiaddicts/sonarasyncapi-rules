@@ -1,5 +1,5 @@
 /*
- * SonarQube OpenAPI Plugin
+ * SonarQube AsyncAPI Plugin
  * Copyright (C) 2018-2019 Societe Generale
  * vincent.girard-reydet AT socgen DOT com
  *
@@ -27,9 +27,47 @@ import apiquality.sonar.asyncapi.checks.BaseCheck;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
+import java.util.Map;
 
 @Rule(key = AAR040DefinedChannelServersCheck.CHECK_KEY)
 public class AAR040DefinedChannelServersCheck extends BaseCheck {
-  public static final String CHECK_KEY = "AAR040";
+    public static final String CHECK_KEY = "AAR040";
 
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.CHANNEL);
+    }
+
+    @Override
+    protected void visitNode(JsonNode channelNode) {
+        // Navigate to the root and get the 'servers' object
+        JsonNode rootNode = getRootNode(channelNode);
+        JsonNode serversNode = rootNode.get("servers");
+
+        if (serversNode.isMissing() || serversNode.isNull()) {
+            return; // No servers defined at the root level, nothing to check against
+        }
+
+        // Access the servers referenced by the channel
+        JsonNode channelServers = channelNode.get("servers");
+        if (channelServers.isMissing() || channelServers.isNull()) {
+            return; // No specific servers defined for this channel, no check needed
+        }
+
+        // Check each server reference in the channel against the defined servers
+        for (JsonNode server : channelServers.elements()) {
+            String serverName = server.stringValue();
+            if (!serversNode.propertyMap().containsKey(serverName)) {
+                addIssue(CHECK_KEY, translate("AAR040.error"), server.key());
+            }
+        }
+    }
+
+    private JsonNode getRootNode(JsonNode node) {
+        JsonNode parentNode = node;
+        while (parentNode.getParent() != null) {
+            parentNode = (JsonNode) parentNode.getParent();
+        }
+        return parentNode;
+    }
 }

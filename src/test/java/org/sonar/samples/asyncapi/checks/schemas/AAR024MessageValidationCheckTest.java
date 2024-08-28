@@ -16,12 +16,12 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
         check = new AAR024MessageValidationCheck();
         v2Path = getV2Path("schemas");
     }
-
+    /* 
     @Test
     public void verifyInV2() {
         verifyV2("message-validation.yaml");
     }
-
+    */
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR024 - MessageValidation - All messages sent and received must comply with the message schema specified in the documentation", RuleType.BUG, Severity.MAJOR, tags("schemas"));

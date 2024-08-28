@@ -28,29 +28,21 @@ import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
 
-@Rule(key = AAR039MoreExamplesCheck.CHECK_KEY)
-public class AAR039MoreExamplesCheck extends BaseCheck {
-  public static final String CHECK_KEY = "AAR039";
+@Rule(key = AAR031MessageExamplesCheck.CHECK_KEY)
+public class AAR031MessageExamplesCheck extends BaseCheck {
+  public static final String CHECK_KEY = "AAR031";
 
   @Override
   public Set<AstNodeType> subscribedKinds() {
-    return Sets.newHashSet(AsyncApiGrammar.OPERATION);
+    return Sets.newHashSet(AsyncApiGrammar.INFO);
   }
 
   @Override
   protected void visitNode(JsonNode node) {
-    JsonNode examplesNode = node.at("/message/examples").value();
+    JsonNode licenseNode = node.at("/license");
     
-    // Check if examples exist and are an array
-    if (examplesNode.isArray()) {
-      int examplesCount = examplesNode.getJsonChildren().size();
-      // Check if there are more than two examples
-      if (examplesCount <= 2) {
-        addIssue(CHECK_KEY, translate("AAR039.error.not.enough.examples"), node.key());
-      }
-    } else {
-      // If no examples or not an array, it's a violation
-      addIssue(CHECK_KEY, translate("AAR039.error.no.examples"), node.key());
+    if (licenseNode.isMissing() || licenseNode.isNull()) {
+      addIssue(CHECK_KEY, translate("AAR011.error"), node.key());
     }
   }
 }

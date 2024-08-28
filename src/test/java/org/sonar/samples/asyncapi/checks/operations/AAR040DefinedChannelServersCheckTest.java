@@ -19,7 +19,7 @@ public class AAR040DefinedChannelServersCheckTest extends BaseCheckTest {
 
     @Test
     public void verifyInV2() {
-        verifyV2("defined-channel-servers.yaml");
+        verifyV2("defined-channels-server.yaml");
     }
 
     @Override

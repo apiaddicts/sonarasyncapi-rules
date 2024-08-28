@@ -28,7 +28,28 @@ import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
 
-@Rule(key = AAR028ProtocolVersionCheck.CHECK_KEY)
-public class AAR028ProtocolVersionCheck extends BaseCheck {
-    public static final String CHECK_KEY = "AAR028";
+@Rule(key = AAR037BindingVersionCheck.CHECK_KEY)
+public class AAR037BindingVersionCheck extends BaseCheck {
+    public static final String CHECK_KEY = "AAR037";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(
+            AsyncApiGrammar.SERVER_BINDING,
+            AsyncApiGrammar.CHANNEL_BINDING,
+            AsyncApiGrammar.MESSAGE_BINDING
+        );
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode bindings = node;
+
+        for (JsonNode binding : bindings.propertyMap().values()) {
+            JsonNode versionNode = binding.get("version");
+            if (versionNode == null || versionNode.isMissing() || versionNode.isNull()) {
+                addIssue(CHECK_KEY, translate("AAR037.error"), binding.key());
+            }
+        }
+    }
 }

@@ -28,7 +28,31 @@ import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
 
-@Rule(key = AAR027ExtenarlDocsUrlCheck.CHECK_KEY)
-public class AAR027ExtenarlDocsUrlCheck extends BaseCheck {
-    public static final String CHECK_KEY = "AAR027";
+@Rule(key = AAR016ContactPropertiesCheck.CHECK_KEY)
+public class AAR016ContactPropertiesCheck extends BaseCheck {
+    public static final String CHECK_KEY = "AAR016";
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return Sets.newHashSet(AsyncApiGrammar.INFO);
+    }
+
+    @Override
+    protected void visitNode(JsonNode node) {
+        JsonNode contactNode = node.at("/contact");
+
+        if (contactNode.isMissing() || contactNode.isNull()) {
+            return;  // If the contact node is missing or null, exit early
+        }
+
+        // Check if any of the required properties are missing or null
+        boolean nameMissing = contactNode.get("name").isMissing() || contactNode.get("name").isNull();
+        boolean urlMissing = contactNode.get("url").isMissing() || contactNode.get("url").isNull();
+        boolean emailMissing = contactNode.get("email").isMissing() || contactNode.get("email").isNull();
+
+        // If any property is missing, add an issue
+        if (nameMissing || urlMissing || emailMissing) {
+            addIssue(CHECK_KEY, translate("AAR016.error"), contactNode.key());
+        }
+    }
 }

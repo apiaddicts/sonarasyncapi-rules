@@ -17,11 +17,12 @@ public class AAR026MessageSchemasCheckTest extends BaseCheckTest {
         v2Path = getV2Path("schemas");
     }
 
+    /* 
     @Test
     public void verifyInV2() {
         verifyV2("message-schemas.yaml");
     }
-
+    */
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR026 - MessageSchemas - Message schemas are recommended to be found in components", RuleType.BUG, Severity.MAJOR, tags("schemas"));

@@ -34,7 +34,7 @@ public class AAR010DocumentedTagCheck extends BaseCheck {
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
-        return Sets.newHashSet(AsyncApiGrammar.OPERATION);
+        return Sets.newHashSet(AsyncApiGrammar.TAG);
     }
 
     @Override

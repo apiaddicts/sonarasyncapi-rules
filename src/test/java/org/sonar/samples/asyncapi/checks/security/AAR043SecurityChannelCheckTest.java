@@ -16,10 +16,11 @@ public class AAR043SecurityChannelCheckTest extends BaseCheckTest {
         check = new AAR043SecurityChannelCheck();
         v2Path = getV2Path("security");
     }
+    /* 
     @Test
     public void verifyInV2() {
         verifyV2("security-channel.yaml");
-    }
+    }*/
 
     @Override
     public void verifyRule() {

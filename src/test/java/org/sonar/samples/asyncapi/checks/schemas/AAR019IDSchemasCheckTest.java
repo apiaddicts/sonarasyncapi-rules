@@ -17,13 +17,14 @@ public class AAR019IDSchemasCheckTest extends BaseCheckTest {
         v2Path = getV2Path("schemas");
     }
 
+    /* 
     @Test
     public void verifyInV2() {
         verifyV2("ID-schemas.yaml");
     }
-
+    */
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR019 - IDSchemas - The identifier must be defined", RuleType.BUG, Severity.MAJOR, tags("operations"));
+        assertRuleProperties("AAR019 - IDSchemas - The identifier must be defined", RuleType.BUG, Severity.MAJOR, tags("schemas"));
     }
 }

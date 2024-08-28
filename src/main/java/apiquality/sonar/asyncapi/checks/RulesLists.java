@@ -22,21 +22,18 @@ public final class RulesLists {
             AAR012DeclaredOperationIDCheck.class,
             AAR013DuplicateOperationIDCheck.class,
             AAR015UndefiendContactCheck.class,
+            AAR016ContactPropertiesCheck.class,
             AAR017UndefinedUrlLicenseCheck.class,
             AAR021ProvideOpSummaryCheck.class,
             AAR022DescriptionDiffersSummaryCheck.class,
-            AAR027ExtenarlDocsUrlCheck.class,
-            AAR028ProtocolVersionCheck.class,
             AAR029MandatoryDescriptionCheck.class,
             AAR032NumericParameterIntegrityCheck.class,
             AAR033StringParameterIntegrityCheck.class,
             AAR034NumericFormatCheck.class,
             AAR035MessageTitleCheck.class,
             AAR036BadDescriptionCheck.class,
-            AAR037BidingVersionCheck.class,
-            AAR038ProtocolSeverCheck.class,
-            AAR042MessageIdentifierCheck.class,
-            AAR044TagServerCheck.class         
+            AAR037BindingVersionCheck.class,
+            AAR042MessageIdentifierCheck.class
         );
     }
 
@@ -59,7 +56,6 @@ public final class RulesLists {
         return Arrays.asList(
             AAR009DeclaredTagCheck.class,
             AAR010DocumentedTagCheck.class,
-            AAR030UniqueChannelNamesCheck.class,
             AAR040DefinedChannelServersCheck.class,
             AAR041ComponetChannelServerCheck.class           
         );
@@ -80,9 +76,8 @@ public final class RulesLists {
     }
 
     public static List<Class<?>> getExamplesChcecks() {
-        return Arrays.asList(
-            AAR031ExamplesCheck.class,
-            AAR039MoreExamplesCheck.class           
+        return Arrays.asList(  
+            AAR031MessageExamplesCheck.class    
         );
     }
 

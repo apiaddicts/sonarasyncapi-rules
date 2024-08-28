@@ -1,7 +1,47 @@
-<p></p>
+<p>Channel server must be defined in the servers object</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+servers:
+  production:
+    url: 'https://api.petstore.com'
+    protocol: 'https'
+    description: Servidor de producción para la API de la tienda de mascotas
+channels: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR040: Channel server must be defined in the servers object}}
+    /pets:
+      description: Canal de comunicación para operaciones relacionadas con mascotas
+      subscribe: 
+        operationId: receivePets
+        summary: Operación para recibir la lista de mascotas
+        message:
+          contentType: application/json
+          payload:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ID de la mascota
+                name:
+                  type: string
+                  description: Nombre de la mascota
 </pre>
 <h2>Compliant Solution (AsyncAPI 2)</h2>
 <pre>
+asyncapi: "2.0.0"
+info:
+  title: Awesome API
+  description: A very well-defined API
+  version: "1.0"
+servers:
+  production:
+    url: "stoplight.io"
+    protocol: "https"
+channels:
+  hello:
+    servers: production
 </pre>

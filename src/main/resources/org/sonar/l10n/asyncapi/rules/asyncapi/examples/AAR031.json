@@ -1,5 +1,5 @@
 {
-    "title": "AAR031 - ExamplesCheck - There must be examples for each channel and operation",
+    "title": "AAR031 - MessageExamples - All examples in message object should follow payload and headers schemas",
     "type": "BUG",
     "status": "ready",
     "remediation": {
@@ -10,5 +10,5 @@
       "examples"
     ],
     "defaultSeverity": "MAJOR"
-  }
+}
   

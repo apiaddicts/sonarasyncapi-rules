@@ -1,5 +1,5 @@
 {
-    "title": "AAR009 - DeclaredTag - Each operation SHOULD have a tag.",
+    "title": "AAR009 - DeclaredTag - Each operation should have a tag.",
     "type": "BUG",
     "status": "ready",
     "remediation": {

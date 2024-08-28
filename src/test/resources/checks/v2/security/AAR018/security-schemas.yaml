@@ -7,7 +7,7 @@ info:
 components:
   securitySchemes:
     oauth2Scheme: # Noncompliant {{AAR018: The security scheme must be among those allowed by the organization and must be complete}}
-      type: userpassword 
+      type: http 
       description: Esquema de seguridad OAuth 2.0.
       flows:
         authorizationCode:

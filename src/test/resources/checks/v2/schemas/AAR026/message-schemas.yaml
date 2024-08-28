@@ -1,0 +1,28 @@
+asyncapi: '2.6.0'
+info:
+  title: Example API
+  version: '1.0.0'
+  description: An API example with message schemas not defined in components.
+
+servers:
+  production:
+    url: api.example.com
+    protocol: https
+
+channels:
+  user/signedup:
+    publish:
+      operationId: userSignedUp
+      message: # Noncompliant {{AAR026: Message schemas are recommended to be found in components}}
+        name: UserSignedUpMessage
+        title: User Signed Up
+        summary: A user has signed up.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            userId:
+              type: string
+            timestamp:
+              type: string
+              format: date-time

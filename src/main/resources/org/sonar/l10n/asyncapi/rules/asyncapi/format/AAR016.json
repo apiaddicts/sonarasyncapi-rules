@@ -1,5 +1,5 @@
 {
-    "title": "AAR016 - ContactProperties - The object cannot be empty, adding the contact helps people where to go for help",
+    "title": "AAR016 - ContactProperties - Contact should contain name, url and email fields",
     "type": "BUG",
     "status": "ready",
     "remediation": {

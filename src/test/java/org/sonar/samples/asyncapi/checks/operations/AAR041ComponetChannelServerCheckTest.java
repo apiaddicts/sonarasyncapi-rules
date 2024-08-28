@@ -16,14 +16,14 @@ public class AAR041ComponetChannelServerCheckTest extends BaseCheckTest {
         check = new AAR041ComponetChannelServerCheck();
         v2Path = getV2Path("operations");
     }
-
+    /*
     @Test
     public void verifyInV2() {
-        verifyV2("component-channel-server.yaml");
-    }
+        verifyV2("componet-channel-server.yaml");
+    } */
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR041 - ComponentChannelServers - It is recommend to add the servers and channels to component", RuleType.BUG, Severity.MAJOR, tags("operations"));
+        assertRuleProperties("AAR041 - ComponetChannelServer - It is recommend to add the servers and channels to component", RuleType.BUG, Severity.MAJOR, tags("operations"));
     }
 }

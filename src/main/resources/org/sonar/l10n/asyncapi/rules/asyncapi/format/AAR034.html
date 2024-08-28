@@ -1,7 +1,54 @@
-<p></p>
+<p>Numeric types require a valid format</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  version: '1.0.0'
+  title: AsyncAPI Petstore
+channels:
+  /invoices:
+    description: Channel for invoices
+    publish:
+      summary: Publish invoice data
+      operationId: publishInvoice
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            price:
+              type: number
+              format: double
+            nested:
+              type: object
+              properties:
+                value:
+                  type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR034: Numeric types require a valid format}}</span>
 </pre>
 <h2>Compliant Solution (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  version: '1.0.0'
+  title: AsyncAPI Petstore
+channels:
+  /invoices:
+    description: Channel for invoices
+    publish:
+      summary: Publish invoice data
+      operationId: publishInvoice
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            price:
+              type: number
+              format: double
+            nested:
+              type: object
+              properties:
+                value:
+                  type: number
+                  format: int64
 </pre>

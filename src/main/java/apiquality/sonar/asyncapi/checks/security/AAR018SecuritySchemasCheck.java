@@ -1,5 +1,5 @@
 /*
- * SonarQube OpenAPI Plugin
+ * SonarQube AsyncAPI Plugin
  * Copyright (C) 2018-2019 Societe Generale
  * vincent.girard-reydet AT socgen DOT com
  *
@@ -19,17 +19,75 @@
  */
 package apiquality.sonar.asyncapi.checks.security;
 
-import com.google.common.collect.Sets;
-import com.sonar.sslr.api.AstNodeType;
-import org.sonar.check.Rule;
-import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
-import apiquality.sonar.asyncapi.checks.BaseCheck;
-import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
-
+import java.util.Arrays;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.google.common.collect.ImmutableSet;
+import com.sonar.sslr.api.AstNodeType;
+import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
+import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
+import org.sonar.check.Rule;
+import org.sonar.check.RuleProperty;
+import apiquality.sonar.asyncapi.checks.BaseCheck;
 
 @Rule(key = AAR018SecuritySchemasCheck.CHECK_KEY)
 public class AAR018SecuritySchemasCheck extends BaseCheck {
-  public static final String CHECK_KEY = "AAR018";
 
+    public static final String CHECK_KEY = "AAR018";
+    private static final String MESSAGE = "AAR018.error";
+
+    private static final String SECURITY_SCHEMES = "oauth2, apiKey";
+
+    @RuleProperty(
+        key = "expected-security-scheme",
+        description = "Expected security schemes",
+        defaultValue = SECURITY_SCHEMES
+    )
+    private String expectedSecurityScheme = SECURITY_SCHEMES;
+
+    private Set<String> expectedSecuritySchemes;
+    private boolean hasGlobalSecurity = false;
+
+    @Override
+    public Set<AstNodeType> subscribedKinds() {
+        return ImmutableSet.of(
+            AsyncApiGrammar.ROOT,
+            AsyncApiGrammar.SECURITY_SCHEME
+        );
+    }
+
+    @Override
+    protected void visitFile(JsonNode root) {
+        JsonNode security = root.get("security");
+        hasGlobalSecurity = !(security.isMissing() || security.isNull() || security.elements().isEmpty());
+
+        expectedSecuritySchemes = Arrays.stream(expectedSecurityScheme.split(","))
+                .map(String::trim)
+                .collect(Collectors.toSet());
+
+        super.visitFile(root);
+    }
+
+    @Override
+    public void visitNode(JsonNode node) {
+        if (node.is(AsyncApiGrammar.SECURITY_SCHEME)) {
+            visitSecuritySchemeNode(node);
+        }
+    }
+
+    private void visitSecuritySchemeNode(JsonNode node) {
+        if (hasGlobalSecurity) return;
+
+        JsonNode securityTypeNode = node.get("type");
+        if (securityTypeNode.isMissing() || securityTypeNode.isNull()) {
+            addIssue(CHECK_KEY, translate(MESSAGE), node.key());
+            return;
+        }
+
+        String securityType = securityTypeNode.getTokenValue();
+        if (!expectedSecuritySchemes.contains(securityType)) {
+            addIssue(CHECK_KEY, translate(MESSAGE), node.key());
+        }
+    }
 }

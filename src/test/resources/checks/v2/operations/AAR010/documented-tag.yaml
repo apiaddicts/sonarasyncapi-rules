@@ -10,9 +10,9 @@ servers:
 channels:
     /pets:
       description: Canal de comunicación para operaciones relacionadas con mascotas
-      subscribe: # Noncompliant {{AAR010: Tags should be documented.}}
+      subscribe: 
         operationId: receivePets
-        tags:
+        tags: 
         - name: order
         summary: Operación para recibir la lista de mascotas
         message:

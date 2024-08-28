@@ -1,5 +1,5 @@
 {
-    "title": "AAR020 - DefineID - It must conform to the URI format , according to RFC3986",
+    "title": "AAR020 - DefineID - Specify a unique identifier for the AsyncAPI document",
     "type": "BUG",
     "status": "ready",
     "remediation": {
