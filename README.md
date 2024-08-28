@@ -1,8 +1,8 @@
 
 
-# 🛠️ doSonarApi (Rules) ![Release](https://img.shields.io/badge/release-1.0.3-purple) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white)  [![License: LGPL v3](https://img.shields.io/badge/license-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) 
+# 🛠️ doSonarAsyncApi (Rules) ![Release](https://img.shields.io/badge/release-1.0.3-purple) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white)  [![License: LGPL v3](https://img.shields.io/badge/license-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) 
 
-This repository contains a set of custom SonarQube rules specifically designed to analyze and improve the quality of OpenAPI specifications. By integrating these rules, teams can ensure best practices, maintainability, and consistency in their API definitions.
+This repository contains a set of custom SonarQube rules specifically designed to analyze and improve the quality of AsyncAPI specifications. By integrating these rules, teams can ensure best practices, maintainability, and consistency in their API definitions.
 
 ### This repository is intended for :octocat: **community** use, it can be modified and adapted without commercial use. If you need a version, support or help for your **enterprise** or project, please contact us 📧 devrel@apiaddicts.org
 ### 💡 If you have an idea for a rule but you are not sure that everyone needs it you can implement a [custom rule](CustomRules.md) available only for you.
