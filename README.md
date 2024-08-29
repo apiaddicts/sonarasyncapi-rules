@@ -1,6 +1,6 @@
 
 
-# 🛠️ doSonarAsyncApi (Rules) ![Release](https://img.shields.io/badge/release-1.0.3-purple) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white)  [![License: LGPL v3](https://img.shields.io/badge/license-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) 
+# 🛠️ SonarAsyncAPI-Rules (Rules) ![Release](https://img.shields.io/badge/release-1.0.3-purple) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white)  [![License: LGPL v3](https://img.shields.io/badge/license-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) 
 
 This repository contains a set of custom SonarQube rules specifically designed to analyze and improve the quality of AsyncAPI specifications. By integrating these rules, teams can ensure best practices, maintainability, and consistency in their API definitions.
 
@@ -44,7 +44,7 @@ In `pom.xml` configure:
 ````xml
     <properties>
         <!-- Optional, When is set only the language specified is analyzed -->
-        <sonar.language>openapi</sonar.language>
+        <sonar.language>asyncapi</sonar.language>
         <!-- Optional, Default value is src/main,pom.xml -->
         <sonar.sources>.</sonar.sources>
     </properties>
@@ -68,7 +68,7 @@ In `sonar-project.properties` (file in root project folder) configure:
 # must be unique in a given SonarQube instance
 sonar.projectKey=test:test
 # this is the name and version displayed in the SonarQube UI. Was mandatory prior to SonarQube 6.1.
-sonar.projectName=OpenAPI plugin tests
+sonar.projectName=AsyncAPI plugin tests
 sonar.projectVersion=1.0-SNAPSHOT
 
 # Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.
@@ -78,7 +78,7 @@ sonar.sources=.
 # Encoding of the source code. Default is default system encoding
 sonar.sourceEncoding=UTF-8
 # Select the language to use for analysis
-sonar.language=openapi
+sonar.language=asyncapi
 ````
 
 #### ▶️ Run scanner
