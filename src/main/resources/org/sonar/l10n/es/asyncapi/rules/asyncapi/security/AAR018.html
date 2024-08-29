@@ -1,0 +1,128 @@
+<p>The security scheme must be among those allowed by the organization and must be complete</p>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: Security Scheme Example API
+  version: '1.0.0'
+  description: API de ejemplo que utiliza esquemas de seguridad permitidos por la organización.
+components:
+  securitySchemes:
+    oauth2Scheme: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR018: The security scheme must be among those allowed by the organization and must be complete}}</span>
+      type: http 
+      description: Esquema de seguridad OAuth 2.0.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+
+    apiKeyScheme:
+      type: apiKey
+      description: Esquema de seguridad de API Key.
+      in: header
+      name: X-API-Key
+
+servers:
+  production:
+    url: 'https://api.example.com'
+    protocol: 'https'
+    description: Servidor de producción utilizando HTTPS.
+
+channels:
+  /secure-data:
+    description: Canal para enviar y recibir datos seguros.
+    subscribe:
+      operationId: receiveSecureData
+      summary: Suscripción para recibir datos seguros.
+      security:
+        - oauth2Scheme: 
+            - read
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            data:
+              type: string
+              description: Datos seguros recibidos.
+    publish:
+      operationId: sendSecureData
+      summary: Publica datos seguros.
+      security:
+        - apiKeyScheme: []
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            data:
+              type: string
+              description: Datos seguros enviados.
+</pre>
+<h2>Solución compatible (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: Security Scheme Example API
+  version: '1.0.0'
+  description: API de ejemplo que utiliza esquemas de seguridad permitidos por la organización.
+
+components:
+  securitySchemes:
+    oauth2Scheme: 
+      type: oauth2 
+      description: Esquema de seguridad OAuth 2.0.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+
+    apiKeyScheme:
+      type: apiKey
+      description: Esquema de seguridad de API Key.
+      in: header
+      name: X-API-Key
+
+servers:
+  production:
+    url: 'https://api.example.com'
+    protocol: 'https'
+    description: Servidor de producción utilizando HTTPS.
+
+channels:
+  /secure-data:
+    description: Canal para enviar y recibir datos seguros.
+    subscribe:
+      operationId: receiveSecureData
+      summary: Suscripción para recibir datos seguros.
+      security:
+        - oauth2Scheme: 
+            - read
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            data:
+              type: string
+              description: Datos seguros recibidos.
+    publish:
+      operationId: sendSecureData
+      summary: Publica datos seguros.
+      security:
+        - apiKeyScheme: []
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            data:
+              type: string
+              description: Datos seguros enviados.
+</pre>

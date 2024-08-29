@@ -1,0 +1,14 @@
+{
+    "title": "AAR023 - ProvideOpName - Cada operación debe tener un resumen",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

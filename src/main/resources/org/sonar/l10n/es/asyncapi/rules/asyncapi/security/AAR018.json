@@ -1,0 +1,13 @@
+{
+    "title": "AAR018 - SecuritySchemas - El esquema de seguridad debe estar entre los permitidos por la organización y debe estar completo",
+    "type": "VULNERABILITY",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "10min"
+    },
+    "tags": [
+      "safety"
+    ],
+    "defaultSeverity": "CRITICAL"
+  }

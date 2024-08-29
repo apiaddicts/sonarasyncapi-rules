@@ -1,0 +1,14 @@
+{
+    "title": "AAR036 - BadDescription - The description must begin with the first capital letter and end with point",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

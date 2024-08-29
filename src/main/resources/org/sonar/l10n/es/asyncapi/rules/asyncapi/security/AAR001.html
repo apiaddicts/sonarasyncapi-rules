@@ -1,0 +1,29 @@
+<p>Por razones de seguridad, el protocolo HTTPS es obligatorio.</p>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
+<pre>
+  asyncapi: '2.4.0'
+  info:
+    title: Swagger Petstore
+    version: '1.0.0'
+  servers:
+    default:
+      url: 'api.example.com'
+      protocol: 'http' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR001: El protocolo https es obligatorio}}</span>
+      description: Servidor por defecto para la tienda de mascotas
+  channels:
+    /pets: {}
+</pre>
+<h2>Solución compatible (AsyncAPI 2)</h2>
+<pre>
+  asyncapi: '2.4.0'
+  info:
+    title: Swagger Petstore
+    version: '1.0.0'
+  servers:
+    default:
+      url: 'api.example.com'
+      protocol: 'https' 
+      description: Servidor por defecto para la tienda de mascotas
+  channels:
+    /pets: {}
+</pre>

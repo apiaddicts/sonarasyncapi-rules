@@ -1,0 +1,38 @@
+asyncapi: '2.4.0'
+info:
+  title: Unique Identifier per Message Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye identificadores únicos para cada mensaje.
+channels:
+  /order:
+    description: Canal para enviar y recibir información de pedidos.
+    publish:
+      operationId: sendOrder
+      message: #Noncompliant {{AAR042: It is recommended to have a unique identifier per message}}
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            product:
+              type: string
+              description: Nombre del producto.
+            quantity:
+              type: integer
+              description: Cantidad del producto pedido.
+    subscribe:
+      operationId: receiveOrderConfirmation
+      message:
+        messageId: orderConfirmationMessage
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            status:
+              type: string
+              description: Estado de la confirmación del pedido.

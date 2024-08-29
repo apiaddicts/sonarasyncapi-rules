@@ -1,0 +1,14 @@
+{
+    "title": "AAR039 - MoreExamples - Se recomienda tener más de 2 ejemplos de los casos que puedan aparecer",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "examples"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

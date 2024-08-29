@@ -1,0 +1,17 @@
+<p>Specify a unique identifier for the AsyncAPI document</p>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: "2.0.0"
+id: 'urn:example:rpcclient'
+info:
+  title: Awesome API
+  description: A very well-defined API
+  version: "1.0"
+servers:
+  production:
+    url: "stoplight.io"
+    protocol: "https"
+channels:
+  hello:
+    servers: production
+</pre>

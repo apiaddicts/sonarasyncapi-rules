@@ -1,0 +1,14 @@
+{
+    "title": "AAR035 - MessageTitle - It is recommended to have a title per message",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

@@ -1,0 +1,9 @@
+asyncapi: '2.4.0'
+info: 
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  contact: # Noncompliant {{AAR016: Contact should contain name, url and email fields}}
+    name: hola
+channels:
+  /pets: {}

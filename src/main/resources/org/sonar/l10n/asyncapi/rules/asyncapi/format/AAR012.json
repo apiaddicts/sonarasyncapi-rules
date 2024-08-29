@@ -1,0 +1,14 @@
+{
+    "title": "AAR012 - DeclaredOperationID - Each operation should have a unique operator",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

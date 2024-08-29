@@ -1,0 +1,14 @@
+{
+    "title": "AAR024 - MessageValidation - Todos los mensajes enviados y recibidos deben cumplir con el esquema de mensaje especificado en la documentación",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}
+  

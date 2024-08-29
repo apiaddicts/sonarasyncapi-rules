@@ -1,0 +1,14 @@
+{
+    "title": "AAR021 - ProvideOpSummary - Proporcione un resumen para cada operación",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

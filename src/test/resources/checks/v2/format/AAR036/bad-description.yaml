@@ -1,0 +1,27 @@
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets: 
+    description: hola # Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}
+    subscribe: 
+      description: hola # Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}
+      operationId: getPets
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.

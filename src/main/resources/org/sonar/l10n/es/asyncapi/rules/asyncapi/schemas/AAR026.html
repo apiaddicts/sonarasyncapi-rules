@@ -1,0 +1,69 @@
+<p>Message schemas are recommended to be found in components</p>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Example API
+  version: '1.0.0'
+  description: An API example with message schemas not defined in components.
+
+servers:
+  production:
+    url: api.example.com
+    protocol: https
+
+channels:
+  user/signedup:
+    publish:
+      operationId: userSignedUp
+      message: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR026: Message schemas are recommended to be found in components}}</span>
+        name: UserSignedUpMessage
+        title: User Signed Up
+        summary: A user has signed up.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            userId:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+
+</pre>
+<h2>Solución compatible (AsyncAPI 2)</h2>
+<pre>
+    asyncapi: '2.6.0'
+    info:
+      title: Example API
+      version: '1.0.0'
+      description: An API example with message schemas defined in components.
+    
+    servers:
+      production:
+        url: api.example.com
+        protocol: https
+    
+    channels:
+      user/signedup:
+        publish:
+          operationId: userSignedUp
+          message:
+            $ref: '#/components/messages/UserSignedUpMessage'
+    
+    components:
+      messages:
+        UserSignedUpMessage:
+          name: UserSignedUpMessage
+          title: User Signed Up
+          summary: A user has signed up.
+          contentType: application/json
+          payload:
+            type: object
+            properties:
+              userId:
+                type: string
+              timestamp:
+                type: string
+                format: date-time    
+</pre>

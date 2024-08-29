@@ -1,0 +1,14 @@
+{
+    "title": "AAR019 - IDSchemas - The identifier must be defined",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}
+  

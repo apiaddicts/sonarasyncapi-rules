@@ -1,0 +1,23 @@
+asyncapi: '2.4.0'
+info:
+  version: '1.0.0'
+  title: AsyncAPI Petstore
+channels:
+  /invoices:
+    description: Channel for invoices
+    publish:
+      summary: Publish invoice data
+      operationId: publishInvoice
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            price:
+              type: number
+              format: double
+            nested:
+              type: object
+              properties:
+                value:
+                  type: number 

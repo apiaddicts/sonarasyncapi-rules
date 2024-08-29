@@ -1,0 +1,60 @@
+<p>Each channel and each operation must have a description that explains its purpose and function</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR029: Each channel and each operation must have a description that explains its purpose and function}}</span>
+    subscribe: <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR029: Each channel and each operation must have a description that explains its purpose and function}}</span>
+      operationId: getPets
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets: 
+    description: Pets channel.
+    subscribe:
+      description: Pets operation. 
+      operationId: getPets
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+
+</pre>

@@ -1,0 +1,13 @@
+{
+    "title": "AAR008 - DefinedServer - Definir ''servers'' es obligatorio",
+    "type": "VULNERABILITY",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "10min"
+    },
+    "tags": [
+      "safety"
+    ],
+    "defaultSeverity": "CRITICAL"
+  }

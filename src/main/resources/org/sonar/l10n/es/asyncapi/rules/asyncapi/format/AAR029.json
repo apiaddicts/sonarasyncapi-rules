@@ -1,0 +1,14 @@
+{
+    "title": "AAR029 - MandatoryDescription - Cada channel y cada operación deben tener una descripción que explique su propósito y función",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>apiquality.sonar.asyncapi</groupId>
-  <artifactId>dosonarapi-community</artifactId>
+  <artifactId>dosonarasyncapi-community</artifactId>
   <version>${TAG_NAME}</version>
   <packaging>sonar-plugin</packaging>
 
@@ -16,7 +16,7 @@
 
     <sonar.version>8.7.0.41497</sonar.version>
     <sonarQubeMinVersion>6.7</sonarQubeMinVersion>
-    <sonarasyncapi.version>1.0.0</sonarasyncapi.version>
+    <sonarasyncapi.version>1.0.1</sonarasyncapi.version>
     <sonaranalyzer.version>1.22.0.848</sonaranalyzer.version>
     <orgjson.version>20220320</orgjson.version>
     <junit.version>4.13.2</junit.version>

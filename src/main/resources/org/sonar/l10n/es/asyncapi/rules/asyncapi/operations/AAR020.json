@@ -1,0 +1,14 @@
+{
+    "title": "AAR020 - DefineID - Specify a unique identifier for the AsyncAPI document",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

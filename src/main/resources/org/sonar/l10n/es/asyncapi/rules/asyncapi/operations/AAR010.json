@@ -1,0 +1,14 @@
+{
+    "title": "AAR010 - DocumentedTag - Los tags deben estar documentados",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

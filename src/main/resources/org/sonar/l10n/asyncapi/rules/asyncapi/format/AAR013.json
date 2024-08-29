@@ -1,0 +1,14 @@
+{
+    "title": "AAR013 - DuplicateOperationID - There cannot be two unique operations that are the same",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+}
+  

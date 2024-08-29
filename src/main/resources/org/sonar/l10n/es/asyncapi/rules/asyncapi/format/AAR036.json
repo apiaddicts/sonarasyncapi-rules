@@ -1,0 +1,14 @@
+{
+    "title": "AAR036 - BadDescription - La descripción debe comenzar con la primera letra en mayúscula y terminar con un punto",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

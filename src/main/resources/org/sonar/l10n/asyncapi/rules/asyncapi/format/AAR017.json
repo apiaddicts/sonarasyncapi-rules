@@ -1,0 +1,14 @@
+{
+    "title": "AAR017 - UndefinedUrlLicense - The license object must have the url field",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

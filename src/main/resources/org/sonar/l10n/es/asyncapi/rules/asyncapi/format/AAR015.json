@@ -1,0 +1,14 @@
+{
+    "title": "AAR015 - UndefinedContact - La API debe indicar el contacto en el objeto de información",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

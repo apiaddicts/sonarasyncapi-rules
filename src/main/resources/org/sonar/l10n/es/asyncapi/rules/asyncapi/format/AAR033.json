@@ -1,0 +1,14 @@
+{
+    "title": "AAR033 - StringParameterIntegrity - Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

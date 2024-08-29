@@ -4,13 +4,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import apiquality.sonar.asyncapi.checks.apim.wso2.*;
 import apiquality.sonar.asyncapi.checks.examples.*;
 import apiquality.sonar.asyncapi.checks.format.*;
 import apiquality.sonar.asyncapi.checks.operations.*;
-import apiquality.sonar.asyncapi.checks.owasp.*;
-import apiquality.sonar.asyncapi.checks.parameters.*;
-import apiquality.sonar.asyncapi.checks.regex.*;
+
 import apiquality.sonar.asyncapi.checks.schemas.*;
 import apiquality.sonar.asyncapi.checks.security.*;
 
@@ -21,7 +18,22 @@ public final class RulesLists {
 
     public static List<Class<?>> getFormatChecks() {
         return Arrays.asList(
-            
+            AAR011DefinedLicenseCheck.class,
+            AAR012DeclaredOperationIDCheck.class,
+            AAR013DuplicateOperationIDCheck.class,
+            AAR015UndefiendContactCheck.class,
+            AAR016ContactPropertiesCheck.class,
+            AAR017UndefinedUrlLicenseCheck.class,
+            AAR021ProvideOpSummaryCheck.class,
+            AAR022DescriptionDiffersSummaryCheck.class,
+            AAR029MandatoryDescriptionCheck.class,
+            AAR032NumericParameterIntegrityCheck.class,
+            AAR033StringParameterIntegrityCheck.class,
+            AAR034NumericFormatCheck.class,
+            AAR035MessageTitleCheck.class,
+            AAR036BadDescriptionCheck.class,
+            AAR037BindingVersionCheck.class,
+            AAR042MessageIdentifierCheck.class
         );
     }
 
@@ -33,19 +45,27 @@ public final class RulesLists {
 
     public static List<Class<?>> getSecurityChecks() {
         return Arrays.asList(
-            AAR001MandatoryHttpsProtocolCheck.class
-            
+            AAR001MandatoryHttpsProtocolCheck.class,
+            AAR008DefinedServerCheck.class,
+            AAR018SecuritySchemasCheck.class,
+            AAR043SecurityChannelCheck.class
         );
     }
 
     public static List<Class<?>> getOperationsChecks() {
         return Arrays.asList(
-            
+            AAR009DeclaredTagCheck.class,
+            AAR010DocumentedTagCheck.class,
+            AAR040DefinedChannelServersCheck.class,
+            AAR041ComponetChannelServerCheck.class           
         );
     }
 
     public static List<Class<?>> getSchemasChecks() {
         return Arrays.asList(
+            AAR019IDSchemasCheck.class,
+            AAR024MessageValidationCheck.class,
+            AAR026MessageSchemasCheck.class
             
             );
     }
@@ -56,8 +76,8 @@ public final class RulesLists {
     }
 
     public static List<Class<?>> getExamplesChcecks() {
-        return Arrays.asList(
-            
+        return Arrays.asList(  
+            AAR031MessageExamplesCheck.class    
         );
     }
 
@@ -68,10 +88,7 @@ public final class RulesLists {
     }
     public static List<Class<?>> getWSO2Checks() {
         return Arrays.asList(
-            OAR002ValidWso2ScopesCheck.class,
-            OAR003DefinedWso2ScopesDescriptionCheck.class,
-            OAR004ValidWso2ScopesRolesCheck.class,
-            OAR005UndefinedWso2ScopeUseCheck.class
+            
         );
     }
 

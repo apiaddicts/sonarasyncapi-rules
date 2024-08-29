@@ -1,0 +1,14 @@
+{
+    "title": "AAR011 - DefinedLicense - La licencia debe estar documentada",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+}
+  

@@ -1,0 +1,95 @@
+<p>There cannot be two unique operations (OperationID) that are the same</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets: 
+    description: Canal para operaciones relacionadas con mascotas.    
+    subscribe:
+      operationId: hola
+      summary: Operación para recibir la lista de mascotas.
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+    publish: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}</span>
+      operationId: hola
+      summary: Operación para crear una nueva mascota.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID de la mascota.
+            name:
+              type: string
+              description: Nombre de la mascota.
+            species:
+              type: string
+              description: Especie de la mascota.
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets: 
+    description: Canal para operaciones relacionadas con mascotas.    
+    subscribe:
+      operationId: hola
+      summary: Operación para recibir la lista de mascotas.
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+    publish: 
+      operationId: adios
+      summary: Operación para crear una nueva mascota.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID de la mascota.
+            name:
+              type: string
+              description: Nombre de la mascota.
+            species:
+              type: string
+              description: Especie de la mascota.
+</pre>

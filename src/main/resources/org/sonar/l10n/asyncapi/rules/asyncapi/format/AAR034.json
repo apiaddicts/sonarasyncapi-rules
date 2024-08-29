@@ -1,0 +1,14 @@
+{
+    "title": "AAR034 - NumericFormat - Numeric types requires a valid format",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

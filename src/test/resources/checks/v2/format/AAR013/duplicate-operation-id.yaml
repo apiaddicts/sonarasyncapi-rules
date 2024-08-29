@@ -1,0 +1,44 @@
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets: 
+    description: Canal para operaciones relacionadas con mascotas.    
+    subscribe:
+      operationId: hola
+      summary: Operación para recibir la lista de mascotas.
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+    publish: # Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}
+      operationId: hola
+      summary: Operación para crear una nueva mascota.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID de la mascota.
+            name:
+              type: string
+              description: Nombre de la mascota.
+            species:
+              type: string
+              description: Especie de la mascota.

@@ -1,0 +1,14 @@
+{
+    "title": "AAR024 - MessageValidation - All messages sent and received must comply with the message schema specified in the documentation",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}
+  

@@ -1,0 +1,14 @@
+{
+    "title": "AAR031 - ExamplesCheck - Debe haber ejemplos para cada channel y operación",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "examples"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

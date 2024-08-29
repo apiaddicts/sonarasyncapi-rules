@@ -1,0 +1,13 @@
+{
+    "title": "AAR018 - SecurityChannel - Se recomienda agregar el esquema de seguridad que se va a usar a cada canal",
+    "type": "VULNERABILITY",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "10min"
+    },
+    "tags": [
+      "safety"
+    ],
+    "defaultSeverity": "CRITICAL"
+  }

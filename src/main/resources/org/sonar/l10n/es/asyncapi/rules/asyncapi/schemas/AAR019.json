@@ -1,0 +1,14 @@
+{
+    "title": "AAR019 - IDSchemas - El identificador debe estar definido",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "BLOCKER"
+}
+  

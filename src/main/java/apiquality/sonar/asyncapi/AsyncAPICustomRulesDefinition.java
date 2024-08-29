@@ -33,30 +33,19 @@ public class AsyncAPICustomRulesDefinition implements RulesDefinition {
     public void define(Context context) {
         I18nContext.initializeFromUserLanguage();
         NewRepository repository = context
-                .createRepository(REPOSITORY_KEY, "openapi")
+                .createRepository(REPOSITORY_KEY, "asyncapi")
                 .setName(REPOSITORY_NAME);
 
         // Carga de reglas para cada grupo
+        new RuleMetadataLoader(getPath(EXAMPLES_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getExamplesChcecks());
         new RuleMetadataLoader(getPath(SECURITY_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getSecurityChecks());
         new RuleMetadataLoader(getPath(FORMAT_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getFormatChecks());
         new RuleMetadataLoader(getPath(SCHEMAS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getSchemasChecks());
-        new RuleMetadataLoader(getPath(EXAMPLES_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getExamplesChcecks());
         new RuleMetadataLoader(getPath(OWASP_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getOWASPChecks());
         new RuleMetadataLoader(getPath(OPERATIONS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getOperationsChecks());
         new RuleMetadataLoader(getPath(PARAMETERS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getParametersChecks());
         new RuleMetadataLoader(getPath(APIM_WSO2_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getWSO2Checks());
         new RuleMetadataLoader(getPath(REGEX_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getRegexChecks());
-
-        markAsTemplate(repository, "OAR112");
-        markAsDeactivated(repository, "OAR003");
-        markAsDeactivated(repository, "OAR004");
-        markAsDeactivated(repository, "OAR005");
-        markAsDeactivated(repository, "OAR033");
-        markAsDeactivated(repository, "OAR040");
-        markAsDeactivated(repository, "OAR041");
-        markAsDeactivated(repository, "OAR066");
-        markAsDeactivated(repository, "OAR068");
-
 
         repository.done();
     }

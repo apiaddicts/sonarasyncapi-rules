@@ -1,0 +1,25 @@
+<p>Api should indicate the contact in the info object</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR015: Api should indicate the contact in the info object}}</span>
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets: {}
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info: 
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  contact: 
+    name: hola
+    email: enrgomez2002@gmail.com
+    url: https://support.example.com
+channels:
+  /pets: {}
+</pre>

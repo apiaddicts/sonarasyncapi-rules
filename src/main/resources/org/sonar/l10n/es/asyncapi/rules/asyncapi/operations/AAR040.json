@@ -1,0 +1,14 @@
+{
+    "title": "AAR040 - DefinedChannelServers - El servidor del channel debe definirse en el objeto de servidores",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

@@ -1,0 +1,14 @@
+{
+    "title": "AAR042 - MessageIdentifier - Se recomienda tener un identificador único por mensaje",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

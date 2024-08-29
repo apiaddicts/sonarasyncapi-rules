@@ -1,0 +1,68 @@
+<p>Tags should be documented</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+    asyncapi: '2.4.0'
+    info:
+      title: Swagger Petstore
+      version: '1.0.0'
+    servers:
+      production:
+        url: 'https://api.petstore.com'
+        protocol: 'https'
+        description: Servidor de producción para la API de la tienda de mascotas
+    channels:
+      /pets:
+        description: Canal de comunicación para operaciones relacionadas con mascotas
+        subscribe:
+          operationId: receivePets
+          tags: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Tags should be documented}}</span>
+            - name: used-tag
+          summary: Operación para recibir la lista de mascotas
+          message:
+            contentType: application/json
+            payload:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: ID de la mascota
+                  name:
+                    type: string
+                    description: Nombre de la mascota
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+servers:
+  production:
+    url: 'https://api.petstore.com'
+    protocol: 'https'
+    description: Servidor de producción para la API de la tienda de mascotas
+channels:
+  /pets:
+    description: Canal de comunicación para operaciones relacionadas con mascotas
+    subscribe:
+      operationId: receivePets
+      tags: 
+        - name: used-tag
+          description: tag
+      summary: Operación para recibir la lista de mascotas
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota
+              name:
+                type: string
+                description: Nombre de la mascota
+</pre>

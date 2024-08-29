@@ -1,0 +1,14 @@
+{
+    "title": "AAR032 - NumericParameterIntegrity - Numeric parameters should have minimum, maximum, or format restriction",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+  }
+  

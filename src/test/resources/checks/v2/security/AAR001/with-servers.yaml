@@ -1,0 +1,11 @@
+asyncapi: '2.4.0'
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+servers:
+  default:
+    url: 'http://localhost:8080'
+    protocol: 'http' # Noncompliant {{AAR001: Protocol https is mandatory}}
+    description: Servidor por defecto para la tienda de mascotas
+channels:
+  /pets: {}

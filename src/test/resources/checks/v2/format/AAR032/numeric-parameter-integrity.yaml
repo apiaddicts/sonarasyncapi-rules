@@ -1,0 +1,34 @@
+asyncapi: '2.4.0'
+info:
+  title: Numeric Parameter Restrictions Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye restricciones para parámetros numéricos.
+
+channels:
+  /sensor-data:
+    description: Canal para publicar datos de sensores.
+    publish:
+      operationId: sendSensorData
+      summary: Publica datos recogidos por un sensor.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties: 
+            temperature:
+              type: number 
+              description: Temperatura medida por el sensor.
+            humidity:
+              type: number
+              description: Humedad medida por el sensor.
+              minimum: 0
+              maximum: 100
+            pressure:
+              type: number
+              description: Presión atmosférica medida.
+              minimum: 900
+              maximum: 1100
+            sensorId: 
+              type: integer
+              description: ID único del sensor.
+
