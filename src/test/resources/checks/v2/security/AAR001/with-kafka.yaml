@@ -1,0 +1,11 @@
+asyncapi: '2.4.0'
+info:
+  title: Kafka API
+  version: '1.0.0'
+servers:
+  production:
+    url: kafka://broker.example.com:9092
+    protocol: kafka
+    description: Kafka broker
+channels:
+  user-events: {}
