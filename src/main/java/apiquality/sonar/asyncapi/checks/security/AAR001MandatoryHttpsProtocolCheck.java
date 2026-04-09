@@ -7,7 +7,6 @@ import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,17 +24,32 @@ public class AAR001MandatoryHttpsProtocolCheck extends BaseCheck {
     public void visitNode(JsonNode node) {
         JsonNode serversNode = node.get("servers");
         if (serversNode.isMissing() || serversNode.isNull()) {
-        } else {
-            	Map<String, JsonNode> serverNodes = serversNode.propertyMap();
+            return;
+        }
 
-				for (Map.Entry<String, JsonNode> entry : serverNodes.entrySet()) {
-					JsonNode serverNode = entry.getValue();
-					JsonNode protocolNode = serverNode.get("protocol");
+        Map<String, JsonNode> serverNodes = serversNode.propertyMap();
 
-					if (protocolNode.isMissing() || !protocolNode.getTokenValue().equals("https")) {
-						addIssue(KEY, translate("AAR001.error-v2-https"), protocolNode.key());
-					}
-				}
-		}
-	}
+        for (Map.Entry<String, JsonNode> entry : serverNodes.entrySet()) {
+            JsonNode serverNode = entry.getValue();
+            JsonNode protocolNode = serverNode.get("protocol");
+
+            if (protocolNode.isMissing() || protocolNode.isNull()) {
+                continue;
+            }
+
+            String protocol = protocolNode.getTokenValue();
+
+            if (protocol == null) {
+                continue;
+            }
+
+            if ("kafka".equalsIgnoreCase(protocol)) {
+                return;
+            }
+
+            if (protocolNode.isMissing() || !protocolNode.getTokenValue().equals("https")) {
+                addIssue(KEY, translate("AAR001.error-v2-https"), protocolNode.key());
+            }
+        }
+    }
 }

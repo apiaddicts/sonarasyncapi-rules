@@ -40,9 +40,9 @@ public class AAR031MessageExamplesCheck extends BaseCheck {
   @Override
   protected void visitNode(JsonNode node) {
     JsonNode licenseNode = node.at("/license");
-    
+
     if (licenseNode.isMissing() || licenseNode.isNull()) {
-      addIssue(CHECK_KEY, translate("AAR011.error"), node.key());
+      addIssue(CHECK_KEY, translate("AAR031.error"), node.key());
     }
   }
 }
