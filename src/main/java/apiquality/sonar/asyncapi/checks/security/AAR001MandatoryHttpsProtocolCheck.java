@@ -30,25 +30,14 @@ public class AAR001MandatoryHttpsProtocolCheck extends BaseCheck {
         Map<String, JsonNode> serverNodes = serversNode.propertyMap();
 
         for (Map.Entry<String, JsonNode> entry : serverNodes.entrySet()) {
-            JsonNode serverNode = entry.getValue();
-            JsonNode protocolNode = serverNode.get("protocol");
+            JsonNode protocolNode = entry.getValue().get("protocol");
 
-            if (protocolNode.isMissing() || protocolNode.isNull()) {
-                continue;
-            }
+            if (protocolNode != null && !protocolNode.isMissing() && !protocolNode.isNull()) {
+                String protocol = protocolNode.getTokenValue();
 
-            String protocol = protocolNode.getTokenValue();
-
-            if (protocol == null) {
-                continue;
-            }
-
-            if ("kafka".equalsIgnoreCase(protocol)) {
-                return;
-            }
-
-            if (protocolNode.isMissing() || !protocolNode.getTokenValue().equals("https")) {
-                addIssue(KEY, translate("AAR001.error-v2-https"), protocolNode.key());
+                if (protocol != null && !"kafka".equalsIgnoreCase(protocol) && !"https".equalsIgnoreCase(protocol)) {
+                    addIssue(KEY, translate("AAR001.error-v2-https"), protocolNode.key());
+                }
             }
         }
     }

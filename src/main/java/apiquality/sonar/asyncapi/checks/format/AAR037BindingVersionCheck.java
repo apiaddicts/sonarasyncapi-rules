@@ -33,6 +33,8 @@ import java.util.Set;
 public class AAR037BindingVersionCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR037";
 
+    private static final String BINDINGS_KEY = "bindings";
+
     @Override
     public Set<AstNodeType> subscribedKinds() {
         return ImmutableSet.of(AsyncApiGrammar.ROOT);
@@ -40,57 +42,66 @@ public class AAR037BindingVersionCheck extends BaseCheck {
 
     @Override
     protected void visitNode(JsonNode root) {
-        JsonNode servers = root.get("servers");
-        if (!servers.isMissing() && !servers.isNull()) {
-            for (JsonNode server : servers.propertyMap().values()) {
-                checkBindings(server.get("bindings"));
-            }
-        }
+        processServers(root.get("servers"));
+        processChannels(root.get("channels"));
+        processComponents(root.get("components"));
+    }
 
-        JsonNode channels = root.get("channels");
-        if (!channels.isMissing() && !channels.isNull()) {
-            for (JsonNode channel : channels.propertyMap().values()) {
-                checkBindings(channel.get("bindings"));
-                checkOperationBindings(channel.get("subscribe"));
-                checkOperationBindings(channel.get("publish"));
-            }
-        }
+    private void processServers(JsonNode servers) {
+        if (isNotPresent(servers)) return;
 
-        JsonNode components = root.get("components");
-        if (!components.isMissing() && !components.isNull()) {
-            JsonNode messages = components.get("messages");
-            if (!messages.isMissing() && !messages.isNull()) {
-                for (JsonNode message : messages.propertyMap().values()) {
-                    checkBindings(message.get("bindings"));
-                }
-            }
+        for (JsonNode server : servers.propertyMap().values()) {
+            checkBindings(server.get(BINDINGS_KEY));
+        }
+    }
+
+    private void processChannels(JsonNode channels) {
+        if (isNotPresent(channels)) return;
+
+        for (JsonNode channel : channels.propertyMap().values()) {
+            checkBindings(channel.get(BINDINGS_KEY));
+            checkOperationBindings(channel.get("subscribe"));
+            checkOperationBindings(channel.get("publish"));
+        }
+    }
+
+    private void processComponents(JsonNode components) {
+        if (isNotPresent(components)) return;
+
+        JsonNode messages = components.get("messages");
+        if (isNotPresent(messages)) return;
+
+        for (JsonNode message : messages.propertyMap().values()) {
+            checkBindings(message.get(BINDINGS_KEY));
         }
     }
 
     private void checkOperationBindings(JsonNode operation) {
-        if (operation == null || operation.isMissing() || operation.isNull()) {
-            return;
-        }
-        checkBindings(operation.get("bindings"));
+        if (isNotPresent(operation)) return;
+
+        checkBindings(operation.get(BINDINGS_KEY));
         JsonNode message = operation.get("message");
-        if (!message.isMissing() && !message.isNull()) {
-            checkBindings(message.get("bindings"));
+        if (!isNotPresent(message)) {
+            checkBindings(message.get(BINDINGS_KEY));
         }
     }
 
     private void checkBindings(JsonNode bindingsNode) {
-        if (bindingsNode == null || bindingsNode.isMissing() || bindingsNode.isNull()) {
-            return;
-        }
+        if (isNotPresent(bindingsNode)) return;
+
         for (Map.Entry<String, JsonNode> entry : bindingsNode.propertyMap().entrySet()) {
             JsonNode bindingNode = entry.getValue();
             if (bindingNode == null || bindingNode.isMissing()) {
                 continue;
             }
             JsonNode versionNode = bindingNode.get("bindingVersion");
-            if (versionNode == null || versionNode.isMissing() || versionNode.isNull()) {
+            if (isNotPresent(versionNode)) {
                 addIssue(CHECK_KEY, translate("AAR037.error"), bindingNode.key());
             }
         }
+    }
+
+    private boolean isNotPresent(JsonNode node) {
+        return node == null || node.isMissing() || node.isNull();
     }
 }
