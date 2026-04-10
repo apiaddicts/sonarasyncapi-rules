@@ -22,6 +22,16 @@ public class AAR001MandatoryHttpsProtocolCheckTest extends BaseCheckTest {
         verifyV2("with-servers.yaml");
     }
 
+    @Test
+    public void verifyInV2WithHttps() {
+        verifyV2("with-https.yaml");
+    }
+
+    @Test
+    public void verifyInV2WithKafka() {
+        verifyV2("with-kafka.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR001 - MandatoryHttpsProtocol - Https protocol is mandatory", RuleType.VULNERABILITY, Severity.CRITICAL, tags("safety"));

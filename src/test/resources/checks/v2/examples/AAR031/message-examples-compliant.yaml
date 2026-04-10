@@ -1,7 +1,10 @@
 asyncapi: "2.0.0"
-info: # Noncompliant {{AAR031: All examples in message object should follow payload and headers schemas}}
-  title: Bad API
+info:
+  title: Good API
   version: "1.0.0"
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
 channels:
   /pets:
     subscribe:
@@ -15,3 +18,7 @@ channels:
               type: integer
             name:
               type: string
+        examples:
+          - payload:
+              id: 1
+              name: Fido

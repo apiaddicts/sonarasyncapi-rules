@@ -17,11 +17,15 @@ public class AAR031MessageExamplesCheckTest extends BaseCheckTest {
         v2Path = getV2Path("examples");
     }
 
-    /* 
     @Test
     public void verifyInV2() {
         verifyV2("message-examples.yaml");
-    }*/
+    }
+
+    @Test
+    public void verifyInV2Compliant() {
+        verifyV2("message-examples-compliant.yaml");
+    }
 
     @Override
     public void verifyRule() {

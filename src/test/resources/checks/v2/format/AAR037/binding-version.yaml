@@ -4,8 +4,36 @@ info:
   version: '1.0.0'
 servers:
   production:
-    url: mqtt://broker.example.com
-    protocol: mqtt
+    url: 'broker.example.com:9092'
+    protocol: kafka
+    description: Kafka broker server
+    bindings:
+      kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+        clientId: example-client
 channels:
-  /example-channel: {}
-    
+  /noncompliant-topic:
+    bindings:
+      kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+        clientId: example-client
+  /compliant-topic:
+    bindings:
+      kafka:
+        clientId: example-client
+        bindingVersion: '0.1.0'
+    subscribe:
+      operationId: consumeKafkaMessages
+      bindings:
+        kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+          clientId: example-client
+      message:
+        contentType: application/json
+        bindings:
+          kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+            contentType: application/json
+        payload:
+          type: object
+          properties:
+            id:
+              type: integer
+            event:
+              type: string

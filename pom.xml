@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apiaddicts.apitools.dosonarapi</groupId>
   <artifactId>sonarasyncapi-rules-community</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <packaging>sonar-plugin</packaging>
 
   <name>SonarQube AsyncAPI Community Rules</name>
@@ -43,7 +43,7 @@
 
     <sonar.version>8.7.0.41497</sonar.version>
     <sonarQubeMinVersion>6.7</sonarQubeMinVersion>
-    <sonarasyncapi.version>1.0.1</sonarasyncapi.version>
+    <sonarasyncapi.version>1.1.0</sonarasyncapi.version>
     <sonaranalyzer.version>1.22.0.848</sonaranalyzer.version>
     <orgjson.version>20220320</orgjson.version>
     <junit.version>4.13.2</junit.version>
