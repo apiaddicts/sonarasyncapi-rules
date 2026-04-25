@@ -22,6 +22,29 @@ public class AAR040DefinedChannelServersCheckTest extends BaseCheckTest {
         verifyV2("defined-channels-server.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithOperationServers() {
+        verifyV3("with-operation-servers.yaml");
+    }
+    @Test
+    public void verifyV3WithoutServers() {
+        verifyV3("without-servers.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithOperationServers() {
+        verifyV31("with-operation-servers.yaml");
+    }
+    @Test
+    public void verifyV31WithoutServers() {
+        verifyV31("without-servers.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR040 - DefinedChannelServers - Channel server must be defined in the servers object", RuleType.BUG, Severity.MAJOR, tags("operations"));

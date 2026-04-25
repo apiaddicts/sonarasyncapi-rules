@@ -1,0 +1,27 @@
+asyncapi: 3.1.0
+info:
+  title: Unique IDs
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  user-events:
+    address: user/events
+    messages:
+      UserEvent:
+        payload: {type: object}
+  order-events:
+    address: order/events
+    messages:
+      OrderEvent:
+        payload: {type: object}
+operations:
+  PublishUserEvent:
+    action: send
+    channel: user-events
+    operationId: publishUserEvent
+  PublishOrderEvent:
+    action: send
+    channel: order-events
+    operationId: publishOrderEvent

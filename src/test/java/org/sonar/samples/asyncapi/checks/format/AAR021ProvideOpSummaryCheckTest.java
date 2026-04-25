@@ -22,6 +22,29 @@ public class AAR021ProvideOpSummaryCheckTest extends BaseCheckTest {
         verifyV2("provide-op-summary.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithSummary() {
+        verifyV3("with-summary.yaml");
+    }
+    @Test
+    public void verifyV3WithoutSummary() {
+        verifyV3("without-summary.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithSummary() {
+        verifyV31("with-summary.yaml");
+    }
+    @Test
+    public void verifyV31WithoutSummary() {
+        verifyV31("without-summary.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR021 - ProvideOpSummary - Provide a summary for each operation", RuleType.BUG, Severity.MAJOR, tags("format"));

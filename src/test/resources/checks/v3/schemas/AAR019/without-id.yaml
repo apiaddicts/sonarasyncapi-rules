@@ -1,0 +1,18 @@
+# Noncompliant {{AAR019: ID field required}}
+asyncapi: 3.0.0
+info:
+  title: No ID
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  users:
+    address: users
+    messages:
+      User:
+        payload:
+          type: object
+          properties:
+            name:
+              type: string

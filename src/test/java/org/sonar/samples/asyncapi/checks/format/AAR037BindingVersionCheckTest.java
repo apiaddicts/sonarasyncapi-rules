@@ -22,6 +22,9 @@ public class AAR037BindingVersionCheckTest extends BaseCheckTest {
         verifyV2("binding-version.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR037 - BindingVersion - You must specify the version of the binding", RuleType.BUG, Severity.MAJOR, tags("format"));

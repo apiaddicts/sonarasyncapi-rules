@@ -22,6 +22,29 @@ public class AAR013DuplicateOperationIDCheckTest extends BaseCheckTest {
         verifyV2("duplicate-operation-id.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithDuplicateIds() {
+        verifyV3("with-duplicate-ids.yaml");
+    }
+    @Test
+    public void verifyV3WithUniqueIds() {
+        verifyV3("with-unique-ids.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithDuplicateIds() {
+        verifyV31("with-duplicate-ids.yaml");
+    }
+    @Test
+    public void verifyV31WithUniqueIds() {
+        verifyV31("with-unique-ids.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR013 - DuplicateOperationID - There cannot be two unique operations that are the same", RuleType.BUG, Severity.MAJOR, tags("format"));

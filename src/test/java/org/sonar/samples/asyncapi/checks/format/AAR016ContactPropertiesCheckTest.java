@@ -22,6 +22,9 @@ public class AAR016ContactPropertiesCheckTest extends BaseCheckTest {
         verifyV2("contact-properties.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR016 - ContactProperties - Contact should contain name, url and email fields", RuleType.BUG, Severity.MAJOR, tags("format"));

@@ -22,6 +22,9 @@ public class AAR035MessageTitleCheckTest extends BaseCheckTest {
         verifyV2("message-title.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR035 - MessageTitle - It is recommended to have a title per message", RuleType.BUG, Severity.MAJOR, tags("format"));

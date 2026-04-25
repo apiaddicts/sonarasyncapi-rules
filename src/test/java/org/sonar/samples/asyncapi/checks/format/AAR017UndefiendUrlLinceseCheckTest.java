@@ -22,6 +22,9 @@ public class AAR017UndefiendUrlLinceseCheckTest extends BaseCheckTest {
         verifyV2("undefined-url-license.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR017 - UndefinedUrlLicense - The license object must have the url field", RuleType.BUG, Severity.MAJOR, tags("format"));

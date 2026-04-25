@@ -22,6 +22,21 @@ public class AAR041ComponetChannelServerCheckTest extends BaseCheckTest {
         verifyV2("componet-channel-server.yaml");
     } */
 
+    
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithComponentServers() {
+        verifyV3("with-component-servers.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithComponentServers() {
+        verifyV31("with-component-servers.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR041 - ComponetChannelServer - It is recommend to add the servers and channels to component", RuleType.BUG, Severity.MAJOR, tags("operations"));

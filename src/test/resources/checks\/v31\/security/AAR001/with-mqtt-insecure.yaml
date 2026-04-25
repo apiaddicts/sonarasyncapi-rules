@@ -1,0 +1,15 @@
+# Noncompliant {{AAR001: Insecure protocol}}
+asyncapi: 3.1.0
+info:
+  title: MQTT Insecure
+  version: 1.0.0
+servers:
+  - host: mqtt.example.com
+    protocol: mqtt
+    port: 1883
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload: {type: object}

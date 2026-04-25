@@ -1,0 +1,15 @@
+# Noncompliant {{AAR040: Servers required}}
+asyncapi: 3.0.0
+info:
+  title: No Servers
+  version: 1.0.0
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}
+operations:
+  SendEvent:
+    action: send
+    channel: events

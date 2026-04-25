@@ -23,6 +23,29 @@ public class AAR009DeclaredTagCheckTest extends BaseCheckTest {
         verifyV2("declared-tag.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithTags() {
+        verifyV3("with-tags.yaml");
+    }
+    @Test
+    public void verifyV3WithoutTags() {
+        verifyV3("without-tags.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithTags() {
+        verifyV31("with-tags.yaml");
+    }
+    @Test
+    public void verifyV31WithoutTags() {
+        verifyV31("without-tags.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR009 - DeclaredTag - Each operation should have a tag.", RuleType.BUG, Severity.BLOCKER, tags("operations"));

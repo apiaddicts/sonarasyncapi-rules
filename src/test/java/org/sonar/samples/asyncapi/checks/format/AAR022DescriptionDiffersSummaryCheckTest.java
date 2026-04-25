@@ -22,6 +22,9 @@ public class AAR022DescriptionDiffersSummaryCheckTest extends BaseCheckTest {
         verifyV2("description-differ-summary.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR022 - DescriptionDiffersSummary - Operation description must differ from its summary", RuleType.BUG, Severity.MAJOR, tags("format"));

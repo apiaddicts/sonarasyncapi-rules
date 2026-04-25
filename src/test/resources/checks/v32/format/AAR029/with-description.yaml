@@ -1,0 +1,16 @@
+asyncapi: 3.2.0
+info:
+  title: API
+  version: 1.0.0
+  description: A well-documented API
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    description: Event channel
+    messages:
+      Event:
+        description: An event message
+        payload: {type: object}

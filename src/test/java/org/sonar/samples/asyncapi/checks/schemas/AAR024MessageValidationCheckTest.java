@@ -22,6 +22,29 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
         verifyV2("message-validation.yaml");
     }
     */
+    
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithValidation() {
+        verifyV3("with-validation.yaml");
+    }
+    @Test
+    public void verifyV3WithoutValidation() {
+        verifyV3("without-validation.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithValidation() {
+        verifyV31("with-validation.yaml");
+    }
+    @Test
+    public void verifyV31WithoutValidation() {
+        verifyV31("without-validation.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR024 - MessageValidation - All messages sent and received must comply with the message schema specified in the documentation", RuleType.BUG, Severity.MAJOR, tags("schemas"));

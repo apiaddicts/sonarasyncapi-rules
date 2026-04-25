@@ -5,10 +5,9 @@ import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
 import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
+import apiquality.sonar.asyncapi.utils.AsyncAPIVersionDetector;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @Rule(key = AAR008DefinedServerCheck.KEY)
@@ -23,9 +22,17 @@ public class AAR008DefinedServerCheck extends BaseCheck {
 
     @Override
     public void visitNode(JsonNode node) {
+        AsyncAPIVersionDetector.AsyncAPIVersion version = AsyncAPIVersionDetector.detectVersion(node);
         JsonNode serversNode = node.get("servers");
-        if (serversNode.isMissing() || serversNode.isNull()) {
-            addIssue(KEY, translate("AAR008.error-v2-servers"), serversNode.key());
+
+        if (version == AsyncAPIVersionDetector.AsyncAPIVersion.V2) {
+            if (serversNode.isMissing() || serversNode.isNull()) {
+                addIssue(KEY, translate("AAR008.error-v2-servers"), serversNode.key());
+            }
+        } else if (AsyncAPIVersionDetector.isVersion3Plus(node)) {
+            if (serversNode.isMissing() || serversNode.isNull()) {
+                addIssue(KEY, translate("AAR008.error-v3-servers"), serversNode.key());
+            }
         }
-	}
+    }
 }

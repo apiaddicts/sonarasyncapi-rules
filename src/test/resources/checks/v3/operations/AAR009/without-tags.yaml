@@ -1,0 +1,19 @@
+# Noncompliant {{AAR009: Operations should declare tags}}
+asyncapi: 3.0.0
+info:
+  title: AsyncAPI Example
+  version: '1.0.0'
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  user-signup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
+operations:
+  UserSignup:
+    action: send
+    channel: user-signup

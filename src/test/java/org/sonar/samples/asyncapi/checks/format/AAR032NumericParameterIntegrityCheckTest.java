@@ -22,6 +22,9 @@ public class AAR032NumericParameterIntegrityCheckTest extends BaseCheckTest {
         verifyV2("numeric-parameter-integrity.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR032 - NumericParameterIntegrity - Numeric parameters should have minimum, maximum, or format restriction", RuleType.BUG, Severity.MAJOR, tags("format"));

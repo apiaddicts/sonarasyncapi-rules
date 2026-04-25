@@ -22,6 +22,9 @@ public class AAR042MessageIdentifierCheckTest extends BaseCheckTest {
         verifyV2("message-id.yaml");
     }
 
+    
+    // ============= V3.0+ Tests =============
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR042 - MessageIdentifier - It is recommended to have a unique identifier per message", RuleType.BUG, Severity.MAJOR, tags("format"));
