@@ -15,6 +15,8 @@ public class AAR032NumericParameterIntegrityCheckTest extends BaseCheckTest {
         ruleName = "AAR032";
         check = new AAR032NumericParameterIntegrityCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

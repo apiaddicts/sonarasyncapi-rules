@@ -15,6 +15,3 @@ operations:
   SendNotification:
     action: send
     channel: notifications
-    servers:
-      - host: notifications.example.com
-        protocol: wss

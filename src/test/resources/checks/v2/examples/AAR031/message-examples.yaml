@@ -1,12 +1,12 @@
 asyncapi: "2.0.0"
-info: # Noncompliant {{AAR031: All examples in message object should follow payload and headers schemas}}
+info:
   title: Bad API
   version: "1.0.0"
 channels:
   /pets:
     subscribe:
       operationId: getPets
-      message:
+      message: # Noncompliant {{AAR031: All examples in message object should follow payload and headers schemas}}
         contentType: application/json
         payload:
           type: object

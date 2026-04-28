@@ -15,6 +15,8 @@ public class AAR031MessageExamplesCheckTest extends BaseCheckTest {
         ruleName = "AAR031";
         check = new AAR031MessageExamplesCheck();
         v2Path = getV2Path("examples");
+        v3Path = getV3Path("examples");
+        v31Path = getV31Path("examples");
     }
 
     @Test

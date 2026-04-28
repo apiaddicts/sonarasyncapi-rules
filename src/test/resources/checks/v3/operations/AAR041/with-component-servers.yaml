@@ -3,7 +3,8 @@ info:
   title: Component Servers
   version: 1.0.0
 servers:
-  - host: api.example.com
+  production:
+    host: api.example.com
     protocol: wss
 channels:
   data:
@@ -12,7 +13,10 @@ channels:
       Data:
         payload: {type: object}
 components:
-  serverBindings:
-    websocket:
-      - host: ws.example.com
-        protocol: wss
+  servers:
+    production:
+      host: api.example.com
+      protocol: wss
+  channels:
+    data:
+      address: data

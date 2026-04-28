@@ -15,6 +15,8 @@ public class AAR036BadDescriptionCheckTest extends BaseCheckTest {
         ruleName = "AAR036";
         check = new AAR036BadDescriptionCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

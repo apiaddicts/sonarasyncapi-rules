@@ -15,6 +15,8 @@ public class AAR035MessageTitleCheckTest extends BaseCheckTest {
         ruleName = "AAR035";
         check = new AAR035MessageTitleCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

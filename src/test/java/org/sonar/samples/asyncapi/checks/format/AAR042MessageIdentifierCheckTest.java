@@ -15,6 +15,8 @@ public class AAR042MessageIdentifierCheckTest extends BaseCheckTest {
         ruleName = "AAR042";
         check = new AAR042MessageIdentifierCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

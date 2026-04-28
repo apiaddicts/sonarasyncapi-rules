@@ -15,6 +15,8 @@ public class AAR037BindingVersionCheckTest extends BaseCheckTest {
         ruleName = "AAR037";
         check = new AAR037BindingVersionCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

@@ -1,4 +1,3 @@
-# Noncompliant {{AAR009: Operations should declare tags}}
 asyncapi: 3.1.0
 info:
   title: AsyncAPI Example
@@ -14,6 +13,6 @@ channels:
         payload:
           type: object
 operations:
-  UserSignup:
+  UserSignup: # Noncompliant {{AAR009: Associate a tag to this operation}}
     action: send
     channel: user-signup

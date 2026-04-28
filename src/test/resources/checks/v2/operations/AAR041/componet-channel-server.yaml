@@ -1,21 +1,18 @@
 asyncapi: '2.4.0'
 info:
-  title: ID Schemas
+  title: Component Channel Server
   version: '1.0.0'
 servers:
   production:
     url: 'api.example.com'
     protocol: 'wss'
 channels:
-  users:
+  events:
+    description: Event channel
     subscribe:
-      operationId: receiveUser
+      operationId: receiveEvent
+      summary: Receive events
       message:
         contentType: application/json
         payload:
           type: object
-          properties:
-            id:
-              type: string
-            name:
-              type: string

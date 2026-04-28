@@ -15,6 +15,8 @@ public class AAR013DuplicateOperationIDCheckTest extends BaseCheckTest {
         ruleName = "AAR013";
         check = new AAR013DuplicateOperationIDCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

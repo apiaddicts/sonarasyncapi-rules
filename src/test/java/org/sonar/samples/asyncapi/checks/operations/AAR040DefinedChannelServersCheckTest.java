@@ -15,6 +15,8 @@ public class AAR040DefinedChannelServersCheckTest extends BaseCheckTest {
         ruleName = "AAR040";
         check = new AAR040DefinedChannelServersCheck();
         v2Path = getV2Path("operations");
+        v3Path = getV3Path("operations");
+        v31Path = getV31Path("operations");
     }
 
     @Test

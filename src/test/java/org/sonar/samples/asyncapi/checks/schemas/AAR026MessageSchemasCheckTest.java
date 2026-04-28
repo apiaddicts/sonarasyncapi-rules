@@ -15,15 +15,15 @@ public class AAR026MessageSchemasCheckTest extends BaseCheckTest {
         ruleName = "AAR026";
         check = new AAR026MessageSchemasCheck();
         v2Path = getV2Path("schemas");
+        v3Path = getV3Path("schemas");
+        v31Path = getV31Path("schemas");
     }
 
-    /* 
     @Test
     public void verifyInV2() {
         verifyV2("message-schemas.yaml");
     }
-    */
-    
+
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---

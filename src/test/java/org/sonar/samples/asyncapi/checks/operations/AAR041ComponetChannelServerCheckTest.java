@@ -15,15 +15,14 @@ public class AAR041ComponetChannelServerCheckTest extends BaseCheckTest {
         ruleName = "AAR041";
         check = new AAR041ComponetChannelServerCheck();
         v2Path = getV2Path("operations");
+        v3Path = getV3Path("operations");
+        v31Path = getV31Path("operations");
     }
-    /*
+
     @Test
     public void verifyInV2() {
         verifyV2("componet-channel-server.yaml");
-    } */
-
-    
-    // ============= V3.0+ Tests =============
+    }
 
     // --- V3 Tests ---
     @Test

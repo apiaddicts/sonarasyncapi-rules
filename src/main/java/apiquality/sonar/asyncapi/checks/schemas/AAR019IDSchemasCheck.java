@@ -32,4 +32,29 @@ import java.util.Set;
 public class AAR019IDSchemasCheck extends BaseCheck {
   public static final String CHECK_KEY = "AAR019";
 
+  @Override
+  public Set<AstNodeType> subscribedKinds() {
+    return Sets.newHashSet(AsyncApiGrammar.SCHEMA, AsyncApiGrammar.PAYLOAD_SCHEMA);
+  }
+
+  @Override
+  protected void visitNode(JsonNode node) {
+    JsonNode typeNode = node.propertyMap().get("type");
+    if (typeNode == null || typeNode.isMissing() || typeNode.isNull()) {
+      return;
+    }
+    if (!"object".equals(typeNode.stringValue())) {
+      return;
+    }
+
+    JsonNode propertiesNode = node.propertyMap().get("properties");
+    if (propertiesNode == null || propertiesNode.isMissing() || propertiesNode.isNull()) {
+      addIssue(CHECK_KEY, translate("AAR019.error"), node.key());
+      return;
+    }
+
+    if (!propertiesNode.propertyMap().containsKey("id")) {
+      addIssue(CHECK_KEY, translate("AAR019.error"), node.key());
+    }
+  }
 }

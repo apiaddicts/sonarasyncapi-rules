@@ -15,13 +15,19 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
         ruleName = "AAR024";
         check = new AAR024MessageValidationCheck();
         v2Path = getV2Path("schemas");
+        v3Path = getV3Path("schemas");
+        v31Path = getV31Path("schemas");
     }
-    /* 
+
     @Test
-    public void verifyInV2() {
-        verifyV2("message-validation.yaml");
+    public void verifyInV2WithValidation() {
+        verifyV2("with-validation.yaml");
     }
-    */
+
+    @Test
+    public void verifyInV2WithoutValidation() {
+        verifyV2("without-validation.yaml");
+    }
     
     // ============= V3.0+ Tests =============
 

@@ -1,4 +1,3 @@
-# Noncompliant {{AAR026: Schema required}}
 asyncapi: 3.1.0
 info:
   title: No Schema
@@ -10,5 +9,5 @@ channels:
   events:
     address: events
     messages:
-      Event:
+      Event: # Noncompliant {{AAR026: Message schemas are recommended to be found in components}}
         contentType: application/json

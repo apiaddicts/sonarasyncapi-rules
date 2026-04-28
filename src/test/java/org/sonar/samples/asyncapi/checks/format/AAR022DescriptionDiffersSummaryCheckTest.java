@@ -15,6 +15,8 @@ public class AAR022DescriptionDiffersSummaryCheckTest extends BaseCheckTest {
         ruleName = "AAR022";
         check = new AAR022DescriptionDiffersSummaryCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

@@ -15,6 +15,8 @@ public class AAR029MandatoryDescriptionCheckTest extends BaseCheckTest {
         ruleName = "AAR029";
         check = new AAR029MandatoryDescriptionCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

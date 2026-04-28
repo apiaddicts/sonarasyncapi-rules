@@ -15,6 +15,8 @@ public class AAR017UndefiendUrlLinceseCheckTest extends BaseCheckTest {
         ruleName = "AAR017";
         check = new AAR017UndefinedUrlLicenseCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

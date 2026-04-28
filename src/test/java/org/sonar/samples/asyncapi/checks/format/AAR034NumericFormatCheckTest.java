@@ -15,6 +15,8 @@ public class AAR034NumericFormatCheckTest extends BaseCheckTest {
         ruleName = "AAR034";
         check = new AAR034NumericFormatCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

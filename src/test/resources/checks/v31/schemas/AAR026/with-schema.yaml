@@ -10,15 +10,16 @@ channels:
     address: events
     messages:
       Event:
-        contentType: application/json
-        payload:
-          type: object
-          required:
-            - id
-            - timestamp
-          properties:
-            id:
-              type: string
-            timestamp:
-              type: string
-              format: date-time
+        $ref: '#/components/messages/Event'
+components:
+  messages:
+    Event:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+          timestamp:
+            type: string
+            format: date-time

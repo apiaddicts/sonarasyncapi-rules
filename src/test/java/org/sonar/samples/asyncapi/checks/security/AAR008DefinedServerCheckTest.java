@@ -15,7 +15,10 @@ public class AAR008DefinedServerCheckTest extends BaseCheckTest {
         ruleName = "AAR008";
         check = new AAR008DefinedServerCheck();
         v2Path = getV2Path("security");
+        v3Path = getV3Path("security");
+        v31Path = getV31Path("security");
     }
+
     @Test
     public void verifyInV2WithoutServers() {
         verifyV2("without-servers.yaml");

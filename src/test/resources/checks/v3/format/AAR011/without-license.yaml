@@ -1,6 +1,5 @@
-# Noncompliant {{AAR011: License required}}
 asyncapi: 3.0.0
-info:
+info: # Noncompliant {{AAR011: License should be documented}}
   title: No License
   version: 1.0.0
 servers:

@@ -1,4 +1,3 @@
-# Noncompliant {{AAR013: Duplicate operation IDs}}
 asyncapi: 3.1.0
 info:
   title: Duplicate IDs
@@ -22,7 +21,7 @@ operations:
     action: send
     channel: events1
     operationId: publishEvent
-  PublishEvent2:
+  PublishEvent2: # Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}
     action: send
     channel: events2
     operationId: publishEvent

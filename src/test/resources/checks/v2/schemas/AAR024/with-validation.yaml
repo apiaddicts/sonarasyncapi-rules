@@ -1,21 +1,19 @@
 asyncapi: '2.4.0'
 info:
-  title: ID Schemas
+  title: Message Validation
   version: '1.0.0'
 servers:
   production:
     url: 'api.example.com'
     protocol: 'wss'
 channels:
-  users:
+  orders:
     subscribe:
-      operationId: receiveUser
+      operationId: receiveOrder
       message:
         contentType: application/json
         payload:
           type: object
           properties:
-            id:
-              type: string
-            name:
+            orderId:
               type: string

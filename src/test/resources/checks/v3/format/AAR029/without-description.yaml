@@ -1,4 +1,3 @@
-# Noncompliant {{AAR029: Description required}}
 asyncapi: 3.0.0
 info:
   title: No Description
@@ -7,7 +6,7 @@ servers:
   - host: api.example.com
     protocol: wss
 channels:
-  events:
+  events: # Noncompliant {{AAR029: Each channel and each operation must have a description that explains its purpose and function}}
     address: events
     messages:
       Event:

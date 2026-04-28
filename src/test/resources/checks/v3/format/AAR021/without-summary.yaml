@@ -1,4 +1,3 @@
-# Noncompliant {{AAR021: Summary required}}
 asyncapi: 3.0.0
 info:
   title: No Summaries
@@ -13,6 +12,6 @@ channels:
       Event:
         payload: {type: object}
 operations:
-  SendEvent:
+  SendEvent: # Noncompliant {{AAR021: Provide a summary for each operation}}
     action: send
     channel: events

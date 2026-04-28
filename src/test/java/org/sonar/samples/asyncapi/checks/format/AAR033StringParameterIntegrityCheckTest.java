@@ -15,6 +15,8 @@ public class AAR033StringParameterIntegrityCheckTest extends BaseCheckTest {
         ruleName = "AAR033";
         check = new AAR033StringParameterIntegrityCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

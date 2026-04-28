@@ -15,14 +15,15 @@ public class AAR043SecurityChannelCheckTest extends BaseCheckTest {
         ruleName = "AAR043";
         check = new AAR043SecurityChannelCheck();
         v2Path = getV2Path("security");
+        v3Path = getV3Path("security");
+        v31Path = getV31Path("security");
     }
-    /* 
+
     @Test
     public void verifyInV2() {
         verifyV2("security-channel.yaml");
-    }*/
+    }
 
-    
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---

@@ -18,5 +18,7 @@ channels:
             email:
               type: string
         examples:
-          - id: '123'
-            email: user@example.com
+          - name: user-signup-example
+            payload:
+              id: '123'
+              email: user@example.com

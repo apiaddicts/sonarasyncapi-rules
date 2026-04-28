@@ -15,6 +15,8 @@ public class AAR010DocumentedTagCheckTest extends BaseCheckTest {
         ruleName = "AAR010";
         check = new AAR010DocumentedTagCheck();
         v2Path = getV2Path("operations");
+        v3Path = getV3Path("operations");
+        v31Path = getV31Path("operations");
     }
 
     @Test

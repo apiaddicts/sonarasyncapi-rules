@@ -15,6 +15,8 @@ public class AAR011DefinedLicenseCheckTest extends BaseCheckTest {
         ruleName = "AAR011";
         check = new AAR011DefinedLicenseCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test

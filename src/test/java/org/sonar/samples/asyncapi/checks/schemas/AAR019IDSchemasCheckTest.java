@@ -15,14 +15,14 @@ public class AAR019IDSchemasCheckTest extends BaseCheckTest {
         ruleName = "AAR019";
         check = new AAR019IDSchemasCheck();
         v2Path = getV2Path("schemas");
+        v3Path = getV3Path("schemas");
+        v31Path = getV31Path("schemas");
     }
 
-    /* 
     @Test
     public void verifyInV2() {
         verifyV2("ID-schemas.yaml");
     }
-    */
     
     // ============= V3.0+ Tests =============
 

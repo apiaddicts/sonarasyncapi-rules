@@ -20,5 +20,3 @@ operations:
   PublishUserEvent:
     action: send
     channel: user-events
-    tags:
-      - name: users
