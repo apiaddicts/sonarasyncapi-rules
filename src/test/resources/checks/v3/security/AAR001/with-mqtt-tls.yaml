@@ -1,0 +1,14 @@
+asyncapi: 3.0.0
+info:
+  title: MQTT Secure
+  version: 1.0.0
+servers:
+  - host: mqtt.example.com
+    protocol: 'mqtt+tls'
+    port: 8883
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload: {type: object}

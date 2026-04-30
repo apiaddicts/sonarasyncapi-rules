@@ -15,11 +15,36 @@ public class AAR021ProvideOpSummaryCheckTest extends BaseCheckTest {
         ruleName = "AAR021";
         check = new AAR021ProvideOpSummaryCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test
     public void verifyInV2() {
         verifyV2("provide-op-summary.yaml");
+    }
+
+    
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithSummary() {
+        verifyV3("with-summary.yaml");
+    }
+    @Test
+    public void verifyV3WithoutSummary() {
+        verifyV3("without-summary.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithSummary() {
+        verifyV31("with-summary.yaml");
+    }
+    @Test
+    public void verifyV31WithoutSummary() {
+        verifyV31("without-summary.yaml");
     }
 
     @Override

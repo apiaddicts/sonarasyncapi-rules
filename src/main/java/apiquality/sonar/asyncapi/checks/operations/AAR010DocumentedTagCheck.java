@@ -39,19 +39,12 @@ public class AAR010DocumentedTagCheck extends BaseCheck {
 
     @Override
     protected void visitNode(JsonNode node) {
-        JsonNode tagsNode = node.get("tags");
+        JsonNode nameNode = node.get("name");
+        JsonNode descriptionNode = node.get("description");
 
-        if (tagsNode != null && !tagsNode.isMissing()) {
-            for (JsonNode tag : tagsNode.getJsonChildren()) {
-                JsonNode nameNode = tag.get("name");
-                JsonNode descriptionNode = tag.get("description");
-                System.out.println("Hola: "+ nameNode);
-
-                if (nameNode != null && !nameNode.isMissing() &&
-                        (descriptionNode == null || descriptionNode.isMissing())) {
-                    addIssue(CHECK_KEY, translate("AAR010.error"), tag.key());
-                }
-            }
+        if (nameNode != null && !nameNode.isMissing() &&
+                (descriptionNode == null || descriptionNode.isMissing())) {
+            addIssue(CHECK_KEY, translate("AAR010.error"), node);
         }
     }
 }

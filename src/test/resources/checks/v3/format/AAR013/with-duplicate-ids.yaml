@@ -1,0 +1,27 @@
+asyncapi: 3.0.0
+info:
+  title: Duplicate IDs
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events1:
+    address: events1
+    messages:
+      Event:
+        payload: {type: object}
+  events2:
+    address: events2
+    messages:
+      Event:
+        payload: {type: object}
+operations:
+  PublishEvent:
+    action: send
+    channel: events1
+    operationId: publishEvent
+  PublishEvent2: # Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}
+    action: send
+    channel: events2
+    operationId: publishEvent

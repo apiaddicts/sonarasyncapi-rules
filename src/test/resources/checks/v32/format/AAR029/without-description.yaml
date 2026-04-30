@@ -1,0 +1,14 @@
+# Noncompliant {{AAR029: Description required}}
+asyncapi: 3.2.0
+info:
+  title: No Description
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

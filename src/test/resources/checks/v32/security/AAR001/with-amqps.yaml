@@ -1,0 +1,14 @@
+asyncapi: 3.2.0
+info:
+  title: AMQP Secure
+  version: 1.0.0
+servers:
+  - host: broker.example.com
+    protocol: amqps
+    port: 5671
+channels:
+  messages:
+    address: messages
+    messages:
+      Message:
+        payload: {type: object}

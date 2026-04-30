@@ -15,14 +15,37 @@ public class AAR026MessageSchemasCheckTest extends BaseCheckTest {
         ruleName = "AAR026";
         check = new AAR026MessageSchemasCheck();
         v2Path = getV2Path("schemas");
+        v3Path = getV3Path("schemas");
+        v31Path = getV31Path("schemas");
     }
 
-    /* 
     @Test
     public void verifyInV2() {
         verifyV2("message-schemas.yaml");
     }
-    */
+
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithSchema() {
+        verifyV3("with-schema.yaml");
+    }
+    @Test
+    public void verifyV3WithoutSchema() {
+        verifyV3("without-schema.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithSchema() {
+        verifyV31("with-schema.yaml");
+    }
+    @Test
+    public void verifyV31WithoutSchema() {
+        verifyV31("without-schema.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR026 - MessageSchemas - Message schemas are recommended to be found in components", RuleType.BUG, Severity.MAJOR, tags("schemas"));

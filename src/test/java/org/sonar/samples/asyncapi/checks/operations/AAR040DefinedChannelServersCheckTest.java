@@ -15,11 +15,36 @@ public class AAR040DefinedChannelServersCheckTest extends BaseCheckTest {
         ruleName = "AAR040";
         check = new AAR040DefinedChannelServersCheck();
         v2Path = getV2Path("operations");
+        v3Path = getV3Path("operations");
+        v31Path = getV31Path("operations");
     }
 
     @Test
     public void verifyInV2() {
         verifyV2("defined-channels-server.yaml");
+    }
+
+    
+    // ============= V3.0+ Tests =============
+
+    // --- V3 Tests ---
+    @Test
+    public void verifyV3WithOperationServers() {
+        verifyV3("with-operation-servers.yaml");
+    }
+    @Test
+    public void verifyV3WithoutServers() {
+        verifyV3("without-servers.yaml");
+    }
+
+    // --- V31 Tests ---
+    @Test
+    public void verifyV31WithOperationServers() {
+        verifyV31("with-operation-servers.yaml");
+    }
+    @Test
+    public void verifyV31WithoutServers() {
+        verifyV31("without-servers.yaml");
     }
 
     @Override

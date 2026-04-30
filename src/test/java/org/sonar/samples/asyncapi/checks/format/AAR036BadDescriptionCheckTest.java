@@ -15,12 +15,17 @@ public class AAR036BadDescriptionCheckTest extends BaseCheckTest {
         ruleName = "AAR036";
         check = new AAR036BadDescriptionCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test
     public void verifyInV2() {
         verifyV2("bad-description.yaml");
     }
+
+    
+    // ============= V3.0+ Tests =============
 
     @Override
     public void verifyRule() {

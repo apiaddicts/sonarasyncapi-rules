@@ -1,0 +1,23 @@
+asyncapi: 3.1.0
+info:
+  title: OAuth2 Auth
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: https
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://example.com/oauth/authorize
+          scopes:
+            write: Write access
+            read: Read access
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload: {type: object}

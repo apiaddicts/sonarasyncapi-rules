@@ -1,0 +1,24 @@
+asyncapi: 3.0.0
+info:
+  title: Message Examples
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  users:
+    address: users
+    messages:
+      UserSignup:
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+            email:
+              type: string
+        examples:
+          - name: user-signup-example
+            payload:
+              id: '123'
+              email: user@example.com

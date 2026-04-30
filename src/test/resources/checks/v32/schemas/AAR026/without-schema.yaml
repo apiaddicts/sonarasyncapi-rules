@@ -1,0 +1,14 @@
+# Noncompliant {{AAR026: Schema required}}
+asyncapi: 3.2.0
+info:
+  title: No Schema
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        contentType: application/json

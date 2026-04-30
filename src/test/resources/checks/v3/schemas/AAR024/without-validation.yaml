@@ -1,0 +1,14 @@
+asyncapi: 3.0.0
+info:
+  title: No Validation
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  orders:
+    address: orders
+    messages:
+      Order: # Noncompliant {{AAR024: All messages sent and received must comply with the message schema specified in the documentation}}
+        payload:
+          type: object

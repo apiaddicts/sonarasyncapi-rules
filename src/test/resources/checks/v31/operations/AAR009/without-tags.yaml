@@ -1,0 +1,18 @@
+asyncapi: 3.1.0
+info:
+  title: AsyncAPI Example
+  version: '1.0.0'
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  user-signup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
+operations:
+  UserSignup: # Noncompliant {{AAR009: Associate a tag to this operation}}
+    action: send
+    channel: user-signup

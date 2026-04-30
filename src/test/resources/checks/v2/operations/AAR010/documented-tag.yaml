@@ -14,6 +14,7 @@ channels:
         operationId: receivePets
         tags: 
         - name: order
+          description: Order-related operations
         summary: Operación para recibir la lista de mascotas
         message:
           contentType: application/json

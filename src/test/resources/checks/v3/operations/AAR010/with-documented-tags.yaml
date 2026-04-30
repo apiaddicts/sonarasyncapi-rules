@@ -1,0 +1,22 @@
+asyncapi: 3.0.0
+info:
+  title: Documented Tags
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+tags:
+  - name: users
+    description: User operations
+  - name: orders
+    description: Order operations
+channels:
+  user-events:
+    address: user/events
+    messages:
+      UserEvent:
+        payload: {type: object}
+operations:
+  PublishUserEvent:
+    action: send
+    channel: user-events

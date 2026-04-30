@@ -1,0 +1,13 @@
+asyncapi: 3.1.0
+info: # Noncompliant {{AAR011: License should be documented}}
+  title: No License
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

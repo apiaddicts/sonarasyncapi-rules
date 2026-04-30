@@ -34,14 +34,14 @@ public class AAR031MessageExamplesCheck extends BaseCheck {
 
   @Override
   public Set<AstNodeType> subscribedKinds() {
-    return Sets.newHashSet(AsyncApiGrammar.INFO);
+    return Sets.newHashSet(AsyncApiGrammar.MESSAGE);
   }
 
   @Override
   protected void visitNode(JsonNode node) {
-    JsonNode licenseNode = node.at("/license");
+    JsonNode examplesNode = node.at("/examples");
 
-    if (licenseNode.isMissing() || licenseNode.isNull()) {
+    if (examplesNode.isMissing() || examplesNode.isNull()) {
       addIssue(CHECK_KEY, translate("AAR031.error"), node.key());
     }
   }

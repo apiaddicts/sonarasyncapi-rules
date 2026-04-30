@@ -1,0 +1,18 @@
+asyncapi: 3.1.0
+info:
+  title: Operation IDs
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  messages:
+    address: messages
+    messages:
+      Message:
+        payload: {type: object}
+operations:
+  SendMessage:
+    action: send
+    channel: messages
+    operationId: sendMessage

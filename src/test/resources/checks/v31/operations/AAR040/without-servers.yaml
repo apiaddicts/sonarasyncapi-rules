@@ -1,0 +1,20 @@
+asyncapi: 3.1.0
+info:
+  title: Invalid Server Reference
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  notifications:
+    address: notifications
+    servers:
+      - unknown # Noncompliant {{AAR040: Channel server must be defined in the servers object}}
+    messages:
+      Notification:
+        payload: {type: object}
+operations:
+  SendNotification:
+    action: send
+    channel: notifications

@@ -35,39 +35,37 @@ public class AAR040DefinedChannelServersCheck extends BaseCheck {
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
-        return Sets.newHashSet(AsyncApiGrammar.CHANNEL);
+        return Sets.newHashSet(AsyncApiGrammar.ROOT);
     }
 
     @Override
-    protected void visitNode(JsonNode channelNode) {
+    protected void visitNode(JsonNode rootNode) {
         // Navigate to the root and get the 'servers' object
-        JsonNode rootNode = getRootNode(channelNode);
         JsonNode serversNode = rootNode.get("servers");
 
-        if (serversNode.isMissing() || serversNode.isNull()) {
+        if (serversNode == null || serversNode.isMissing() || serversNode.isNull()) {
             return; // No servers defined at the root level, nothing to check against
         }
 
-        // Access the servers referenced by the channel
-        JsonNode channelServers = channelNode.get("servers");
-        if (channelServers.isMissing() || channelServers.isNull()) {
-            return; // No specific servers defined for this channel, no check needed
+        JsonNode channelsNode = rootNode.get("channels");
+        if (channelsNode == null || channelsNode.isMissing() || channelsNode.isNull()) {
+            return;
         }
 
-        // Check each server reference in the channel against the defined servers
-        for (JsonNode server : channelServers.elements()) {
-            String serverName = server.stringValue();
-            if (!serversNode.propertyMap().containsKey(serverName)) {
-                addIssue(CHECK_KEY, translate("AAR040.error"), server.key());
+        for (Map.Entry<String, JsonNode> channelEntry : channelsNode.propertyMap().entrySet()) {
+            JsonNode channelNode = channelEntry.getValue();
+            JsonNode channelServers = channelNode.propertyMap().get("servers");
+            if (channelServers == null || channelServers.isMissing() || channelServers.isNull()) {
+                continue; // No specific servers defined for this channel, no check needed
+            }
+
+            // Check each server reference in the channel against the defined servers
+            for (JsonNode server : channelServers.elements()) {
+                String serverName = server.stringValue();
+                if (!serversNode.propertyMap().containsKey(serverName)) {
+                    addIssue(CHECK_KEY, translate("AAR040.error"), server);
+                }
             }
         }
-    }
-
-    private JsonNode getRootNode(JsonNode node) {
-        JsonNode parentNode = node;
-        while (parentNode.getParent() != null) {
-            parentNode = (JsonNode) parentNode.getParent();
-        }
-        return parentNode;
     }
 }

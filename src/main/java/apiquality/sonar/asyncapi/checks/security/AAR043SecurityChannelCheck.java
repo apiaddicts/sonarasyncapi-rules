@@ -24,12 +24,59 @@ import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
 import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
+import apiquality.sonar.asyncapi.utils.AsyncAPIVersionDetector;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
+import java.util.Map;
 import java.util.Set;
 
 @Rule(key = AAR043SecurityChannelCheck.CHECK_KEY)
 public class AAR043SecurityChannelCheck extends BaseCheck {
   public static final String CHECK_KEY = "AAR043";
+  public static final String KEY_ERROR = "AAR043.error";
 
+  @Override
+  public Set<AstNodeType> subscribedKinds() {
+    return Sets.newHashSet(AsyncApiGrammar.ROOT);
+  }
+
+  @Override
+  protected void visitNode(JsonNode node) {
+    if (AsyncAPIVersionDetector.isVersion3Plus(node)) {
+      visitV3(node);
+    } else {
+      visitV2(node);
+    }
+  }
+
+  private void visitV3(JsonNode root) {
+    JsonNode componentsNode = root.get("components");
+    if (componentsNode.isMissing() || componentsNode.isNull()) {
+      addIssue(CHECK_KEY, translate(KEY_ERROR), componentsNode.key());
+      return;
+    }
+    JsonNode secSchemesNode = componentsNode.get("securitySchemes");
+    if (secSchemesNode.isMissing() || secSchemesNode.isNull()) {
+      addIssue(CHECK_KEY, translate(KEY_ERROR), secSchemesNode.key());
+    }
+  }
+
+  private void visitV2(JsonNode root) {
+    JsonNode channels = root.get("channels");
+    if (channels.isMissing() || channels.isNull()) return;
+    for (Map.Entry<String, JsonNode> entry : channels.propertyMap().entrySet()) {
+      JsonNode channel = entry.getValue();
+      boolean hasSecurity = operationHasSecurity(channel.get("subscribe"))
+          || operationHasSecurity(channel.get("publish"));
+      if (!hasSecurity) {
+        addIssue(CHECK_KEY, translate(KEY_ERROR), channel.key());
+      }
+    }
+  }
+
+  private boolean operationHasSecurity(JsonNode operation) {
+    if (operation.isMissing() || operation.isNull()) return false;
+    JsonNode security = operation.get("security");
+    return !security.isMissing() && !security.isNull();
+  }
 }
