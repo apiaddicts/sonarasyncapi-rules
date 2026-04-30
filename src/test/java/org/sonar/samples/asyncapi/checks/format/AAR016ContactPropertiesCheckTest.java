@@ -15,12 +15,17 @@ public class AAR016ContactPropertiesCheckTest extends BaseCheckTest {
         ruleName = "AAR016";
         check = new AAR016ContactPropertiesCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test
     public void verifyInV2() {
         verifyV2("contact-properties.yaml");
     }
+
+    
+    // ============= V3.0+ Tests =============
 
     @Override
     public void verifyRule() {

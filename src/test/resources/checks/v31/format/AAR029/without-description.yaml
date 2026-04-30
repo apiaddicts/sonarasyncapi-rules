@@ -1,0 +1,13 @@
+asyncapi: 3.1.0
+info:
+  title: No Description
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events: # Noncompliant {{AAR029: Each channel and each operation must have a description that explains its purpose and function}}
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

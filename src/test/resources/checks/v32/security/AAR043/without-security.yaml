@@ -1,0 +1,14 @@
+# Noncompliant {{AAR043: Channel requires security}}
+asyncapi: 3.2.0
+info:
+  title: No Security
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

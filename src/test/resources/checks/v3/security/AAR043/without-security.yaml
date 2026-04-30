@@ -1,0 +1,14 @@
+# Noncompliant {{AAR043: It is recommended to add the security scheme to be used to each channel}}
+asyncapi: 3.0.0
+info:
+  title: No Security
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

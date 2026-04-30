@@ -32,4 +32,16 @@ import java.util.Set;
 public class AAR024MessageValidationCheck extends BaseCheck {
   public static final String CHECK_KEY = "AAR024";
 
+  @Override
+  public Set<AstNodeType> subscribedKinds() {
+    return Sets.newHashSet(AsyncApiGrammar.MESSAGE);
+  }
+
+  @Override
+  protected void visitNode(JsonNode node) {
+    JsonNode contentTypeNode = node.get("contentType");
+    if (contentTypeNode.isMissing() || contentTypeNode.isNull()) {
+      addIssue(CHECK_KEY, translate("AAR024.error"), node.key());
+    }
+  }
 }

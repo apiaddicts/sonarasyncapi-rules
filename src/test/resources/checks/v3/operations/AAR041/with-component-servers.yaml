@@ -1,0 +1,22 @@
+asyncapi: 3.0.0
+info:
+  title: Component Servers
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload: {type: object}
+components:
+  servers:
+    production:
+      host: api.example.com
+      protocol: wss
+  channels:
+    data:
+      address: data

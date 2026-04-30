@@ -1,0 +1,19 @@
+asyncapi: 3.0.0
+info:
+  title: Operation Summaries
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  notifications:
+    address: notifications
+    messages:
+      Notification:
+        payload: {type: object}
+operations:
+  SendNotification:
+    action: send
+    channel: notifications
+    summary: Send a notification to users
+    operationId: sendNotification

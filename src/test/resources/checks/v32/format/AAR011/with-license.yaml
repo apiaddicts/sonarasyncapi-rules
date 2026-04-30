@@ -1,0 +1,16 @@
+asyncapi: 3.2.0
+info:
+  title: Licensed API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

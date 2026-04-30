@@ -1,0 +1,15 @@
+# Noncompliant {{AAR001: Servers should use a secure protocol}}
+asyncapi: 3.1.0
+info:
+  title: Insecure API
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: ws
+    pathname: /api
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

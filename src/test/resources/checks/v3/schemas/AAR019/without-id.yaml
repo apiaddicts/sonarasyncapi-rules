@@ -1,0 +1,17 @@
+asyncapi: 3.0.0
+info:
+  title: No ID
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  users:
+    address: users
+    messages:
+      User:
+        payload: # Noncompliant {{AAR019: The identifier must be defined}}
+          type: object
+          properties:
+            name:
+              type: string

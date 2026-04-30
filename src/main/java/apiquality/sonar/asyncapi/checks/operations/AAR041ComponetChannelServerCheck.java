@@ -24,6 +24,7 @@ import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
 import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
+import apiquality.sonar.asyncapi.utils.AsyncAPIVersionDetector;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
@@ -32,4 +33,28 @@ import java.util.Set;
 public class AAR041ComponetChannelServerCheck extends BaseCheck {
   public static final String CHECK_KEY = "AAR041";
 
+  @Override
+  public Set<AstNodeType> subscribedKinds() {
+    return Sets.newHashSet(AsyncApiGrammar.ROOT);
+  }
+
+  @Override
+  protected void visitNode(JsonNode node) {
+    if (!AsyncAPIVersionDetector.isVersion3Plus(node)) {
+      return;
+    }
+
+    JsonNode componentsNode = node.get("components");
+    if (componentsNode == null || componentsNode.isMissing() || componentsNode.isNull()) {
+      addIssue(CHECK_KEY, translate("AAR041.error"), node.key());
+      return;
+    }
+
+    boolean hasServers = componentsNode.propertyMap().containsKey("servers");
+    boolean hasChannels = componentsNode.propertyMap().containsKey("channels");
+
+    if (!hasServers || !hasChannels) {
+      addIssue(CHECK_KEY, translate("AAR041.error"), componentsNode.key());
+    }
+  }
 }

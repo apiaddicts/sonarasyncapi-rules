@@ -15,12 +15,17 @@ public class AAR037BindingVersionCheckTest extends BaseCheckTest {
         ruleName = "AAR037";
         check = new AAR037BindingVersionCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test
     public void verifyInV2() {
         verifyV2("binding-version.yaml");
     }
+
+    
+    // ============= V3.0+ Tests =============
 
     @Override
     public void verifyRule() {

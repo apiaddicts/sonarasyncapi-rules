@@ -15,12 +15,17 @@ public class AAR015UndefiendContactCheckTest extends BaseCheckTest {
         ruleName = "AAR015";
         check = new AAR015UndefiendContactCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test
     public void verifyInV2() {
         verifyV2("undefined-contact.yaml");
     }
+
+    
+    // ============= V3.0+ Tests =============
 
     @Override
     public void verifyRule() {

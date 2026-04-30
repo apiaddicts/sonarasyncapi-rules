@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-04-30
+
+### Added
+- New utility class to detect AsyncAPI version (v2.x, v3.0, v3.1, v3.2) from the root node.
+
+### Changed
+- **AAR001MandatoryHttpsProtocolCheck**: Extended secure protocol list to include avro.
+- **AAR008DefinedServerCheck**: Added AsyncAPI v3+ support with a dedicated error message.
+- **AAR010DocumentedTagCheck**: Refactored to visit `TAG` nodes directly instead of traversing from the root `tags` array.
+- **AAR019IDSchemasCheck**: Implemented check logic to verify that object schemas contain an `id` property.
+- **AAR024MessageValidationCheck**: Implemented check logic to verify that messages declare a `contentType`.
+- **AAR026MessageSchemasCheck**: Implemented check logic with AsyncAPI v2/v3 dual-path support to ensure messages reference component schemas via `$ref`.
+- **AAR040DefinedChannelServersCheck**: Refactored to subscribe to `ROOT` instead of `CHANNEL`; iterates channels from root to validate server references.
+- **AAR041ComponetChannelServerCheck**: Implemented check logic (v3+ only) to verify that `components` contains both `servers` and `channels`.
+- **AAR043SecurityChannelCheck**: Implemented check logic with AsyncAPI v2/v3 dual-path support to verify security schemes are defined per channel/component.
+- **AAR031MessageExamplesCheck**: Fixed subscription to `MESSAGE` node instead of `INFO`; now correctly checks for `examples` field.
+
 ## [1.1.0] - 2026-04-09
 
 ### Added

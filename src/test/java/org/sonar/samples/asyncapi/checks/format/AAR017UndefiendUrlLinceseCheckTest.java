@@ -15,12 +15,17 @@ public class AAR017UndefiendUrlLinceseCheckTest extends BaseCheckTest {
         ruleName = "AAR017";
         check = new AAR017UndefinedUrlLicenseCheck();
         v2Path = getV2Path("format");
+        v3Path = getV3Path("format");
+        v31Path = getV31Path("format");
     }
 
     @Test
     public void verifyInV2() {
         verifyV2("undefined-url-license.yaml");
     }
+
+    
+    // ============= V3.0+ Tests =============
 
     @Override
     public void verifyRule() {

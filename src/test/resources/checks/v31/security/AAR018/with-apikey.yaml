@@ -1,0 +1,19 @@
+asyncapi: 3.1.0
+info:
+  title: API Key Auth
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: https
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+channels:
+  notifications:
+    address: notifications
+    messages:
+      Notification:
+        payload: {type: object}

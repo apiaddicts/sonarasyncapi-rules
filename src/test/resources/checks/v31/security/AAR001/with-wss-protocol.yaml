@@ -1,0 +1,15 @@
+asyncapi: 3.1.0
+info:
+  title: AsyncAPI Example
+  version: '1.0.0'
+servers:
+  - host: api.example.com
+    protocol: wss
+    pathname: /ws
+channels:
+  user-signup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
