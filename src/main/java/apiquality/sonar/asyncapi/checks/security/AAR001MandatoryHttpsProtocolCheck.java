@@ -37,7 +37,7 @@ public class AAR001MandatoryHttpsProtocolCheck extends BaseCheck {
         if (AsyncAPIVersionDetector.isVersion3Plus(node)) {
             // v3+: servers is an array
             for (JsonNode server : serversNode.elements()) {
-                checkServer(server, false);
+                checkServer(server);
             }
         } else {
             // v2: servers is a map
@@ -47,7 +47,7 @@ public class AAR001MandatoryHttpsProtocolCheck extends BaseCheck {
         }
     }
 
-    private void checkServer(JsonNode server, boolean isV2) {
+    private void checkServer(JsonNode server) {
         JsonNode protocolNode = server.get("protocol");
         if (protocolNode == null || protocolNode.isMissing() || protocolNode.isNull()) return;
         String protocol = protocolNode.getTokenValue();

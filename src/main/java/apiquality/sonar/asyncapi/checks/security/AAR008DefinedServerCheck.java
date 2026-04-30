@@ -29,10 +29,8 @@ public class AAR008DefinedServerCheck extends BaseCheck {
             if (serversNode.isMissing() || serversNode.isNull()) {
                 addIssue(KEY, translate("AAR008.error-v2-servers"), serversNode.key());
             }
-        } else if (AsyncAPIVersionDetector.isVersion3Plus(node)) {
-            if (serversNode.isMissing() || serversNode.isNull()) {
-                addIssue(KEY, translate("AAR008.error-v3-servers"), serversNode.key());
-            }
+        } else if (AsyncAPIVersionDetector.isVersion3Plus(node) && (serversNode.isMissing() || serversNode.isNull())) {
+            addIssue(KEY, translate("AAR008.error-v3-servers"), serversNode.key());
         }
     }
 }

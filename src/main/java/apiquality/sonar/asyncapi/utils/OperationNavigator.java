@@ -3,6 +3,7 @@ package apiquality.sonar.asyncapi.utils;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 public class OperationNavigator {
+    public static final String CHANNELS = "channels";
 
     private OperationNavigator() {
     }
@@ -27,7 +28,7 @@ public class OperationNavigator {
     }
 
     private static void processV2Operations(JsonNode root, OperationProcessor processor) {
-        JsonNode channels = root.get("channels");
+        JsonNode channels = root.get(CHANNELS);
         if (channels.isMissing()) {
             return;
         }
@@ -53,7 +54,7 @@ public class OperationNavigator {
             return;
         }
 
-        JsonNode channels = root.get("channels");
+        JsonNode channels = root.get(CHANNELS);
         operations.elements().forEach(operation -> {
             JsonNode channelRef = operation.get("channel");
             JsonNode channel = null;
@@ -68,7 +69,7 @@ public class OperationNavigator {
     }
 
     private static void processV3ChannelsForInlineOperations(JsonNode root, OperationProcessor processor) {
-        JsonNode channels = root.get("channels");
+        JsonNode channels = root.get(CHANNELS);
         if (channels.isMissing()) {
             return;
         }
@@ -92,7 +93,7 @@ public class OperationNavigator {
             return;
         }
 
-        JsonNode channels = rootNode.get("channels");
+        JsonNode channels = rootNode.get(CHANNELS);
         if (channels.isMissing()) {
             return;
         }

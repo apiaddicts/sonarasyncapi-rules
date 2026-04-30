@@ -33,6 +33,7 @@ import java.util.Set;
 @Rule(key = AAR043SecurityChannelCheck.CHECK_KEY)
 public class AAR043SecurityChannelCheck extends BaseCheck {
   public static final String CHECK_KEY = "AAR043";
+  public static final String KEY_ERROR = "AAR043.error";
 
   @Override
   public Set<AstNodeType> subscribedKinds() {
@@ -51,12 +52,12 @@ public class AAR043SecurityChannelCheck extends BaseCheck {
   private void visitV3(JsonNode root) {
     JsonNode componentsNode = root.get("components");
     if (componentsNode.isMissing() || componentsNode.isNull()) {
-      addIssue(CHECK_KEY, translate("AAR043.error"), componentsNode.key());
+      addIssue(CHECK_KEY, translate(KEY_ERROR), componentsNode.key());
       return;
     }
     JsonNode secSchemesNode = componentsNode.get("securitySchemes");
     if (secSchemesNode.isMissing() || secSchemesNode.isNull()) {
-      addIssue(CHECK_KEY, translate("AAR043.error"), secSchemesNode.key());
+      addIssue(CHECK_KEY, translate(KEY_ERROR), secSchemesNode.key());
     }
   }
 
@@ -68,7 +69,7 @@ public class AAR043SecurityChannelCheck extends BaseCheck {
       boolean hasSecurity = operationHasSecurity(channel.get("subscribe"))
           || operationHasSecurity(channel.get("publish"));
       if (!hasSecurity) {
-        addIssue(CHECK_KEY, translate("AAR043.error"), channel.key());
+        addIssue(CHECK_KEY, translate(KEY_ERROR), channel.key());
       }
     }
   }
