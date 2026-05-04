@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apiaddicts.apitools.dosonarapi</groupId>
   <artifactId>sonarasyncapi-rules-community</artifactId>
-  <version>1.2.0</version>
+  <version>2.0.0</version>
   <packaging>sonar-plugin</packaging>
 
   <name>SonarQube AsyncAPI Community Rules</name>
@@ -47,16 +47,15 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <sonar.version>8.7.0.41497</sonar.version>
-    <sonarQubeMinVersion>6.7</sonarQubeMinVersion>
-    <sonarasyncapi.version>1.2.0</sonarasyncapi.version>
-    <sonaranalyzer.version>1.22.0.848</sonaranalyzer.version>
-    <orgjson.version>20220320</orgjson.version>
+    <sonar.version>9.4.0.54424</sonar.version>
+    <sonarasyncapi.version>2.0.0</sonarasyncapi.version>
+    <sonaranalyzer.version>2.22.0.4796</sonaranalyzer.version>
+    <orgjson.version>20251224</orgjson.version>
     <junit.version>4.13.2</junit.version>
-    <assertj.version>3.22.0</assertj.version>
+    <assertj.version>4.0.0-M1</assertj.version>
 
-    <jacoco.maven.plugin.version>0.8.6</jacoco.maven.plugin.version>
-    <sonar.maven.plugin.version>3.7.0.1746</sonar.maven.plugin.version>
+    <jacoco.maven.plugin.version>0.8.14</jacoco.maven.plugin.version>
+    <sonar.maven.plugin.version>4.0.0.4121</sonar.maven.plugin.version>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
     <sonar.language>java</sonar.language>
@@ -68,7 +67,7 @@
     <dependency>
         <groupId>org.junit.platform</groupId>
         <artifactId>junit-platform-console-standalone</artifactId>
-        <version>1.8.2</version>
+        <version>6.1.0-RC1</version>
         <scope>test</scope>
     </dependency>
     <dependency>
@@ -85,7 +84,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-yaml</artifactId>
-      <version>2.13.3</version>
+      <version>2.21.3</version>
     </dependency>
     <dependency>
       <groupId>org.sonarsource.analyzer-commons</groupId>
@@ -95,7 +94,7 @@
     <dependency>
       <groupId>com.networknt</groupId>
       <artifactId>json-schema-validator</artifactId>
-      <version>1.0.87</version>
+      <version>3.0.2</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.json/json -->
     <dependency>
@@ -128,12 +127,12 @@
     <plugins>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
+        <version>3.3.1</version>
         <dependencies>
           <dependency>
             <groupId>org.apache.maven.scm</groupId>
             <artifactId>maven-scm-provider-gitexe</artifactId>
-            <version>1.9.4</version>
+            <version>2.1.0</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -155,7 +154,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>3.4.0</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -169,9 +168,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>3.12.0</version>
         <configuration>
-          <source>1.8</source>
+          <source>17</source>
           <encoding>UTF-8</encoding>
         </configuration>
         <executions>
@@ -187,7 +186,7 @@
       <plugin>
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <version>1.17</version>
+        <version>1.25.1.3002</version>
         <extensions>true</extensions>
         <configuration>
           <pluginKey>asyncapi-custom</pluginKey>
@@ -195,7 +194,7 @@
           <pluginClass>apiquality.sonar.asyncapi.AsyncAPICustomPlugin</pluginClass>
           <skipDependenciesPackaging>true</skipDependenciesPackaging>
           <sonarLintSupported>true</sonarLintSupported>
-          <sonarQubeMinVersion>${sonarQubeMinVersion}</sonarQubeMinVersion>
+          <pluginApiMinVersion>${sonar.version}</pluginApiMinVersion>
           <basePlugin>asyncapi</basePlugin>
         </configuration>
       </plugin>
@@ -203,16 +202,16 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.0</version>
+        <version>3.15.0</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>17</source>
+          <target>17</target>
         </configuration>
       </plugin>
 
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.4</version>
+        <version>3.6.2</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -275,7 +274,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
+            <version>3.2.8</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>

@@ -2,6 +2,7 @@ package org.sonar.samples.asyncapi;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.sonar.api.SonarRuntime;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.rule.RuleParamType;
 import org.sonar.api.server.rule.RulesDefinition;
@@ -82,7 +83,8 @@ public abstract class BaseCheckTest {
     public static void beforeClass() {
         I18nContext.setLang("en");
         if (repository != null) return;
-        AsyncAPICustomRulesDefinition rulesDefinition = new AsyncAPICustomRulesDefinition();
+        SonarRuntime sonarRuntime = TestSonarRuntime.create();
+        AsyncAPICustomRulesDefinition rulesDefinition = new AsyncAPICustomRulesDefinition(sonarRuntime);
         RulesDefinition.Context context = new RulesDefinition.Context();
         rulesDefinition.define(context);
         repository = context.repository(AsyncAPICustomRulesDefinition.REPOSITORY_KEY);
