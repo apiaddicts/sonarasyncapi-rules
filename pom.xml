@@ -47,12 +47,12 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <sonar.version>9.4.0.54424</sonar.version>
+    <sonar.version>13.5.0.4319</sonar.version>
     <sonarasyncapi.version>2.0.0</sonarasyncapi.version>
     <sonaranalyzer.version>2.22.0.4796</sonaranalyzer.version>
     <orgjson.version>20251224</orgjson.version>
     <junit.version>4.13.2</junit.version>
-    <assertj.version>4.0.0-M1</assertj.version>
+    <assertj.version>3.27.7</assertj.version>
 
     <jacoco.maven.plugin.version>0.8.14</jacoco.maven.plugin.version>
     <sonar.maven.plugin.version>4.0.0.4121</sonar.maven.plugin.version>
@@ -67,7 +67,7 @@
     <dependency>
         <groupId>org.junit.platform</groupId>
         <artifactId>junit-platform-console-standalone</artifactId>
-        <version>6.1.0-RC1</version>
+        <version>6.0.3</version>
         <scope>test</scope>
     </dependency>
     <dependency>
@@ -76,7 +76,7 @@
       <version>${sonarasyncapi.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.sonarsource.sonarqube</groupId>
+      <groupId>org.sonarsource.api.plugin</groupId>
       <artifactId>sonar-plugin-api</artifactId>
       <version>${sonar.version}</version>
       <scope>provided</scope>
