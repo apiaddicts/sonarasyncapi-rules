@@ -1,6 +1,7 @@
 package org.sonar.samples.asyncapi;
 
 import org.junit.Test;
+import org.sonar.api.SonarRuntime;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinition.Repository;
 
@@ -15,7 +16,8 @@ public class AsyncAPICustomRulesDefinitionTest {
 	@Test
 	public void testRepository() {
 		I18nContext.setLang("en");
-		AsyncAPICustomRulesDefinition rulesDefinition = new AsyncAPICustomRulesDefinition();
+		SonarRuntime sonarRuntime = TestSonarRuntime.create();
+		AsyncAPICustomRulesDefinition rulesDefinition = new AsyncAPICustomRulesDefinition(sonarRuntime);
 		RulesDefinition.Context context = new RulesDefinition.Context();
 		rulesDefinition.define(context);
 		Repository repository = context.repository(AsyncAPICustomRulesDefinition.REPOSITORY_KEY);
