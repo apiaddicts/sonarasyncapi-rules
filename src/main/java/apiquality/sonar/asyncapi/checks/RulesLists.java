@@ -66,7 +66,6 @@ public final class RulesLists {
             AAR019IDSchemasCheck.class,
             AAR024MessageValidationCheck.class,
             AAR026MessageSchemasCheck.class
-            
             );
     }
 

@@ -24,8 +24,30 @@ public class AAR042MessageIdentifierCheckTest extends BaseCheckTest {
         verifyV2("message-id.yaml");
     }
 
-    
+    // ============= V2 Avro Tests =============
+
+    @Test
+    public void verifyV2WithAvroMessageId() {
+        verifyV2("message-id-avro-compliant.yaml");
+    }
+
+    @Test
+    public void verifyV2WithoutAvroMessageId() {
+        verifyV2("message-id-avro.yaml");
+    }
+
     // ============= V3.0+ Tests =============
+
+    // --- V3 Avro Tests ---
+    @Test
+    public void verifyV3WithAvroMessageId() {
+        verifyV3("with-avro-message-id.yaml");
+    }
+
+    @Test
+    public void verifyV3WithoutAvroMessageId() {
+        verifyV3("without-avro-message-id.yaml");
+    }
 
     @Override
     public void verifyRule() {
