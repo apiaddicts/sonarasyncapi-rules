@@ -1,0 +1,21 @@
+<p>Los nombres Avro (para registros y campos) deben comenzar con <code>[A-Za-z_]</code> y contener solo <code>[A-Za-z0-9_]</code>. Los nombres que comienzan con dígitos o contienen guiones son inválidos.</p>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: 0-invalid-record
+  namespace: org.example.orders
+  fields:
+    - name: order-id
+      type: string
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: orderId
+      type: string
+</pre>

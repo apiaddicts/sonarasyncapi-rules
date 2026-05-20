@@ -1,0 +1,13 @@
+{
+    "title": "AAR049 - AvroDefaultNull - Los campos Avro opcionales deben definir el valor predeterminado como null",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

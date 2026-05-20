@@ -1,0 +1,13 @@
+{
+    "title": "AAR048 - AvroNameNomenclature - Los nombres Avro deben seguir las reglas de nomenclatura Avro",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

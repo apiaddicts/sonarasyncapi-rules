@@ -24,6 +24,7 @@ import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
 import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
+import apiquality.sonar.asyncapi.utils.JsonNodeUtils;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
@@ -39,10 +40,11 @@ public class AAR042MessageIdentifierCheck extends BaseCheck {
 
     @Override
     protected void visitNode(JsonNode node) {
-        JsonNode messageIdNode = node.get("messageId");
+        JsonNode resolved = JsonNodeUtils.resolve(node);
+        JsonNode messageIdNode = resolved.get("messageId");
 
         if (messageIdNode == null || messageIdNode.isMissing()) {
-            addIssue(CHECK_KEY, translate("AAR042.error"), node.key());
+            addIssue(CHECK_KEY, translate("AAR042.error"), resolved.key());
         }
     }
 }

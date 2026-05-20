@@ -1,0 +1,13 @@
+{
+    "title": "AAR045 - AvroNamespaceNaming - Avro namespace must follow lowercase dot notation",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MINOR"
+}

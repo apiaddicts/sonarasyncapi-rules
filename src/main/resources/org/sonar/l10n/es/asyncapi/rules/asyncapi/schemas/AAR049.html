@@ -1,0 +1,26 @@
+<p>Cuando un campo Avro usa un tipo union nullable (ej. <code>["null", "string"]</code>), debe definir <code>default: null</code>. Sin un valor predeterminado null, los consumidores desplegados antes de que el campo fuera añadido fallarán al deserializar mensajes.</p>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: description
+      type:
+        - "null"
+        - string
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: description
+      type:
+        - "null"
+        - string
+      default: null
+</pre>

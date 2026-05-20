@@ -23,7 +23,24 @@ public class AAR019IDSchemasCheckTest extends BaseCheckTest {
     public void verifyInV2() {
         verifyV2("ID-schemas.yaml");
     }
-    
+
+    // ============= V2 Avro Tests =============
+
+    @Test
+    public void verifyV2AvroValid() {
+        verifyV2("id-schemas-avro-valid.yaml");
+    }
+
+    @Test
+    public void verifyV2AvroInvalid() {
+        verifyV2("id-schemas-avro-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV2AvroWithRef() {
+        verifyV2("id-schemas-avro-ref.yaml");
+    }
+
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---
@@ -34,6 +51,17 @@ public class AAR019IDSchemasCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3WithoutId() {
         verifyV3("without-id.yaml");
+    }
+
+    // --- V3 Avro Tests ---
+    @Test
+    public void verifyV3AvroWithId() {
+        verifyV3("with-avro-id.yaml");
+    }
+
+    @Test
+    public void verifyV3AvroWithoutId() {
+        verifyV3("without-avro-id.yaml");
     }
 
     // --- V31 Tests ---

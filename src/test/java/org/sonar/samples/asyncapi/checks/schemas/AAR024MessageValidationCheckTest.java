@@ -28,7 +28,14 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
     public void verifyInV2WithoutValidation() {
         verifyV2("without-validation.yaml");
     }
-    
+
+    // ============= V2 Avro Tests =============
+
+    @Test
+    public void verifyV2WithAvroSchemaFormat() {
+        verifyV2("with-avro-schema-format.yaml");
+    }
+
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---
@@ -39,6 +46,12 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3WithoutValidation() {
         verifyV3("without-validation.yaml");
+    }
+
+    // --- V3 Avro Tests ---
+    @Test
+    public void verifyV3WithAvroSchemaFormat() {
+        verifyV3("with-avro-schema-format.yaml");
     }
 
     // --- V31 Tests ---

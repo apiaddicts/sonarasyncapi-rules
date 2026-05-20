@@ -1,0 +1,13 @@
+{
+    "title": "AAR044 - AvroNamespace - Avro record must define a namespace",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

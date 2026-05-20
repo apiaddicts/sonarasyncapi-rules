@@ -1,0 +1,21 @@
+<p>Avro names (for records and fields) must start with <code>[A-Za-z_]</code> and subsequently contain only <code>[A-Za-z0-9_]</code>. Names starting with digits or containing hyphens are invalid and will cause schema parsing failures.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: 0-invalid-record
+  namespace: org.example.orders
+  fields:
+    - name: order-id
+      type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: orderId
+      type: string
+</pre>

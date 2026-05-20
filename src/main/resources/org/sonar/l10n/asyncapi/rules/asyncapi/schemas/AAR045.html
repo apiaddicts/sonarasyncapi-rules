@@ -1,0 +1,21 @@
+<p>Avro namespaces must follow lowercase dot notation (e.g. <code>org.example.company</code>). Each segment must start with a lowercase letter and contain only lowercase letters and digits.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: Org.Example.Orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: id
+      type: string
+</pre>
