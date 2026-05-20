@@ -12,6 +12,10 @@ import org.assertj.core.api.ListAssert;
 import org.junit.Assert;
 import org.apiaddicts.apitools.dosonarapi.TestIssue;
 import org.apiaddicts.apitools.dosonarapi.api.*;
+import org.apiaddicts.apitools.dosonarapi.asyncapi.AsyncApiConfiguration;
+import org.apiaddicts.apitools.dosonarapi.asyncapi.parser.AsyncApiv4Parser;
+import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.YamlParser;
+import java.nio.charset.StandardCharsets;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,15 +33,20 @@ public class ExtendedAsyncApiCheckVerifier {
     public ExtendedAsyncApiCheckVerifier() {
     }
 
+    private static YamlParser createNonStrictParser() {
+        return AsyncApiv4Parser.createV4(new AsyncApiConfiguration(StandardCharsets.UTF_8, false));
+    }
+
     public static List<PreciseIssue> scanFileForIssues(File file, AsyncApiCheck check, boolean isV2, boolean isV3, boolean isV31) {
-        return check.scanFileForIssues(TestAsyncApiVisitorRunner.createContext(file));
+        return check.scanFileForIssues(TestAsyncApiVisitorRunner.createContext(file, createNonStrictParser()));
     }
 
     public static void verify(String path, AsyncApiCheck check, boolean isV2, boolean isV3, boolean isV31) {
         ExtendedAsyncApiCheckVerifier verifier = new ExtendedAsyncApiCheckVerifier();
         AsyncApiVisitor collector = new ExtendedAsyncApiCheckVerifier.ExpectedIssueCollector(verifier);
         File file = new File(path);
-        TestAsyncApiVisitorRunner.scanFileForComments(file, new AsyncApiVisitor[]{collector});
+        AsyncApiVisitorContext context = TestAsyncApiVisitorRunner.createContext(file, createNonStrictParser());
+        collector.scanFile(context);
         Iterator<PreciseIssue> actualIssues = getActualIssues(file, check, isV2, isV3, isV31);
         verifier.checkIssues(actualIssues);
         if (actualIssues.hasNext()) {

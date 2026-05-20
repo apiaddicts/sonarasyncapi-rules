@@ -1,0 +1,13 @@
+{
+    "title": "AAR049 - AvroDefaultNull - Optional Avro fields must define default as null",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

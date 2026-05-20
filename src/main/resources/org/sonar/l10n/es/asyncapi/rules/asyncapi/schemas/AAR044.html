@@ -1,0 +1,24 @@
+<p>Los registros Avro deben declarar un <code>namespace</code> para evitar colisiones de nombres y permitir la evolución del esquema entre diferentes servicios y equipos.</p>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+message:
+  schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+  payload:
+    type: record
+    name: OrderValue
+    fields:
+      - name: id
+        type: string
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+message:
+  schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+  payload:
+    type: record
+    name: OrderValue
+    namespace: org.example.orders
+    fields:
+      - name: id
+        type: string
+</pre>

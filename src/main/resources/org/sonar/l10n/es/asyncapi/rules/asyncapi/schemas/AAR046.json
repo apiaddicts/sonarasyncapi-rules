@@ -1,0 +1,13 @@
+{
+    "title": "AAR046 - AvroRecordDoc - El registro Avro debería incluir una descripción doc",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MINOR"
+}

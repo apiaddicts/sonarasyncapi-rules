@@ -1,0 +1,13 @@
+{
+    "title": "AAR048 - AvroNameNomenclature - Avro names must follow Avro naming rules",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

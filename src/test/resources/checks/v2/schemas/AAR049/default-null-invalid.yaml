@@ -1,0 +1,21 @@
+asyncapi: '2.4.0'
+info:
+  title: Avro Default Null Invalid V2
+  version: '1.0.0'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR049: Optional Avro fields (union with null) must declare their default value as null}}
+          type: record
+          name: OrderValue
+          namespace: org.example.orders
+          fields:
+            - name: id
+              type: string
+            - name: description
+              type:
+                - "null"
+                - string
