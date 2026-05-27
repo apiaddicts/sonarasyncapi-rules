@@ -1,0 +1,17 @@
+asyncapi: '2.4.0'
+info:
+  title: Avro Field Doc Invalid V2
+  version: '1.0.0'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR047: Avro field should include the doc attribute with a description}}
+          type: record
+          name: OrderValue
+          namespace: org.example.orders
+          fields:
+            - name: id
+              type: string

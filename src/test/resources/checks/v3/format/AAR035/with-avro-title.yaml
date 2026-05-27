@@ -1,0 +1,22 @@
+asyncapi: 3.0.0
+info:
+  title: Message Title Avro V3 Compliant
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: kafka
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage:
+        title: Carga Event
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: id
+                type: string

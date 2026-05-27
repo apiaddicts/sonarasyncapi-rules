@@ -1,0 +1,22 @@
+<p>Avro records should include a <code>doc</code> field at the record level to describe the purpose of the schema. This improves readability and tooling support.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  doc: "Represents an order placed in the system"
+  fields:
+    - name: id
+      type: string
+</pre>

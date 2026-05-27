@@ -1,0 +1,21 @@
+asyncapi: 3.0.0
+info:
+  title: ID Schemas Avro Invalid V3
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: kafka
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: # Noncompliant {{AAR019: The identifier must be defined}}
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: importe
+                type: double

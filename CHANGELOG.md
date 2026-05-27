@@ -5,7 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+
+## [2.0.0] - 2026-05-20
+
+### Added
+- **Major**: Upgraded core dependencies and plugins to latest stable versions.
+
+- **AAR044AvroNamespaceCheck**: Avro record must declare a `namespace` field to avoid name collisions across services (BUG / MAJOR).
+- **AAR045AvroNamespaceNamingCheck**: Avro `namespace` must follow lowercase dot notation, e.g. `org.example.company` (CODE_SMELL / MINOR).
+- **AAR046AvroRecordDocCheck**: Avro record should include a `doc` description at the record level (CODE_SMELL / MINOR).
+- **AAR047AvroFieldDocCheck**: Each Avro field should include a `doc` description (CODE_SMELL / INFO).
+- **AAR048AvroNameNomenclatureCheck**: Avro record and field names must match `^[A-Za-z_][A-Za-z0-9_]*$` as required by the Avro specification (BUG / MAJOR).
+- **AAR049AvroDefaultNullCheck**: Avro fields with a nullable union type (e.g. `["null", "string"]`) must define `default: null` to ensure backward-compatible schema evolution (BUG / MAJOR).
+- Full bilingual rule documentation (English + Spanish) for all new rules: JSON metadata and HTML description files in both `l10n/asyncapi` and `l10n/es/asyncapi`.
+
+### Changed
+- **JsonNodeUtils**: Extended to automatically unwrap Avro component schema wrappers so that all rules transparently navigate `$ref` chains pointing to Avro schemas.
+- **AAR019IDSchemasCheck**: Added full Avro record support — when `type: record` is detected, the check verifies that the `fields` array contains a field named `id`. Also handles v3 Multi-Format Schema Object unwrapping.
+- **AAR024MessageValidationCheck**: Avro messages with `schemaFormat` present (v2 at message level, v3 inside `payload`) are now accepted as compliant, in addition to messages that declare `contentType`.
+- **AAR031MessageExamplesCheck**: Added `JsonNodeUtils.resolve()` call to correctly evaluate messages referenced via `$ref`.
+- **AAR035MessageTitleCheck**: Added `JsonNodeUtils.resolve()` call to correctly evaluate messages referenced via `$ref`.
+- **AAR042MessageIdentifierCheck**: Added `JsonNodeUtils.resolve()` call to correctly evaluate messages referenced via `$ref`.
 
 ## [1.2.0] - 2026-04-30
 

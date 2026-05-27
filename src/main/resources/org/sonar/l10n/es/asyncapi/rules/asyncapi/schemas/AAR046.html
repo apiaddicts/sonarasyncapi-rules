@@ -1,0 +1,22 @@
+<p>Los registros Avro deberían incluir un campo <code>doc</code> a nivel de registro para describir el propósito del esquema.</p>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  doc: "Representa un pedido realizado en el sistema"
+  fields:
+    - name: id
+      type: string
+</pre>

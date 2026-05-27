@@ -24,6 +24,8 @@ import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
 import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
+import apiquality.sonar.asyncapi.utils.AvroUtils;
+import apiquality.sonar.asyncapi.utils.JsonNodeUtils;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
@@ -39,9 +41,11 @@ public class AAR024MessageValidationCheck extends BaseCheck {
 
   @Override
   protected void visitNode(JsonNode node) {
-    JsonNode contentTypeNode = node.get("contentType");
-    if (contentTypeNode.isMissing() || contentTypeNode.isNull()) {
-      addIssue(CHECK_KEY, translate("AAR024.error"), node.key());
+    JsonNode resolved = JsonNodeUtils.resolve(node);
+    JsonNode contentTypeNode = resolved.get("contentType");
+    boolean hasContentType = !contentTypeNode.isMissing() && !contentTypeNode.isNull();
+    if (!hasContentType && !AvroUtils.isAvroMessage(resolved)) {
+      addIssue(CHECK_KEY, translate("AAR024.error"), resolved.key());
     }
   }
 }

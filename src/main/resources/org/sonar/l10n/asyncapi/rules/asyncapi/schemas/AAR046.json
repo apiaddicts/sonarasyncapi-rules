@@ -1,0 +1,13 @@
+{
+    "title": "AAR046 - AvroRecordDoc - Avro record should include a doc description",
+    "type": "CODE_SMELL",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MINOR"
+}

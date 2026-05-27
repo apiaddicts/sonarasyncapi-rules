@@ -1,0 +1,20 @@
+asyncapi: 3.0.0
+info:
+  title: Avro Name Nomenclature Valid V3
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: orderId
+                type: string
+              - name: _internalRef
+                type: string

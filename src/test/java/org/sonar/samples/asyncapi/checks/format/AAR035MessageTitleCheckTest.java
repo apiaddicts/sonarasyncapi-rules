@@ -24,8 +24,30 @@ public class AAR035MessageTitleCheckTest extends BaseCheckTest {
         verifyV2("message-title.yaml");
     }
 
-    
+    // ============= V2 Avro Tests =============
+
+    @Test
+    public void verifyV2WithAvroTitle() {
+        verifyV2("message-title-avro-compliant.yaml");
+    }
+
+    @Test
+    public void verifyV2WithoutAvroTitle() {
+        verifyV2("message-title-avro.yaml");
+    }
+
     // ============= V3.0+ Tests =============
+
+    // --- V3 Avro Tests ---
+    @Test
+    public void verifyV3WithAvroTitle() {
+        verifyV3("with-avro-title.yaml");
+    }
+
+    @Test
+    public void verifyV3WithoutAvroTitle() {
+        verifyV3("without-avro-title.yaml");
+    }
 
     @Override
     public void verifyRule() {

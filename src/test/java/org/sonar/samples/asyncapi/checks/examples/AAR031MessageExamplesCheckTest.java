@@ -29,7 +29,18 @@ public class AAR031MessageExamplesCheckTest extends BaseCheckTest {
         verifyV2("message-examples-compliant.yaml");
     }
 
-    
+    // ============= V2 Avro Tests =============
+
+    @Test
+    public void verifyV2WithAvroExamples() {
+        verifyV2("message-examples-avro-compliant.yaml");
+    }
+
+    @Test
+    public void verifyV2WithoutAvroExamples() {
+        verifyV2("message-examples-avro.yaml");
+    }
+
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---
@@ -40,6 +51,17 @@ public class AAR031MessageExamplesCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3WithoutExamples() {
         verifyV3("without-examples.yaml");
+    }
+
+    // --- V3 Avro Tests ---
+    @Test
+    public void verifyV3WithAvroExamples() {
+        verifyV3("with-avro-examples.yaml");
+    }
+
+    @Test
+    public void verifyV3WithoutAvroExamples() {
+        verifyV3("without-avro-examples.yaml");
     }
 
     // --- V31 Tests ---

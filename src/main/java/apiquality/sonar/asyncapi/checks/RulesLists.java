@@ -65,8 +65,13 @@ public final class RulesLists {
         return Arrays.asList(
             AAR019IDSchemasCheck.class,
             AAR024MessageValidationCheck.class,
-            AAR026MessageSchemasCheck.class
-            
+            AAR026MessageSchemasCheck.class,
+            AAR044AvroNamespaceCheck.class,
+            AAR045AvroNamespaceNamingCheck.class,
+            AAR046AvroRecordDocCheck.class,
+            AAR047AvroFieldDocCheck.class,
+            AAR048AvroNameNomenclatureCheck.class,
+            AAR049AvroDefaultNullCheck.class
             );
     }
 

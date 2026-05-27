@@ -1,6 +1,7 @@
 package apiquality.sonar.asyncapi;
 
 import org.sonar.api.ExtensionPoint;
+import org.sonar.api.SonarRuntime;
 import org.sonar.api.ce.ComputeEngineSide;
 import org.sonar.api.scanner.ScannerSide;
 import org.sonar.api.server.ServerSide;
@@ -29,6 +30,12 @@ public class AsyncAPICustomRulesDefinition implements RulesDefinition {
     private static final String APIM_WSO2_GROUP = "apim/wso2";
     private static final String REGEX_GROUP = "regex"; 
 
+    private final SonarRuntime sonarRuntime;
+
+    public AsyncAPICustomRulesDefinition(SonarRuntime sonarRuntime) {
+        this.sonarRuntime = sonarRuntime;
+    }
+
     @Override
     public void define(Context context) {
         I18nContext.initializeFromUserLanguage();
@@ -37,15 +44,15 @@ public class AsyncAPICustomRulesDefinition implements RulesDefinition {
                 .setName(REPOSITORY_NAME);
 
         // Carga de reglas para cada grupo
-        new RuleMetadataLoader(getPath(EXAMPLES_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getExamplesChcecks());
-        new RuleMetadataLoader(getPath(SECURITY_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getSecurityChecks());
-        new RuleMetadataLoader(getPath(FORMAT_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getFormatChecks());
-        new RuleMetadataLoader(getPath(SCHEMAS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getSchemasChecks());
-        new RuleMetadataLoader(getPath(OWASP_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getOWASPChecks());
-        new RuleMetadataLoader(getPath(OPERATIONS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getOperationsChecks());
-        new RuleMetadataLoader(getPath(PARAMETERS_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getParametersChecks());
-        new RuleMetadataLoader(getPath(APIM_WSO2_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getWSO2Checks());
-        new RuleMetadataLoader(getPath(REGEX_GROUP)).addRulesByAnnotatedClass(repository, RulesLists.getRegexChecks());
+        new RuleMetadataLoader(getPath(EXAMPLES_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getExamplesChcecks());
+        new RuleMetadataLoader(getPath(SECURITY_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getSecurityChecks());
+        new RuleMetadataLoader(getPath(FORMAT_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getFormatChecks());
+        new RuleMetadataLoader(getPath(SCHEMAS_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getSchemasChecks());
+        new RuleMetadataLoader(getPath(OWASP_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getOWASPChecks());
+        new RuleMetadataLoader(getPath(OPERATIONS_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getOperationsChecks());
+        new RuleMetadataLoader(getPath(PARAMETERS_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getParametersChecks());
+        new RuleMetadataLoader(getPath(APIM_WSO2_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getWSO2Checks());
+        new RuleMetadataLoader(getPath(REGEX_GROUP), sonarRuntime).addRulesByAnnotatedClass(repository, RulesLists.getRegexChecks());
 
         repository.done();
     }

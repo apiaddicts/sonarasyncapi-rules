@@ -1,0 +1,22 @@
+<p>Avro fields should include a <code>doc</code> attribute to describe the purpose of each field. This improves schema discoverability and consumer understanding.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: id
+      type: string
+      doc: "The unique order identifier"
+</pre>

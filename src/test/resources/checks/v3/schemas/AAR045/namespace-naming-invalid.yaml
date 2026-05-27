@@ -1,0 +1,18 @@
+asyncapi: 3.0.0
+info:
+  title: Avro Namespace Naming Invalid V3
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: # Noncompliant {{AAR045: Avro namespace must be lowercase and separated by dots}}
+            type: record
+            name: OrderValue
+            namespace: Org.Example.Orders
+            fields:
+              - name: id
+                type: string

@@ -1,0 +1,21 @@
+asyncapi: '2.4.0'
+info:
+  title: Message Title Avro Missing
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'kafka'
+channels:
+  carga:
+    subscribe:
+      operationId: receiveCarga
+      message: # Noncompliant {{AAR035: It is recommended to have a title per message}}
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: record
+          name: CargaValue
+          namespace: com.example.avro
+          fields:
+            - name: id
+              type: string

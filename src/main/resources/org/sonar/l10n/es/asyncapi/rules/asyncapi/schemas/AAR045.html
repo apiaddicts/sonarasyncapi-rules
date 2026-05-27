@@ -1,0 +1,21 @@
+<p>Los namespaces Avro deben seguir la notación en minúsculas con puntos (ej. <code>org.example.company</code>). Cada segmento debe comenzar con una letra minúscula y contener solo letras minúsculas y dígitos.</p>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: Org.Example.Orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: id
+      type: string
+</pre>

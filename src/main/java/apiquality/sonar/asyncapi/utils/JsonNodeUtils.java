@@ -34,19 +34,27 @@ public class JsonNodeUtils {
     private static String lastFetchedContent = "";
 
     public static JsonNode resolve(JsonNode original) {
-
         if (original.isRef()) {
             String ref = original.get("$ref").getTokenValue();
-            if (ref.startsWith("#")) {
-                return original.resolve();  
-            } else {
-
-                return resolveExternalRef(ref);
-            }
+            JsonNode resolved = ref.startsWith("#") ? original.resolve() : resolveExternalRef(ref);
+            return unwrapAvroComponentSchema(resolved);
         }
         return original;
-    } 
-    
+    }
+
+    private static JsonNode unwrapAvroComponentSchema(JsonNode node) {
+        if (node == null || node.isMissing() || node.isNull()) {
+            return node;
+        }
+        if (AvroUtils.isAvroComponentSchema(node)) {
+            JsonNode inner = node.get("schema");
+            if (inner != null && !inner.isMissing() && !inner.isNull()) {
+                return inner;
+            }
+        }
+        return node;
+    }
+
     public static boolean isExternalRef (JsonNode original){
 
         if (original.isRef()) {
