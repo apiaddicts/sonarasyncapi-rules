@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apiaddicts.apitools.dosonarapi</groupId>
   <artifactId>sonarasyncapi-rules-community</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
   <packaging>sonar-plugin</packaging>
 
   <name>SonarQube AsyncAPI Community Rules</name>
@@ -47,10 +47,10 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <sonar.version>13.5.0.4319</sonar.version>
-    <sonarasyncapi.version>2.0.0</sonarasyncapi.version>
+    <sonar.version>11.1.0.2693</sonar.version>
+    <pluginApiMinVersion>11.1.0.2693</pluginApiMinVersion>
+    <sonarasyncapi.version>2.0.1</sonarasyncapi.version>
     <sonaranalyzer.version>2.22.0.4796</sonaranalyzer.version>
-    <orgjson.version>20251224</orgjson.version>
     <junit.version>4.13.2</junit.version>
     <assertj.version>3.27.7</assertj.version>
 
@@ -63,13 +63,6 @@
 
 
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone -->
-    <dependency>
-        <groupId>org.junit.platform</groupId>
-        <artifactId>junit-platform-console-standalone</artifactId>
-        <version>6.0.3</version>
-        <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>org.apiaddicts.apitools.dosonarapi</groupId>
       <artifactId>asyncapi-front-end</artifactId>
@@ -82,25 +75,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-yaml</artifactId>
-      <version>2.21.3</version>
-    </dependency>
-    <dependency>
       <groupId>org.sonarsource.analyzer-commons</groupId>
       <artifactId>sonar-analyzer-commons</artifactId>
       <version>${sonaranalyzer.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.networknt</groupId>
-      <artifactId>json-schema-validator</artifactId>
-      <version>3.0.2</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.json/json -->
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>${orgjson.version}</version>
     </dependency>
 
     <!-- test dependencies -->
@@ -108,6 +85,7 @@
       <groupId>org.apiaddicts.apitools.dosonarapi</groupId>
       <artifactId>asyncapi-test-tools</artifactId>
       <version>${sonarasyncapi.version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -194,7 +172,7 @@
           <pluginClass>apiquality.sonar.asyncapi.AsyncAPICustomPlugin</pluginClass>
           <skipDependenciesPackaging>true</skipDependenciesPackaging>
           <sonarLintSupported>true</sonarLintSupported>
-          <pluginApiMinVersion>${sonar.version}</pluginApiMinVersion>
+          <pluginApiMinVersion>${pluginApiMinVersion}</pluginApiMinVersion>
           <basePlugin>asyncapi</basePlugin>
         </configuration>
       </plugin>

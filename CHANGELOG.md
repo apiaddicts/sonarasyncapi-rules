@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [2.0.1] - 2026-06-09
+
+### Changed
+- Lowered the declared Sonar Plugin API baseline (`pluginApiMinVersion`) from `13.5.0.4319` to `11.1.0.2693`, fixing the startup failure on SonarQube Server whose Plugin API was lower than the declared minimum (e.g. `13.0.0.3026`). The minimum now matches the compile-time `sonar-plugin-api` version and is decoupled from it via a dedicated `pluginApiMinVersion` property.
+- Aligned `sonar-plugin-api` to `11.1.0.2693` to match the `dosonarapi-asyncapi` base plugin.
+- Bumped the base plugin dependencies (`asyncapi-front-end`, `asyncapi-test-tools`) to `2.0.1`.
+
+### Removed
+- Removed unused dependencies `jackson-dataformat-yaml`, `com.networknt:json-schema-validator` and `org.json:json`. These were not referenced by any source and bundled two conflicting Jackson lines (2.x and 3.x) into the shaded plugin JAR.
+
+### Fixed
+- Moved `asyncapi-test-tools` to `test` scope (was resolving as `compile`) and dropped the unnecessary `junit-platform-console-standalone` test dependency.
+
 ## [2.0.0] - 2026-05-20
 
 ### Added
