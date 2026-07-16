@@ -1,5 +1,5 @@
 {
-    "title": "AAR038 - InfoTitleRequired - The info.title field must exist and not be empty",
+    "title": "AAR050 - InfoTitleRequired - El campo info.title debe existir y no estar vacío",
     "type": "BUG",
     "status": "ready",
     "remediation": {

@@ -28,9 +28,9 @@ import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
 
-@Rule(key = AAR038InfoTitleRequiredCheck.CHECK_KEY)
-public class AAR038InfoTitleRequiredCheck extends BaseCheck {
-  public static final String CHECK_KEY = "AAR038";
+@Rule(key = AAR050InfoTitleRequiredCheck.CHECK_KEY)
+public class AAR050InfoTitleRequiredCheck extends BaseCheck {
+  public static final String CHECK_KEY = "AAR050";
 
   @Override
   public Set<AstNodeType> subscribedKinds() {
@@ -43,7 +43,7 @@ public class AAR038InfoTitleRequiredCheck extends BaseCheck {
     String title = titleNode.isMissing() || titleNode.isNull() ? "" : titleNode.getTokenValue().trim();
 
     if (title.isEmpty()) {
-      addIssue(CHECK_KEY, translate("AAR038.error"), node.key());
+      addIssue(CHECK_KEY, translate("AAR050.error"), node.key());
     }
   }
 }

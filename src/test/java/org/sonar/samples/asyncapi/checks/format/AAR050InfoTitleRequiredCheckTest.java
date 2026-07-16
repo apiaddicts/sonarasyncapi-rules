@@ -6,14 +6,14 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.samples.asyncapi.BaseCheckTest;
 
-import apiquality.sonar.asyncapi.checks.format.AAR038InfoTitleRequiredCheck;
+import apiquality.sonar.asyncapi.checks.format.AAR050InfoTitleRequiredCheck;
 
-public class AAR038InfoTitleRequiredCheckTest extends BaseCheckTest {
+public class AAR050InfoTitleRequiredCheckTest extends BaseCheckTest {
 
     @Before
     public void init() {
-        ruleName = "AAR038";
-        check = new AAR038InfoTitleRequiredCheck();
+        ruleName = "AAR050";
+        check = new AAR050InfoTitleRequiredCheck();
         v2Path = getV2Path("format");
         v3Path = getV3Path("format");
         v31Path = getV31Path("format");
@@ -55,6 +55,6 @@ public class AAR038InfoTitleRequiredCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR038 - InfoTitleRequired - The info.title field must exist and not be empty", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR050 - InfoTitleRequired - The info.title field must exist and not be empty", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }
