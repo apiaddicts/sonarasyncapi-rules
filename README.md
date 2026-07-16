@@ -123,6 +123,7 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 - **AAR035MessageTitleCheck**: It is recommended to have a title per message.
 - **AAR036BadDescriptionCheck**: The description must begin with the first capital letter and end with a point.
 - **AAR037BindingVersionCheck**: You must specify the version of the binding.
+- **AAR038InfoTitleRequiredCheck**: The info.title field must exist and not be empty.
 - **AAR040DefinedChannelServersCheck**: Channel server must be defined in the servers object.
 - **AAR041ComponetChannelServerCheck**: It is recommended to add the servers and channels to component.
 - **AAR042MessageIdentifierCheck**: It is recommended to have a unique identifier per message.

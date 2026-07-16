@@ -1,0 +1,13 @@
+{
+    "title": "AAR038 - InfoTitleRequired - The info.title field must exist and not be empty",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+}

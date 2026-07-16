@@ -1,0 +1,13 @@
+asyncapi: 3.0.0
+info: # Noncompliant {{AAR038: The info object must contain a non-empty title field}}
+  title: ''
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}
