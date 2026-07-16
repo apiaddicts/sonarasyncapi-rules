@@ -29,6 +29,11 @@ public class AAR050InfoTitleRequiredCheckTest extends BaseCheckTest {
         verifyV2("empty-title.yaml");
     }
 
+    @Test
+    public void verifyV2WithoutTitle() {
+        verifyV2("without-title.yaml");
+    }
+
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---
@@ -42,6 +47,11 @@ public class AAR050InfoTitleRequiredCheckTest extends BaseCheckTest {
         verifyV3("empty-title.yaml");
     }
 
+    @Test
+    public void verifyV3WithoutTitle() {
+        verifyV3("without-title.yaml");
+    }
+
     // --- V31 Tests ---
     @Test
     public void verifyV31WithTitle() {
@@ -51,6 +61,11 @@ public class AAR050InfoTitleRequiredCheckTest extends BaseCheckTest {
     @Test
     public void verifyV31EmptyTitle() {
         verifyV31("empty-title.yaml");
+    }
+
+    @Test
+    public void verifyV31WithoutTitle() {
+        verifyV31("without-title.yaml");
     }
 
     @Override

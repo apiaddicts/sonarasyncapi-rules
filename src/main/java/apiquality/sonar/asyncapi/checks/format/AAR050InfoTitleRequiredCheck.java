@@ -34,16 +34,21 @@ public class AAR050InfoTitleRequiredCheck extends BaseCheck {
 
   @Override
   public Set<AstNodeType> subscribedKinds() {
-    return Sets.newHashSet(AsyncApiGrammar.INFO);
+    return Sets.newHashSet(AsyncApiGrammar.ROOT);
   }
 
   @Override
-  protected void visitNode(JsonNode node) {
-    JsonNode titleNode = node.at("/title");
+  protected void visitNode(JsonNode rootNode) {
+    JsonNode infoNode = rootNode.at("/info");
+    if (infoNode.isMissing() || infoNode.isNull()) {
+      return;
+    }
+
+    JsonNode titleNode = infoNode.at("/title");
     String title = titleNode.isMissing() || titleNode.isNull() ? "" : titleNode.getTokenValue().trim();
 
     if (title.isEmpty()) {
-      addIssue(CHECK_KEY, translate("AAR050.error"), node.key());
+      addIssue(CHECK_KEY, translate("AAR050.error"), infoNode.key());
     }
   }
 }
