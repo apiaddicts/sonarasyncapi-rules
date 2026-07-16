@@ -1,0 +1,21 @@
+asyncapi: 3.0.0
+info:
+  title: Invalid Operation IDs
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  messages:
+    address: messages
+    messages:
+      Message:
+        payload: {type: object}
+operations:
+  SendMessage: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+    action: send
+    channel: messages
+  ReceiveMessage:
+    action: receive
+    channel: messages
+    operationId: on_message_received # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}

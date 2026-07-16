@@ -34,7 +34,8 @@ public final class RulesLists {
             AAR036BadDescriptionCheck.class,
             AAR037BindingVersionCheck.class,
             AAR042MessageIdentifierCheck.class,
-            AAR050InfoTitleRequiredCheck.class
+            AAR050InfoTitleRequiredCheck.class,
+            AAR051OperationIdCamelCaseCheck.class
         );
     }
 
