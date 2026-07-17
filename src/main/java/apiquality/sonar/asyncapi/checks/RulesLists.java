@@ -33,7 +33,8 @@ public final class RulesLists {
             AAR035MessageTitleCheck.class,
             AAR036BadDescriptionCheck.class,
             AAR037BindingVersionCheck.class,
-            AAR042MessageIdentifierCheck.class
+            AAR042MessageIdentifierCheck.class,
+            AAR050InfoTitleRequiredCheck.class
         );
     }
 
