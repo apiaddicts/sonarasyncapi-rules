@@ -55,8 +55,6 @@ public class AAR051OperationIdCamelCaseCheck extends BaseCheck {
         }
 
         if (operationIdNode.getToken().getType() != Tokens.STRING) {
-            // Unquoted YAML scalars (true/false, numbers) are not valid identifiers even if their
-            // raw text happens to look like a camelCase word (e.g. "true").
             addIssue(CHECK_KEY, translate("AAR051.error"), operationIdNode);
             return;
         }

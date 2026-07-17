@@ -1,0 +1,30 @@
+<p>The <code>namespace</code> of an Avro record schema must follow the corporate pattern: <code>org.madrid.&lt;cod_poaps&gt;.&lt;classification&gt;.&lt;domain&gt;</code> for application schemas, or <code>org.madrid.common.&lt;domain&gt;</code> for common schemas shared through the <code>eda_kafka_esquemas</code> repository. Each placeholder segment may contain lowercase letters, digits, hyphens, and underscores.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.madrid.p001.core.orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.madrid.common.orders
+  fields:
+    - name: id
+      type: string
+</pre>
