@@ -1,0 +1,62 @@
+<p>The channel name — the AsyncAPI 2.x <code>channels</code> map key, or the AsyncAPI 3.x+ channel <code>address</code> field — must follow the Kafka topic naming convention:</p>
+<pre>&lt;cod_poaps&gt;.&lt;classification&gt;.&lt;domain&gt;.&lt;origin&gt;.&lt;scope&gt;[.&lt;version&gt;]</pre>
+<ul>
+  <li>Exactly 5 mandatory segments (<code>cod_poaps</code>, <code>classification</code>, <code>domain</code>, <code>origin</code>, <code>scope</code>), separated by dots (<code>.</code>).</li>
+  <li>An optional 6th <code>version</code> segment may be appended (typically only for breaking changes).</li>
+  <li>Each segment may contain lowercase letters and digits; hyphens (<code>-</code>) are allowed only as an internal separator within a segment (no leading, trailing, or doubled hyphens).</li>
+  <li>Underscores (<code>_</code>) are not allowed anywhere in the channel name.</li>
+</ul>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca_registro:
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.registro-bonificacion.beca:
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca_registro
+    messages:
+      Registration:
+        payload: {type: object}
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.cmd.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+</pre>
