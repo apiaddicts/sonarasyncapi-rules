@@ -5,10 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.2-beta-3] - 2026-07-15
+## [2.0.2-beta-3] - 2026-07-20
 
 ### Added
 - **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
+- **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc` (Change Data Capture), `cmd` (command that triggers a domain modification), or `sys` (internal system topic, not intended for public consumption) (BUG / MAJOR).
 
 ## [2.0.2-beta-2] - 2026-06-25
 
