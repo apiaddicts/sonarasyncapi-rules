@@ -128,6 +128,7 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 - **AAR042MessageIdentifierCheck**: It is recommended to have a unique identifier per message.
 - **AAR043SecurityChannelCheck**: It is recommended to add the security scheme to be used to each channel.
 - **AAR050InfoTitleRequiredCheck**: The info.title field must exist and not be empty.
+- **AAR056AvroSchemaFormatCheck**: When `schemaFormat` indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`.
 
 ## 💛 Sponsors
 <img src="https://apiaddicts.cloudappi.net/web/image/4248/LOGOCloudappi2020Versiones-01.png" alt="cloudappi" width="150"/>
