@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.2-beta-3] - 2026-07-15
+## [2.0.2-beta-3] - 2026-07-21
+
+### Fixed
+- Bumped `asyncapi-front-end` and `asyncapi-test-tools` to `2.0.2-beta-3`.
+- `AAR026MessageSchemasCheck`: validate each member of a `message.oneOf`.
+- `AAR037BindingVersionCheck`: check bindings on every member of a `message.oneOf` wrapper.
 
 ### Added
 - **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).

@@ -1,0 +1,26 @@
+asyncapi: '2.6.0'
+info:
+  title: Example API
+  version: '1.0.0'
+servers:
+  production:
+    url: 'broker.example.com:9092'
+    protocol: kafka
+    description: Kafka broker server
+channels:
+  /topic:
+    subscribe:
+      operationId: consumeKafkaMessages
+      message:
+        oneOf:
+          - name: FirstMessage
+            contentType: application/json
+            bindings:
+              kafka:
+                clientId: example-client
+                bindingVersion: '0.1.0'
+          - name: SecondMessage
+            contentType: application/json
+            bindings:
+              kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+                clientId: example-client
