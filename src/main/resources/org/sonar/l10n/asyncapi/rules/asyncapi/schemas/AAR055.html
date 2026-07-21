@@ -1,0 +1,73 @@
+<p>The <code>x-payload-references</code> vendor extension links a message payload (or schema) to the Avro type that backs it in the schema registry. It can appear anywhere in the document — on a message, a payload/schema object, or elsewhere.</p>
+<p>Whenever <code>x-payload-references</code> exists, it must be an array, and each item must define three required, non-empty fields:</p>
+<ul>
+  <li><code>subject</code> — the schema name in the registry.</li>
+  <li><code>ref</code> — the SVN URL of the <code>.avsc</code> file.</li>
+  <li><code>referenceName</code> — the fully qualified Avro type name, e.g. <code>org.madrid.core.payload.alumnos.Ciudadano</code>.</li>
+</ul>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca.evt.alumnos.registro-bonificacion.beca:
+    subscribe:
+      message:
+        payload:
+          type: object
+        x-payload-references:
+          - subject: Ciudadano
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca.evt.alumnos.registro-bonificacion.beca:
+    subscribe:
+      message:
+        payload:
+          type: object
+        x-payload-references:
+          - subject: Ciudadano
+            ref: https://svn.example.com/schemas/avro/Ciudadano.avsc
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.evt.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+        x-payload-references:
+          - subject: Ciudadano
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.evt.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+        x-payload-references:
+          - subject: Ciudadano
+            ref: https://svn.example.com/schemas/avro/Ciudadano.avsc
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano
+</pre>

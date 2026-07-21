@@ -5,10 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.2-beta-3] - 2026-07-15
+## [2.0.2-beta-3] - 2026-07-21
 
 ### Added
 - **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
+- **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears in the document, must be an array whose items each define non-empty `subject`, `ref` and `referenceName` fields (BUG / MAJOR).
 
 ## [2.0.2-beta-2] - 2026-06-25
 
