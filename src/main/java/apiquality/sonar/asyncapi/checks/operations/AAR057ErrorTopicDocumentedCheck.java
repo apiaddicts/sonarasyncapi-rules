@@ -36,8 +36,9 @@ public class AAR057ErrorTopicDocumentedCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR057";
     private static final String ERROR_KEY = "AAR057.error";
 
-    private static final Pattern ERROR_TOPIC_PATTERN =
-            Pattern.compile("^[a-z0-9]+(?:-[a-z0-9]+)*(?:\\.[a-z0-9]+(?:-[a-z0-9]+)*)+\\.error\\.\\d+$");
+
+    private static final Pattern ERROR_TOPIC_PATTERN = Pattern.compile(
+            "^[a-z0-9]{1,63}(?:-[a-z0-9]{1,63}){0,10}(?:\\.[a-z0-9]{1,63}(?:-[a-z0-9]{1,63}){0,10}){1,20}\\.error\\.\\d{1,10}$");
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
