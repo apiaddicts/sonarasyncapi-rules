@@ -28,3 +28,28 @@ channels:
         contentType: application/json
         payload:
           type: object
+  /reservations:
+    description: Canal para operaciones relacionadas con reservas.
+    subscribe:
+      operationId: null # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para recibir reservas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      operationId: 12345 # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para publicar reservas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /invoices:
+    description: Canal para operaciones relacionadas con facturas.
+    publish:
+      operationId: "" # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para publicar facturas.
+      message:
+        contentType: application/json
+        payload:
+          type: object

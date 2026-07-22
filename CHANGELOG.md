@@ -5,12 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2-beta-4] - 2026-07-22
+
+### Added
+- **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
+- **AAR052AvroNamespacePatternCheck**: The Avro schema `namespace` must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
+
+
 ## [2.0.2-beta-3] - 2026-07-17
 
 ### Added
 - **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
-- **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
-- **AAR052AvroNamespacePatternCheck**: The Avro schema `namespace` must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
 
 ## [2.0.2-beta-2] - 2026-06-25
 

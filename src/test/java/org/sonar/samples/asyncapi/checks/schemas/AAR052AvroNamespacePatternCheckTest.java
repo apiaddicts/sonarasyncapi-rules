@@ -46,6 +46,26 @@ public class AAR052AvroNamespacePatternCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2NamespacePatternMissing() {
+        verifyV2("namespace-pattern-missing.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespacePatternTwoSegments() {
+        verifyV2("namespace-pattern-two-segments.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespacePatternFourSegments() {
+        verifyV2("namespace-pattern-four-segments.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespacePatternUppercase() {
+        verifyV2("namespace-pattern-uppercase.yaml");
+    }
+
+    @Test
     public void verifyV3NamespacePatternValidApp() {
         verifyV3("namespace-pattern-valid-app.yaml");
     }
@@ -68,6 +88,26 @@ public class AAR052AvroNamespacePatternCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3NamespacePatternRef() {
         verifyV3("namespace-pattern-ref.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespacePatternMissing() {
+        verifyV3("namespace-pattern-missing.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespacePatternTwoSegments() {
+        verifyV3("namespace-pattern-two-segments.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespacePatternFourSegments() {
+        verifyV3("namespace-pattern-four-segments.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespacePatternUppercase() {
+        verifyV3("namespace-pattern-uppercase.yaml");
     }
 
     @Override
