@@ -51,29 +51,33 @@ public class AAR058RetryTopicNamingConventionCheck extends BaseCheck {
         }
 
         for (Map.Entry<String, JsonNode> channelEntry : channelsNode.propertyMap().entrySet()) {
-            JsonNode channelNode = channelEntry.getValue();
-            JsonNode addressNode = channelNode.get("address");
+            checkChannel(channelEntry);
+        }
+    }
 
-            String topicName;
-            JsonNode issueLocation;
-            if (addressNode != null && !addressNode.isMissing()) {
-                if (addressNode.isNull()) {
-                    continue;
-                }
-                topicName = addressNode.stringValue();
-                issueLocation = addressNode;
-            } else {
-                topicName = channelEntry.getKey();
-                issueLocation = channelNode.key();
-            }
+    private void checkChannel(Map.Entry<String, JsonNode> channelEntry) {
+        JsonNode channelNode = channelEntry.getValue();
+        JsonNode addressNode = channelNode.get("address");
 
-            if (topicName == null || !topicName.contains(".retry.")) {
-                continue;
+        String topicName;
+        JsonNode issueLocation;
+        if (addressNode != null && !addressNode.isMissing()) {
+            if (addressNode.isNull()) {
+                return;
             }
+            topicName = addressNode.stringValue();
+            issueLocation = addressNode;
+        } else {
+            topicName = channelEntry.getKey();
+            issueLocation = channelNode.key();
+        }
 
-            if (!RETRY_TOPIC_PATTERN.matcher(topicName).matches()) {
-                addIssue(CHECK_KEY, translate(ERROR_KEY), issueLocation);
-            }
+        if (topicName == null || !topicName.contains(".retry.")) {
+            return;
+        }
+
+        if (!RETRY_TOPIC_PATTERN.matcher(topicName).matches()) {
+            addIssue(CHECK_KEY, translate(ERROR_KEY), issueLocation);
         }
     }
 }
