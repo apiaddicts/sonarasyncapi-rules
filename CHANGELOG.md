@@ -11,8 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
 - **AAR052AvroNamespacePatternCheck**: The Avro schema `namespace` must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
 
+## [2.0.2-beta-3] - 2026-07-21
 
-## [2.0.2-beta-3] - 2026-07-17
+### Fixed
+- Bumped `asyncapi-front-end` and `asyncapi-test-tools` to `2.0.2-beta-3`.
+- `AAR026MessageSchemasCheck`: validate each member of a `message.oneOf`.
+- `AAR037BindingVersionCheck`: check bindings on every member of a `message.oneOf` wrapper.
 
 ### Added
 - **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
