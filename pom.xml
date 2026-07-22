@@ -49,7 +49,7 @@
 
     <sonar.version>11.1.0.2693</sonar.version>
     <pluginApiMinVersion>11.1.0.2693</pluginApiMinVersion>
-    <sonarasyncapi.version>2.0.2-beta-2</sonarasyncapi.version>
+    <sonarasyncapi.version>2.0.2-beta-3</sonarasyncapi.version>
     <sonaranalyzer.version>2.22.0.4796</sonaranalyzer.version>
     <junit.version>4.13.2</junit.version>
     <assertj.version>3.27.7</assertj.version>
