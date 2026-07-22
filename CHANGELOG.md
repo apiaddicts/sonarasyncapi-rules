@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2-beta-4] - 2026-07-22
+
+### Added
+- **AAR058RetryTopicNamingConventionCheck**: If a channel name (a channel key in v2, or a channel's `address` in v3) contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`, the exact pattern Spring requires for automatic retry reprocessing (BUG / MINOR).
+
 ## [2.0.2-beta-3] - 2026-07-21
 
 ### Fixed
