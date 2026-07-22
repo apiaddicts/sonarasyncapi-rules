@@ -33,6 +33,7 @@ import java.util.regex.Pattern;
 @Rule(key = AAR051OperationIdCamelCaseCheck.CHECK_KEY)
 public class AAR051OperationIdCamelCaseCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR051";
+    private static final String ERROR_KEY = "AAR051.error";
     private static final Pattern CAMEL_CASE = Pattern.compile("^[a-z][a-zA-Z0-9]*$");
 
     @Override
@@ -45,23 +46,23 @@ public class AAR051OperationIdCamelCaseCheck extends BaseCheck {
         JsonNode operationIdNode = node.at("/operationId");
 
         if (operationIdNode.isMissing()) {
-            addIssue(CHECK_KEY, translate("AAR051.error"), node.key());
+            addIssue(CHECK_KEY, translate(ERROR_KEY), node.key());
             return;
         }
 
         if (operationIdNode.isNull()) {
-            addIssue(CHECK_KEY, translate("AAR051.error"), operationIdNode);
+            addIssue(CHECK_KEY, translate(ERROR_KEY), operationIdNode);
             return;
         }
 
         if (operationIdNode.getToken().getType() != Tokens.STRING) {
-            addIssue(CHECK_KEY, translate("AAR051.error"), operationIdNode);
+            addIssue(CHECK_KEY, translate(ERROR_KEY), operationIdNode);
             return;
         }
 
         String operationId = operationIdNode.getTokenValue();
         if (operationId == null || !CAMEL_CASE.matcher(operationId).matches()) {
-            addIssue(CHECK_KEY, translate("AAR051.error"), operationIdNode);
+            addIssue(CHECK_KEY, translate(ERROR_KEY), operationIdNode);
         }
     }
 }
