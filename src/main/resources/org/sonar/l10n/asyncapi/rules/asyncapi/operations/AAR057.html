@@ -1,0 +1,70 @@
+<p>At least one channel in the AsyncAPI document (a channel property key in AsyncAPI 2, or a channel's <code>address</code> in AsyncAPI 3) must be documented as an error topic, following the pattern <code>&lt;topicOriginal&gt;.[&lt;consumerGroup&gt;.]error.&lt;n&gt;</code> (e.g. <code>beca.cmd.alumnos.solicitud.beca.grupo1.error.1</code>), which Spring requires exactly in order to route error messages.</p>
+<p>The consumer group segment is only part of the name when there is more than one consumer of the original topic. The trailing numeric suffix (<code>&lt;n&gt;</code>) is mandatory. This rule is an existence check across the whole document: if no channel matches the pattern, a single issue is reported; individual channels that don't match are not flagged.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Beca API
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.solicitud.beca:
+    subscribe:
+      operationId: receiveSolicitudBeca
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Beca API
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.solicitud.beca:
+    subscribe:
+      operationId: receiveSolicitudBeca
+      message:
+        payload:
+          type: object
+  beca.cmd.alumnos.solicitud.beca.grupo1.error.1:
+    publish:
+      operationId: publishSolicitudBecaErrorGrupo1
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Beca API
+  version: 1.0.0
+channels:
+  solicitudBeca:
+    address: beca.cmd.alumnos.solicitud.beca
+    messages:
+      SolicitudBecaMessage:
+        payload:
+          type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Beca API
+  version: 1.0.0
+channels:
+  solicitudBeca:
+    address: beca.cmd.alumnos.solicitud.beca
+    messages:
+      SolicitudBecaMessage:
+        payload:
+          type: object
+  solicitudBecaErrorGrupo1:
+    address: beca.cmd.alumnos.solicitud.beca.grupo1.error.1
+    messages:
+      SolicitudBecaErrorMessage:
+        payload:
+          type: object
+</pre>
