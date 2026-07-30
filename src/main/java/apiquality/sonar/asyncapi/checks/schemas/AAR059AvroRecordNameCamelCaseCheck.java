@@ -10,7 +10,7 @@ public class AAR059AvroRecordNameCamelCaseCheck extends AbstractAvroRecordCheck 
     public static final String CHECK_KEY = "AAR059";
     private static final String ERROR_KEY = "AAR059.error";
     private static final Pattern CAMEL_CASE_PATTERN =
-            Pattern.compile("^[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]*)*$");
+            Pattern.compile("^[A-Z][a-z0-9]{1,62}(?:[A-Z][a-z0-9]{0,62}){0,20}$");
 
     @Override
     protected void visitAvroRecord(JsonNode node) {
