@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2-beta-4] - 2026-07-22
+
+### Added
+- **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record must be in CamelCase with an uppercase first letter, including records nested inside `fields[].type`, unions, arrays, and maps (BUG / MAJOR).
+
 ## [2.0.2-beta-3] - 2026-07-21
 
 ### Fixed

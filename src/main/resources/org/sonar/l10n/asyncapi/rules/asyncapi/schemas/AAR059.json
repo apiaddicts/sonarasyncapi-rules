@@ -1,0 +1,13 @@
+{
+    "title": "AAR059 - AvroRecordNameCamelCase - Avro record names must be in CamelCase",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}
