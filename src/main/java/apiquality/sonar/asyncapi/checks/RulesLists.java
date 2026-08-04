@@ -72,7 +72,8 @@ public final class RulesLists {
             AAR046AvroRecordDocCheck.class,
             AAR047AvroFieldDocCheck.class,
             AAR048AvroNameNomenclatureCheck.class,
-            AAR049AvroDefaultNullCheck.class
+            AAR049AvroDefaultNullCheck.class,
+            AAR060ContentTypeAvroCheck.class
             );
     }
 

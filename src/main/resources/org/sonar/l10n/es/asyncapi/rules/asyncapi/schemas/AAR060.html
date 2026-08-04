@@ -1,0 +1,23 @@
+<p>El <code>contentType</code> de cada mensaje debe ser un tipo de medio Avro que coincida con el glob <code>application/*+avro</code> (es decir, debe empezar por <code>application/</code> y terminar en <code>+avro</code>, por ejemplo <code>application/vnd.apache.avro+avro</code>). Esto garantiza la correcta deserialización mediante el <code>KafkaAvroDeserializer</code> de Confluent. La misma regla se aplica al <code>defaultContentType</code> a nivel de documento. Un mensaje que no declara <code>contentType</code> no se reporta (puede apoyarse en el <code>defaultContentType</code>).</p>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        contentType: application/json # Noncompliant - no es un tipo de medio application/*+avro
+        payload:
+          type: object
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        contentType: application/vnd.apache.avro+avro
+        payload:
+          type: object
+</pre>

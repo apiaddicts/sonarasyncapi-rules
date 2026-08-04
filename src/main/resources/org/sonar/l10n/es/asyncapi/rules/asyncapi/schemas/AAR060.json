@@ -1,0 +1,13 @@
+{
+    "title": "AAR060 - ContentTypeAvro - El contentType del mensaje debe ser application/*+avro",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}
