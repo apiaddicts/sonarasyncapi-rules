@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
-- **AAR056AvroSchemaFormatCheck**: Wherever `schemaFormat` appears in the document (message-level in v2, `message.payload` Multi-Format Schema Object in v3, or a `components.schemas` entry) and indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`, the standard version used across Madrid Digital examples (BUG / MAJOR).
+- **AAR056AvroSchemaFormatCheck**: Wherever `schemaFormat` appears in the document (message-level in v2, `message.payload` Multi-Format Schema Object in v3, or a `components.schemas` entry) and indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`, the standard version used across the Style Guide examples (BUG / MAJOR).
 
 ## [2.0.2-beta-2] - 2026-06-25
 

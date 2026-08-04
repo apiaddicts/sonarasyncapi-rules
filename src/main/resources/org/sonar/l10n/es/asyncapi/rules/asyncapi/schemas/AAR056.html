@@ -1,5 +1,5 @@
 <p>Cuando el payload de un mensaje (AsyncAPI 2) o un Multi-Format Schema Object (AsyncAPI 3, en <code>message.payload</code> o en una entrada de <code>components.schemas</code>) declara un <code>schemaFormat</code> de Avro — es decir, su valor contiene <code>application/vnd.apache.avro</code> — ese valor debe ser exactamente <code>application/vnd.apache.avro;version=1.9.0</code>.</p>
-<p>La versión <code>1.9.0</code> es la versión estándar de Avro utilizada en Madrid Digital y aparece en todos los ejemplos de la Guía de Estilo. Cualquier otra versión, o la ausencia de versión, se reporta como incidencia. Los valores de <code>schemaFormat</code> que no sean de Avro (por ejemplo, un <code>schemaFormat</code> de JSON Schema) quedan fuera del alcance de esta regla.</p>
+<p>La versión <code>1.9.0</code> es la versión estándar de Avro y aparece en todos los ejemplos de la Guía de Estilo. Cualquier otra versión, o la ausencia de versión, se reporta como incidencia. Los valores de <code>schemaFormat</code> que no sean de Avro (por ejemplo, un <code>schemaFormat</code> de JSON Schema) quedan fuera del alcance de esta regla.</p>
 <h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
 <pre>
 asyncapi: '2.6.0'
