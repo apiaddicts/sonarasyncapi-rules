@@ -1,0 +1,13 @@
+{
+    "title": "AAR061 - ProcessorFunctionNamePaired - Paired processor operations must share x-scs-function-name",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MINOR"
+}
