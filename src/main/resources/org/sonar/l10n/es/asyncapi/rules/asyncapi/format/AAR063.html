@@ -1,0 +1,35 @@
+<p>La versión del documento AsyncAPI declarada en el campo raíz <code>asyncapi</code> debe ser una de las versiones permitidas por la organización. La lista de versiones permitidas es configurable mediante el parámetro <code>allowedVersions</code> (una lista separada por comas, por ejemplo <code>2.6.0,3.0.0</code>); su valor por defecto es <code>2.6.0</code>. Cuando la organización adopta una nueva versión como <code>3.0.0</code>, simplemente se añade a la lista — la regla en sí no cambia. Un documento cuyo campo <code>asyncapi</code> falta, es nulo o está vacío no es reportado por esta regla.</p>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR063: La versión del documento AsyncAPI debe ser una de las versiones permitidas}}</span>
+info:
+  title: Mi API Asíncrona
+  version: '1.0.0'
+channels:
+  /pets: {}
+</pre>
+<h2>Solución compatible (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Mi API Asíncrona
+  version: '1.0.0'
+channels:
+  /pets: {}
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+# Con el valor por defecto allowedVersions = "2.6.0", un documento 3.0.0 se reporta
+asyncapi: '3.0.0'   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR063: La versión del documento AsyncAPI debe ser una de las versiones permitidas}}</span>
+info:
+  title: Mi API Asíncrona
+  version: '1.0.0'
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+# Añade 3.0.0 al parámetro allowedVersions (allowedVersions = "2.6.0,3.0.0")
+asyncapi: '3.0.0'
+info:
+  title: Mi API Asíncrona
+  version: '1.0.0'
+</pre>
