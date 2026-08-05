@@ -1,0 +1,41 @@
+<p>A consuming operation must declare a consumer group so the messaging platform can deliver its messages to a durable, load-balanced consumer that keeps track of its own position (for example, a Kafka consumer group). Every consuming operation (AsyncAPI 2 <code>subscribe</code> / AsyncAPI 3 <code>action: receive</code>) must therefore declare its consumer group, either through the <code>x-scs-group</code> extension (the JAPI generator extension, for example <code>x-scs-group: alta.beca.1</code>) or through <code>bindings.kafka.groupId</code>. A consuming operation that declares neither is reported. Producing operations (AsyncAPI 2 <code>publish</code> / AsyncAPI 3 <code>action: send</code>) are not reported.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+channels:
+  alta.beca:
+    subscribe: # Noncompliant - the consuming operation declares no consumer group
+      operationId: consumeAlta
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+channels:
+  alta.beca:
+    subscribe:
+      operationId: consumeAlta
+      x-scs-group: alta.beca.1
+  baja.beca:
+    subscribe:
+      operationId: consumeBaja
+      bindings:
+        kafka:
+          groupId:
+            type: string
+            enum: ['baja.beca.1']
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+operations:
+  consumeAlta: # Noncompliant - the receive operation declares no consumer group
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+operations:
+  consumeAlta:
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+    x-scs-group: alta.beca.1
+</pre>

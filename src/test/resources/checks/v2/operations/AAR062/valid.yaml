@@ -1,0 +1,20 @@
+asyncapi: '2.6.0'
+info:
+  title: Subscribe Group Required - Valid V2
+  version: '1.0.0'
+channels:
+  alta.beca:
+    subscribe:
+      operationId: consumeAlta
+      x-scs-group: alta.beca.1
+  baja.beca:
+    subscribe:
+      operationId: consumeBaja
+      bindings:
+        kafka:
+          groupId:
+            type: string
+            enum: ['baja.beca.1']
+  salida.beca:
+    publish:
+      operationId: produceSalida
