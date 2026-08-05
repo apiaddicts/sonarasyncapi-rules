@@ -8,7 +8,6 @@ import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
 import apiquality.sonar.asyncapi.utils.AsyncAPIVersionDetector;
 
-import java.util.Map;
 import java.util.Set;
 
 @Rule(key = AAR062SubscribeGroupRequiredCheck.CHECK_KEY)
@@ -35,14 +34,9 @@ public class AAR062SubscribeGroupRequiredCheck extends BaseCheck {
     private void checkV2(JsonNode rootNode) {
         JsonNode channelsNode = rootNode.get("channels");
         if (isAbsent(channelsNode)) return;
-        for (Map.Entry<String, JsonNode> entry : channelsNode.propertyMap().entrySet()) {
-            JsonNode channel = entry.getValue();
-            if (isAbsent(channel)) continue;
-            JsonNode subscribe = channel.get("subscribe");
-            if (isAbsent(subscribe)) continue;
-            if (!isAbsent(subscribe.get("$ref"))) continue; // unresolved $ref operation: group lives at the ref target
-            if (!hasGroup(subscribe)) {
-                addIssue(CHECK_KEY, translate(ERROR_KEY), subscribe.key());
+        for (JsonNode channel : channelsNode.propertyMap().values()) {
+            if (!isAbsent(channel)) {
+                checkConsumer(channel.get("subscribe"));
             }
         }
     }
@@ -50,39 +44,48 @@ public class AAR062SubscribeGroupRequiredCheck extends BaseCheck {
     private void checkV3(JsonNode rootNode) {
         JsonNode operationsNode = rootNode.get("operations");
         if (isAbsent(operationsNode)) return;
-        for (Map.Entry<String, JsonNode> entry : operationsNode.propertyMap().entrySet()) {
-            JsonNode operation = entry.getValue();
-            if (isAbsent(operation)) continue;
-            JsonNode actionNode = operation.get("action");
-            if (isAbsent(actionNode)) continue;
-            if (!"receive".equals(actionNode.stringValue())) continue;
-            if (!hasGroup(operation)) {
-                addIssue(CHECK_KEY, translate(ERROR_KEY), operation.key());
+        for (JsonNode operation : operationsNode.propertyMap().values()) {
+            if (isReceiveOperation(operation)) {
+                checkConsumer(operation);
             }
         }
     }
 
+    private boolean isReceiveOperation(JsonNode operation) {
+        if (isAbsent(operation)) return false;
+        JsonNode actionNode = operation.get("action");
+        return !isAbsent(actionNode) && "receive".equals(actionNode.stringValue());
+    }
+
+    private void checkConsumer(JsonNode operation) {
+        if (isAbsent(operation)) return;
+        if (!isAbsent(operation.get("$ref"))) return;
+        if (!hasGroup(operation)) {
+            addIssue(CHECK_KEY, translate(ERROR_KEY), operation.key());
+        }
+    }
+
     private boolean hasGroup(JsonNode operation) {
+        return hasScsGroup(operation) || hasKafkaGroupId(operation);
+    }
+
+    private boolean hasScsGroup(JsonNode operation) {
         JsonNode groupNode = operation.get(GROUP_EXTENSION);
-        if (!isAbsent(groupNode)) {
-            String value = groupNode.stringValue();
-            if (value != null && !value.trim().isEmpty()) return true;
-        }
+        if (isAbsent(groupNode)) return false;
+        String value = groupNode.stringValue();
+        return value != null && !value.trim().isEmpty();
+    }
 
+    private boolean hasKafkaGroupId(JsonNode operation) {
         JsonNode bindings = operation.get("bindings");
-        if (!isAbsent(bindings)) {
-            JsonNode kafka = bindings.get("kafka");
-            if (!isAbsent(kafka)) {
-                JsonNode groupId = kafka.get("groupId");
-                if (!isAbsent(groupId)) {
-                    if (groupId.isObject() || groupId.isArray()) return true;
-                    String gid = groupId.stringValue();
-                    if (gid != null && !gid.trim().isEmpty()) return true;
-                }
-            }
-        }
-
-        return false;
+        if (isAbsent(bindings)) return false;
+        JsonNode kafka = bindings.get("kafka");
+        if (isAbsent(kafka)) return false;
+        JsonNode groupId = kafka.get("groupId");
+        if (isAbsent(groupId)) return false;
+        if (groupId.isObject() || groupId.isArray()) return true;
+        String gid = groupId.stringValue();
+        return gid != null && !gid.trim().isEmpty();
     }
 
     private static boolean isAbsent(JsonNode node) {
