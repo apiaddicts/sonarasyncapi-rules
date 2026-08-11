@@ -66,6 +66,57 @@ public class AAR052AvroNamespacePatternCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2NamespaceEnumInvalid() {
+        verifyV2("namespace-enum-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceEnumValid() {
+        verifyV2("namespace-enum-valid.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceFixedInvalid() {
+        verifyV2("namespace-fixed-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceFixedValid() {
+        verifyV2("namespace-fixed-valid.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceNull() {
+        verifyV2("namespace-null.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceNonString() {
+        verifyV2("namespace-non-string.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceSpecialChars() {
+        verifyV2("namespace-special-chars.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceCommonMisspelled() {
+        verifyV2("namespace-common-misspelled.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceMultiRecord() {
+        verifyV2("namespace-multi-record.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespaceCustomPattern() {
+        check = customPatternCheck();
+        verifyV2("namespace-custom-pattern.yaml");
+    }
+
+    @Test
     public void verifyV3NamespacePatternValidApp() {
         verifyV3("namespace-pattern-valid-app.yaml");
     }
@@ -108,6 +159,65 @@ public class AAR052AvroNamespacePatternCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3NamespacePatternUppercase() {
         verifyV3("namespace-pattern-uppercase.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceEnumInvalid() {
+        verifyV3("namespace-enum-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceEnumValid() {
+        verifyV3("namespace-enum-valid.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceFixedInvalid() {
+        verifyV3("namespace-fixed-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceFixedValid() {
+        verifyV3("namespace-fixed-valid.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceNull() {
+        verifyV3("namespace-null.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceNonString() {
+        verifyV3("namespace-non-string.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceSpecialChars() {
+        verifyV3("namespace-special-chars.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceCommonMisspelled() {
+        verifyV3("namespace-common-misspelled.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceMultiRecord() {
+        verifyV3("namespace-multi-record.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceCustomPattern() {
+        check = customPatternCheck();
+        verifyV3("namespace-custom-pattern.yaml");
+    }
+
+    // A check configured with a custom `pattern` RuleProperty, used to prove the override
+    // is applied instead of the default (the fixture namespace is valid under the default).
+    private AAR052AvroNamespacePatternCheck customPatternCheck() {
+        AAR052AvroNamespacePatternCheck customCheck = new AAR052AvroNamespacePatternCheck();
+        customCheck.patternStr = "^custom\\.[a-z]+$";
+        return customCheck;
     }
 
     @Override

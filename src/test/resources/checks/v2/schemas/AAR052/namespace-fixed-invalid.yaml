@@ -1,6 +1,6 @@
 asyncapi: '2.4.0'
 info:
-  title: Avro Namespace Pattern Missing V2
+  title: Avro Namespace Fixed Invalid V2
   version: '1.0.0'
 channels:
   orders:
@@ -9,8 +9,7 @@ channels:
       message:
         schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
         payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
-          type: record
-          name: OrderValue
-          fields:
-            - name: id
-              type: string
+          type: fixed
+          name: OrderHash
+          namespace: org.example.orders
+          size: 16

@@ -29,9 +29,20 @@ public class AAR052AvroNamespacePatternCheck extends AbstractAvroRecordCheck {
     }
 
     @Override
+    protected boolean isAvroRecord(JsonNode node) {
+        JsonNode typeNode = node.get("type");
+        if (typeNode.isMissing() || typeNode.isNull()) return false;
+        String type = typeNode.stringValue();
+        return "record".equals(type) || "enum".equals(type) || "fixed".equals(type);
+    }
+
+    @Override
     protected void visitAvroRecord(JsonNode node) {
         JsonNode namespaceNode = node.get("namespace");
-        if (namespaceNode.isMissing() || namespaceNode.isNull()) return;
+        if (namespaceNode.isMissing() || namespaceNode.isNull()) {
+            addIssue(CHECK_KEY, translate(ERROR_KEY), node.key());
+            return;
+        }
         String namespace = namespaceNode.stringValue();
         if (namespace == null || !pattern.matcher(namespace).matches()) {
             addIssue(CHECK_KEY, translate(ERROR_KEY), node.key());
