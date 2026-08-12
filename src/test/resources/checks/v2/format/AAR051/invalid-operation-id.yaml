@@ -1,0 +1,55 @@
+asyncapi: '2.4.0'
+info:
+  title: Invalid OperationId Example API
+  version: '1.0.0'
+  description: API con operationId ausente o que no respeta camelCase.
+channels:
+  /pets:
+    description: Canal para operaciones relacionadas con mascotas.
+    subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para recibir la lista de mascotas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      operationId: on_pet_updated # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para actualizar una mascota.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /orders:
+    description: Canal para operaciones relacionadas con pedidos.
+    publish:
+      operationId: OnOrderPlaced # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para procesar pedidos.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /reservations:
+    description: Canal para operaciones relacionadas con reservas.
+    subscribe:
+      operationId: null # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para recibir reservas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      operationId: 12345 # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para publicar reservas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /invoices:
+    description: Canal para operaciones relacionadas con facturas.
+    publish:
+      operationId: "" # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para publicar facturas.
+      message:
+        contentType: application/json
+        payload:
+          type: object

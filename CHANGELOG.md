@@ -5,11 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.2-beta-3] - 2026-07-17
+## [2.0.2-beta-4] - 2026-07-22
+
+### Added
+- **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
+- **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (`record`, `enum` or `fixed`) is required and must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
+- **AAR053ChannelNamingConventionCheck**: The channel name (AsyncAPI 2.x channel key, or AsyncAPI 3.x+ `address`) must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]` (BUG / MAJOR).
+
+## [2.0.2-beta-3] - 2026-07-21
+
+### Fixed
+- Bumped `asyncapi-front-end` and `asyncapi-test-tools` to `2.0.2-beta-3`.
+- `AAR026MessageSchemasCheck`: validate each member of a `message.oneOf`.
+- `AAR037BindingVersionCheck`: check bindings on every member of a `message.oneOf` wrapper.
 
 ### Added
 - **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
-- **AAR053ChannelNamingConventionCheck**: The channel name (AsyncAPI 2.x channel key, or AsyncAPI 3.x+ `address`) must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]` (BUG / MAJOR).
 
 ## [2.0.2-beta-2] - 2026-06-25
 

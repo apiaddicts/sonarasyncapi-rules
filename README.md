@@ -128,6 +128,7 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 - **AAR042MessageIdentifierCheck**: It is recommended to have a unique identifier per message.
 - **AAR043SecurityChannelCheck**: It is recommended to add the security scheme to be used to each channel.
 - **AAR050InfoTitleRequiredCheck**: The info.title field must exist and not be empty.
+- **AAR051OperationIdCamelCaseCheck**: The operationId must be present and follow camelCase naming convention.
 - **AAR053ChannelNamingConventionCheck**: The channel name must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]`.
 
 ## 💛 Sponsors
