@@ -56,6 +56,16 @@ public class AAR054ClassificationValidValuesCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV3ClassificationValidCdc() {
+        verifyV3("classification-valid-cdc.yaml");
+    }
+
+    @Test
+    public void verifyV3ClassificationValidSys() {
+        verifyV3("classification-valid-sys.yaml");
+    }
+
+    @Test
     public void verifyV3ClassificationInvalid() {
         verifyV3("classification-invalid.yaml");
     }
@@ -93,6 +103,102 @@ public class AAR054ClassificationValidValuesCheckTest extends BaseCheckTest {
     @Test
     public void verifyV31ClassificationInvalid() {
         verifyV31("classification-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV31ClassificationValidCdc() {
+        verifyV31("classification-valid-cdc.yaml");
+    }
+
+    @Test
+    public void verifyV31ClassificationValidSys() {
+        verifyV31("classification-valid-sys.yaml");
+    }
+
+    @Test
+    public void verifyV31ClassificationNoAddressValid() {
+        verifyV31("classification-no-address-valid.yaml");
+    }
+
+    @Test
+    public void verifyV31ClassificationNoAddressInvalid() {
+        verifyV31("classification-no-address-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV31ClassificationNullAddressSkipped() {
+        verifyV31("classification-null-address.yaml");
+    }
+
+    @Test
+    public void verifyV31ClassificationInvalidUnquotedNumericAddress() {
+        verifyV31("classification-invalid-unquoted-numeric-address.yaml");
+    }
+
+    @Test
+    public void verifyV31ClassificationInvalidUnquotedBooleanAddress() {
+        verifyV31("classification-invalid-unquoted-boolean-address.yaml");
+    }
+
+    @Test
+    public void verifyV2ClassificationUppercaseSegment() {
+        verifyV2("classification-uppercase-segment.yaml");
+    }
+
+    @Test
+    public void verifyV3ClassificationUppercaseSegment() {
+        verifyV3("classification-uppercase-segment.yaml");
+    }
+
+    @Test
+    public void verifyV2ClassificationEmptySegment() {
+        verifyV2("classification-empty-segment.yaml");
+    }
+
+    @Test
+    public void verifyV3ClassificationEmptySegment() {
+        verifyV3("classification-empty-segment.yaml");
+    }
+
+    @Test
+    public void verifyV2ClassificationMixed() {
+        verifyV2("classification-mixed.yaml");
+    }
+
+    @Test
+    public void verifyV3ClassificationMixed() {
+        verifyV3("classification-mixed.yaml");
+    }
+
+    @Test
+    public void verifyV2ClassificationNoChannels() {
+        verifyV2("classification-no-channels.yaml");
+    }
+
+    @Test
+    public void verifyV2ClassificationNullChannel() {
+        verifyV2("classification-null-channel.yaml");
+    }
+
+    @Test
+    public void verifyV3ClassificationNullChannel() {
+        verifyV3("classification-null-channel.yaml");
+    }
+
+    @Test
+    public void verifyV2ClassificationCustomValidValuesAllowsExtraValue() {
+        AAR054ClassificationValidValuesCheck customCheck = new AAR054ClassificationValidValuesCheck();
+        customCheck.validValuesStr = "cdc,cmd,sys,evt";
+        check = customCheck;
+        verifyV2("classification-custom-valid.yaml");
+    }
+
+    @Test
+    public void verifyV2ClassificationCustomValidValuesFlagsRestrictedValue() {
+        AAR054ClassificationValidValuesCheck customCheck = new AAR054ClassificationValidValuesCheck();
+        customCheck.validValuesStr = "evt,foo";
+        check = customCheck;
+        verifyV2("classification-custom-invalid.yaml");
     }
 
     @Override
