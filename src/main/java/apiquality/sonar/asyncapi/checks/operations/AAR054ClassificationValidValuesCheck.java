@@ -41,32 +41,40 @@ public class AAR054ClassificationValidValuesCheck extends BaseCheck {
         }
 
         for (Map.Entry<String, JsonNode> channelEntry : channelsNode.propertyMap().entrySet()) {
-            JsonNode channelNode = channelEntry.getValue();
-            JsonNode addressNode = channelNode.get("address");
-
-            String channelName;
-            JsonNode issueLocation;
-            if (addressNode != null && !addressNode.isMissing()) {
-                if (addressNode.isNull()) {
-                    continue;
-                }
-                channelName = addressNode.stringValue();
-                issueLocation = addressNode;
-            } else {
-                channelName = channelEntry.getKey();
-                issueLocation = channelNode.key();
-            }
-
-            if (channelName == null) {
-                continue;
-            }
-
-            String[] segments = channelName.split("\\.");
-            String classification = segments.length > 1 ? segments[1] : null;
-
-            if (classification == null || !validValues.contains(classification)) {
+            JsonNode issueLocation = findInvalidClassification(channelEntry, validValues);
+            if (issueLocation != null) {
                 addIssue(CHECK_KEY, translate(ERROR_KEY), issueLocation);
             }
         }
+    }
+
+    private JsonNode findInvalidClassification(Map.Entry<String, JsonNode> channelEntry, Set<String> validValues) {
+        JsonNode channelNode = channelEntry.getValue();
+        JsonNode addressNode = channelNode.get("address");
+
+        String channelName;
+        JsonNode issueLocation;
+        if (addressNode != null && !addressNode.isMissing()) {
+            if (addressNode.isNull()) {
+                return null;
+            }
+            channelName = addressNode.stringValue();
+            issueLocation = addressNode;
+        } else {
+            channelName = channelEntry.getKey();
+            issueLocation = channelNode.key();
+        }
+
+        if (channelName == null) {
+            return null;
+        }
+
+        String[] segments = channelName.split("\\.");
+        String classification = segments.length > 1 ? segments[1] : null;
+
+        if (classification == null || !validValues.contains(classification)) {
+            return issueLocation;
+        }
+        return null;
     }
 }
