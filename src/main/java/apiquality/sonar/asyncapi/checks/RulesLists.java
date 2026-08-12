@@ -59,7 +59,8 @@ public final class RulesLists {
             AAR009DeclaredTagCheck.class,
             AAR010DocumentedTagCheck.class,
             AAR040DefinedChannelServersCheck.class,
-            AAR041ComponetChannelServerCheck.class           
+            AAR041ComponetChannelServerCheck.class,
+            AAR053ChannelNamingConventionCheck.class
         );
     }
 
