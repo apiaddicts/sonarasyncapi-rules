@@ -34,7 +34,8 @@ public final class RulesLists {
             AAR036BadDescriptionCheck.class,
             AAR037BindingVersionCheck.class,
             AAR042MessageIdentifierCheck.class,
-            AAR050InfoTitleRequiredCheck.class
+            AAR050InfoTitleRequiredCheck.class,
+            AAR051OperationIdCamelCaseCheck.class
         );
     }
 
@@ -59,6 +60,8 @@ public final class RulesLists {
             AAR010DocumentedTagCheck.class,
             AAR040DefinedChannelServersCheck.class,
             AAR041ComponetChannelServerCheck.class,
+            AAR053ChannelNamingConventionCheck.class,
+            AAR054ClassificationValidValuesCheck.class,
             AAR058RetryTopicNamingConventionCheck.class
         );
     }
@@ -73,7 +76,8 @@ public final class RulesLists {
             AAR046AvroRecordDocCheck.class,
             AAR047AvroFieldDocCheck.class,
             AAR048AvroNameNomenclatureCheck.class,
-            AAR049AvroDefaultNullCheck.class
+            AAR049AvroDefaultNullCheck.class,
+            AAR052AvroNamespacePatternCheck.class
             );
     }
 
