@@ -1,0 +1,25 @@
+asyncapi: 3.1.0
+info:
+  title: Channel Naming Convention Mixed Valid And Invalid V31
+  version: 1.0.0
+channels:
+  scholarshipValid:
+    address: beca.cmd.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+  scholarshipInvalidUnderscore:
+    address: beca_cmd.alumnos.registro-bonificacion.beca # Noncompliant {{AAR053: Channel name must follow the naming convention <cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]: lowercase alphanumeric segments separated by dots, with hyphens allowed only within a segment and no underscores}}
+    messages:
+      Registration:
+        payload: {type: object}
+  scholarshipValidVersioned:
+    address: beca.cmd.alumnos.registro-bonificacion.beca.v2
+    messages:
+      Registration:
+        payload: {type: object}
+  scholarshipInvalidExtra:
+    address: beca.cmd.alumnos.registro-bonificacion.beca.v2.extra # Noncompliant {{AAR053: Channel name must follow the naming convention <cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]: lowercase alphanumeric segments separated by dots, with hyphens allowed only within a segment and no underscores}}
+    messages:
+      Registration:
+        payload: {type: object}
