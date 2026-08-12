@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
 - **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (`record`, `enum` or `fixed`) is required and must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
 - **AAR053ChannelNamingConventionCheck**: The channel name (AsyncAPI 2.x channel key, or AsyncAPI 3.x+ `address`) must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]` (BUG / MAJOR).
+- **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc` (Change Data Capture), `cmd` (command that triggers a domain modification), or `sys` (internal system topic, not intended for public consumption) (BUG / MAJOR).
 
 ## [2.0.2-beta-3] - 2026-07-21
 

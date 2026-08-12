@@ -1,0 +1,11 @@
+asyncapi: '2.6.0'
+info:
+  title: Classification Invalid Numeric Key V2
+  version: '1.0.0'
+channels:
+  123.456: # Noncompliant {{AAR054: Channel name's classification segment (2nd segment) must be one of: cdc, cmd, sys}}
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object
