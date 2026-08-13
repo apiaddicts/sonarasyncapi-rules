@@ -15,7 +15,7 @@ channels:
       operationId: receiveUser
       message:
         contentType: application/json
-        payload: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR019: The identifier must be defined}}</span>
+        payload: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR019: The AsyncAPI document should define an 'id' field.}}</span>
           type: object
           properties:
             name:
@@ -60,7 +60,7 @@ channels:
     address: users
     messages:
       User:
-        payload: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR019: The identifier must be defined}}</span>
+        payload: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR019: The AsyncAPI document should define an 'id' field.}}</span>
           type: object
           properties:
             name:

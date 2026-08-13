@@ -15,7 +15,7 @@
         description: Canal de comunicación para operaciones relacionadas con mascotas
         subscribe:
           operationId: receivePets
-          tags: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Tags should be documented}}</span>
+          tags: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Tag should have a 'description' field.}}</span>
             - name: used-tag
           summary: Operación para recibir la lista de mascotas
           message:
@@ -77,7 +77,7 @@ servers:
     host: api.example.com
     protocol: wss
 tags:
-  - name: undocumented <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Tags should be documented}}</span>
+  - name: undocumented <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Tag should have a 'description' field.}}</span>
 channels:
   events:
     address: events

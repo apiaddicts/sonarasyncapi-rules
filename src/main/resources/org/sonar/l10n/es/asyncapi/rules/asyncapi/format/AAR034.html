@@ -23,7 +23,7 @@ channels:
               type: object
               properties:
                 value:
-                  type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR034: Los tipos numéricos requieren un formato válido}}</span>
+                  type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR034: La propiedad numérica debe especificar un 'format' válido (int32, int64, float, double).}}</span>
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
@@ -78,7 +78,7 @@ channels:
               type: object
               properties:
                 value:
-                  type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR034: Los tipos numéricos requieren un formato válido}}</span>
+                  type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR034: La propiedad numérica debe especificar un 'format' válido (int32, int64, float, double).}}</span>
 operations:
   publishInvoice:
     action: send

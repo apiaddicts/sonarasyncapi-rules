@@ -9,7 +9,7 @@ info:
 channels:
   /pets:
     description: Canal para operaciones relacionadas con mascotas.
-    subscribe: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR012: Cada operación debe tener un operador único}}</span>
+    subscribe: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR012: La operación debe declarar un 'operationId'.}}</span>
       summary: Operación para recibir la lista de mascotas.
       message:
         contentType: application/json
@@ -76,7 +76,7 @@ channels:
         payload:
           type: object
 operations:
-  SendMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR012: Cada operación debe tener un operador único}}</span>
+  SendMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR012: La operación debe declarar un 'operationId'.}}</span>
     action: send
     channel:
       $ref: '#/channels/chat'

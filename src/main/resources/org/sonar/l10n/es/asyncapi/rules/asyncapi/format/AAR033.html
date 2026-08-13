@@ -1,4 +1,4 @@
-<p>Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración</p>
+<p>Las propiedades de cadena deben declarar una restricción de valor (minLength, maxLength, pattern, enum, const o format).</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
 asyncapi: '2.4.0'
@@ -18,7 +18,7 @@ channels:
           type: object
           properties:
             username:
-              type: string <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR033: Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración}}</span>
+              type: string <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR033: La propiedad de cadena debe tener al menos una de estas restricciones: minLength, maxLength, pattern, enum, const o format.}}</span>
               description: Nombre de usuario.
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
@@ -76,7 +76,7 @@ channels:
           type: object
           properties:
             username:
-              type: string <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR033: Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración}}</span>
+              type: string <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR033: La propiedad de cadena debe tener al menos una de estas restricciones: minLength, maxLength, pattern, enum, const o format.}}</span>
               description: Username.
 operations:
   sendUserData:

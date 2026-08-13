@@ -1,14 +1,12 @@
-asyncapi: '2.4.0'
+asyncapi: '3.0.0'
 info:
   title: Numeric Parameter Restrictions Example API
   version: '1.0.0'
 channels:
-  /sensor-data:
-    publish:
-      operationId: sendSensorData
-      summary: Publish data collected by a sensor.
-      message:
-        contentType: application/json
+  sensorData:
+    address: sensor-data
+    messages:
+      SensorReading:
         payload:
           type: object
           properties:
@@ -19,17 +17,5 @@ channels:
               type: number
               minimum: 0
               maximum: 100
-            pressure:
-              type: integer
-              format: int32
-            level:
-              type: integer
-              enum:
-                - 1
-                - 2
-                - 3
             sensorId: # Noncompliant {{AAR032: Numeric property should have at least one of: minimum, maximum, format, enum, or const restriction.}}
               type: integer
-              description: Sensor identifier.
-            label:
-              type: string

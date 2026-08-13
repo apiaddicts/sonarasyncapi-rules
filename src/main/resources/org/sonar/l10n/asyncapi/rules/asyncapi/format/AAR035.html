@@ -13,7 +13,7 @@ channels:
     publish:
       operationId: sendOrder
       summary: Publica información sobre un nuevo pedido.
-      message: <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR035: It is recommended to have a title per message}}</span>
+      message: <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR035: Message should have a 'title' field.}}</span>
         description: Mensaje que contiene los detalles de un nuevo pedido realizado.
         contentType: application/json
         payload:
@@ -107,7 +107,7 @@ channels:
   carga:
     address: carga
     messages:
-      CargaMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR035: It is recommended to have a title per message}}</span>
+      CargaMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR035: Message should have a 'title' field.}}</span>
         payload:
           schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
           schema:

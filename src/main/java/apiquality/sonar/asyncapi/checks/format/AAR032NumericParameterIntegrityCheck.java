@@ -19,38 +19,29 @@
  */
 package apiquality.sonar.asyncapi.checks.format;
 
-import com.google.common.collect.Sets;
-import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
-import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
-import apiquality.sonar.asyncapi.checks.BaseCheck;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
-import java.util.Set;
-
 @Rule(key = AAR032NumericParameterIntegrityCheck.CHECK_KEY)
-public class AAR032NumericParameterIntegrityCheck extends BaseCheck {
+public class AAR032NumericParameterIntegrityCheck extends AbstractSchemaPropertyCheck {
     public static final String CHECK_KEY = "AAR032";
+    private static final String ERROR_KEY = "AAR032.error";
 
     @Override
-    public Set<AstNodeType> subscribedKinds() {
-        return Sets.newHashSet(AsyncApiGrammar.MESSAGES);
-    }
-
-    @Override
-    protected void visitNode(JsonNode node) {
-        JsonNode typeNode = node.get("type");
-
-        if (typeNode != null && (typeNode.stringValue().equals("number") || typeNode.stringValue().equals("integer"))) {
-            JsonNode minimumNode = node.get("minimum");
-            JsonNode maximumNode = node.get("maximum");
-            JsonNode formatNode = node.get("format");
-
-            if ((minimumNode == null || minimumNode.isNull()) &&
-                (maximumNode == null || maximumNode.isNull()) &&
-                (formatNode == null || formatNode.isNull())) {
-                addIssue(CHECK_KEY, translate("AAR032.error"), node.key());
-            }
+    protected void checkProperty(JsonNode property, JsonNode anchor) {
+        String type = typeOf(property);
+        if (!"integer".equals(type) && !"number".equals(type)) {
+            return;
+        }
+        boolean hasRestriction = present(property, "minimum")
+                || present(property, "exclusiveMinimum")
+                || present(property, "maximum")
+                || present(property, "exclusiveMaximum")
+                || present(property, "format")
+                || present(property, "const")
+                || hasNonEmptyEnum(property);
+        if (!hasRestriction) {
+            addIssue(CHECK_KEY, translate(ERROR_KEY), anchor.key());
         }
     }
 }

@@ -1,4 +1,4 @@
-<p>Por razones de seguridad, el protocolo HTTPS es obligatorio.</p>
+<p>Por razones de seguridad, los servidores deben usar un protocolo seguro (como https, wss, amqps).</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
   asyncapi: '2.4.0'
@@ -8,7 +8,7 @@
   servers:
     default:
       url: 'api.example.com'
-      protocol: 'http' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR001: El protocolo https es obligatorio}}</span>
+      protocol: 'http' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR001: El servidor debe usar un protocolo seguro (https, wss, amqps, etc).}}</span>
       description: Servidor por defecto para la tienda de mascotas
   channels:
     /pets: {}
@@ -36,7 +36,7 @@ info:
 servers:
   default:
     host: api.example.com
-    protocol: http <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR001: El protocolo https es obligatorio}}</span>
+    protocol: http <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR001: El servidor debe usar un protocolo seguro (https, wss, amqps, etc).}}</span>
     description: Servidor por defecto para la tienda de mascotas
 channels:
   pets:

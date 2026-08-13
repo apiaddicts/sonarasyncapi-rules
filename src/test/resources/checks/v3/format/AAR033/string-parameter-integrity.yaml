@@ -1,14 +1,12 @@
-asyncapi: '2.4.0'
+asyncapi: '3.0.0'
 info:
   title: String Parameter Restrictions Example API
   version: '1.0.0'
 channels:
-  /user-data:
-    publish:
-      operationId: sendUserData
-      summary: Publish information about a user.
-      message:
-        contentType: application/json
+  userData:
+    address: user-data
+    messages:
+      UserInfo:
         payload:
           type: object
           properties:
@@ -23,13 +21,3 @@ channels:
               enum:
                 - admin
                 - user
-                - guest
-            phoneNumber:
-              type: string
-              minLength: 10
-              maxLength: 15
-            countryCode:
-              type: string
-              format: iso-3166
-            age:
-              type: integer

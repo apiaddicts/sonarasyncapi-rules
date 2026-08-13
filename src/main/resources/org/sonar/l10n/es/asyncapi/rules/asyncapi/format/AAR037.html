@@ -12,7 +12,7 @@ servers:
 channels:
   /example-channel:
     description: Example channel for testing.
-    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: Debe especificar la versión del binding}}</span>
+    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: El binding debe especificar un campo 'bindingVersion'.}}</span>
       mqtt:
         qos: 1
     subscribe:
@@ -59,7 +59,7 @@ channels:
   exampleChannel:
     address: /example-channel
     description: Example channel for testing.
-    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: Debe especificar la versión del binding}}</span>
+    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: El binding debe especificar un campo 'bindingVersion'.}}</span>
       mqtt:
         qos: 1
     messages:

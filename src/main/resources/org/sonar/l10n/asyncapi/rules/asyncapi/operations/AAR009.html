@@ -13,7 +13,7 @@ servers:
 channels:
     /pets:
       description: Canal de comunicación para operaciones relacionadas con mascotas
-      subscribe: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR009: Associate a tag to this operation}}</span>
+      subscribe: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR009: Operation must declare at least one tag.}}</span>
         operationId: receivePets
         summary: Operación para recibir la lista de mascotas
         message:
@@ -81,7 +81,7 @@ channels:
         payload:
           type: object
 operations:
-  UserSignup: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR009: Associate a tag to this operation}}</span>
+  UserSignup: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR009: Operation must declare at least one tag.}}</span>
     action: send
     channel:
       $ref: '#/channels/user-signup'

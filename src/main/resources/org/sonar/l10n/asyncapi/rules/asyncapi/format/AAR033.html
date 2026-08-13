@@ -1,4 +1,4 @@
-<p>String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction</p>
+<p>String properties should declare a value restriction (minLength, maxLength, pattern, enum, const or format).</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
 asyncapi: '2.4.0'
@@ -18,7 +18,7 @@ channels:
           type: object
           properties:
             username:
-              type: string <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR033: String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction}}</span>
+              type: string <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR033: String property should have at least one of: minLength, maxLength, pattern, enum, const, or format restriction.}}</span>
               description: Nombre de usuario.
 </pre>
 <h2>Compliant Solution (AsyncAPI 2)</h2>
@@ -76,7 +76,7 @@ channels:
           type: object
           properties:
             username:
-              type: string <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR033: String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction}}</span>
+              type: string <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR033: String property should have at least one of: minLength, maxLength, pattern, enum, const, or format restriction.}}</span>
               description: Username.
 operations:
   sendUserData:

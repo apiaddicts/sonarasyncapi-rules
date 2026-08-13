@@ -6,7 +6,7 @@ info:
 channels:
   /pets:
     description: Canal para operaciones relacionadas con mascotas.    
-    subscribe: # Noncompliant {{AAR012: Each operation should have a unique operator (Operation ID)}}
+    subscribe: # Noncompliant {{AAR012: Operation must declare an 'operationId'.}}
       summary: Operación para recibir la lista de mascotas.
       message:
         contentType: application/json

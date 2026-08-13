@@ -9,7 +9,7 @@ info:
 channels:
   /pets:
     description: Canal para operaciones relacionadas con mascotas.
-    subscribe: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR022: La descripción de la operación debe diferir de su resumen}}</span>
+    subscribe: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR022: El campo 'description' no debe ser idéntico al campo 'summary'.}}</span>
       operationId: getPets
       summary: Operación para recibir la lista de mascotas.
       description: Operación para recibir la lista de mascotas.
@@ -90,7 +90,7 @@ channels:
                 type: string
                 description: Especie de la mascota.
 operations:
-  getPets: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR022: La descripción de la operación debe diferir de su resumen}}</span>
+  getPets: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR022: El campo 'description' no debe ser idéntico al campo 'summary'.}}</span>
     action: receive
     summary: Operación para recibir la lista de mascotas.
     description: Operación para recibir la lista de mascotas.

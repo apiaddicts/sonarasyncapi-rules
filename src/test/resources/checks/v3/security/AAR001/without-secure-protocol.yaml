@@ -1,4 +1,4 @@
-# Noncompliant {{AAR001: Servers should use a secure protocol}}
+# Noncompliant {{AAR001: Server must use a secure protocol (https, wss, amqps, etc).}}
 asyncapi: 3.0.0
 info:
   title: Insecure API

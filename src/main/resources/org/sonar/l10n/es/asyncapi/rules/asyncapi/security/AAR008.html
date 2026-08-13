@@ -1,7 +1,7 @@
 <p>Los servidores deben estar definidos</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
-  <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR008: Definir 'servers' es obligatorio}}</span>
+  <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR008: El documento AsyncAPI debe definir al menos un servidor en el objeto 'servers'.}}</span>
   asyncapi: '2.4.0'
   info:
     title: Swagger Petstore
@@ -25,7 +25,7 @@
 </pre>
 <h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
 <pre>
-asyncapi: '3.0.0' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR008: Definir 'servers' es obligatorio}}</span>
+asyncapi: '3.0.0' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR008: El documento AsyncAPI debe definir al menos un servidor en el objeto 'servers'.}}</span>
 info:
   title: Swagger Petstore
   version: '1.0.0'

@@ -7,7 +7,7 @@ info:
   version: '1.0.0'
   description: API demonstrating unique operationId usage in each operation.
 channels:
-  /pets: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR043: It is recommended to add the security scheme to be used to each channel}}</span>
+  /pets: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR043: Channel should define a security scheme in its operations or bindings.}}</span>
     subscribe:
       operationId: getPets
       message:
@@ -41,7 +41,7 @@ channels:
 </pre>
 <h2>Noncompliant Code Example (AsyncAPI 3)</h2>
 <pre>
-asyncapi: '3.0.0' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR043: It is recommended to add the security scheme to be used to each channel}}</span>
+asyncapi: '3.0.0' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR043: Channel should define a security scheme in its operations or bindings.}}</span>
 info:
   title: No Security
   version: '1.0.0'

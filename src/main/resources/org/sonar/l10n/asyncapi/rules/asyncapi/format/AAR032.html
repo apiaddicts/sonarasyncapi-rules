@@ -1,4 +1,4 @@
-<p>Numeric parameters should have minimum, maximum, or format restriction</p>
+<p>Numeric properties should declare a value restriction (minimum, maximum, format, enum or const).</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
     asyncapi: '2.4.0'
@@ -19,9 +19,9 @@
               type: object
               properties: 
                 temperature:
-                  type: number <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR032: Numeric parameters should have minimum, maximum, or format restriction}}</span>
+                  type: number <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR032: Numeric property should have at least one of: minimum, maximum, format, enum, or const restriction.}}</span>
                   description: Temperatura medida por el sensor.
-                sensorId: <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR032: Numeric parameters should have minimum, maximum, or format restriction}}</span>
+                sensorId: <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR032: Numeric property should have at least one of: minimum, maximum, format, enum, or const restriction.}}</span>
                   type: integer
                   description: ID único del sensor.    
 </pre>
@@ -76,9 +76,9 @@ channels:
           type: object
           properties:
             temperature:
-              type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR032: Numeric parameters should have minimum, maximum, or format restriction}}</span>
+              type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR032: Numeric property should have at least one of: minimum, maximum, format, enum, or const restriction.}}</span>
               description: Temperature measured by the sensor.
-            sensorId: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR032: Numeric parameters should have minimum, maximum, or format restriction}}</span>
+            sensorId: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR032: Numeric property should have at least one of: minimum, maximum, format, enum, or const restriction.}}</span>
               type: integer
               description: Unique sensor identifier.
 operations:

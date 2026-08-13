@@ -9,12 +9,12 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-servers: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: It is recommend to add the servers and channels to component}}</span>
+servers: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: Consider defining reusable server and channel references in 'components'.}}</span>
   production:
     url: api.example.com
     protocol: https
     description: Production server
-channels: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: It is recommend to add the servers and channels to component}}</span>
+channels: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: Consider defining reusable server and channel references in 'components'.}}</span>
   pets:
     description: Channel for managing pet data
     subscribe:
@@ -87,7 +87,7 @@ channels:
       Data:
         payload:
           type: object
-components: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: It is recommend to add the servers and channels to component}}</span>
+components: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: Consider defining reusable server and channel references in 'components'.}}</span>
   schemas:
     Data:
       type: object
