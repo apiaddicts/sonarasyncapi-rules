@@ -1,0 +1,17 @@
+asyncapi: '2.4.0'
+info:
+  title: Avro Namespace Pattern Two Segments V2
+  version: '1.0.0'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+          type: record
+          name: OrderValue
+          namespace: org.madrid.p001.orders
+          fields:
+            - name: id
+              type: string

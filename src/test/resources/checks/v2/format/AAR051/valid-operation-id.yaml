@@ -1,0 +1,31 @@
+asyncapi: '2.4.0'
+info:
+  title: Valid OperationId Example API
+  version: '1.0.0'
+  description: API donde todos los operationId son camelCase.
+channels:
+  /pets:
+    description: Canal para operaciones relacionadas con mascotas.
+    subscribe:
+      operationId: solicitarBeca
+      summary: Operación para recibir la lista de mascotas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      operationId: recuperarBeca
+      summary: Operación para crear una nueva mascota.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /orders:
+    description: Canal para operaciones relacionadas con pedidos.
+    publish:
+      operationId: processTopic2Topic3
+      summary: Operación para procesar pedidos.
+      message:
+        contentType: application/json
+        payload:
+          type: object
