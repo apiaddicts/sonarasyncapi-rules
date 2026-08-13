@@ -31,9 +31,9 @@ public class AAR055XPayloadReferencesWellFormedCheck extends BaseCheck {
 
     private static final Pattern SUBJECT_PATTERN = Pattern.compile("^[:a-zA-Z0-9_.-]+$");
     private static final Pattern REF_PATTERN =
-            Pattern.compile("^(?:https?|svn|svn\\+ssh|file)://\\S+\\.avsc(?:[?@]\\S*)?$");
+            Pattern.compile("^(?:https?|svn|svn\\+ssh|file)://[^\\s?@]+\\.avsc(?:[?@]\\S*)?$");
     private static final Pattern REFERENCE_NAME_PATTERN =
-            Pattern.compile("^[a-z][a-z0-9_]{0,62}(?:\\.[a-z][a-z0-9_]{0,62}){0,20}\\.[A-Z][A-Za-z0-9_]{0,62}$");
+            Pattern.compile("^[a-z][a-z0-9_]{0,62}(?:\\.[a-z][a-z0-9_]{0,62}){0,20}\\.[A-Z]\\w{0,62}$");
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
