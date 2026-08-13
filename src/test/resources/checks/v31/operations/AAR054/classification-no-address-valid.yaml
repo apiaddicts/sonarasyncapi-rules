@@ -1,0 +1,9 @@
+asyncapi: 3.1.0
+info:
+  title: Classification No Address Valid V31
+  version: 1.0.0
+channels:
+  beca.sys.alumnos.registro-bonificacion.beca:
+    messages:
+      Registration:
+        payload: {type: object}

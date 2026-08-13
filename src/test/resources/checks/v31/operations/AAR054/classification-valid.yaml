@@ -1,0 +1,10 @@
+asyncapi: 3.1.0
+info:
+  title: Classification Valid V31
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.cmd.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
