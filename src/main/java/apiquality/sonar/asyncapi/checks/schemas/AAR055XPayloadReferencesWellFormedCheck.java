@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 @Rule(key = AAR055XPayloadReferencesWellFormedCheck.CHECK_KEY)
 public class AAR055XPayloadReferencesWellFormedCheck extends BaseCheck {
@@ -18,9 +19,21 @@ public class AAR055XPayloadReferencesWellFormedCheck extends BaseCheck {
     private static final String ERROR_NOT_ARRAY_KEY = "AAR055.error-not-array";
     private static final String ERROR_ITEM_NOT_OBJECT_KEY = "AAR055.error-item-not-object";
     private static final String ERROR_MISSING_FIELD_KEY = "AAR055.error-missing-field";
+    private static final String ERROR_INVALID_SUBJECT_KEY = "AAR055.error-invalid-subject";
+    private static final String ERROR_INVALID_REF_KEY = "AAR055.error-invalid-ref";
+    private static final String ERROR_INVALID_REFERENCE_NAME_KEY = "AAR055.error-invalid-reference-name";
 
     private static final String EXTENSION_KEY = "x-payload-references";
-    private static final List<String> REQUIRED_FIELDS = Arrays.asList("subject", "ref", "referenceName");
+    private static final String FIELD_SUBJECT = "subject";
+    private static final String FIELD_REF = "ref";
+    private static final String FIELD_REFERENCE_NAME = "referenceName";
+    private static final List<String> REQUIRED_FIELDS = Arrays.asList(FIELD_SUBJECT, FIELD_REF, FIELD_REFERENCE_NAME);
+
+    private static final Pattern SUBJECT_PATTERN = Pattern.compile("^[:a-zA-Z0-9_.-]+$");
+    private static final Pattern REF_PATTERN =
+            Pattern.compile("^(?:https?|svn|svn\\+ssh|file)://\\S+\\.avsc(?:[?@]\\S*)?$");
+    private static final Pattern REFERENCE_NAME_PATTERN =
+            Pattern.compile("^[a-z][a-z0-9_]{0,62}(?:\\.[a-z][a-z0-9_]{0,62}){0,20}\\.[A-Z][A-Za-z0-9_]{0,62}$");
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
@@ -80,8 +93,36 @@ public class AAR055XPayloadReferencesWellFormedCheck extends BaseCheck {
         JsonNode value = props.get(field);
         if (value == null) {
             addIssue(CHECK_KEY, translate(ERROR_MISSING_FIELD_KEY, field), item);
-        } else if (isInvalidValue(value)) {
+            return;
+        }
+        if (isInvalidValue(value)) {
             addIssue(CHECK_KEY, translate(ERROR_MISSING_FIELD_KEY, field), value.key());
+            return;
+        }
+        if (!patternFor(field).matcher(value.stringValue()).matches()) {
+            addIssue(CHECK_KEY, translate(formatErrorKeyFor(field)), value.key());
+        }
+    }
+
+    private static Pattern patternFor(String field) {
+        switch (field) {
+            case FIELD_REF:
+                return REF_PATTERN;
+            case FIELD_REFERENCE_NAME:
+                return REFERENCE_NAME_PATTERN;
+            default:
+                return SUBJECT_PATTERN;
+        }
+    }
+
+    private static String formatErrorKeyFor(String field) {
+        switch (field) {
+            case FIELD_REF:
+                return ERROR_INVALID_REF_KEY;
+            case FIELD_REFERENCE_NAME:
+                return ERROR_INVALID_REFERENCE_NAME_KEY;
+            default:
+                return ERROR_INVALID_SUBJECT_KEY;
         }
     }
 

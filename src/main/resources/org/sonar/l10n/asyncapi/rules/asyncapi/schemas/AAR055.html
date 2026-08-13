@@ -1,10 +1,17 @@
 <p>The <code>x-payload-references</code> vendor extension links a message payload (or schema) to the Avro type that backs it in the schema registry. It can appear anywhere in the document — on a message, a payload/schema object, or elsewhere.</p>
-<p>Whenever <code>x-payload-references</code> exists, it must be an array, and each item must define three required, non-empty fields:</p>
+<p>Whenever <code>x-payload-references</code> exists, it must be an array, and each item must define three required, non-empty fields, each of which must also match its expected format:</p>
 <ul>
-  <li><code>subject</code> — the schema name in the registry.</li>
-  <li><code>ref</code> — the SVN URL of the <code>.avsc</code> file.</li>
-  <li><code>referenceName</code> — the fully qualified Avro type name, e.g. <code>org.madrid.core.payload.alumnos.Ciudadano</code>.</li>
+  <li><code>subject</code> — the schema name in the registry (schema registry subject characters only: letters, digits, <code>.</code>, <code>-</code>, <code>_</code> and <code>:</code>).</li>
+  <li><code>ref</code> — the SVN URL of the <code>.avsc</code> file (an <code>http(s)</code>, <code>svn</code>, <code>svn+ssh</code> or <code>file</code> URL pointing to a <code>.avsc</code> file, optionally followed by a revision or query suffix).</li>
+  <li><code>referenceName</code> — the fully qualified Avro type name: a lowercase namespace followed by a capitalized type, e.g. <code>org.madrid.core.payload.alumnos.Ciudadano</code>.</li>
 </ul>
+<h2>Noncompliant Code Example (invalid field formats)</h2>
+<pre>
+x-payload-references:
+  - subject: Ciudadano
+    ref: no-es-url                  # not an SVN URL pointing to a .avsc file
+    referenceName: cualquier_cosa   # not a fully qualified Avro type name
+</pre>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
 asyncapi: '2.6.0'

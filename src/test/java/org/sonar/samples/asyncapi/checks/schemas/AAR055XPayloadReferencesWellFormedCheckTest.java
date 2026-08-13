@@ -60,6 +60,26 @@ public class AAR055XPayloadReferencesWellFormedCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2InvalidRef() {
+        verifyV2("invalid-ref.yaml");
+    }
+
+    @Test
+    public void verifyV2InvalidReferenceName() {
+        verifyV2("invalid-reference-name.yaml");
+    }
+
+    @Test
+    public void verifyV2InvalidSubject() {
+        verifyV2("invalid-subject.yaml");
+    }
+
+    @Test
+    public void verifyV2ReviewerExample() {
+        verifyV2("reviewer-example.yaml");
+    }
+
+    @Test
     public void verifyV3Valid() {
         verifyV3("valid.yaml");
     }
@@ -100,6 +120,26 @@ public class AAR055XPayloadReferencesWellFormedCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV3InvalidRef() {
+        verifyV3("invalid-ref.yaml");
+    }
+
+    @Test
+    public void verifyV3InvalidReferenceName() {
+        verifyV3("invalid-reference-name.yaml");
+    }
+
+    @Test
+    public void verifyV3InvalidSubject() {
+        verifyV3("invalid-subject.yaml");
+    }
+
+    @Test
+    public void verifyV3ReviewerExample() {
+        verifyV3("reviewer-example.yaml");
+    }
+
+    @Test
     public void verifyV31Valid() {
         verifyV31("valid.yaml");
     }
@@ -107,6 +147,26 @@ public class AAR055XPayloadReferencesWellFormedCheckTest extends BaseCheckTest {
     @Test
     public void verifyV31MissingRef() {
         verifyV31("missing-ref.yaml");
+    }
+
+    @Test
+    public void verifyV31InvalidRef() {
+        verifyV31("invalid-ref.yaml");
+    }
+
+    @Test
+    public void verifyV31InvalidReferenceName() {
+        verifyV31("invalid-reference-name.yaml");
+    }
+
+    @Test
+    public void verifyV31InvalidSubject() {
+        verifyV31("invalid-subject.yaml");
+    }
+
+    @Test
+    public void verifyV31ReviewerExample() {
+        verifyV31("reviewer-example.yaml");
     }
 
     @Override
