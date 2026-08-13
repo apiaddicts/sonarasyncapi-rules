@@ -77,7 +77,8 @@ public final class RulesLists {
             AAR047AvroFieldDocCheck.class,
             AAR048AvroNameNomenclatureCheck.class,
             AAR049AvroDefaultNullCheck.class,
-            AAR052AvroNamespacePatternCheck.class
+            AAR052AvroNamespacePatternCheck.class,
+            AAR055XPayloadReferencesWellFormedCheck.class
             );
     }
 
