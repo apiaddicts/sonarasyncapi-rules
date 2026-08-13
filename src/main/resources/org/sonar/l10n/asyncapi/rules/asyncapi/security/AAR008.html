@@ -18,8 +18,41 @@
   servers:
     default:
       url: 'api.example.com'
-      protocol: 'https' 
+      protocol: 'https'
       description: Default server for the pet store
   channels:
     /pets: {}
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR008: The servers should be defined}}</span>
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+channels:
+  userSignup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+servers:
+  default:
+    host: 'api.example.com'
+    protocol: 'wss'
+    description: Default server for the pet store
+channels:
+  userSignup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
 </pre>

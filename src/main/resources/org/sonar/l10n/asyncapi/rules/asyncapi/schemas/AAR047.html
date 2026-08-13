@@ -20,3 +20,46 @@ payload:
       type: string
       doc: "The unique order identifier"
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Field Doc
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR047: Avro field should include the doc attribute with a description}}</span>
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Field Doc
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+                doc: "The unique order identifier"
+</pre>

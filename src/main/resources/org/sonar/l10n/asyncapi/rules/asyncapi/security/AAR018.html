@@ -1,7 +1,82 @@
-<p></p>
+<p>The security scheme must be among those allowed by the organization and must be complete</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Security Scheme Example API
+  version: '1.0.0'
+components:
+  securitySchemes:
+    mainAuth: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR018: The security scheme must be among those allowed by the organization and must be complete}}</span>
+      type: http
+channels:
+  /secure-data: {}
 </pre>
 <h2>Compliant Solution (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Security Scheme Example API
+  version: '1.0.0'
+components:
+  securitySchemes:
+    mainAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            read: Grants read access
+channels:
+  /secure-data: {}
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Security Scheme Example API
+  version: '1.0.0'
+servers:
+  default:
+    host: api.example.com
+    protocol: wss
+components:
+  securitySchemes:
+    badAuth: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR018: The security scheme must be among those allowed by the organization and must be complete}}</span>
+      type: invalid-type
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload:
+          type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Security Scheme Example API
+  version: '1.0.0'
+servers:
+  default:
+    host: api.example.com
+    protocol: https
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://example.com/oauth/authorize
+          scopes:
+            read: Read access
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload:
+          type: object
 </pre>

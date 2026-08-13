@@ -45,3 +45,57 @@ channels:
   hello:
     servers: production
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Invalid Server Reference
+  version: '1.0.0'
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  notifications:
+    address: notifications
+    servers:
+      - unknown <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR040: Channel server must be defined in the servers object}}</span>
+    messages:
+      Notification:
+        payload:
+          type: object
+operations:
+  SendNotification:
+    action: send
+    channel:
+      $ref: '#/channels/notifications'
+    messages:
+      - $ref: '#/channels/notifications/messages/Notification'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Valid Server Reference
+  version: '1.0.0'
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  notifications:
+    address: notifications
+    servers:
+      - production
+    messages:
+      Notification:
+        payload:
+          type: object
+operations:
+  SendNotification:
+    action: send
+    channel:
+      $ref: '#/channels/notifications'
+    messages:
+      - $ref: '#/channels/notifications/messages/Notification'
+</pre>

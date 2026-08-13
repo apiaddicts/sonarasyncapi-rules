@@ -58,3 +58,51 @@ channels:
                     type: string
                     description: Especie de la mascota.
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: No Summaries
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload:
+          type: object
+operations:
+  SendEvent: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR021: Provide a summary for each operation}}</span>
+    action: send
+    channel:
+      $ref: '#/channels/events'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Operation Summaries
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  notifications:
+    address: notifications
+    messages:
+      Notification:
+        payload:
+          type: object
+operations:
+  SendNotification:
+    action: send
+    channel:
+      $ref: '#/channels/notifications'
+    summary: Send a notification to users
+    operationId: sendNotification
+</pre>

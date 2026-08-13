@@ -1,7 +1,125 @@
-<p></p>
+<p>Los tags deben estar documentados</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+    asyncapi: '2.4.0'
+    info:
+      title: Swagger Petstore
+      version: '1.0.0'
+    servers:
+      production:
+        url: 'https://api.petstore.com'
+        protocol: 'https'
+        description: Servidor de producción para la API de la tienda de mascotas
+    channels:
+      /pets:
+        description: Canal de comunicación para operaciones relacionadas con mascotas
+        subscribe:
+          operationId: receivePets
+          tags: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Los tags deben estar documentados}}</span>
+            - name: used-tag
+          summary: Operación para recibir la lista de mascotas
+          message:
+            contentType: application/json
+            payload:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: ID de la mascota
+                  name:
+                    type: string
+                    description: Nombre de la mascota
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+servers:
+  production:
+    url: 'https://api.petstore.com'
+    protocol: 'https'
+    description: Servidor de producción para la API de la tienda de mascotas
+channels:
+  /pets:
+    description: Canal de comunicación para operaciones relacionadas con mascotas
+    subscribe:
+      operationId: receivePets
+      tags:
+        - name: used-tag
+          description: tag
+      summary: Operación para recibir la lista de mascotas
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota
+              name:
+                type: string
+                description: Nombre de la mascota
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Undocumented Tags
+  version: '1.0.0'
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+tags:
+  - name: undocumented <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Los tags deben estar documentados}}</span>
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload:
+          type: object
+operations:
+  PublishEvent:
+    action: send
+    channel:
+      $ref: '#/channels/events'
+    messages:
+      - $ref: '#/channels/events/messages/Event'
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Documented Tags
+  version: '1.0.0'
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+tags:
+  - name: users
+    description: User operations
+  - name: orders
+    description: Order operations
+channels:
+  user-events:
+    address: user/events
+    messages:
+      UserEvent:
+        payload:
+          type: object
+operations:
+  PublishUserEvent:
+    action: send
+    channel:
+      $ref: '#/channels/user-events'
+    messages:
+      - $ref: '#/channels/user-events/messages/UserEvent'
 </pre>

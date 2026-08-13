@@ -1,7 +1,107 @@
-<p></p>
+<p>Cada operación debe tener un operador único (Operation ID)</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets:
+    description: Canal para operaciones relacionadas con mascotas.
+    subscribe: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR012: Cada operación debe tener un operador único}}</span>
+      summary: Operación para recibir la lista de mascotas.
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets:
+    description: Canal para operaciones relacionadas con mascotas.
+    subscribe:
+      summary: Operación para recibir la lista de mascotas.
+      operationId: hola
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: No Operation IDs
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  chat:
+    address: chat
+    messages:
+      ChatMessage:
+        payload:
+          type: object
+operations:
+  SendMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR012: Cada operación debe tener un operador único}}</span>
+    action: send
+    channel:
+      $ref: '#/channels/chat'
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Operation IDs
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  chat:
+    address: chat
+    messages:
+      ChatMessage:
+        payload:
+          type: object
+operations:
+  SendMessage:
+    action: send
+    channel:
+      $ref: '#/channels/chat'
+    operationId: sendMessage
 </pre>

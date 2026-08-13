@@ -75,7 +75,7 @@ channels:
               species:
                 type: string
                 description: Especie de la mascota.
-    publish: 
+    publish:
       operationId: adios
       summary: Operación para crear una nueva mascota.
       message:
@@ -92,4 +92,74 @@ channels:
             species:
               type: string
               description: Especie de la mascota.
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Duplicate IDs
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  events1:
+    address: events1
+    messages:
+      Event:
+        payload:
+          type: object
+  events2:
+    address: events2
+    messages:
+      Event:
+        payload:
+          type: object
+operations:
+  PublishEvent:
+    action: send
+    channel:
+      $ref: '#/channels/events1'
+    operationId: publishEvent
+  PublishEvent2: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}</span>
+    action: send
+    channel:
+      $ref: '#/channels/events2'
+    operationId: publishEvent
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique IDs
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  user-events:
+    address: user/events
+    messages:
+      UserEvent:
+        payload:
+          type: object
+  order-events:
+    address: order/events
+    messages:
+      OrderEvent:
+        payload:
+          type: object
+operations:
+  PublishUserEvent:
+    action: send
+    channel:
+      $ref: '#/channels/user-events'
+    operationId: publishUserEvent
+  PublishOrderEvent:
+    action: send
+    channel:
+      $ref: '#/channels/order-events'
+    operationId: publishOrderEvent
 </pre>

@@ -55,3 +55,77 @@ channels:
               description: Número de teléfono del usuario.
               pattern: '^\+?[0-9]{10,15}$'
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: String Parameter Restrictions Example API
+  version: '1.0.0'
+  description: Example API that includes restrictions for string parameters.
+servers:
+  production:
+    host: broker.example.com
+    protocol: kafka
+channels:
+  userData:
+    address: user-data
+    messages:
+      UserData:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            username:
+              type: string <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR033: String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction}}</span>
+              description: Username.
+operations:
+  sendUserData:
+    action: send
+    channel:
+      $ref: '#/channels/userData'
+    messages:
+      - $ref: '#/channels/userData/messages/UserData'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: String Parameter Restrictions Example API
+  version: '1.0.0'
+  description: Example API that includes restrictions for string parameters.
+servers:
+  production:
+    host: broker.example.com
+    protocol: kafka
+channels:
+  userData:
+    address: user-data
+    messages:
+      UserData:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            email:
+              type: string
+              description: User email address.
+              pattern: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+            role:
+              type: string
+              description: User role in the application.
+              enum:
+                - admin
+                - user
+                - guest
+            phoneNumber:
+              type: string
+              description: User phone number.
+              pattern: '^\+?[0-9]{10,15}$'
+operations:
+  sendUserData:
+    action: send
+    channel:
+      $ref: '#/channels/userData'
+    messages:
+      - $ref: '#/channels/userData/messages/UserData'
+</pre>

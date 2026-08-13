@@ -93,3 +93,54 @@ channels:
               description: Estado de la confirmación del pedido.
 
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Title Avro Example API
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: kafka
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR035: It is recommended to have a title per message}}</span>
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Title Avro Example API
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: kafka
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage:
+        title: Carga Event
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: id
+                type: string
+</pre>

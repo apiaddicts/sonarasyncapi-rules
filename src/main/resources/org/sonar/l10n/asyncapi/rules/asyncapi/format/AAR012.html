@@ -58,3 +58,50 @@ channels:
                 type: string
                 description: Especie de la mascota.
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: No Operation IDs
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  chat:
+    address: chat
+    messages:
+      ChatMessage:
+        payload:
+          type: object
+operations:
+  SendMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR012: Each operation should have a unique operator (Operation ID)}}</span>
+    action: send
+    channel:
+      $ref: '#/channels/chat'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Operation IDs
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  chat:
+    address: chat
+    messages:
+      ChatMessage:
+        payload:
+          type: object
+operations:
+  SendMessage:
+    action: send
+    channel:
+      $ref: '#/channels/chat'
+    operationId: sendMessage
+</pre>

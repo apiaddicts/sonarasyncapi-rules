@@ -1,7 +1,146 @@
-<p></p>
+<p>Se recomienda tener un título por mensaje</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Message Title Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye un título por cada mensaje.
+
+channels:
+  /order:
+    description: Canal para enviar y recibir información de pedidos.
+    publish:
+      operationId: sendOrder
+      summary: Publica información sobre un nuevo pedido.
+      message: <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR035: Se recomienda tener un título por mensaje}}</span>
+        description: Mensaje que contiene los detalles de un nuevo pedido realizado.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            product:
+              type: string
+              description: Nombre del producto.
+            quantity:
+              type: integer
+              description: Cantidad del producto pedido.
+    subscribe:
+      operationId: receiveOrderConfirmation
+      summary: Suscripción para recibir confirmación de pedidos.
+      message:
+        title: Confirmación de Pedido
+        description: Mensaje que contiene la confirmación de un pedido.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            status:
+              type: string
+              description: Estado de la confirmación del pedido.
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Message Title Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye un título por cada mensaje.
+
+channels:
+  /order:
+    description: Canal para enviar y recibir información de pedidos.
+    publish:
+      operationId: sendOrder
+      summary: Publica información sobre un nuevo pedido.
+      message:
+        title: message title
+        description: Mensaje que contiene los detalles de un nuevo pedido realizado.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            product:
+              type: string
+              description: Nombre del producto.
+            quantity:
+              type: integer
+              description: Cantidad del producto pedido.
+    subscribe:
+      operationId: receiveOrderConfirmation
+      summary: Suscripción para recibir confirmación de pedidos.
+      message:
+        title: Confirmación de Pedido
+        description: Mensaje que contiene la confirmación de un pedido.
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            status:
+              type: string
+              description: Estado de la confirmación del pedido.
+
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Title Avro Example API
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: kafka
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR035: Se recomienda tener un título por mensaje}}</span>
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Title Avro Example API
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: kafka
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage:
+        title: Carga Event
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: id
+                type: string
 </pre>

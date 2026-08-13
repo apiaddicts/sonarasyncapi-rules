@@ -28,3 +28,46 @@ channels:
         payload:
           type: object
 </pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Mi API Asíncrona
+  version: '1.0.0'
+channels:
+  petCreated:
+    address: pet/created
+    messages:
+      PetCreated:
+        payload:
+          type: object
+operations:
+  onPetCreated: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR051: El operationId debe estar presente y seguir la convención camelCase}}</span>
+    action: receive
+    channel:
+      $ref: '#/channels/petCreated'
+    messages:
+      - $ref: '#/channels/petCreated/messages/PetCreated'
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Mi API Asíncrona
+  version: '1.0.0'
+channels:
+  petCreated:
+    address: pet/created
+    messages:
+      PetCreated:
+        payload:
+          type: object
+operations:
+  onPetCreated:
+    action: receive
+    operationId: solicitarBeca
+    channel:
+      $ref: '#/channels/petCreated'
+    messages:
+      - $ref: '#/channels/petCreated/messages/PetCreated'
+</pre>

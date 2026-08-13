@@ -63,3 +63,55 @@ channels:
                 type: string
                 description: Nombre de la mascota
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: AsyncAPI Example
+  version: '1.0.0'
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  user-signup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
+operations:
+  UserSignup: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR009: Associate a tag to this operation}}</span>
+    action: send
+    channel:
+      $ref: '#/channels/user-signup'
+    messages:
+      - $ref: '#/channels/user-signup/messages/UserSignedUp'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: AsyncAPI Example
+  version: '1.0.0'
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  user-signup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
+operations:
+  UserSignup:
+    action: send
+    channel:
+      $ref: '#/channels/user-signup'
+    messages:
+      - $ref: '#/channels/user-signup/messages/UserSignedUp'
+    tags:
+      - name: users
+</pre>

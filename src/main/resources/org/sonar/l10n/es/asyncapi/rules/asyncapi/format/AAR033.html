@@ -1,7 +1,131 @@
-<p></p>
+<p>Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: String Parameter Restrictions Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye restricciones para parámetros de tipo string.
+channels:
+  /user-data:
+    description: Canal para enviar datos de usuario.
+    publish:
+      operationId: sendUserData
+      summary: Publica información sobre un usuario.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            username:
+              type: string <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR033: Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración}}</span>
+              description: Nombre de usuario.
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: String Parameter Restrictions Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye restricciones para parámetros de tipo string.
+channels:
+  /user-data:
+    description: Canal para enviar datos de usuario.
+    publish:
+      operationId: sendUserData
+      summary: Publica información sobre un usuario.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            email:
+              type: string
+              description: Dirección de correo electrónico del usuario.
+              pattern: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+            role:
+              type: string
+              description: Rol del usuario en la aplicación.
+              enum:
+                - admin
+                - user
+                - guest
+            phoneNumber:
+              type: string
+              description: Número de teléfono del usuario.
+              pattern: '^\+?[0-9]{10,15}$'
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: String Parameter Restrictions Example API
+  version: '1.0.0'
+  description: Example API that includes restrictions for string parameters.
+servers:
+  production:
+    host: broker.example.com
+    protocol: kafka
+channels:
+  userData:
+    address: user-data
+    messages:
+      UserData:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            username:
+              type: string <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR033: Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración}}</span>
+              description: Username.
+operations:
+  sendUserData:
+    action: send
+    channel:
+      $ref: '#/channels/userData'
+    messages:
+      - $ref: '#/channels/userData/messages/UserData'
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: String Parameter Restrictions Example API
+  version: '1.0.0'
+  description: Example API that includes restrictions for string parameters.
+servers:
+  production:
+    host: broker.example.com
+    protocol: kafka
+channels:
+  userData:
+    address: user-data
+    messages:
+      UserData:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            email:
+              type: string
+              description: User email address.
+              pattern: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+            role:
+              type: string
+              description: User role in the application.
+              enum:
+                - admin
+                - user
+                - guest
+            phoneNumber:
+              type: string
+              description: User phone number.
+              pattern: '^\+?[0-9]{10,15}$'
+operations:
+  sendUserData:
+    action: send
+    channel:
+      $ref: '#/channels/userData'
+    messages:
+      - $ref: '#/channels/userData/messages/UserData'
 </pre>

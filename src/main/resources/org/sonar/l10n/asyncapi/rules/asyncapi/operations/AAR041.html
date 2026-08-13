@@ -69,3 +69,56 @@ components:
                 description: Name of the pet
 
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Non-Compliant API
+  version: '1.0.0'
+  description: This API does not follow the recommendation to add servers and channels to components.
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload:
+          type: object
+components: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: It is recommend to add the servers and channels to component}}</span>
+  schemas:
+    Data:
+      type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Compliant API
+  version: '1.0.0'
+  description: This API follows the recommendation to add servers and channels to components.
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload:
+          type: object
+components:
+  schemas:
+    Data:
+      type: object
+  servers:
+    production:
+      host: api.example.com
+      protocol: wss
+  channels:
+    data:
+      address: data
+</pre>

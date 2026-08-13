@@ -1,7 +1,83 @@
-<p></p>
+<p>It is recommended to add the security scheme to be used to each channel</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API demonstrating unique operationId usage in each operation.
+channels:
+  /pets: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR043: It is recommended to add the security scheme to be used to each channel}}</span>
+    subscribe:
+      operationId: getPets
+      message:
+        contentType: application/json
+        payload:
+          type: object
 </pre>
 <h2>Compliant Solution (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API demonstrating unique operationId usage in each operation.
+components:
+  securitySchemes:
+    apiKeyScheme:
+      type: httpApiKey
+      name: X-API-Key
+      in: header
+channels:
+  /pets:
+    subscribe:
+      operationId: getPets
+      security:
+        - apiKeyScheme: []
+      message:
+        contentType: application/json
+        payload:
+          type: object
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR043: It is recommended to add the security scheme to be used to each channel}}</span>
+info:
+  title: No Security
+  version: '1.0.0'
+servers:
+  default:
+    host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload:
+          type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Secure Channel
+  version: '1.0.0'
+servers:
+  default:
+    host: api.example.com
+    protocol: wss
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+channels:
+  secureEvents:
+    address: secure/events
+    messages:
+      Event:
+        payload:
+          type: object
 </pre>

@@ -1,7 +1,124 @@
 <p></p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Non-Compliant API
+  version: '1.0.0'
+  description: This API does not follow the recommendation to add servers and channels to components.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: Se recomienda agregar los servidores y channels al componente}}</span>
+  production:
+    url: api.example.com
+    protocol: https
+    description: Production server
+channels: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: Se recomienda agregar los servidores y channels al componente}}</span>
+  pets:
+    description: Channel for managing pet data
+    subscribe:
+      summary: Subscribe to pet updates
+      operationId: receivePetUpdates
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the pet
+            name:
+              type: string
+              description: Name of the pet
+
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Compliant API
+  version: '1.0.0'
+  description: This API follows the recommendation to add servers and channels to components.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+components:
+  servers:
+    production:
+      url: api.example.com
+      protocol: https
+      description: Production server
+  channels:
+    pets:
+      description: Channel for managing pet data
+      subscribe:
+        summary: Subscribe to pet updates
+        operationId: receivePetUpdates
+        message:
+          contentType: application/json
+          payload:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID of the pet
+              name:
+                type: string
+                description: Name of the pet
+
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Non-Compliant API
+  version: '1.0.0'
+  description: This API does not follow the recommendation to add servers and channels to components.
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload:
+          type: object
+components: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR041: Se recomienda agregar los servidores y channels al componente}}</span>
+  schemas:
+    Data:
+      type: object
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Compliant API
+  version: '1.0.0'
+  description: This API follows the recommendation to add servers and channels to components.
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  data:
+    address: data
+    messages:
+      Data:
+        payload:
+          type: object
+components:
+  schemas:
+    Data:
+      type: object
+  servers:
+    production:
+      host: api.example.com
+      protocol: wss
+  channels:
+    data:
+      address: data
 </pre>

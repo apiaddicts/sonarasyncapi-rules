@@ -1,7 +1,61 @@
-<p></p>
+<p>Especifica un identificador único para el documento AsyncAPI</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: "2.0.0" <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR020: Especifica el ID único del documento}}</span>
+info:
+  title: Awesome API
+  description: A very well-defined API
+  version: "1.0"
+servers:
+  production:
+    url: "stoplight.io"
+    protocol: "https"
+channels:
+  hello:
+    servers: production
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: "2.0.0"
+id: 'urn:example:rpcclient'
+info:
+  title: Awesome API
+  description: A very well-defined API
+  version: "1.0"
+servers:
+  production:
+    url: "stoplight.io"
+    protocol: "https"
+channels:
+  hello:
+    servers: production
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR020: Especifica el ID único del documento}}</span>
+info:
+  title: Awesome API
+  version: '1.0.0'
+servers:
+  production:
+    host: 'stoplight.io'
+    protocol: https
+channels:
+  hello:
+    address: hello
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+id: 'urn:example:rpcclient'
+info:
+  title: Awesome API
+  version: '1.0.0'
+servers:
+  production:
+    host: 'stoplight.io'
+    protocol: https
+channels:
+  hello:
+    address: hello
 </pre>
