@@ -61,7 +61,8 @@ public final class RulesLists {
             AAR040DefinedChannelServersCheck.class,
             AAR041ComponetChannelServerCheck.class,
             AAR053ChannelNamingConventionCheck.class,
-            AAR054ClassificationValidValuesCheck.class
+            AAR054ClassificationValidValuesCheck.class,
+            AAR058RetryTopicNamingConventionCheck.class
         );
     }
 
