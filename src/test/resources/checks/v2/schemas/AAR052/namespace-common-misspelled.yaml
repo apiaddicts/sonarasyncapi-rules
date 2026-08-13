@@ -1,0 +1,29 @@
+asyncapi: '2.4.0'
+info:
+  title: Avro Namespace Common Misspelled V2
+  version: '1.0.0'
+channels:
+  ordersCommonUppercase:
+    subscribe:
+      operationId: receiveOrderCommonUppercase
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+          type: record
+          name: OrderValue
+          namespace: org.madrid.Common.orders
+          fields:
+            - name: id
+              type: string
+  ordersCommonTypo:
+    subscribe:
+      operationId: receiveOrderCommonTypo
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+          type: record
+          name: OrderValue
+          namespace: org.madrid.comon.orders
+          fields:
+            - name: id
+              type: string

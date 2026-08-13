@@ -5,11 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2-beta-4] - 2026-07-22
+
+### Added
+- **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
+- **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (`record`, `enum` or `fixed`) is required and must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
+- **AAR053ChannelNamingConventionCheck**: The channel name (AsyncAPI 2.x channel key, or AsyncAPI 3.x+ `address`) must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]` (BUG / MAJOR).
+- **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc` (Change Data Capture), `cmd` (command that triggers a domain modification), or `sys` (internal system topic, not intended for public consumption) (BUG / MAJOR).
+- **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears in the document, must be an array whose items each define non-empty `subject`, `ref` and `referenceName` fields (BUG / MAJOR).
+- **AAR056AvroSchemaFormatCheck**: Wherever `schemaFormat` appears in the document (message-level in v2, `message.payload` Multi-Format Schema Object in v3, or a `components.schemas` entry) and indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`, the standard version used across the Style Guide examples (BUG / MAJOR).
+- **AAR058RetryTopicNamingConventionCheck**: If a channel name (a channel key in v2, or a channel's `address` in v3) contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`, the exact pattern Spring requires for automatic retry reprocessing (BUG / MINOR).
+
 ## [2.0.2-beta-3] - 2026-07-21
+
+### Fixed
+- Bumped `asyncapi-front-end` and `asyncapi-test-tools` to `2.0.2-beta-3`.
+- `AAR026MessageSchemasCheck`: validate each member of a `message.oneOf`.
+- `AAR037BindingVersionCheck`: check bindings on every member of a `message.oneOf` wrapper.
 
 ### Added
 - **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
-- **AAR056AvroSchemaFormatCheck**: Wherever `schemaFormat` appears in the document (message-level in v2, `message.payload` Multi-Format Schema Object in v3, or a `components.schemas` entry) and indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`, the standard version used across the Style Guide examples (BUG / MAJOR).
 
 ## [2.0.2-beta-2] - 2026-06-25
 

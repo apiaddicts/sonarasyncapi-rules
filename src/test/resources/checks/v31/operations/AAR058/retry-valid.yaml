@@ -1,0 +1,23 @@
+asyncapi: 3.1.0
+info:
+  title: Retry Topic Naming Convention Valid V31
+  version: 1.0.0
+channels:
+  solicitudBecaRetryGrupo1:
+    address: beca.cmd.alumnos.solicitud.beca.grupo1.retry.1
+    messages:
+      SolicitudBecaMessage:
+        payload:
+          type: object
+  solicitudBeca:
+    address: beca.cmd.alumnos.solicitud.beca
+    messages:
+      SolicitudBecaMessage:
+        payload:
+          type: object
+  dynamicReplyChannel:
+    address: null
+    messages:
+      ReplyMessage:
+        payload:
+          type: object

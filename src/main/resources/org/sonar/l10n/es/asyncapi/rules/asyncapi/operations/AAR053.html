@@ -1,0 +1,62 @@
+<p>El nombre del channel — la clave del mapa <code>channels</code> en AsyncAPI 2.x, o el campo <code>address</code> del channel en AsyncAPI 3.x+ — debe seguir la convención de nomenclatura de topics Kafka:</p>
+<pre>&lt;cod_poaps&gt;.&lt;classification&gt;.&lt;domain&gt;.&lt;origin&gt;.&lt;scope&gt;[.&lt;version&gt;]</pre>
+<ul>
+  <li>Exactamente 5 segmentos obligatorios (<code>cod_poaps</code>, <code>classification</code>, <code>domain</code>, <code>origin</code>, <code>scope</code>), separados por puntos (<code>.</code>).</li>
+  <li>Puede añadirse un 6º segmento opcional <code>version</code> (normalmente solo ante breaking changes).</li>
+  <li>Cada segmento puede contener letras minúsculas y dígitos; los guiones (<code>-</code>) solo se permiten como separador interno dentro de un segmento (sin guiones al inicio, al final, ni dobles).</li>
+  <li>No se permiten guiones bajos (<code>_</code>) en ninguna parte del nombre del channel.</li>
+</ul>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca_registro:
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.registro-bonificacion.beca:
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Ejemplo Noncompliant (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca_registro
+    messages:
+      Registration:
+        payload: {type: object}
+</pre>
+<h2>Solución Compliant (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.cmd.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+</pre>
