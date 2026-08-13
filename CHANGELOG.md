@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.2-beta-4] - 2026-07-22
+## [2.0.2-beta-4] - 2026-08-13
 
 ### Added
 - **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc` (Change Data Capture), `cmd` (command that triggers a domain modification), or `sys` (internal system topic, not intended for public consumption) (BUG / MAJOR).
 - **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears in the document, must be an array whose items each define non-empty `subject`, `ref` and `referenceName` fields (BUG / MAJOR).
 - **AAR058RetryTopicNamingConventionCheck**: If a channel name (a channel key in v2, or a channel's `address` in v3) contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`, the exact pattern Spring requires for automatic retry reprocessing (BUG / MINOR).
+
+### Changed
+- **AAR047AvroFieldDocCheck**: Lowered the default severity from `INFO` to `MINOR`.
 
 ## [2.0.2-beta-3] - 2026-07-21
 
