@@ -8,6 +8,7 @@ import apiquality.sonar.asyncapi.checks.BaseCheck;
 import apiquality.sonar.asyncapi.utils.AvroUtils;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -59,7 +60,7 @@ public class AAR056AvroSchemaFormatCheck extends BaseCheck {
         }
 
         String value = schemaFormatNode.stringValue();
-        if (value == null || !value.contains(AvroUtils.AVRO_SCHEMA_FORMAT_PREFIX)) {
+        if (value == null || !value.toLowerCase(Locale.ROOT).contains(AvroUtils.AVRO_SCHEMA_FORMAT_PREFIX)) {
             return;
         }
 
