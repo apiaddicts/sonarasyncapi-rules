@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc` (Change Data Capture), `cmd` (command that triggers a domain modification), or `sys` (internal system topic, not intended for public consumption) (BUG / MAJOR).
 - **AAR058RetryTopicNamingConventionCheck**: If a channel name (a channel key in v2, or a channel's `address` in v3) contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`, the exact pattern Spring requires for automatic retry reprocessing (BUG / MINOR).
 
+### Changed
+- Harmonized rule messages and titles (EN + ES): reworded ~23 rules to clearer, field-naming text and fixed typos/imprecise descriptions. Updated the coupled test-class assertions and EN/ES HTML docs.
+
 ### Fixed
 - **AAR032NumericParameterIntegrityCheck** now validates numeric properties. It now checks every numeric property (in `components.schemas` and message payloads, at any depth) for a `minimum`/`maximum`, `format`, `enum` or `const` restriction.
 - **AAR033StringParameterIntegrityCheck**: implemented (was an empty stub class that raised nothing). Checks every string property for a `minLength`/`maxLength`/`pattern`/`enum`/`const`/`format` restriction.
