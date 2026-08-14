@@ -1,20 +1,15 @@
 package apiquality.sonar.asyncapi.checks.schemas;
 
-import com.google.common.collect.Sets;
-import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
-import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
-import apiquality.sonar.asyncapi.checks.BaseCheck;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 @Rule(key = AAR055XPayloadReferencesWellFormedCheck.CHECK_KEY)
-public class AAR055XPayloadReferencesWellFormedCheck extends BaseCheck {
+public class AAR055XPayloadReferencesWellFormedCheck extends AbstractRootPropertyWalkCheck {
     public static final String CHECK_KEY = "AAR055";
     private static final String ERROR_NOT_ARRAY_KEY = "AAR055.error-not-array";
     private static final String ERROR_ITEM_NOT_OBJECT_KEY = "AAR055.error-item-not-object";
@@ -36,33 +31,9 @@ public class AAR055XPayloadReferencesWellFormedCheck extends BaseCheck {
             Pattern.compile("^[a-z][a-z0-9_]{0,62}(?:\\.[a-z][a-z0-9_]{0,62}){0,20}\\.[A-Z]\\w{0,62}$");
 
     @Override
-    public Set<AstNodeType> subscribedKinds() {
-        return Sets.newHashSet(AsyncApiGrammar.ROOT);
-    }
-
-    @Override
-    protected void visitNode(JsonNode rootNode) {
-        visit(rootNode);
-    }
-
-    private void visit(JsonNode node) {
-        if (node == null || node.isMissing() || node.isNull()) {
-            return;
-        }
-        if (node.isArray()) {
-            for (JsonNode element : node.elements()) {
-                visit(element);
-            }
-            return;
-        }
-        if (!node.isObject()) {
-            return;
-        }
-        for (Map.Entry<String, JsonNode> entry : node.propertyMap().entrySet()) {
-            if (EXTENSION_KEY.equals(entry.getKey())) {
-                validateReferences(entry.getValue());
-            }
-            visit(entry.getValue());
+    protected void visitProperty(String key, JsonNode value) {
+        if (EXTENSION_KEY.equals(key)) {
+            validateReferences(value);
         }
     }
 
