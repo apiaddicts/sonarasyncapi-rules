@@ -133,6 +133,7 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 - **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc`, `cmd` or `sys`.
 - **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears, must have `subject`, `ref` and `referenceName` on every item.
 - **AAR056AvroSchemaFormatCheck**: When `schemaFormat` indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`.
+- **AAR057ErrorTopicDocumentedCheck**: At least one channel must be documented as an error topic following `<topicOriginal>.[<consumerGroup>.]error.<n>`.
 - **AAR058RetryTopicNamingConventionCheck**: If a channel name contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`.
 
 ## 💛 Sponsors
