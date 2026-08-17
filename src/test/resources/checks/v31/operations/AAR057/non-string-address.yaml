@@ -3,10 +3,10 @@ info:
   title: Error Topic Documented Example
   version: 1.0.0
 channels: # Noncompliant {{AAR057: At least one channel must be documented as an error topic following the pattern '<topicOriginal>.[<consumerGroup>.]error.<n>'}}
-  inventoryEvents:
-    address: inventory.events.updated
+  numericChannel:
+    address: 123
     messages:
-      InventoryUpdatedMessage:
+      SomeMessage:
         payload:
           type: object
   shippingCommands:

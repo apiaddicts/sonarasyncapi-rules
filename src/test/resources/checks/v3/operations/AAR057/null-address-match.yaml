@@ -1,0 +1,17 @@
+asyncapi: 3.0.0
+info:
+  title: Error Topic Documented Example
+  version: 1.0.0
+channels:
+  dynamicReplyChannel:
+    address: null
+    messages:
+      ReplyMessage:
+        payload:
+          type: object
+  solicitudBecaError:
+    address: beca.cmd.alumnos.solicitud.beca.error.1
+    messages:
+      SolicitudBecaErrorMessage:
+        payload:
+          type: object

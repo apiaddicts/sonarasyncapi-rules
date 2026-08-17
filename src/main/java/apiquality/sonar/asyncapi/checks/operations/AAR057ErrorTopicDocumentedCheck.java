@@ -38,7 +38,7 @@ public class AAR057ErrorTopicDocumentedCheck extends BaseCheck {
 
 
     private static final Pattern ERROR_TOPIC_PATTERN = Pattern.compile(
-            "^[a-z0-9]{1,63}(?:-[a-z0-9]{1,63}){0,10}(?:\\.[a-z0-9]{1,63}(?:-[a-z0-9]{1,63}){0,10}){1,20}\\.error\\.\\d{1,10}$");
+            "^[a-z0-9]{1,63}(?:-[a-z0-9]{1,63}){0,10}(?:\\.[a-z0-9]{1,63}(?:-[a-z0-9]{1,63}){0,10}){0,20}\\.error\\.\\d{1,10}$");
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
@@ -49,7 +49,8 @@ public class AAR057ErrorTopicDocumentedCheck extends BaseCheck {
     protected void visitNode(JsonNode rootNode) {
         JsonNode channelsNode = rootNode.get("channels");
         if (channelsNode == null || channelsNode.isMissing() || channelsNode.isNull()) {
-            addIssue(CHECK_KEY, translate(ERROR_KEY), channelsNode.key());
+            JsonNode anchor = channelsNode == null ? rootNode : channelsNode;
+            addIssue(CHECK_KEY, translate(ERROR_KEY), anchor.key());
             return;
         }
 

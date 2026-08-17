@@ -1,17 +1,16 @@
-asyncapi: 3.1.0
+asyncapi: 3.0.0
 info:
   title: Error Topic Documented Example
   version: 1.0.0
 channels: # Noncompliant {{AAR057: At least one channel must be documented as an error topic following the pattern '<topicOriginal>.[<consumerGroup>.]error.<n>'}}
-  inventoryEvents:
-    address: inventory.events.updated
+  channelWithoutAddress:
     messages:
-      InventoryUpdatedMessage:
+      SomeMessage:
         payload:
           type: object
-  shippingCommands:
-    address: shipping.commands.dispatch
+  notificacionAlumno:
+    address: notificaciones.eventos.alumnos
     messages:
-      ShippingDispatchMessage:
+      NotificacionAlumnoMessage:
         payload:
           type: object

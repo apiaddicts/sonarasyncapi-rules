@@ -3,10 +3,10 @@ info:
   title: Error Topic Documented Example
   version: 1.0.0
 channels:
-  inventoryEvents:
-    address: inventory.events.updated
+  dynamicReplyChannel:
+    address: null
     messages:
-      InventoryUpdatedMessage:
+      ReplyMessage:
         payload:
           type: object
   paymentsError:
