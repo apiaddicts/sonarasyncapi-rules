@@ -1,0 +1,11 @@
+asyncapi: '2.6.0'
+info:
+  title: Channel Naming Convention Invalid Hyphen End V2
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.registro-bonificacion.beca-: # Noncompliant {{AAR053: Channel name must follow the naming convention <cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]: lowercase alphanumeric segments separated by dots, with hyphens allowed only within a segment and no underscores}}
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object

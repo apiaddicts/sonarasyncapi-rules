@@ -1,0 +1,15 @@
+asyncapi: '2.6.0'
+info:
+  title: Avro Schema Format Non Avro V2
+  version: '1.0.0'
+channels:
+  carga:
+    subscribe:
+      operationId: receiveCarga
+      message:
+        schemaFormat: 'application/schema+json;version=draft-07'
+        payload:
+          type: object
+          properties:
+            id:
+              type: string

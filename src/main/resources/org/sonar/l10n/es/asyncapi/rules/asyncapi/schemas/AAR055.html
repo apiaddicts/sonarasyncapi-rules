@@ -1,0 +1,80 @@
+<p>La extensión de vendor <code>x-payload-references</code> vincula el payload (o schema) de un mensaje con el tipo Avro que lo respalda en el registry de schemas. Puede aparecer en cualquier parte del documento — en un mensaje, en un objeto payload/schema, o en cualquier otro nivel.</p>
+<p>Cuando existe <code>x-payload-references</code>, debe ser un array, y cada ítem debe definir tres campos obligatorios no vacíos, cada uno de los cuales debe además cumplir su formato esperado:</p>
+<ul>
+  <li><code>subject</code> — el nombre del schema en el registry (solo caracteres válidos de subject de schema registry: letras, dígitos, <code>.</code>, <code>-</code>, <code>_</code> y <code>:</code>).</li>
+  <li><code>ref</code> — la URL SVN del fichero <code>.avsc</code> (una URL <code>http(s)</code>, <code>svn</code>, <code>svn+ssh</code> o <code>file</code> que apunte a un fichero <code>.avsc</code>, opcionalmente con un sufijo de revisión o query).</li>
+  <li><code>referenceName</code> — el nombre completo del tipo Avro: un namespace en minúsculas seguido de un tipo capitalizado, ej.: <code>org.madrid.core.payload.alumnos.Ciudadano</code>.</li>
+</ul>
+<h2>Ejemplo Noncompliant (formatos de campo inválidos)</h2>
+<pre>
+x-payload-references:
+  - subject: Ciudadano
+    ref: no-es-url                  # no es una URL SVN que apunte a un fichero .avsc
+    referenceName: cualquier_cosa   # no es un nombre de tipo Avro completamente cualificado
+</pre>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca.evt.alumnos.registro-bonificacion.beca:
+    subscribe:
+      message:
+        payload:
+          type: object
+        x-payload-references:
+          - subject: Ciudadano
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca.evt.alumnos.registro-bonificacion.beca:
+    subscribe:
+      message:
+        payload:
+          type: object
+        x-payload-references:
+          - subject: Ciudadano
+            ref: https://svn.example.com/schemas/avro/Ciudadano.avsc
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano
+</pre>
+<h2>Ejemplo Noncompliant (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.evt.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+        x-payload-references:
+          - subject: Ciudadano
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano
+</pre>
+<h2>Solución Compliant (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.evt.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+        x-payload-references:
+          - subject: Ciudadano
+            ref: https://svn.example.com/schemas/avro/Ciudadano.avsc
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano
+</pre>
