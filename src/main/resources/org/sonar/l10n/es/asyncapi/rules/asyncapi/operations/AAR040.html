@@ -9,41 +9,39 @@ servers:
   production:
     url: 'https://api.petstore.com'
     protocol: 'https'
-    description: Servidor de producción para la API de la tienda de mascotas
-channels: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR040: El channel referencia un servidor que no está definido en el objeto 'servers'.}}</span>
-    /pets:
-      description: Canal de comunicación para operaciones relacionadas con mascotas
-      subscribe:
-        operationId: receivePets
-        summary: Operación para recibir la lista de mascotas
-        message:
-          contentType: application/json
-          payload:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: ID de la mascota
-                name:
-                  type: string
-                  description: Nombre de la mascota
+channels:
+  /pets:
+    description: Canal de comunicación para operaciones relacionadas con mascotas
+    servers:
+      - unknown <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR040: El channel referencia un servidor que no está definido en el objeto 'servers'.}}</span>
+    subscribe:
+      operationId: receivePets
+      message:
+        contentType: application/json
+        payload:
+          type: object
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
-asyncapi: "2.0.0"
+asyncapi: '2.4.0'
 info:
-  title: Awesome API
-  description: A very well-defined API
-  version: "1.0"
+  title: Swagger Petstore
+  version: '1.0.0'
 servers:
   production:
-    url: "stoplight.io"
-    protocol: "https"
+    url: 'https://api.petstore.com'
+    protocol: 'https'
 channels:
-  hello:
-    servers: production
+  /pets:
+    description: Canal de comunicación para operaciones relacionadas con mascotas
+    servers:
+      - production
+    subscribe:
+      operationId: receivePets
+      message:
+        contentType: application/json
+        payload:
+          type: object
 </pre>
 <h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
 <pre>
