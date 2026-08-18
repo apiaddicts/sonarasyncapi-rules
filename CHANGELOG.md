@@ -13,7 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (`record`, `enum` or `fixed`) is required and must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
 - **AAR053ChannelNamingConventionCheck**: The channel name (AsyncAPI 2.x channel key, or AsyncAPI 3.x+ `address`) must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]` (BUG / MAJOR).
 - **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc` (Change Data Capture), `cmd` (command that triggers a domain modification), or `sys` (internal system topic, not intended for public consumption) (BUG / MAJOR).
+- **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears in the document, must be an array whose items each define non-empty `subject`, `ref` and `referenceName` fields (BUG / MAJOR).
+- **AAR056AvroSchemaFormatCheck**: Wherever `schemaFormat` appears in the document (message-level in v2, `message.payload` Multi-Format Schema Object in v3, or a `components.schemas` entry) and indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`, the standard version used across the Style Guide examples (BUG / MAJOR).
+- **AAR057ErrorTopicDocumentedCheck**: At least one channel (a channel key in v2, or a channel's `address` in v3) must be documented as an error topic following `<topicOriginal>.[<consumerGroup>.]error.<n>`, the exact pattern Spring requires to route error messages (BUG / MAJOR).
 - **AAR058RetryTopicNamingConventionCheck**: If a channel name (a channel key in v2, or a channel's `address` in v3) contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`, the exact pattern Spring requires for automatic retry reprocessing (BUG / MINOR).
+- **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record must be in CamelCase with an uppercase first letter, including records nested inside `fields[].type`, unions, arrays, and maps (BUG / MAJOR).
+
+### Changed
+- **AAR047AvroFieldDocCheck**: Lowered the default severity from `INFO` to `MINOR`.
 
 ### Changed
 - Harmonized rule messages and titles (EN + ES): reworded ~23 rules to clearer, field-naming text and fixed typos/imprecise descriptions. Updated the coupled test-class assertions and EN/ES HTML docs.

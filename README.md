@@ -131,7 +131,11 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 - **AAR051OperationIdCamelCaseCheck**: The operationId must be present and follow camelCase naming convention.
 - **AAR053ChannelNamingConventionCheck**: The channel name must follow the corporate topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]`.
 - **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc`, `cmd` or `sys`.
+- **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears, must have `subject`, `ref` and `referenceName` on every item.
+- **AAR056AvroSchemaFormatCheck**: When `schemaFormat` indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`.
+- **AAR057ErrorTopicDocumentedCheck**: At least one channel must be documented as an error topic following `<topicOriginal>.[<consumerGroup>.]error.<n>`.
 - **AAR058RetryTopicNamingConventionCheck**: If a channel name contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`.
+- **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record, including records nested inside `fields[].type`, unions, arrays and maps, must be in CamelCase with an uppercase first letter.
 
 ## 💛 Sponsors
 <img src="https://apiaddicts.cloudappi.net/web/image/4248/LOGOCloudappi2020Versiones-01.png" alt="cloudappi" width="150"/>

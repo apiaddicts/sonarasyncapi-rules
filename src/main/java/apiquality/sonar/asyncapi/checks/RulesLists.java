@@ -62,6 +62,7 @@ public final class RulesLists {
             AAR041ComponetChannelServerCheck.class,
             AAR053ChannelNamingConventionCheck.class,
             AAR054ClassificationValidValuesCheck.class,
+            AAR057ErrorTopicDocumentedCheck.class,
             AAR058RetryTopicNamingConventionCheck.class
         );
     }
@@ -77,7 +78,10 @@ public final class RulesLists {
             AAR047AvroFieldDocCheck.class,
             AAR048AvroNameNomenclatureCheck.class,
             AAR049AvroDefaultNullCheck.class,
-            AAR052AvroNamespacePatternCheck.class
+            AAR052AvroNamespacePatternCheck.class,
+            AAR056AvroSchemaFormatCheck.class,
+            AAR055XPayloadReferencesWellFormedCheck.class,
+            AAR059AvroRecordNameCamelCaseCheck.class
             );
     }
 

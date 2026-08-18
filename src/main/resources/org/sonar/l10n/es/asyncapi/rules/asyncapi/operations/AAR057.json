@@ -1,0 +1,13 @@
+{
+    "title": "AAR057 - ErrorTopicDocumented - Debe existir al menos un channel con patrón de topic de error",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MAJOR"
+}
