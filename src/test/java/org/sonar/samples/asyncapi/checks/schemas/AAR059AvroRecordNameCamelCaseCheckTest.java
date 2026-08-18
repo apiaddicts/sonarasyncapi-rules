@@ -35,6 +35,26 @@ public class AAR059AvroRecordNameCamelCaseCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2NameCamelCaseBounds() {
+        verifyV2("name-camel-case-bounds.yaml");
+    }
+
+    @Test
+    public void verifyV2NameCamelCaseFormatVariants() {
+        verifyV2("name-camel-case-format-variants.yaml");
+    }
+
+    @Test
+    public void verifyV2NameCamelCaseNonString() {
+        verifyV2("name-camel-case-non-string.yaml");
+    }
+
+    @Test
+    public void verifyV2NameCamelCaseNameGuard() {
+        verifyV2("name-camel-case-name-guard.yaml");
+    }
+
+    @Test
     public void verifyV3NameCamelCaseValid() {
         verifyV3("name-camel-case-valid.yaml");
     }
@@ -47,6 +67,26 @@ public class AAR059AvroRecordNameCamelCaseCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3NameCamelCaseSharedRef() {
         verifyV3("name-camel-case-shared-ref.yaml");
+    }
+
+    @Test
+    public void verifyV3NameCamelCaseBounds() {
+        verifyV3("name-camel-case-bounds.yaml");
+    }
+
+    @Test
+    public void verifyV3NameCamelCaseFormatVariants() {
+        verifyV3("name-camel-case-format-variants.yaml");
+    }
+
+    @Test
+    public void verifyV3NameCamelCaseNonString() {
+        verifyV3("name-camel-case-non-string.yaml");
+    }
+
+    @Test
+    public void verifyV3NameCamelCaseNameGuard() {
+        verifyV3("name-camel-case-name-guard.yaml");
     }
 
     @Override
