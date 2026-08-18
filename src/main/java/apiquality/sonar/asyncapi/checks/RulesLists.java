@@ -80,7 +80,8 @@ public final class RulesLists {
             AAR049AvroDefaultNullCheck.class,
             AAR052AvroNamespacePatternCheck.class,
             AAR056AvroSchemaFormatCheck.class,
-            AAR055XPayloadReferencesWellFormedCheck.class
+            AAR055XPayloadReferencesWellFormedCheck.class,
+            AAR059AvroRecordNameCamelCaseCheck.class
             );
     }
 

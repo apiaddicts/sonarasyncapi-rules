@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **AAR056AvroSchemaFormatCheck**: Wherever `schemaFormat` appears in the document (message-level in v2, `message.payload` Multi-Format Schema Object in v3, or a `components.schemas` entry) and indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`, the standard version used across the Style Guide examples (BUG / MAJOR).
 - **AAR057ErrorTopicDocumentedCheck**: At least one channel (a channel key in v2, or a channel's `address` in v3) must be documented as an error topic following `<topicOriginal>.[<consumerGroup>.]error.<n>`, the exact pattern Spring requires to route error messages (BUG / MAJOR).
 - **AAR058RetryTopicNamingConventionCheck**: If a channel name (a channel key in v2, or a channel's `address` in v3) contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`, the exact pattern Spring requires for automatic retry reprocessing (BUG / MINOR).
+- **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record must be in CamelCase with an uppercase first letter, including records nested inside `fields[].type`, unions, arrays, and maps (BUG / MAJOR).
 
 ### Changed
 - **AAR047AvroFieldDocCheck**: Lowered the default severity from `INFO` to `MINOR`.

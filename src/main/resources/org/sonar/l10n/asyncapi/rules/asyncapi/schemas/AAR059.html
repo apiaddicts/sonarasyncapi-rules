@@ -1,0 +1,31 @@
+<p>The <code>name</code> field of every Avro record must be in CamelCase with an uppercase first letter (e.g. <code>SolicitudComunicacion</code>, <code>ResultadoComunicacionMail</code>). This applies to the top-level record and to any record nested inside <code>fields[].type</code> (as a plain nested type, inside a union, inside an array's <code>items</code>, or inside a map's <code>values</code>). AAR048 already validates that Avro names use only valid characters, but does not enforce this casing convention.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: SolicitudComunicacion
+  namespace: org.example.orders
+  fields:
+    - name: resultado
+      type:
+        type: record
+        name: resultado_comunicacion_mail # Noncompliant - nested record name is not CamelCase
+        fields:
+          - name: estado
+            type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: SolicitudComunicacion
+  namespace: org.example.orders
+  fields:
+    - name: resultado
+      type:
+        type: record
+        name: ResultadoComunicacionMail
+        fields:
+          - name: estado
+            type: string
+</pre>
