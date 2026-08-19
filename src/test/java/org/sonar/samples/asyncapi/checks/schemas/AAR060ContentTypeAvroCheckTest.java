@@ -38,6 +38,61 @@ public class AAR060ContentTypeAvroCheckTest extends BaseCheckTest {
         verifyV3("content-type-invalid.yaml");
     }
 
+    @Test
+    public void verifyV2ContentTypeFormatVariants() {
+        verifyV2("content-type-format-variants.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeFormatVariants() {
+        verifyV3("content-type-format-variants.yaml");
+    }
+
+    @Test
+    public void verifyV2ContentTypeNull() {
+        verifyV2("content-type-null.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeNull() {
+        verifyV3("content-type-null.yaml");
+    }
+
+    @Test
+    public void verifyV2ContentTypeNonString() {
+        verifyV2("content-type-non-string.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeNonString() {
+        verifyV3("content-type-non-string.yaml");
+    }
+
+    @Test
+    public void verifyV2ContentTypeNoDefault() {
+        verifyV2("content-type-no-default.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeNoDefault() {
+        verifyV3("content-type-no-default.yaml");
+    }
+
+    @Test
+    public void verifyV2ContentTypeLengthBoundary() {
+        verifyV2("content-type-length-boundary.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeLengthBoundary() {
+        verifyV3("content-type-length-boundary.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeOneOf() {
+        verifyV3("content-type-oneof.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR060 - ContentTypeAvro - The message contentType must be application/*+avro",

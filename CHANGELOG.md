@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2-beta-5] - 2026-08-19
+
+### Added
+- **AAR060ContentTypeAvroCheck**: A message's `contentType` (and the document-level `defaultContentType`) must match `application/*+avro`, the pattern Confluent's KafkaAvroDeserializer expects, so the payload can be deserialized (BUG / MAJOR).
+
 ## [2.0.2-beta-4] - 2026-07-22
 
 ### Added

@@ -1,0 +1,32 @@
+asyncapi: 3.0.0
+info:
+  title: Content Type Avro Format Variants V3
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      noSuffix:
+        contentType: application/avro # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
+      dashAvro:
+        contentType: application/x-avro # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
+      emptySubtype:
+        contentType: application/+avro # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
+      emptyString:
+        contentType: '' # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
+      upperPrefix:
+        contentType: APPLICATION/vnd.avro+avro # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
+      upperSuffix:
+        contentType: application/vnd.avro+AVRO # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
