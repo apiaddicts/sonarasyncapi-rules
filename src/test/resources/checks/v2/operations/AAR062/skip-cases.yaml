@@ -1,0 +1,22 @@
+asyncapi: '2.6.0'
+info:
+  title: Subscribe Group Required - Skip Cases V2
+  version: '1.0.0'
+channels:
+  ref-subscribe:
+    # A subscribe operation that is itself a $ref is skipped: the group is
+    # validated at the reference target.
+    subscribe:
+      $ref: '#/channels/valid-scalar/subscribe'
+  null-subscribe:
+    # A null subscribe node declares no consuming operation, so it is skipped.
+    subscribe: null
+  producer-only:
+    publish:
+      operationId: produceOnly
+  valid-scalar:
+    subscribe:
+      operationId: consumeScalar
+      bindings:
+        kafka:
+          groupId: scalar.beca.1

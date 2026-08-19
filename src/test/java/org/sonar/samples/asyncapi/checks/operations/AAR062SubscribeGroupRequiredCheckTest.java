@@ -38,6 +38,36 @@ public class AAR062SubscribeGroupRequiredCheckTest extends BaseCheckTest {
         verifyV3("invalid.yaml");
     }
 
+    @Test
+    public void verifyV2InvalidGroupVariants() {
+        verifyV2("invalid-group-variants.yaml");
+    }
+
+    @Test
+    public void verifyV3InvalidGroupVariants() {
+        verifyV3("invalid-group-variants.yaml");
+    }
+
+    @Test
+    public void verifyV2SkipCases() {
+        verifyV2("skip-cases.yaml");
+    }
+
+    @Test
+    public void verifyV3SkipCases() {
+        verifyV3("skip-cases.yaml");
+    }
+
+    @Test
+    public void verifyV2NoChannels() {
+        verifyV2("no-channels.yaml");
+    }
+
+    @Test
+    public void verifyV3NoOperations() {
+        verifyV3("no-operations.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties(
