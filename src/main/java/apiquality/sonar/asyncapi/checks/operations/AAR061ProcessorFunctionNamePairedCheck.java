@@ -9,6 +9,7 @@ import apiquality.sonar.asyncapi.checks.BaseCheck;
 import apiquality.sonar.asyncapi.utils.AsyncAPIVersionDetector;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +23,19 @@ public class AAR061ProcessorFunctionNamePairedCheck extends BaseCheck {
     private static final String FUNCTION_NAME = "x-scs-function-name";
 
     private static final class FunctionGroup {
-        private boolean hasProduce = false;
-        private boolean hasConsume = false;
-        private final List<JsonNode> nodes = new ArrayList<>();
+        private final List<JsonNode> produceNodes = new ArrayList<>();
+        private final List<JsonNode> consumeNodes = new ArrayList<>();
+
+        private List<JsonNode> unpairedNodes() {
+            int paired = Math.min(produceNodes.size(), consumeNodes.size());
+            if (produceNodes.size() > consumeNodes.size()) {
+                return produceNodes.subList(paired, produceNodes.size());
+            }
+            if (consumeNodes.size() > produceNodes.size()) {
+                return consumeNodes.subList(paired, consumeNodes.size());
+            }
+            return Collections.emptyList();
+        }
     }
 
     @Override
@@ -43,10 +54,8 @@ public class AAR061ProcessorFunctionNamePairedCheck extends BaseCheck {
         }
 
         for (FunctionGroup group : groups.values()) {
-            if (!group.hasProduce || !group.hasConsume) {
-                for (JsonNode functionNode : group.nodes) {
-                    addIssue(CHECK_KEY, translate(ERROR_KEY, functionNode.stringValue()), functionNode.key());
-                }
+            for (JsonNode functionNode : group.unpairedNodes()) {
+                addIssue(CHECK_KEY, translate(ERROR_KEY, functionNode.stringValue()), functionNode.key());
             }
         }
     }
@@ -54,32 +63,33 @@ public class AAR061ProcessorFunctionNamePairedCheck extends BaseCheck {
     private void collectV2(JsonNode rootNode, Map<String, FunctionGroup> groups) {
         JsonNode channelsNode = rootNode.get("channels");
         if (isAbsent(channelsNode)) return;
-        for (Map.Entry<String, JsonNode> entry : channelsNode.propertyMap().entrySet()) {
-            JsonNode channel = entry.getValue();
+        for (JsonNode channel : channelsNode.properties()) {
             if (isAbsent(channel)) continue;
-            record(channel.get("publish"), true, groups);
-            record(channel.get("subscribe"), false, groups);
+            recordOperation(channel.get("publish"), true, groups);
+            recordOperation(channel.get("subscribe"), false, groups);
         }
     }
 
     private void collectV3(JsonNode rootNode, Map<String, FunctionGroup> groups) {
         JsonNode operationsNode = rootNode.get("operations");
         if (isAbsent(operationsNode)) return;
-        for (Map.Entry<String, JsonNode> entry : operationsNode.propertyMap().entrySet()) {
-            JsonNode operation = entry.getValue();
-            if (isAbsent(operation)) continue;
-            JsonNode actionNode = operation.get("action");
-            if (isAbsent(actionNode)) continue;
-            String action = actionNode.stringValue();
+        for (JsonNode operation : operationsNode.properties()) {
+            String action = actionOf(operation);
             if ("send".equals(action)) {
-                record(operation, true, groups);
+                recordOperation(operation, true, groups);
             } else if ("receive".equals(action)) {
-                record(operation, false, groups);
+                recordOperation(operation, false, groups);
             }
         }
     }
 
-    private void record(JsonNode operation, boolean isProduce, Map<String, FunctionGroup> groups) {
+    private static String actionOf(JsonNode operation) {
+        if (isAbsent(operation)) return null;
+        JsonNode actionNode = operation.get("action");
+        return isAbsent(actionNode) ? null : actionNode.stringValue();
+    }
+
+    private void recordOperation(JsonNode operation, boolean isProduce, Map<String, FunctionGroup> groups) {
         if (isAbsent(operation)) return;
         JsonNode functionNode = operation.get(FUNCTION_NAME);
         if (isAbsent(functionNode)) return;
@@ -87,11 +97,10 @@ public class AAR061ProcessorFunctionNamePairedCheck extends BaseCheck {
         if (value == null || value.trim().isEmpty()) return;
         FunctionGroup group = groups.computeIfAbsent(value, key -> new FunctionGroup());
         if (isProduce) {
-            group.hasProduce = true;
+            group.produceNodes.add(functionNode);
         } else {
-            group.hasConsume = true;
+            group.consumeNodes.add(functionNode);
         }
-        group.nodes.add(functionNode);
     }
 
     private static boolean isAbsent(JsonNode node) {

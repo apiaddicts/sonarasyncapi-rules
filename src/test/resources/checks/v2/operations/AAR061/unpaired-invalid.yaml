@@ -6,19 +6,27 @@ channels:
   a-in:
     publish:
       operationId: consumeA
-      x-scs-function-name: processAtoB # Noncompliant {{AAR061: The x-scs-function-name 'processAtoB' must be shared by both a publish/send and a subscribe/receive operation}}
+      x-scs-function-name: processAtoB # Noncompliant {{AAR061: The x-scs-function-name 'processAtoB' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
   b-out:
     subscribe:
       operationId: produceB
-      x-scs-function-name: processCtoD # Noncompliant {{AAR061: The x-scs-function-name 'processCtoD' must be shared by both a publish/send and a subscribe/receive operation}}
+      x-scs-function-name: processCtoD # Noncompliant {{AAR061: The x-scs-function-name 'processCtoD' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
   dup-a:
     publish:
       operationId: dupA
-      x-scs-function-name: processDup # Noncompliant {{AAR061: The x-scs-function-name 'processDup' must be shared by both a publish/send and a subscribe/receive operation}}
+      x-scs-function-name: processDup # Noncompliant {{AAR061: The x-scs-function-name 'processDup' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
   dup-b:
     publish:
       operationId: dupB
-      x-scs-function-name: processDup # Noncompliant {{AAR061: The x-scs-function-name 'processDup' must be shared by both a publish/send and a subscribe/receive operation}}
+      x-scs-function-name: processDup # Noncompliant {{AAR061: The x-scs-function-name 'processDup' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  dup-c:
+    subscribe:
+      operationId: dupC
+      x-scs-function-name: processDupConsumer # Noncompliant {{AAR061: The x-scs-function-name 'processDupConsumer' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  dup-d:
+    subscribe:
+      operationId: dupD
+      x-scs-function-name: processDupConsumer # Noncompliant {{AAR061: The x-scs-function-name 'processDupConsumer' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
   paired-in:
     publish:
       operationId: consumeP

@@ -29,6 +29,26 @@ public class AAR061ProcessorFunctionNamePairedCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2Unbalanced() {
+        verifyV2("unbalanced-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV2BlankFunctionName() {
+        verifyV2("blank-function-name.yaml");
+    }
+
+    @Test
+    public void verifyV2NoChannels() {
+        verifyV2("no-channels.yaml");
+    }
+
+    @Test
+    public void verifyV2StructuralEdges() {
+        verifyV2("structural-edges.yaml");
+    }
+
+    @Test
     public void verifyV3Paired() {
         verifyV3("paired-valid.yaml");
     }
@@ -36,6 +56,26 @@ public class AAR061ProcessorFunctionNamePairedCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3Unpaired() {
         verifyV3("unpaired-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV3Unbalanced() {
+        verifyV3("unbalanced-invalid.yaml");
+    }
+
+    @Test
+    public void verifyV3BlankFunctionName() {
+        verifyV3("blank-function-name.yaml");
+    }
+
+    @Test
+    public void verifyV3NoOperations() {
+        verifyV3("no-operations.yaml");
+    }
+
+    @Test
+    public void verifyV3StructuralEdges() {
+        verifyV3("structural-edges.yaml");
     }
 
     @Override

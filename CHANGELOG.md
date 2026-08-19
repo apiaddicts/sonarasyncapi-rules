@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2-beta-5] - 2026-08-19
+
+### Added
+- **AAR061ProcessorFunctionNamePairedCheck**: Every `x-scs-function-name` must be paired one-to-one between a producing (`publish`/`send`) and a consuming (`subscribe`/`receive`) operation, so the JAPI generator links them into a single processor (BUG / MINOR).
+
 ## [2.0.2-beta-3] - 2026-07-21
 
 ### Fixed
