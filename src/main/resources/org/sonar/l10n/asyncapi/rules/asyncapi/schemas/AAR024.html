@@ -1,7 +1,84 @@
-<p></p>
+<p>All messages sent and received must comply with the message schema specified in the documentation</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: No Validation
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'wss'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR024: All messages sent and received must comply with the message schema specified in the documentation}}</span>
+        payload:
+          type: object
 </pre>
 <h2>Compliant Solution (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Message Validation
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'wss'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: No Validation
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  orders:
+    address: orders
+    messages:
+      Order: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR024: All messages sent and received must comply with the message schema specified in the documentation}}</span>
+        payload:
+          type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Validation
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  orders:
+    address: orders
+    messages:
+      Order:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+            amount:
+              type: number
+              minimum: 0
 </pre>

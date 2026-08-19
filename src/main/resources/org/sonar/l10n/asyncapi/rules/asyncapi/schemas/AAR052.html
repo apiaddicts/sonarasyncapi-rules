@@ -1,0 +1,72 @@
+<p>The <code>namespace</code> of a named Avro schema (<code>record</code>, <code>enum</code> or <code>fixed</code>) is required and must follow the corporate pattern: <code>org.madrid.&lt;cod_poaps&gt;.&lt;classification&gt;.&lt;domain&gt;</code> for application schemas, or <code>org.madrid.common.&lt;domain&gt;</code> for common schemas shared through the <code>eda_kafka_esquemas</code> repository. Each placeholder segment may contain lowercase letters, digits, hyphens, and underscores. A schema that omits the <code>namespace</code>, or whose <code>namespace</code> does not match the pattern, is noncompliant.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.example.orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.madrid.p001.core.orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<pre>
+payload:
+  type: record
+  name: OrderValue
+  namespace: org.madrid.common.orders
+  fields:
+    - name: id
+      type: string
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Namespace Pattern
+  version: '1.0.0'
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.&lt;cod_poaps&gt;.&lt;classification&gt;.&lt;domain&gt; for application schemas, or org.madrid.common.&lt;domain&gt; for common schemas}}</span>
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Namespace Pattern
+  version: '1.0.0'
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.madrid.p001.core.orders
+            fields:
+              - name: id
+                type: string
+</pre>

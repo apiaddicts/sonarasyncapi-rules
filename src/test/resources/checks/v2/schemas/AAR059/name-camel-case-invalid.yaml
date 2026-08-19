@@ -1,0 +1,97 @@
+asyncapi: '2.6.0'
+info:
+  title: Avro Record Name CamelCase Invalid V2
+  version: '1.0.0'
+channels:
+  flat:
+    subscribe:
+      operationId: receiveFlat
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: record
+          name: solicitud_comunicacion # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+          namespace: org.example.orders
+          fields:
+            - name: id
+              type: string
+  nested:
+    subscribe:
+      operationId: receiveNested
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: record
+          name: SolicitudComunicacion
+          namespace: org.example.orders
+          fields:
+            - name: resultado
+              type:
+                type: record
+                name: resultado_comunicacion_mail # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+                fields:
+                  - name: estado
+                    type: string
+  union:
+    subscribe:
+      operationId: receiveUnion
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: record
+          name: SolicitudConUnion
+          fields:
+            - name: detalle
+              type:
+                - "null"
+                - type: record
+                  name: detalle_union # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+                  fields:
+                    - name: valor
+                      type: string
+  arrayOfRecords:
+    subscribe:
+      operationId: receiveArray
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: record
+          name: SolicitudConArray
+          fields:
+            - name: items
+              type:
+                type: array
+                items:
+                  type: record
+                  name: item_array # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+                  fields:
+                    - name: valor
+                      type: string
+  mapOfRecords:
+    subscribe:
+      operationId: receiveMap
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: record
+          name: SolicitudConMap
+          fields:
+            - name: valores
+              type:
+                type: map
+                values:
+                  type: record
+                  name: valor_map # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+                  fields:
+                    - name: valor
+                      type: string
+components:
+  schemas:
+    OrphanRecord:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: orphan_record_value # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string

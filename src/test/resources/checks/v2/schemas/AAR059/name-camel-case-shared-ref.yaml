@@ -1,0 +1,33 @@
+asyncapi: '2.6.0'
+info:
+  title: Avro Record Name CamelCase Shared Ref V2
+  version: '1.0.0'
+channels:
+  channelA:
+    subscribe:
+      operationId: receiveChannelA
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Shared'
+          - schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+            payload:
+              type: record
+              name: inline_bad_name # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+              fields:
+                - name: id
+                  type: string
+  channelB:
+    publish:
+      operationId: publishChannelB
+      message:
+        $ref: '#/components/messages/Shared'
+components:
+  messages:
+    Shared:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      payload:
+        type: record
+        name: shared_bad_name # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string

@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apiaddicts.apitools.dosonarapi</groupId>
   <artifactId>sonarasyncapi-rules-community</artifactId>
-  <version>2.0.2-beta-3</version>
+  <version>2.0.2-beta-4</version>
   <packaging>sonar-plugin</packaging>
 
   <name>SonarQube AsyncAPI Community Rules</name>
@@ -59,6 +59,8 @@
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
     <sonar.language>java</sonar.language>
+    <sonar.exclusions>**/*.html,**/*.json</sonar.exclusions>
+    <sonar.cpd.exclusions>**/*.html,**/*.json</sonar.cpd.exclusions>
   </properties>
 
 

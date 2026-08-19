@@ -1,0 +1,13 @@
+{
+    "title": "AAR051 - OperationIdCamelCase - El operationId debe estar presente y seguir la convención camelCase",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+}
