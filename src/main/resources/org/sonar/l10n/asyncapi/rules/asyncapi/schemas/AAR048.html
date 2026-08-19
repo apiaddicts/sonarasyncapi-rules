@@ -19,3 +19,45 @@ payload:
     - name: orderId
       type: string
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Name Nomenclature
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR048: Avro name must start with a letter or underscore, and can only contain letters, numbers and underscores}}</span>
+            type: record
+            name: 0-invalid-record
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Name Nomenclature
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: orderId
+                type: string
+</pre>

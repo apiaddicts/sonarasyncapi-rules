@@ -1,0 +1,13 @@
+asyncapi: "2.0.0"
+info:
+  title: Awesome API
+  description: A very well-defined API
+  version: "1.0"
+servers:
+  production:
+    url: "stoplight.io"
+    protocol: "https"
+channels:
+  hello:
+    servers:
+      - unknown # Noncompliant {{AAR040: Channel references a server that is not defined in the 'servers' object.}}

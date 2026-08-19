@@ -1,5 +1,5 @@
 {
-    "title": "AAR053 - ChannelNamingConvention - El nombre del channel debe seguir la convención de nomenclatura de topics Kafka",
+    "title": "AAR053 - ChannelNamingConvention - El nombre del channel debe seguir la convención de nomenclatura corporativa de topics",
     "type": "BUG",
     "status": "ready",
     "remediation": {

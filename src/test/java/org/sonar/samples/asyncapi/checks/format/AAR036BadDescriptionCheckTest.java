@@ -29,6 +29,6 @@ public class AAR036BadDescriptionCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR036 - BadDescription - The description must begin with the first capital letter and end with point", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR036 - BadDescription - The description must begin with a capital letter and end with a period", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

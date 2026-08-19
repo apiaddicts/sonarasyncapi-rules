@@ -1,0 +1,21 @@
+asyncapi: '3.0.0'
+info:
+  title: Numeric Parameter Restrictions Example API
+  version: '1.0.0'
+channels:
+  sensorData:
+    address: sensor-data
+    messages:
+      SensorReading:
+        payload:
+          type: object
+          properties:
+            temperature: # Noncompliant {{AAR032: Numeric property should have at least one of: minimum, maximum, format, enum, or const restriction.}}
+              type: number
+              description: Measured temperature.
+            humidity:
+              type: number
+              minimum: 0
+              maximum: 100
+            sensorId: # Noncompliant {{AAR032: Numeric property should have at least one of: minimum, maximum, format, enum, or const restriction.}}
+              type: integer

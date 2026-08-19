@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.2-beta-4] - 2026-07-22
 
 ### Added
+- `AbstractSchemaPropertyCheck` base class for property-level JSON Schema checks (subscribes to `SCHEMA`/`PAYLOAD_SCHEMA` and iterates `properties` at any depth); v2 + v3 test fixtures for AAR032/AAR033/AAR034.
 - **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
 - **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (`record`, `enum` or `fixed`) is required and must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
 - **AAR053ChannelNamingConventionCheck**: The channel name (AsyncAPI 2.x channel key, or AsyncAPI 3.x+ `address`) must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]` (BUG / MAJOR).
@@ -20,6 +21,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - **AAR047AvroFieldDocCheck**: Lowered the default severity from `INFO` to `MINOR`.
+
+### Changed
+- Harmonized rule messages and titles (EN + ES): reworded ~23 rules to clearer, field-naming text and fixed typos/imprecise descriptions. Updated the coupled test-class assertions and EN/ES HTML docs.
+
+### Fixed
+- **AAR032NumericParameterIntegrityCheck** now validates numeric properties. It now checks every numeric property (in `components.schemas` and message payloads, at any depth) for a `minimum`/`maximum`, `format`, `enum` or `const` restriction.
+- **AAR033StringParameterIntegrityCheck**: implemented (was an empty stub class that raised nothing). Checks every string property for a `minLength`/`maxLength`/`pattern`/`enum`/`const`/`format` restriction.
+- **AAR034NumericFormatCheck**: implemented (was an empty stub class that raised nothing). Checks that a numeric property's declared `format` is `int32`, `int64`, `float` or `double`.
 
 ## [2.0.2-beta-3] - 2026-07-21
 

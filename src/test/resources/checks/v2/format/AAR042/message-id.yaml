@@ -8,7 +8,7 @@ channels:
     description: Canal para enviar y recibir información de pedidos.
     publish:
       operationId: sendOrder
-      message: #Noncompliant {{AAR042: It is recommended to have a unique identifier per message}}
+      message: #Noncompliant {{AAR042: Message should have a 'messageId' field for unique identification.}}
         contentType: application/json
         payload:
           type: object

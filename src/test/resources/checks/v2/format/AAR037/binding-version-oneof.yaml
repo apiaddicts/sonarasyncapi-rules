@@ -22,5 +22,5 @@ channels:
           - name: SecondMessage
             contentType: application/json
             bindings:
-              kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+              kafka: # Noncompliant {{AAR037: Binding must specify a 'bindingVersion' field.}}
                 clientId: example-client

@@ -10,7 +10,7 @@ channels:
   carga:
     subscribe:
       operationId: receiveCarga
-      message: # Noncompliant {{AAR042: It is recommended to have a unique identifier per message}}
+      message: # Noncompliant {{AAR042: Message should have a 'messageId' field for unique identification.}}
         schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
         payload:
           type: record

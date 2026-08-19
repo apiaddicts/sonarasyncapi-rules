@@ -1,7 +1,51 @@
-<p></p>
+<p>El objeto license debe tener el campo url</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  license: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR017: El objeto 'license' debe incluir un campo 'url'.}}</span>
+    name: Apache 2.0
+channels:
+  /pets: {}
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+channels:
+  /pets: {}
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  license: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR017: El objeto 'license' debe incluir un campo 'url'.}}</span>
+    name: Apache 2.0
+channels:
+  pets: {}
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+channels:
+  pets: {}
 </pre>

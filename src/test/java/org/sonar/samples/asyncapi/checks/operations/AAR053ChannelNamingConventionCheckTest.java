@@ -233,7 +233,7 @@ public class AAR053ChannelNamingConventionCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR053 - ChannelNamingConvention - Channel name must follow the Kafka topic naming convention", RuleType.BUG, Severity.MAJOR, tags("operations"));
+        assertRuleProperties("AAR053 - ChannelNamingConvention - Channel name must follow the corporate topic naming convention", RuleType.BUG, Severity.MAJOR, tags("operations"));
     }
 
     @Override

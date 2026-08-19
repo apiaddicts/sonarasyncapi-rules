@@ -12,6 +12,6 @@ channels:
       Message:
         payload: {type: object}
 operations:
-  SendMessage: # Noncompliant {{AAR012: Each operation should have a unique operator (Operation ID)}}
+  SendMessage: # Noncompliant {{AAR012: Operation must declare an 'operationId'.}}
     action: send
     channel: messages

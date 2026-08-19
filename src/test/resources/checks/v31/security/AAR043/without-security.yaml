@@ -1,4 +1,4 @@
-# Noncompliant {{AAR043: It is recommended to add the security scheme to be used to each channel}}
+# Noncompliant {{AAR043: Channel should define a security scheme in its operations or bindings.}}
 asyncapi: 3.1.0
 info:
   title: No Security

@@ -6,7 +6,7 @@ info:
 channels:
   /pets:
     description: Canal para operaciones relacionadas con mascotas.
-    subscribe: # Noncompliant {{AAR022: Operation description must differ from its summary}}
+    subscribe: # Noncompliant {{AAR022: The 'description' field must not be identical to the 'summary' field.}}
       operationId: getPets
       summary: Operación para recibir la lista de mascotas.
       description: Operación para recibir la lista de mascotas.

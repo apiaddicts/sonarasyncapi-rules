@@ -1,5 +1,5 @@
 {
-    "title": "AAR036 - BadDescription - The description must begin with the first capital letter and end with point",
+    "title": "AAR036 - BadDescription - The description must begin with a capital letter and end with a period",
     "type": "BUG",
     "status": "ready",
     "remediation": {
