@@ -29,6 +29,26 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
         verifyV2("without-validation.yaml");
     }
 
+    @Test
+    public void verifyInV2OneOfWithoutValidation() {
+        verifyV2("oneof-without-validation.yaml");
+    }
+
+    @Test
+    public void verifyInV2NonAvroSchemaFormat() {
+        verifyV2("non-avro-schemaformat.yaml");
+    }
+
+    @Test
+    public void verifyInV2NullContentType() {
+        verifyV2("null-content-type.yaml");
+    }
+
+    @Test
+    public void verifyInV2ComponentsMessage() {
+        verifyV2("components-message.yaml");
+    }
+
     // ============= V2 Avro Tests =============
 
     @Test
@@ -48,10 +68,25 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
         verifyV3("without-validation.yaml");
     }
 
+    @Test
+    public void verifyV3NonAvroSchemaFormat() {
+        verifyV3("non-avro-schemaformat.yaml");
+    }
+
+    @Test
+    public void verifyV3MessageOneOf() {
+        verifyV3("message-oneof.yaml");
+    }
+
     // --- V3 Avro Tests ---
     @Test
     public void verifyV3WithAvroSchemaFormat() {
         verifyV3("with-avro-schema-format.yaml");
+    }
+
+    @Test
+    public void verifyV3AvroMessageLevel() {
+        verifyV3("avro-message-level.yaml");
     }
 
     // --- V31 Tests ---
@@ -64,8 +99,14 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
         verifyV31("without-validation.yaml");
     }
 
+    // --- V31 Avro Tests ---
+    @Test
+    public void verifyV31WithAvroSchemaFormat() {
+        verifyV31("with-avro-schema-format.yaml");
+    }
+
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR024 - MessageValidation - All messages sent and received must comply with the message schema specified in the documentation", RuleType.BUG, Severity.MAJOR, tags("schemas"));
+        assertRuleProperties("AAR024 - MessageValidation - Each message must declare a contentType unless it is an Avro message", RuleType.BUG, Severity.MAJOR, tags("schemas"));
     }
 }

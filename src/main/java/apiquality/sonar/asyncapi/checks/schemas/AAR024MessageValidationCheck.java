@@ -45,7 +45,12 @@ public class AAR024MessageValidationCheck extends BaseCheck {
     JsonNode contentTypeNode = resolved.get("contentType");
     boolean hasContentType = !contentTypeNode.isMissing() && !contentTypeNode.isNull();
     if (!hasContentType && !AvroUtils.isAvroMessage(resolved)) {
-      addIssue(CHECK_KEY, translate("AAR024.error"), resolved.key());
+      addIssue(CHECK_KEY, translate("AAR024.error"), anchorFor(resolved));
     }
+  }
+
+  private static JsonNode anchorFor(JsonNode message) {
+    JsonNode keyNode = message.key();
+    return (keyNode == null || keyNode.isMissing()) ? message : keyNode;
   }
 }
