@@ -1,4 +1,4 @@
-# Noncompliant {{AAR008: Define 'servers' is mandatory}}
+# Noncompliant {{AAR008: The AsyncAPI document must define at least one server in the 'servers' object.}}
 asyncapi: 3.1.0
 info:
   title: Swagger Petstore

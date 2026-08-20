@@ -1,0 +1,13 @@
+{
+    "title": "AAR055 - XPayloadReferencesWellFormed - The x-payload-references extension must be well-formed",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

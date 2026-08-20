@@ -1,0 +1,11 @@
+asyncapi: '2.6.0'
+info:
+  title: Classification Custom Valid V2
+  version: '1.0.0'
+channels:
+  beca.evt.alumnos.registro-bonificacion.beca:
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object

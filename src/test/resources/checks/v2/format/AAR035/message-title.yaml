@@ -10,7 +10,7 @@ channels:
     publish:
       operationId: sendOrder
       summary: Publica información sobre un nuevo pedido.
-      message: #Noncompliant {{AAR035: It is recommended to have a title per message}}
+      message: #Noncompliant {{AAR035: Message should have a 'title' field.}}
         description: Mensaje que contiene los detalles de un nuevo pedido realizado.
         contentType: application/json
         payload:

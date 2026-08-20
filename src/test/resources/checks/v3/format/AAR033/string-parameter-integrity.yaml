@@ -1,0 +1,23 @@
+asyncapi: '3.0.0'
+info:
+  title: String Parameter Restrictions Example API
+  version: '1.0.0'
+channels:
+  userData:
+    address: user-data
+    messages:
+      UserInfo:
+        payload:
+          type: object
+          properties:
+            username: # Noncompliant {{AAR033: String property should have at least one of: minLength, maxLength, pattern, enum, const, or format restriction.}}
+              type: string
+              description: User name.
+            email:
+              type: string
+              pattern: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+            role:
+              type: string
+              enum:
+                - admin
+                - user

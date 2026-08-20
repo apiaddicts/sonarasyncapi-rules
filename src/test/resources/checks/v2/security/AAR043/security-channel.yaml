@@ -3,7 +3,7 @@ info:
   title: Security Channel Example
   version: '1.0.0'
 channels:
-  /pets: # Noncompliant {{AAR043: It is recommended to add the security scheme to be used to each channel}}
+  /pets: # Noncompliant {{AAR043: Channel should define a security scheme in its operations or bindings.}}
     subscribe:
       operationId: getPets
       message:

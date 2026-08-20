@@ -1,0 +1,62 @@
+<p>The channel name — the AsyncAPI 2.x <code>channels</code> map key, or the AsyncAPI 3.x+ channel <code>address</code> field — follows the corporate naming pattern:</p>
+<pre>&lt;cod_poaps&gt;.&lt;classification&gt;.&lt;domain&gt;.&lt;origin&gt;.&lt;scope&gt;[.&lt;version&gt;]</pre>
+<p>The second segment (<code>classification</code>) must be one of:</p>
+<ul>
+  <li><code>cdc</code> — Change Data Capture.</li>
+  <li><code>cmd</code> — Command that triggers a modification in the domain.</li>
+  <li><code>sys</code> — Internal system topic, not intended for public consumption.</li>
+</ul>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca.evt.alumnos.registro-bonificacion.beca:
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Scholarship API
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.registro-bonificacion.beca:
+    subscribe:
+      operationId: receiveRegistration
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.evt.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Scholarship API
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.cmd.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+</pre>

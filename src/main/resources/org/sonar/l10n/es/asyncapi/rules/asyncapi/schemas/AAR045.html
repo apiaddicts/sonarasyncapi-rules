@@ -1,5 +1,5 @@
-<p>Los namespaces Avro deben seguir la notación en minúsculas con puntos (ej. <code>org.example.company</code>). Cada segmento debe comenzar con una letra minúscula y contener solo letras minúsculas y dígitos.</p>
-<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<p>Los namespaces de Avro deben seguir la notación de puntos en minúsculas (por ejemplo, <code>org.example.company</code>). Cada segmento debe comenzar con una letra minúscula y contener únicamente letras minúsculas y dígitos.</p>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
 payload:
   type: record
@@ -9,7 +9,7 @@ payload:
     - name: id
       type: string
 </pre>
-<h2>Solución Compliant (AsyncAPI 2)</h2>
+<h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
 payload:
   type: record
@@ -18,4 +18,46 @@ payload:
   fields:
     - name: id
       type: string
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Namespace Naming
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR045: El namespace Avro debe estar en minúsculas y separado por puntos}}</span>
+            type: record
+            name: OrderValue
+            namespace: Org.Example.Orders
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Namespace Naming
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
 </pre>
