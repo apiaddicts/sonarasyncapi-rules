@@ -36,8 +36,37 @@ public class AAR063AsyncAPIVersionAllowedCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2MissingVersion() {
+        verifyV2("missing-version.yaml");
+    }
+
+    @Test
+    public void verifyV2ConfiguredAllowed() {
+        ((AAR063AsyncAPIVersionAllowedCheck) check).allowedVersions = "2.4.0,2.6.0";
+        verifyV2("configured-allowed.yaml");
+    }
+
+    @Test
+    public void verifyV2ConfiguredAllowedWithBlankEntries() {
+        ((AAR063AsyncAPIVersionAllowedCheck) check).allowedVersions = "2.6.0, ,2.4.0";
+        verifyV2("configured-allowed.yaml");
+    }
+
+    @Test
+    public void verifyV2ConfiguredStillNotAllowed() {
+        ((AAR063AsyncAPIVersionAllowedCheck) check).allowedVersions = "2.6.0,3.0.0";
+        verifyV2("not-allowed.yaml");
+    }
+
+    @Test
     public void verifyV3NotAllowed() {
         verifyV3("not-allowed.yaml");
+    }
+
+    @Test
+    public void verifyV3ConfiguredAllowed() {
+        ((AAR063AsyncAPIVersionAllowedCheck) check).allowedVersions = "2.6.0,3.0.0";
+        verifyV3("configured-allowed.yaml");
     }
 
     @Test

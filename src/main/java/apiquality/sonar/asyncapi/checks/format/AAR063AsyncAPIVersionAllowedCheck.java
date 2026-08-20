@@ -44,7 +44,7 @@ public class AAR063AsyncAPIVersionAllowedCheck extends BaseCheck {
         description = "Comma-separated list of allowed asyncapi versions",
         defaultValue = DEFAULT_ALLOWED_VERSIONS
     )
-    private String allowedVersions = DEFAULT_ALLOWED_VERSIONS;
+    public String allowedVersions = DEFAULT_ALLOWED_VERSIONS;
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
