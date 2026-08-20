@@ -136,6 +136,7 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 - **AAR057ErrorTopicDocumentedCheck**: At least one channel must be documented as an error topic following `<topicOriginal>.[<consumerGroup>.]error.<n>`.
 - **AAR058RetryTopicNamingConventionCheck**: If a channel name contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`.
 - **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record, including records nested inside `fields[].type`, unions, arrays and maps, must be in CamelCase with an uppercase first letter.
+- **AAR060ContentTypeAvroCheck**: A message's `contentType` (and the document-level `defaultContentType`) must match `application/*+avro`.
 
 ## 💛 Sponsors
 <img src="https://apiaddicts.cloudappi.net/web/image/4248/LOGOCloudappi2020Versiones-01.png" alt="cloudappi" width="150"/>

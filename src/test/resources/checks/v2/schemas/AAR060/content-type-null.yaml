@@ -1,0 +1,12 @@
+asyncapi: '2.6.0'
+info:
+  title: Content Type Avro Null V2
+  version: '1.0.0'
+defaultContentType: null
+channels:
+  orders:
+    subscribe:
+      message:
+        contentType: null
+        payload:
+          type: object
