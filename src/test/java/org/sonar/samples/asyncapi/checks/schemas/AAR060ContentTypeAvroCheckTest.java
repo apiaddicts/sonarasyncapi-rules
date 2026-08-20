@@ -93,6 +93,16 @@ public class AAR060ContentTypeAvroCheckTest extends BaseCheckTest {
         verifyV3("content-type-oneof.yaml");
     }
 
+    @Test
+    public void verifyV2ContentTypeTraits() {
+        verifyV2("content-type-traits.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeTraits() {
+        verifyV3("content-type-traits.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR060 - ContentTypeAvro - The message contentType must be application/*+avro",

@@ -6,7 +6,6 @@ import org.sonar.check.Rule;
 import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
-import apiquality.sonar.asyncapi.utils.JsonNodeUtils;
 
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -29,9 +28,43 @@ public class AAR060ContentTypeAvroCheck extends BaseCheck {
         if (!asyncapiNode.isMissing() && !asyncapiNode.isNull()) {
             checkContentType(node.get("defaultContentType"));
         } else {
-            JsonNode resolved = JsonNodeUtils.resolve(node);
-            checkContentType(resolved.get("contentType"));
+            checkMessage(node);
         }
+    }
+
+    private void checkMessage(JsonNode message) {
+        if (message == null || message.isMissing() || message.isNull() || isRef(message)) {
+            return;
+        }
+        JsonNode oneOf = message.get("oneOf");
+        if (oneOf.isArray()) {
+            for (JsonNode member : oneOf.elements()) {
+                checkMessage(member);
+            }
+            return;
+        }
+        checkContentType(effectiveContentType(message));
+    }
+
+    private JsonNode effectiveContentType(JsonNode message) {
+        JsonNode own = message.get("contentType");
+        if (!own.isMissing()) {
+            return own;
+        }
+        JsonNode effective = own;
+        JsonNode traits = message.get("traits");
+        if (traits.isArray()) {
+            for (JsonNode trait : traits.elements()) {
+                if (trait == null || trait.isMissing() || trait.isNull() || isRef(trait)) {
+                    continue;
+                }
+                JsonNode traitContentType = trait.get("contentType");
+                if (!traitContentType.isMissing()) {
+                    effective = traitContentType;
+                }
+            }
+        }
+        return effective;
     }
 
     private void checkContentType(JsonNode contentTypeNode) {
@@ -40,5 +73,10 @@ public class AAR060ContentTypeAvroCheck extends BaseCheck {
         if (value != null && !AVRO_CONTENT_TYPE.matcher(value).matches()) {
             addIssue(CHECK_KEY, translate(ERROR_KEY), contentTypeNode.key());
         }
+    }
+
+    private boolean isRef(JsonNode node) {
+        JsonNode ref = node.get("$ref");
+        return !ref.isMissing() && !ref.isNull();
     }
 }
