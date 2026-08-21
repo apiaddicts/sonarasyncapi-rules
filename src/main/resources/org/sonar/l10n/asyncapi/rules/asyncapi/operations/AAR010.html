@@ -15,7 +15,7 @@
         description: Canal de comunicación para operaciones relacionadas con mascotas
         subscribe:
           operationId: receivePets
-          tags: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Tags should be documented}}</span>
+          tags: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Tag should have a 'description' field.}}</span>
             - name: used-tag
           summary: Operación para recibir la lista de mascotas
           message:
@@ -65,4 +65,61 @@ channels:
               name:
                 type: string
                 description: Nombre de la mascota
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Undocumented Tags
+  version: '1.0.0'
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+tags:
+  - name: undocumented <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR010: Tag should have a 'description' field.}}</span>
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload:
+          type: object
+operations:
+  PublishEvent:
+    action: send
+    channel:
+      $ref: '#/channels/events'
+    messages:
+      - $ref: '#/channels/events/messages/Event'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Documented Tags
+  version: '1.0.0'
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+tags:
+  - name: users
+    description: User operations
+  - name: orders
+    description: Order operations
+channels:
+  user-events:
+    address: user/events
+    messages:
+      UserEvent:
+        payload:
+          type: object
+operations:
+  PublishUserEvent:
+    action: send
+    channel:
+      $ref: '#/channels/user-events'
+    messages:
+      - $ref: '#/channels/user-events/messages/UserEvent'
 </pre>

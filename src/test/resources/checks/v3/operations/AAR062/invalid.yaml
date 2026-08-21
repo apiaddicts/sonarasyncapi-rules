@@ -1,0 +1,24 @@
+asyncapi: 3.0.0
+info:
+  title: Subscribe Group Required - Invalid V3
+  version: 1.0.0
+channels:
+  alta-beca:
+    address: alta.beca
+  baja-beca:
+    address: baja.beca
+  salida-beca:
+    address: salida.beca
+operations:
+  consumeAlta: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+  consumeBaja: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+    action: receive
+    channel:
+      $ref: '#/channels/baja-beca'
+  produceSalida:
+    action: send
+    channel:
+      $ref: '#/channels/salida-beca'

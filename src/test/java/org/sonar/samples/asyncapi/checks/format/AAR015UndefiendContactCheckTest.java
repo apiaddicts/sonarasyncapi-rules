@@ -29,6 +29,6 @@ public class AAR015UndefiendContactCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR015 - UndefinedContact - Api should indicate the contact in the info object", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR015 - UndefinedContact - The API should indicate the contact in the info object", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

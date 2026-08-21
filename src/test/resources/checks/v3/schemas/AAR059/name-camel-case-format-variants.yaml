@@ -1,0 +1,46 @@
+asyncapi: 3.0.0
+info:
+  title: Avro Record Name CamelCase - Format Variants V3
+  version: '1.0.0'
+components:
+  schemas:
+    LowerCamelCase:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: solicitudComunicacion # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string
+    LeadingDigit:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: "123Solicitud" # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string
+    EmptyName:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: "" # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string
+    SingleLetter:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: "A" # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string
+    ConsecutiveUppercase:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: IOTData # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string

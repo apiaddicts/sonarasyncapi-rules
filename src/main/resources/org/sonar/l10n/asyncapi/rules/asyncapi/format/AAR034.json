@@ -1,5 +1,5 @@
 {
-    "title": "AAR034 - NumericFormat - Numeric types requires a valid format",
+    "title": "AAR034 - NumericFormat - Numeric types require a valid format",
     "type": "BUG",
     "status": "ready",
     "remediation": {

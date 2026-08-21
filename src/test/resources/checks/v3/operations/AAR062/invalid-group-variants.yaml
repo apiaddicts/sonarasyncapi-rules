@@ -1,0 +1,45 @@
+asyncapi: 3.0.0
+info:
+  title: Subscribe Group Required - Invalid Group Variants V3
+  version: 1.0.0
+channels:
+  alta-beca:
+    address: alta.beca
+operations:
+  consumeEmpty: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+    x-scs-group: ''
+  consumeWhitespace: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+    x-scs-group: '   '
+  consumeObject: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+    x-scs-group:
+      nested: value
+  consumeArray: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+    x-scs-group:
+      - a
+      - b
+  consumeNoGroupId: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+    bindings:
+      kafka:
+        bindingVersion: '0.5.0'
+  consumeEmptyGroupId: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+    action: receive
+    channel:
+      $ref: '#/channels/alta-beca'
+    bindings:
+      kafka:
+        groupId: ''

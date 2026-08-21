@@ -1,13 +1,12 @@
 asyncapi: '2.4.0'
 info:
   version: '1.0.0'
-  title: AsyncAPI Petstore
+  title: Numeric Format Example API
 channels:
   /invoices:
-    description: Channel for invoices
     publish:
-      summary: Publish invoice data
       operationId: publishInvoice
+      summary: Publish invoice data.
       message:
         contentType: application/json
         payload:
@@ -16,8 +15,17 @@ channels:
             price:
               type: number
               format: double
+            count:
+              type: integer
+              format: int32
+            weight: # Noncompliant {{AAR034: Numeric property must specify a valid 'format' (int32, int64, float, double).}}
+              type: number
+              format: bad
+            quantity:
+              type: integer
             nested:
               type: object
               properties:
-                value:
-                  type: number 
+                ratio: # Noncompliant {{AAR034: Numeric property must specify a valid 'format' (int32, int64, float, double).}}
+                  type: number
+                  format: foo

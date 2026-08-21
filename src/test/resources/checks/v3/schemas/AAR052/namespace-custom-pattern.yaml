@@ -1,0 +1,21 @@
+asyncapi: 3.0.0
+info:
+  title: Avro Namespace Custom Pattern V3
+  version: 1.0.0
+# This namespace is VALID under the default pattern; it is only flagged when the
+# check is configured with a custom `pattern` (see the custom-pattern test method),
+# proving the RuleProperty override is applied instead of the default.
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+            type: record
+            name: OrderValue
+            namespace: org.madrid.p001.core.orders
+            fields:
+              - name: id
+                type: string

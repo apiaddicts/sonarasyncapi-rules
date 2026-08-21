@@ -6,7 +6,7 @@ servers:
   - host: api.example.com
     protocol: wss
 tags:
-  - name: undocumented # Noncompliant {{AAR010: Tags should be documented}}
+  - name: undocumented # Noncompliant {{AAR010: Tag should have a 'description' field.}}
 channels:
   events:
     address: events

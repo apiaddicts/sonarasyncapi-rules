@@ -1,5 +1,5 @@
-<p>Cuando un campo Avro usa un tipo union nullable (ej. <code>["null", "string"]</code>), debe definir <code>default: null</code>. Sin un valor predeterminado null, los consumidores desplegados antes de que el campo fuera añadido fallarán al deserializar mensajes.</p>
-<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<p>Cuando un campo Avro utiliza un tipo unión anulable (por ejemplo, <code>["null", "string"]</code>), debe definir <code>default: null</code>. Sin un valor por defecto nulo, los consumidores que se desplegaron antes de que se agregara el campo no podrán deserializar los mensajes, rompiendo la compatibilidad hacia atrás.</p>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
 payload:
   type: record
@@ -11,7 +11,7 @@ payload:
         - "null"
         - string
 </pre>
-<h2>Solución Compliant (AsyncAPI 2)</h2>
+<h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
 payload:
   type: record
@@ -23,4 +23,55 @@ payload:
         - "null"
         - string
       default: null
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Optional Field Default
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR049: Los campos opcionales de Avro (unión con null) deben declarar su valor por defecto como null}}</span>
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+              - name: description
+                type:
+                  - "null"
+                  - string
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Optional Field Default
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+              - name: description
+                type:
+                  - "null"
+                  - string
+                default: null
 </pre>

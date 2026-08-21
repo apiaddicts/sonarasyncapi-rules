@@ -1,7 +1,104 @@
 <p></p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Example API
+  version: '1.0.0'
+servers:
+  production:
+    url: mqtt://broker.example.com
+    protocol: mqtt
+channels:
+  /example-channel:
+    description: Example channel for testing.
+    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: El binding debe especificar un campo 'bindingVersion'.}}</span>
+      mqtt:
+        qos: 1
+    subscribe:
+      summary: Example subscription
+      operationId: exampleSubscription
+      message:
+        contentType: application/json
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+    asyncapi: '2.4.0'
+    info:
+      title: Example API
+      version: '1.0.0'
+    servers:
+      production:
+        url: mqtt://broker.example.com
+        protocol: mqtt
+    channels:
+      /example-channel:
+        description: Example channel for testing.
+        bindings:
+          mqtt:
+            qos: 1
+            version: 1.0.0
+        subscribe:
+          summary: Example subscription
+          operationId: exampleSubscription
+          message:
+            contentType: application/json
+
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Example API
+  version: '1.0.0'
+servers:
+  production:
+    host: broker.example.com
+    protocol: mqtt
+channels:
+  exampleChannel:
+    address: /example-channel
+    description: Example channel for testing.
+    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: El binding debe especificar un campo 'bindingVersion'.}}</span>
+      mqtt:
+        qos: 1
+    messages:
+      ExampleMessage:
+        contentType: application/json
+operations:
+  exampleSubscription:
+    action: receive
+    channel:
+      $ref: '#/channels/exampleChannel'
+    messages:
+      - $ref: '#/channels/exampleChannel/messages/ExampleMessage'
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Example API
+  version: '1.0.0'
+servers:
+  production:
+    host: broker.example.com
+    protocol: mqtt
+channels:
+  exampleChannel:
+    address: /example-channel
+    description: Example channel for testing.
+    bindings:
+      mqtt:
+        qos: 1
+        version: 1.0.0
+    messages:
+      ExampleMessage:
+        contentType: application/json
+operations:
+  exampleSubscription:
+    action: receive
+    channel:
+      $ref: '#/channels/exampleChannel'
+    messages:
+      - $ref: '#/channels/exampleChannel/messages/ExampleMessage'
 </pre>

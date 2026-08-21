@@ -1,0 +1,13 @@
+{
+    "title": "AAR053 - ChannelNamingConvention - Channel name must follow the corporate topic naming convention",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MAJOR"
+}

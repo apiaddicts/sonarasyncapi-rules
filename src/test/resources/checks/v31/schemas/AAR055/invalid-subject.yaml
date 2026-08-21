@@ -1,0 +1,14 @@
+asyncapi: 3.1.0
+info:
+  title: X Payload References Invalid Subject V31
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.evt.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+        x-payload-references:
+          - subject: 'has space' # Noncompliant {{AAR055: The 'subject' field must be a valid schema registry subject name}}
+            ref: https://svn.example.com/schemas/avro/Ciudadano.avsc
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano

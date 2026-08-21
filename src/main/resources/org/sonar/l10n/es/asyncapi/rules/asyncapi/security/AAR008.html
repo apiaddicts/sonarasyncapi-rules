@@ -1,7 +1,7 @@
-<p>Por razones de seguridad, el protocolo HTTPS es obligatorio.</p>
+<p>Los servidores deben estar definidos</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
-  <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR008: Los servidores deben estar definidos}}</span>
+  <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR008: El documento AsyncAPI debe definir al menos un servidor en el objeto 'servers'.}}</span>
   asyncapi: '2.4.0'
   info:
     title: Swagger Petstore
@@ -18,8 +18,41 @@
   servers:
     default:
       url: 'api.example.com'
-      protocol: 'https' 
-      description: Servidor por defecto para la tienda de mascotas
+      protocol: 'https'
+      description: Default server for the pet store
   channels:
     /pets: {}
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0' <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR008: El documento AsyncAPI debe definir al menos un servidor en el objeto 'servers'.}}</span>
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+channels:
+  userSignup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Swagger Petstore
+  version: '1.0.0'
+servers:
+  default:
+    host: 'api.example.com'
+    protocol: 'wss'
+    description: Default server for the pet store
+channels:
+  userSignup:
+    address: user/signup
+    messages:
+      UserSignedUp:
+        payload:
+          type: object
 </pre>

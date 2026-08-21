@@ -1,5 +1,5 @@
 {
-  "title": "AAR001 - MandatoryHttpsProtocol - Https protocol is mandatory",
+  "title": "AAR001 - MandatoryHttpsProtocol - Servers must use a secure protocol",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {
