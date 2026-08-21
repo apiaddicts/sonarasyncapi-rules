@@ -6,17 +6,12 @@ channels:
   alta-beca:
     address: alta.beca
 operations:
-  # An operation that is itself a $ref has no action and is skipped: the group
-  # is validated at the reference target.
   refOperation:
     $ref: '#/components/operations/sharedConsumer'
-  # Null operation value: skipped.
   brokenOperation: null
-  # Operation without an action: skipped (not a consuming operation).
   noAction:
     channel:
       $ref: '#/channels/alta-beca'
-  # Producer operation: ignored.
   produceSalida:
     action: send
     channel:

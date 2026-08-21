@@ -68,6 +68,36 @@ public class AAR062SubscribeGroupRequiredCheckTest extends BaseCheckTest {
         verifyV3("no-operations.yaml");
     }
 
+    @Test
+    public void verifyV2RefComponentsNoGroup() {
+        verifyV2("ref-components-no-group.yaml");
+    }
+
+    @Test
+    public void verifyV3RefComponentsNoGroup() {
+        verifyV3("ref-components-no-group.yaml");
+    }
+
+    @Test
+    public void verifyV2ComponentsNoGroupUnreferenced() {
+        verifyV2("components-no-group-unreferenced.yaml");
+    }
+
+    @Test
+    public void verifyV3ComponentsNoGroupUnreferenced() {
+        verifyV3("components-no-group-unreferenced.yaml");
+    }
+
+    @Test
+    public void verifyV2ValidGroupIdArray() {
+        verifyV2("valid-groupid-array.yaml");
+    }
+
+    @Test
+    public void verifyV3ValidGroupIdArray() {
+        verifyV3("valid-groupid-array.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties(

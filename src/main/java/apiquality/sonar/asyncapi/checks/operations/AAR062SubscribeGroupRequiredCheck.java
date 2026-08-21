@@ -32,7 +32,22 @@ public class AAR062SubscribeGroupRequiredCheck extends BaseCheck {
     }
 
     private void checkV2(JsonNode rootNode) {
-        JsonNode channelsNode = rootNode.get("channels");
+        checkSubscribeChannels(rootNode.get("channels"));
+        JsonNode components = rootNode.get("components");
+        if (!isAbsent(components)) {
+            checkSubscribeChannels(components.get("channels"));
+        }
+    }
+
+    private void checkV3(JsonNode rootNode) {
+        checkReceiveOperations(rootNode.get("operations"));
+        JsonNode components = rootNode.get("components");
+        if (!isAbsent(components)) {
+            checkReceiveOperations(components.get("operations"));
+        }
+    }
+
+    private void checkSubscribeChannels(JsonNode channelsNode) {
         if (isAbsent(channelsNode)) return;
         for (JsonNode channel : channelsNode.propertyMap().values()) {
             if (!isAbsent(channel)) {
@@ -41,8 +56,7 @@ public class AAR062SubscribeGroupRequiredCheck extends BaseCheck {
         }
     }
 
-    private void checkV3(JsonNode rootNode) {
-        JsonNode operationsNode = rootNode.get("operations");
+    private void checkReceiveOperations(JsonNode operationsNode) {
         if (isAbsent(operationsNode)) return;
         for (JsonNode operation : operationsNode.propertyMap().values()) {
             if (isReceiveOperation(operation)) {

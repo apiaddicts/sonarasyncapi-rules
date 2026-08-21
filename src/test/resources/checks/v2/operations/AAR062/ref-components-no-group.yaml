@@ -1,0 +1,13 @@
+asyncapi: '2.6.0'
+info:
+  title: Subscribe Group Required - $ref to component channel without group V2
+  version: '1.0.0'
+channels:
+  ref-subscribe-nogroup:
+    subscribe:
+      $ref: '#/components/channels/SharedChannel/subscribe'
+components:
+  channels:
+    SharedChannel:
+      subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+        operationId: consumeNoGroup
