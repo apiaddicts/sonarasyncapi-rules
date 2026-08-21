@@ -1,0 +1,29 @@
+asyncapi: '2.6.0'
+info:
+  title: Processor Function Name Paired - Unbalanced V2
+  version: '1.0.0'
+channels:
+  producer-a:
+    publish:
+      operationId: producerA
+      x-scs-function-name: excessProducer
+  producer-b:
+    publish:
+      operationId: producerB
+      x-scs-function-name: excessProducer # Noncompliant {{AAR061: The x-scs-function-name 'excessProducer' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  consumer-a:
+    subscribe:
+      operationId: consumerA
+      x-scs-function-name: excessProducer
+  consumer-c:
+    subscribe:
+      operationId: consumerC
+      x-scs-function-name: excessConsumer
+  consumer-d:
+    subscribe:
+      operationId: consumerD
+      x-scs-function-name: excessConsumer # Noncompliant {{AAR061: The x-scs-function-name 'excessConsumer' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  producer-e:
+    publish:
+      operationId: producerE
+      x-scs-function-name: excessConsumer

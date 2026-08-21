@@ -1,0 +1,40 @@
+asyncapi: 3.0.0
+info:
+  title: Processor Function Name Paired - Invalid V3
+  version: 1.0.0
+channels:
+  a-in:
+    address: a.in
+  b-out:
+    address: b.out
+operations:
+  consumeA:
+    action: receive
+    channel:
+      $ref: '#/channels/a-in'
+    x-scs-function-name: processAtoB # Noncompliant {{AAR061: The x-scs-function-name 'processAtoB' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  produceB:
+    action: send
+    channel:
+      $ref: '#/channels/b-out'
+    x-scs-function-name: processCtoD # Noncompliant {{AAR061: The x-scs-function-name 'processCtoD' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  dupReceiveA:
+    action: receive
+    channel:
+      $ref: '#/channels/a-in'
+    x-scs-function-name: processDupReceive # Noncompliant {{AAR061: The x-scs-function-name 'processDupReceive' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  dupReceiveB:
+    action: receive
+    channel:
+      $ref: '#/channels/a-in'
+    x-scs-function-name: processDupReceive # Noncompliant {{AAR061: The x-scs-function-name 'processDupReceive' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  pairedIn:
+    action: receive
+    channel:
+      $ref: '#/channels/a-in'
+    x-scs-function-name: processPaired
+  pairedOut:
+    action: send
+    channel:
+      $ref: '#/channels/b-out'
+    x-scs-function-name: processPaired

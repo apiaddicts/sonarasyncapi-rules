@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **AAR060ContentTypeAvroCheck**: A message's `contentType` (and the document-level `defaultContentType`) must match `application/*+avro`, the pattern Confluent's KafkaAvroDeserializer expects, so the payload can be deserialized (BUG / MAJOR).
+- **AAR061ProcessorFunctionNamePairedCheck**: Every `x-scs-function-name` must be paired one-to-one between a producing (`publish`/`send`) and a consuming (`subscribe`/`receive`) operation, so the JAPI generator links them into a single processor (BUG / MINOR).
 
 ## [2.0.2-beta-4] - 2026-07-22
 
