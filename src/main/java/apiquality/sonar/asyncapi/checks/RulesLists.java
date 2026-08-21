@@ -64,7 +64,8 @@ public final class RulesLists {
             AAR054ClassificationValidValuesCheck.class,
             AAR057ErrorTopicDocumentedCheck.class,
             AAR058RetryTopicNamingConventionCheck.class,
-            AAR061ProcessorFunctionNamePairedCheck.class
+            AAR061ProcessorFunctionNamePairedCheck.class,
+            AAR062SubscribeGroupRequiredCheck.class
         );
     }
 

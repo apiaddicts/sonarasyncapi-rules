@@ -1,0 +1,13 @@
+asyncapi: '2.6.0'
+info:
+  title: Subscribe Group Required - Unreferenced component channel without group V2
+  version: '1.0.0'
+channels:
+  salida.beca:
+    publish:
+      operationId: produceSalida
+components:
+  channels:
+    UnusedChannel:
+      subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+        operationId: consumeUnused
