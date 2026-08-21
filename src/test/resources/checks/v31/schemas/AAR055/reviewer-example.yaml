@@ -1,0 +1,14 @@
+asyncapi: 3.1.0
+info:
+  title: X Payload References Reviewer Example V31
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.evt.alumnos.registro-bonificacion.beca
+    messages:
+      Registration:
+        payload: {type: object}
+        x-payload-references:
+          - subject: x
+            ref: no-es-url # Noncompliant {{AAR055: The 'ref' field must be an SVN URL that points to a .avsc file}}
+            referenceName: cualquier_cosa # Noncompliant {{AAR055: The 'referenceName' field must be a fully qualified Avro type name (lowercase namespace and capitalized type)}}

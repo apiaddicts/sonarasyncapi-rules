@@ -1,5 +1,5 @@
 {
-    "title": "AAR013 - DuplicateOperationID - There cannot be two unique operations that are the same",
+    "title": "AAR013 - DuplicateOperationID - There cannot be two operations with the same operationId",
     "type": "BUG",
     "status": "ready",
     "remediation": {

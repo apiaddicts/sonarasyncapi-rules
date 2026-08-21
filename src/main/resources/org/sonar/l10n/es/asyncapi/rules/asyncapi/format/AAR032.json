@@ -1,5 +1,5 @@
 {
-    "title": "AAR032 - NumericParameterIntegrity - Los parámetros numéricos deben tener restricción de mínimo, máximo o formato",
+    "title": "AAR032 - NumericParameterIntegrity - Las propiedades numéricas deben declarar una restricción de valor",
     "type": "BUG",
     "status": "ready",
     "remediation": {

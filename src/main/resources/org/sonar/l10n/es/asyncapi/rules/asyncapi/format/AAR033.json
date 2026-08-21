@@ -1,5 +1,5 @@
 {
-    "title": "AAR033 - StringParameterIntegrity - Los parámetros de cadena deben tener restricción de minLength, maxLength, patrón (expresión regular) o enumeración",
+    "title": "AAR033 - StringParameterIntegrity - Las propiedades de cadena deben declarar una restricción de valor",
     "type": "BUG",
     "status": "ready",
     "remediation": {

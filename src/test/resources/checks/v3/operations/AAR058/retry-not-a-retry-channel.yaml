@@ -1,0 +1,17 @@
+asyncapi: 3.0.0
+info:
+  title: Retry Topic Naming Convention Not A Retry Channel V3
+  version: 1.0.0
+channels:
+  solicitudBeca:
+    address: beca.cmd.alumnos.solicitud.beca
+    messages:
+      SolicitudBecaMessage:
+        payload:
+          type: object
+  solicitudBecaErrorGrupo1:
+    address: beca.cmd.alumnos.solicitud.beca.grupo1.error.1
+    messages:
+      SolicitudBecaErrorMessage:
+        payload:
+          type: object
