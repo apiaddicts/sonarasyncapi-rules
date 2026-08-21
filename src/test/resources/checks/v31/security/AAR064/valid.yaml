@@ -1,0 +1,19 @@
+asyncapi: '3.1.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  local:
+    host: broker.local:9092
+    protocol: kafka
+    description: Local Kafka broker
+  production:
+    host: broker.example.com:9092
+    protocol: kafka-ssl
+    description: Production Kafka broker with SASL_SSL
+channels:
+  orderEvents:
+    address: order-events
+    messages:
+      OrderEvent:
+        payload: {type: object}
