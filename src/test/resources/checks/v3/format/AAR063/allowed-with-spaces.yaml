@@ -1,0 +1,10 @@
+asyncapi: ' 3.0.0 ' # Compliant: surrounding whitespace is trimmed before matching the allow-list
+info:
+  title: My Async API
+  version: 1.0.0
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

@@ -35,7 +35,8 @@ public final class RulesLists {
             AAR037BindingVersionCheck.class,
             AAR042MessageIdentifierCheck.class,
             AAR050InfoTitleRequiredCheck.class,
-            AAR051OperationIdCamelCaseCheck.class
+            AAR051OperationIdCamelCaseCheck.class,
+            AAR063AsyncAPIVersionAllowedCheck.class
         );
     }
 

@@ -1,0 +1,35 @@
+<p>The AsyncAPI document version declared in the root <code>asyncapi</code> field must be one of the versions allowed by the organization. The list of allowed versions is configurable through the <code>allowedVersions</code> parameter (a comma-separated list, for example <code>2.6.0,3.0.0</code>); its default value is <code>2.6.0</code>. When the organization adopts a new version such as <code>3.0.0</code>, it is simply added to the list — the rule itself does not change. A document whose <code>asyncapi</code> field is missing, null or empty is not reported by this rule.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR063: The asyncapi version must be one of the versions allowed by the organization}}</span>
+info:
+  title: My Async API
+  version: '1.0.0'
+channels:
+  /pets: {}
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+channels:
+  /pets: {}
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+# With the default allowedVersions = "2.6.0", a 3.0.0 document is reported
+asyncapi: '3.0.0'   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR063: The asyncapi version must be one of the versions allowed by the organization}}</span>
+info:
+  title: My Async API
+  version: '1.0.0'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+# Add 3.0.0 to the allowedVersions parameter (allowedVersions = "2.6.0,3.0.0")
+asyncapi: '3.0.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+</pre>
