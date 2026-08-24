@@ -59,6 +59,11 @@ public class AAR063AsyncAPIVersionAllowedCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2AllowedWithSpaces() {
+        verifyV2("allowed-with-spaces.yaml");
+    }
+
+    @Test
     public void verifyV3NotAllowed() {
         verifyV3("not-allowed.yaml");
     }
@@ -67,6 +72,12 @@ public class AAR063AsyncAPIVersionAllowedCheckTest extends BaseCheckTest {
     public void verifyV3ConfiguredAllowed() {
         ((AAR063AsyncAPIVersionAllowedCheck) check).allowedVersions = "2.6.0,3.0.0";
         verifyV3("configured-allowed.yaml");
+    }
+
+    @Test
+    public void verifyV3ConfiguredAllowedWithSpaces() {
+        ((AAR063AsyncAPIVersionAllowedCheck) check).allowedVersions = "2.6.0,3.0.0";
+        verifyV3("allowed-with-spaces.yaml");
     }
 
     @Test

@@ -62,6 +62,7 @@ public class AAR063AsyncAPIVersionAllowedCheck extends BaseCheck {
         if (version == null || version.trim().isEmpty()) {
             return;
         }
+        version = version.trim();
 
         Set<String> allowed = Arrays.stream(allowedVersions.split(","))
                 .map(String::trim)
