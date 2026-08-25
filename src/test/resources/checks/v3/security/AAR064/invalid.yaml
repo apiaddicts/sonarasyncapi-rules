@@ -1,0 +1,15 @@
+asyncapi: '3.0.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  production:
+    host: broker.example.com
+    protocol: wss # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+    pathname: /ws
+channels:
+  userEvents:
+    address: user-events
+    messages:
+      Event:
+        payload: {type: object}

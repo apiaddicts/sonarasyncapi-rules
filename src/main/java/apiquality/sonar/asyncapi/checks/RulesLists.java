@@ -51,7 +51,8 @@ public final class RulesLists {
             AAR001MandatoryHttpsProtocolCheck.class,
             AAR008DefinedServerCheck.class,
             AAR018SecuritySchemasCheck.class,
-            AAR043SecurityChannelCheck.class
+            AAR043SecurityChannelCheck.class,
+            AAR064KafkaProtocolRequiredCheck.class
         );
     }
 

@@ -1,0 +1,53 @@
+<p>In the Kafka context, the <code>protocol</code> of every server declared in the <code>servers</code> section must be either <code>kafka</code> or <code>kafka-ssl</code>. Any other protocol, such as <code>https</code>, <code>wss</code> or <code>amqp</code>, is not permitted.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  production:
+    url: broker.example.com:9092
+    protocol: https   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}</span>
+    description: Production server
+channels:
+  user-events: {}
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.4.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  production:
+    url: broker.example.com:9092
+    protocol: kafka-ssl
+    description: Production server
+channels:
+  user-events: {}
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  production:
+    host: broker.example.com:9092
+    protocol: wss   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}</span>
+    description: Production server
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  production:
+    host: broker.example.com:9092
+    protocol: kafka
+    description: Production server
+</pre>
