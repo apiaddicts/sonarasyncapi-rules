@@ -90,6 +90,11 @@ public class AAR064KafkaProtocolRequiredCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2RefServerValid() {
+        verifyV2("ref-server-valid.yaml");
+    }
+
+    @Test
     public void verifyV3Valid() {
         verifyV3("valid.yaml");
     }
@@ -157,6 +162,11 @@ public class AAR064KafkaProtocolRequiredCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3RefServer() {
         verifyV3("ref-server.yaml");
+    }
+
+    @Test
+    public void verifyV3RefServerValid() {
+        verifyV3("ref-server-valid.yaml");
     }
 
     @Test

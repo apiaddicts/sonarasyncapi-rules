@@ -26,8 +26,16 @@ public class AAR064KafkaProtocolRequiredCheck extends BaseCheck {
 
     @Override
     public void visitNode(JsonNode node) {
-        JsonNode serversNode = node.get("servers");
-        if (serversNode.isMissing() || serversNode.isNull()) {
+        checkServers(node.get("servers"));
+
+        JsonNode components = node.get("components");
+        if (components != null && !components.isMissing() && !components.isNull()) {
+            checkServers(components.get("servers"));
+        }
+    }
+
+    private void checkServers(JsonNode serversNode) {
+        if (serversNode == null || serversNode.isMissing() || serversNode.isNull()) {
             return;
         }
 

@@ -4,11 +4,11 @@ info:
   version: '1.0.0'
 servers:
   production:
-    $ref: '#/components/servers/insecure'
+    $ref: '#/components/servers/secure'
 channels:
   user-events: {}
 components:
   servers:
-    insecure:
+    secure:
       url: broker.example.com:9092
-      protocol: https # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+      protocol: kafka-ssl

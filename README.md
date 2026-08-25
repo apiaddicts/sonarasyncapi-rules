@@ -127,8 +127,15 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 - **AAR041ComponetChannelServerCheck**: Consider defining reusable server and channel references in 'components'.
 - **AAR042MessageIdentifierCheck**: Message should have a 'messageId' field for unique identification.
 - **AAR043SecurityChannelCheck**: Channel should define a security scheme in its operations or bindings.
+- **AAR044AvroNamespaceCheck**: Avro record must declare a `namespace` field to avoid name collisions across services.
+- **AAR045AvroNamespaceNamingCheck**: Avro `namespace` must follow lowercase dot notation, e.g. `org.example.company`.
+- **AAR046AvroRecordDocCheck**: Avro record should include a `doc` description at the record level.
+- **AAR047AvroFieldDocCheck**: Each Avro field should include a `doc` description.
+- **AAR048AvroNameNomenclatureCheck**: Avro record and field names must match the Avro naming specification (`^[A-Za-z_][A-Za-z0-9_]*$`).
+- **AAR049AvroDefaultNullCheck**: Avro fields with a nullable union type must define `default: null` for backward-compatible schema evolution.
 - **AAR050InfoTitleRequiredCheck**: The info.title field must exist and not be empty.
 - **AAR051OperationIdCamelCaseCheck**: The operationId must be present and follow camelCase naming convention.
+- **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (record, enum or fixed) is required and must follow the corporate pattern.
 - **AAR053ChannelNamingConventionCheck**: The channel name must follow the corporate topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]`.
 - **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc`, `cmd` or `sys`.
 - **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears, must have `subject`, `ref` and `referenceName` on every item.
@@ -137,6 +144,10 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 - **AAR058RetryTopicNamingConventionCheck**: If a channel name contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`.
 - **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record, including records nested inside `fields[].type`, unions, arrays and maps, must be in CamelCase with an uppercase first letter.
 - **AAR060ContentTypeAvroCheck**: A message's `contentType` (and the document-level `defaultContentType`) must match `application/*+avro`.
+- **AAR061ProcessorFunctionNamePairedCheck**: Every `x-scs-function-name` must be paired one-to-one between a producing (`publish`/`send`) and a consuming (`subscribe`/`receive`) operation.
+- **AAR062SubscribeGroupRequiredCheck**: Each consuming operation (v2 `subscribe`, v3 `action: receive`) must declare a consumer group via `x-scs-group` or `bindings.kafka.groupId`.
+- **AAR063AsyncAPIVersionAllowedCheck**: The root `asyncapi` version must be one of the versions allowed by the organization (configurable via `allowedVersions`; default `2.6.0`).
+- **AAR064KafkaProtocolRequiredCheck**: In the Kafka context, the server protocol must be `kafka` or `kafka-ssl` (not `https`, `wss`, etc.).
 
 ## 💛 Sponsors
 <img src="https://apiaddicts.cloudappi.net/web/image/4248/LOGOCloudappi2020Versiones-01.png" alt="cloudappi" width="150"/>
