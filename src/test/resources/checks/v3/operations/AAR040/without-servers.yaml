@@ -10,7 +10,7 @@ channels:
   notifications:
     address: notifications
     servers:
-      - unknown # Noncompliant {{AAR040: Channel server must be defined in the servers object}}
+      - unknown # Noncompliant {{AAR040: Channel references a server that is not defined in the 'servers' object.}}
     messages:
       Notification:
         payload: {type: object}

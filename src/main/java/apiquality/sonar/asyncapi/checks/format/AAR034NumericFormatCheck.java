@@ -20,15 +20,30 @@
 package apiquality.sonar.asyncapi.checks.format;
 
 import com.google.common.collect.Sets;
-import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
-import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
-import apiquality.sonar.asyncapi.checks.BaseCheck;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
 import java.util.Set;
 
 @Rule(key = AAR034NumericFormatCheck.CHECK_KEY)
-public class AAR034NumericFormatCheck extends BaseCheck {
+public class AAR034NumericFormatCheck extends AbstractSchemaPropertyCheck {
     public static final String CHECK_KEY = "AAR034";
+    private static final String ERROR_KEY = "AAR034.error";
+    private static final Set<String> VALID_FORMATS = Sets.newHashSet("int32", "int64", "float", "double");
+
+    @Override
+    protected void checkProperty(JsonNode property, JsonNode anchor) {
+        String type = typeOf(property);
+        if (!"integer".equals(type) && !"number".equals(type)) {
+            return;
+        }
+        JsonNode formatNode = property.get("format");
+        if (formatNode == null || formatNode.isMissing() || formatNode.isNull()) {
+            return;
+        }
+        String format = formatNode.stringValue();
+        if (format == null || !VALID_FORMATS.contains(format)) {
+            addIssue(CHECK_KEY, translate(ERROR_KEY), anchor.key());
+        }
+    }
 }

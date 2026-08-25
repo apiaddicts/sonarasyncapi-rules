@@ -12,7 +12,7 @@ servers:
 channels:
   /example-channel:
     description: Example channel for testing.
-    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: You must specify the version of the binding}}</span>
+    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: Binding must specify a 'bindingVersion' field.}}</span>
       mqtt:
         qos: 1
     subscribe:
@@ -43,5 +43,62 @@ channels:
           operationId: exampleSubscription
           message:
             contentType: application/json
-    
+
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Example API
+  version: '1.0.0'
+servers:
+  production:
+    host: broker.example.com
+    protocol: mqtt
+channels:
+  exampleChannel:
+    address: /example-channel
+    description: Example channel for testing.
+    bindings: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR037: Binding must specify a 'bindingVersion' field.}}</span>
+      mqtt:
+        qos: 1
+    messages:
+      ExampleMessage:
+        contentType: application/json
+operations:
+  exampleSubscription:
+    action: receive
+    channel:
+      $ref: '#/channels/exampleChannel'
+    messages:
+      - $ref: '#/channels/exampleChannel/messages/ExampleMessage'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Example API
+  version: '1.0.0'
+servers:
+  production:
+    host: broker.example.com
+    protocol: mqtt
+channels:
+  exampleChannel:
+    address: /example-channel
+    description: Example channel for testing.
+    bindings:
+      mqtt:
+        qos: 1
+        version: 1.0.0
+    messages:
+      ExampleMessage:
+        contentType: application/json
+operations:
+  exampleSubscription:
+    action: receive
+    channel:
+      $ref: '#/channels/exampleChannel'
+    messages:
+      - $ref: '#/channels/exampleChannel/messages/ExampleMessage'
 </pre>

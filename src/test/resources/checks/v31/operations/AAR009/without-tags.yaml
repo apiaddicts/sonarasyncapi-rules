@@ -13,6 +13,6 @@ channels:
         payload:
           type: object
 operations:
-  UserSignup: # Noncompliant {{AAR009: Associate a tag to this operation}}
+  UserSignup: # Noncompliant {{AAR009: Operation must declare at least one tag.}}
     action: send
     channel: user-signup

@@ -1,0 +1,20 @@
+asyncapi: '2.6.0'
+info:
+  title: Content Type Avro Traits V2
+  version: '1.0.0'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        traits:
+          - contentType: application/json # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
+components:
+  messages:
+    ValidViaTrait:
+      traits:
+        - contentType: application/vnd.apache.avro+avro
+      payload:
+        type: object

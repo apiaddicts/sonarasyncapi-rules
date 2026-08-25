@@ -1,0 +1,13 @@
+asyncapi: '2.6.0'
+info:
+  title: Processor Function Name Paired - Blank Value V2
+  version: '1.0.0'
+channels:
+  empty-string:
+    publish:
+      operationId: emptyString
+      x-scs-function-name: ""
+  whitespace-only:
+    subscribe:
+      operationId: whitespaceOnly
+      x-scs-function-name: "   "

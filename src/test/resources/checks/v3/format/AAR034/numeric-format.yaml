@@ -1,0 +1,20 @@
+asyncapi: '3.0.0'
+info:
+  title: Numeric Format Example API
+  version: '1.0.0'
+channels:
+  invoices:
+    address: invoices
+    messages:
+      Invoice:
+        payload:
+          type: object
+          properties:
+            price:
+              type: number
+              format: double
+            weight: # Noncompliant {{AAR034: Numeric property must specify a valid 'format' (int32, int64, float, double).}}
+              type: number
+              format: bad
+            quantity:
+              type: integer

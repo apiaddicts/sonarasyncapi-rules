@@ -1,0 +1,41 @@
+asyncapi: '2.4.0'
+info:
+  title: Avro Namespace Special Chars V2
+  version: '1.0.0'
+channels:
+  ordersSpace:
+    subscribe:
+      operationId: receiveOrderSpace
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+          type: record
+          name: OrderValue
+          namespace: 'org.madrid.p 001.core.orders'
+          fields:
+            - name: id
+              type: string
+  ordersDoubleDot:
+    subscribe:
+      operationId: receiveOrderDoubleDot
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+          type: record
+          name: OrderValue
+          namespace: org.madrid.p001..orders
+          fields:
+            - name: id
+              type: string
+  ordersUnicode:
+    subscribe:
+      operationId: receiveOrderUnicode
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+          type: record
+          name: OrderValue
+          namespace: 'org.madrid.pédro.core.orders'
+          fields:
+            - name: id
+              type: string

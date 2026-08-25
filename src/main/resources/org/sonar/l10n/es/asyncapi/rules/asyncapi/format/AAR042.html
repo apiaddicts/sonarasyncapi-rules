@@ -1,7 +1,134 @@
-<p></p>
+<p>Se recomienda tener un identificador único por mensaje</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Identifier per Message Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye identificadores únicos para cada mensaje.
+channels:
+  /order:
+    description: Canal para enviar y recibir información de pedidos.
+    publish:
+      operationId: sendOrder
+      message: <span class="error-info" style="color: #FD8E18;">#Noncompliant {{AAR042: El mensaje debe tener un campo 'messageId' para identificación única.}}</span>
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            product:
+              type: string
+              description: Nombre del producto.
+            quantity:
+              type: integer
+              description: Cantidad del producto pedido.
+    subscribe:
+      operationId: receiveOrderConfirmation
+      message:
+        messageId: orderConfirmationMessage
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            status:
+              type: string
+              description: Estado de la confirmación del pedido.
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Identifier per Message Example API
+  version: '1.0.0'
+  description: API de ejemplo que incluye identificadores únicos para cada mensaje.
+channels:
+  /order:
+    description: Canal para enviar y recibir información de pedidos.
+    publish:
+      operationId: sendOrder
+      message: #Noncompliant {{AAR042: El mensaje debe tener un campo 'messageId' para identificación única.}}
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            product:
+              type: string
+              description: Nombre del producto.
+            quantity:
+              type: integer
+              description: Cantidad del producto pedido.
+    subscribe:
+      operationId: receiveOrderConfirmation
+      message:
+        messageId: orderConfirmationMessage
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            orderId:
+              type: string
+              description: ID único del pedido.
+            status:
+              type: string
+              description: Estado de la confirmación del pedido.
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Identifier Avro Example API
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: kafka
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR042: El mensaje debe tener un campo 'messageId' para identificación única.}}</span>
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Identifier Avro Example API
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: kafka
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage:
+        messageId: cargaEvent
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: id
+                type: string
 </pre>

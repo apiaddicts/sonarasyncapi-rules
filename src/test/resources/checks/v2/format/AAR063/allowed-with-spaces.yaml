@@ -1,0 +1,6 @@
+asyncapi: ' 2.6.0 ' # Compliant: surrounding whitespace is trimmed before matching the allow-list
+info:
+  title: My Async API
+  version: '1.0.0'
+channels:
+  /pets: {}

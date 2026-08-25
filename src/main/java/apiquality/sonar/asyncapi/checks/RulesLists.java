@@ -34,7 +34,9 @@ public final class RulesLists {
             AAR036BadDescriptionCheck.class,
             AAR037BindingVersionCheck.class,
             AAR042MessageIdentifierCheck.class,
-            AAR050InfoTitleRequiredCheck.class
+            AAR050InfoTitleRequiredCheck.class,
+            AAR051OperationIdCamelCaseCheck.class,
+            AAR063AsyncAPIVersionAllowedCheck.class
         );
     }
 
@@ -59,7 +61,13 @@ public final class RulesLists {
             AAR009DeclaredTagCheck.class,
             AAR010DocumentedTagCheck.class,
             AAR040DefinedChannelServersCheck.class,
-            AAR041ComponetChannelServerCheck.class           
+            AAR041ComponetChannelServerCheck.class,
+            AAR053ChannelNamingConventionCheck.class,
+            AAR054ClassificationValidValuesCheck.class,
+            AAR057ErrorTopicDocumentedCheck.class,
+            AAR058RetryTopicNamingConventionCheck.class,
+            AAR061ProcessorFunctionNamePairedCheck.class,
+            AAR062SubscribeGroupRequiredCheck.class
         );
     }
 
@@ -73,7 +81,12 @@ public final class RulesLists {
             AAR046AvroRecordDocCheck.class,
             AAR047AvroFieldDocCheck.class,
             AAR048AvroNameNomenclatureCheck.class,
-            AAR049AvroDefaultNullCheck.class
+            AAR049AvroDefaultNullCheck.class,
+            AAR052AvroNamespacePatternCheck.class,
+            AAR056AvroSchemaFormatCheck.class,
+            AAR055XPayloadReferencesWellFormedCheck.class,
+            AAR059AvroRecordNameCamelCaseCheck.class,
+            AAR060ContentTypeAvroCheck.class
             );
     }
 

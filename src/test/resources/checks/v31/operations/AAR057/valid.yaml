@@ -1,0 +1,17 @@
+asyncapi: 3.1.0
+info:
+  title: Error Topic Documented Example
+  version: 1.0.0
+channels:
+  inventoryEvents:
+    address: inventory.events.updated
+    messages:
+      InventoryUpdatedMessage:
+        payload:
+          type: object
+  paymentsError:
+    address: order-service.payments.grupo-2.error.42
+    messages:
+      PaymentsErrorMessage:
+        payload:
+          type: object
