@@ -1,0 +1,22 @@
+asyncapi: 3.0.0
+info:
+  title: Structural Edge Cases
+  version: 1.0.0
+channels:
+  messages:
+    address: messages
+    messages:
+      Message:
+        payload: {type: object}
+    publish:
+      operationId: Not_Evaluated_In_V3
+operations:
+  nullOperation: null
+  scalarOperation: notAnObject
+  emptyOperation: {}
+  validOperation:
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+components:
+  operations: null

@@ -1,0 +1,10 @@
+asyncapi: 3.0.0
+info:
+  title: No Operations
+  version: 1.0.0
+channels:
+  messages:
+    address: messages
+    messages:
+      Message:
+        payload: {type: object}

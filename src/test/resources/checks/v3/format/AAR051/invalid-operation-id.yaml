@@ -3,7 +3,8 @@ info:
   title: Invalid Operation IDs
   version: 1.0.0
 servers:
-  - host: api.example.com
+  production:
+    host: api.example.com
     protocol: wss
 channels:
   messages:
@@ -14,20 +15,53 @@ channels:
 operations:
   SendMessage: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: send
-    channel: messages
-  ReceiveMessage:
+    channel:
+      $ref: '#/channels/messages'
+  receive_message: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: receive
-    channel: messages
-    operationId: on_message_received # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
-  NullOperationId:
+    channel:
+      $ref: '#/channels/messages'
+  process-topic: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: send
-    channel: messages
-    operationId: null # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
-  NonStringOperationId:
+    channel:
+      $ref: '#/channels/messages'
+  PROCESS_TOPIC: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: send
-    channel: messages
-    operationId: 12345 # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
-  EmptyStringOperationId:
+    channel:
+      $ref: '#/channels/messages'
+  2sendMessage: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: send
-    channel: messages
-    operationId: "" # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+    channel:
+      $ref: '#/channels/messages'
+  send.message: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+  "send message": # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+  enviarMensajeConAcentuacióN: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+  # The next two operations carry an operationId field, which AsyncAPI 3.x does not define. Only the
+  # key is evaluated, so a stray operationId neither fixes a bad key nor breaks a good one.
+  BadKeyWithGoodOperationId: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+    operationId: sendMessage
+  goodKeyWithBadOperationId:
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+    operationId: bad_operation_id
+  reuseSharedOperation:
+    $ref: '#/components/operations/SharedOperation'
+components:
+  operations:
+    SharedOperation: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      action: receive
+      channel:
+        $ref: '#/channels/messages'
