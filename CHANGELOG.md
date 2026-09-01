@@ -5,9 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.2-beta-5] - 2026-08-19
+## [2.0.2-beta-6] - 2026-08-31
 
 - **AAR024MessageValidationCheck**: Reworded the rule title, description and message (EN + ES) to state the rule's actual behavior — each message must declare a `contentType` unless it is an Avro message.
+
+## [2.0.2-beta-5] - 2026-08-19
+
+### Added
+- **AAR060ContentTypeAvroCheck**: A message's `contentType` (and the document-level `defaultContentType`) must match `application/*+avro`, the pattern Confluent's KafkaAvroDeserializer expects, so the payload can be deserialized (BUG / MAJOR).
+- **AAR061ProcessorFunctionNamePairedCheck**: Every `x-scs-function-name` must be paired one-to-one between a producing (`publish`/`send`) and a consuming (`subscribe`/`receive`) operation, so the JAPI generator links them into a single processor (BUG / MINOR).
+- **AAR062SubscribeGroupRequiredCheck**: Each consuming operation (v2 `subscribe`, v3 `action: receive`) must declare a consumer group via `x-scs-group` or `bindings.kafka.groupId`, so the messaging platform can bind it to a durable, load-balanced consumer group (BUG / MAJOR).
+- **AAR063AsyncAPIVersionAllowedCheck**: The root `asyncapi` version must be one of the versions allowed by the organization. The allow-list is configurable via the `allowedVersions` rule property (comma-separated); default `2.6.0` (BUG / MAJOR).
+- **AAR064KafkaProtocolRequiredCheck**: In the Kafka context, each server protocol must be `kafka` or `kafka-ssl`; other protocols such as `https` or `wss` are not permitted. Servers defined under `components.servers` are validated as well (VULNERABILITY / CRITICAL).
 
 ## [2.0.2-beta-4] - 2026-07-22
 

@@ -1,0 +1,13 @@
+{
+    "title": "AAR062 - SubscribeGroupRequired - Subscribe operations must declare the consumer group",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MAJOR"
+}

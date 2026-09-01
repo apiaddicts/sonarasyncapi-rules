@@ -1,0 +1,18 @@
+asyncapi: '2.4.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  nullServer: null
+  scalarServer: just-a-string
+  missingProtocol:
+    url: m:9092
+    description: No protocol field at all
+  nullProtocol:
+    url: n:9092
+    protocol: null
+  validServer:
+    url: v:9092
+    protocol: kafka
+channels:
+  user-events: {}

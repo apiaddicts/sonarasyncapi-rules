@@ -1,0 +1,18 @@
+asyncapi: '3.0.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  production:
+    $ref: '#/components/servers/insecure'
+channels:
+  userEvents:
+    address: user-events
+    messages:
+      Event:
+        payload: {type: object}
+components:
+  servers:
+    insecure:
+      host: broker.example.com:9092
+      protocol: https # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}

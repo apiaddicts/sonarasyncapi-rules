@@ -1,0 +1,10 @@
+asyncapi: 3.0.0 # Noncompliant {{AAR063: The asyncapi version must be one of the versions allowed by the organization}}
+info:
+  title: My Async API
+  version: 1.0.0
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}
