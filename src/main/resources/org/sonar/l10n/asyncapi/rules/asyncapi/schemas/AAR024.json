@@ -1,5 +1,5 @@
 {
-    "title": "AAR024 - MessageValidation - All messages sent and received must comply with the message schema specified in the documentation",
+    "title": "AAR024 - MessageValidation - Each message must declare a contentType unless it is an Avro message",
     "type": "BUG",
     "status": "ready",
     "remediation": {

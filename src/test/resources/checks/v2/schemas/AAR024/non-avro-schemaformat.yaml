@@ -1,6 +1,6 @@
 asyncapi: '2.4.0'
 info:
-  title: No Validation
+  title: Non Avro Schema Format
   version: '1.0.0'
 servers:
   production:
@@ -11,5 +11,6 @@ channels:
     subscribe:
       operationId: receiveOrder
       message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        schemaFormat: 'application/schema+json;version=draft-07'
         payload:
           type: object

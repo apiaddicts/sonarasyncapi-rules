@@ -1,4 +1,4 @@
-<p>All messages sent and received must comply with the message schema specified in the documentation</p>
+<p>Each message must declare a 'contentType' unless it is an Avro message (auto-detected via 'schemaFormat').</p>
 <h2>Noncompliant Code Example (AsyncAPI 2)</h2>
 <pre>
 asyncapi: '2.4.0'
@@ -13,7 +13,7 @@ channels:
   orders:
     subscribe:
       operationId: receiveOrder
-      message: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR024: All messages sent and received must comply with the message schema specified in the documentation}}</span>
+      message: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}</span>
         payload:
           type: object
 </pre>
@@ -53,7 +53,7 @@ channels:
   orders:
     address: orders
     messages:
-      Order: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR024: All messages sent and received must comply with the message schema specified in the documentation}}</span>
+      Order: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}</span>
         payload:
           type: object
 </pre>
