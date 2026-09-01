@@ -9,9 +9,9 @@ channels:
   orders:
     address: orders
     messages:
-      Order: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+      Order:
         oneOf:
-          - payload:
+          - payload: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
               type: object
-          - payload:
+          - payload: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
               type: object

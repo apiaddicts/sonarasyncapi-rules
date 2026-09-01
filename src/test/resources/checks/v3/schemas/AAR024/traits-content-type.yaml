@@ -1,0 +1,37 @@
+asyncapi: 3.0.0
+info:
+  title: Traits Content Type
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  inlineTrait:
+    address: inlineTrait
+    messages:
+      Inline:
+        traits:
+          - contentType: application/json
+        payload:
+          type: object
+  referencedTrait:
+    address: referencedTrait
+    messages:
+      Referenced:
+        traits:
+          - $ref: '#/components/messageTraits/JsonTrait'
+        payload:
+          type: object
+  lastTraitDeclares:
+    address: lastTraitDeclares
+    messages:
+      Last:
+        traits:
+          - contentType: null
+          - contentType: application/json
+        payload:
+          type: object
+components:
+  messageTraits:
+    JsonTrait:
+      contentType: application/json

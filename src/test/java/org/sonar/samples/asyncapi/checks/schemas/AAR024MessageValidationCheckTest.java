@@ -49,6 +49,36 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
         verifyV2("components-message.yaml");
     }
 
+    @Test
+    public void verifyInV2ComponentsOneOfAllCompliant() {
+        verifyV2("components-oneof-all-compliant.yaml");
+    }
+
+    @Test
+    public void verifyInV2ComponentsOneOfPartial() {
+        verifyV2("components-oneof-partial.yaml");
+    }
+
+    @Test
+    public void verifyInV2ComponentsChannel() {
+        verifyV2("components-channel.yaml");
+    }
+
+    @Test
+    public void verifyInV2TraitsContentType() {
+        verifyV2("traits-content-type.yaml");
+    }
+
+    @Test
+    public void verifyInV2TraitsWithoutContentType() {
+        verifyV2("traits-without-content-type.yaml");
+    }
+
+    @Test
+    public void verifyInV2TraitsUnresolvableRefs() {
+        verifyV2("traits-unresolvable-refs.yaml");
+    }
+
     // ============= V2 Avro Tests =============
 
     @Test
@@ -78,6 +108,31 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
         verifyV3("message-oneof.yaml");
     }
 
+    @Test
+    public void verifyV3ComponentsOneOfAllCompliant() {
+        verifyV3("components-oneof-all-compliant.yaml");
+    }
+
+    @Test
+    public void verifyV3ComponentsOneOfPartial() {
+        verifyV3("components-oneof-partial.yaml");
+    }
+
+    @Test
+    public void verifyV3ComponentsChannel() {
+        verifyV3("components-channel.yaml");
+    }
+
+    @Test
+    public void verifyV3TraitsContentType() {
+        verifyV3("traits-content-type.yaml");
+    }
+
+    @Test
+    public void verifyV3TraitsWithoutContentType() {
+        verifyV3("traits-without-content-type.yaml");
+    }
+
     // --- V3 Avro Tests ---
     @Test
     public void verifyV3WithAvroSchemaFormat() {
@@ -97,6 +152,16 @@ public class AAR024MessageValidationCheckTest extends BaseCheckTest {
     @Test
     public void verifyV31WithoutValidation() {
         verifyV31("without-validation.yaml");
+    }
+
+    @Test
+    public void verifyV31ComponentsOneOf() {
+        verifyV31("components-oneof.yaml");
+    }
+
+    @Test
+    public void verifyV31TraitsContentType() {
+        verifyV31("traits-content-type.yaml");
     }
 
     // --- V31 Avro Tests ---
