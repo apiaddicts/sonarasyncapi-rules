@@ -1,0 +1,35 @@
+asyncapi: 3.0.0
+info:
+  title: Traits Without Content Type
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  traitWithoutContentType:
+    address: traitWithoutContentType
+    messages:
+      NoTrait: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - headers:
+              type: object
+        payload:
+          type: object
+  ownNullWinsOverTrait:
+    address: ownNullWinsOverTrait
+    messages:
+      OwnNull: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        contentType: null
+        traits:
+          - contentType: application/json
+        payload:
+          type: object
+  lastTraitNullWins:
+    address: lastTraitNullWins
+    messages:
+      LastNull: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - contentType: application/json
+          - contentType: null
+        payload:
+          type: object
