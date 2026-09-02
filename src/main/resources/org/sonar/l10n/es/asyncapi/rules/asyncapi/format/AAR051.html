@@ -1,4 +1,7 @@
-<p></p>
+<p>Toda operación debe estar identificada por un nombre en camelCase.</p>
+<p>En AsyncAPI 2.x ese nombre es el campo <code>operationId</code> de la operación. AsyncAPI 3.x
+eliminó ese campo, por lo que el nombre es la clave de la operación en el mapa
+<code>operations</code>.</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
 asyncapi: '2.4.0'
@@ -7,8 +10,15 @@ info:
   version: '1.0.0'
 channels:
   pet/created:
-    subscribe:   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR051: El operationId debe estar presente y seguir la convención camelCase}}</span>
+    subscribe:   <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR051: El operationId debe estar presente y seguir la convención de nomenclatura camelCase}}</span>
       summary: Recibe eventos de mascota creada.
+      message:
+        payload:
+          type: object
+  pet/updated:
+    publish:
+      operationId: on_pet_updated <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR051: El operationId debe estar presente y seguir la convención de nomenclatura camelCase}}</span>
+      summary: Publica eventos de mascota actualizada.
       message:
         payload:
           type: object
@@ -27,6 +37,13 @@ channels:
       message:
         payload:
           type: object
+  pet/updated:
+    publish:
+      operationId: onPetUpdated
+      summary: Publica eventos de mascota actualizada.
+      message:
+        payload:
+          type: object
 </pre>
 <h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
 <pre>
@@ -42,12 +59,16 @@ channels:
         payload:
           type: object
 operations:
-  onPetCreated: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR051: El operationId debe estar presente y seguir la convención camelCase}}</span>
+  OnPetCreated: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR051: El operationId debe estar presente y seguir la convención de nomenclatura camelCase}}</span>
     action: receive
     channel:
       $ref: '#/channels/petCreated'
     messages:
       - $ref: '#/channels/petCreated/messages/PetCreated'
+  on_pet_deleted: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR051: El operationId debe estar presente y seguir la convención de nomenclatura camelCase}}</span>
+    action: receive
+    channel:
+      $ref: '#/channels/petCreated'
 </pre>
 <h2>Solución compatible (AsyncAPI 3)</h2>
 <pre>
@@ -65,9 +86,12 @@ channels:
 operations:
   onPetCreated:
     action: receive
-    operationId: solicitarBeca
     channel:
       $ref: '#/channels/petCreated'
     messages:
       - $ref: '#/channels/petCreated/messages/PetCreated'
+  onPetDeleted:
+    action: receive
+    channel:
+      $ref: '#/channels/petCreated'
 </pre>

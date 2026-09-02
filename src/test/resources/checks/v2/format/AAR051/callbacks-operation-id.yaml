@@ -1,0 +1,37 @@
+asyncapi: '2.4.0'
+info:
+  title: Callbacks OperationId Example API
+  version: '1.0.0'
+  description: API con operaciones anidadas en callbacks de canal.
+channels:
+  /payments:
+    description: Canal para notificar pagos.
+    publish:
+      operationId: notificarPago
+      summary: Operación para notificar un pago.
+      message:
+        payload:
+          type: object
+    callbacks:
+      onPaymentSettled:
+        publish:
+          operationId: confirmarPago
+          summary: Callback con operationId camelCase.
+          message:
+            payload:
+              type: object
+        subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+          summary: Callback sin operationId.
+          message:
+            payload:
+              type: object
+      onPaymentRejected:
+        publish:
+          operationId: Rechazar_Pago # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+          summary: Callback con operationId inválido.
+          message:
+            payload:
+              type: object
+      x-internal-callback:
+        publish:
+          summary: Clave de extensión, no es un callback, no debe evaluarse.

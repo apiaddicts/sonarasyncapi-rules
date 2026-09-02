@@ -29,6 +29,26 @@ public class AAR051OperationIdCamelCaseCheckTest extends BaseCheckTest {
         verifyV2("invalid-operation-id.yaml");
     }
 
+    @Test
+    public void verifyV2CallbacksOperationId() {
+        verifyV2("callbacks-operation-id.yaml");
+    }
+
+    @Test
+    public void verifyV2NullSpellings() {
+        verifyV2("null-spellings.yaml");
+    }
+
+    @Test
+    public void verifyV2StructuralEdgeCases() {
+        verifyV2("structural-edge-cases.yaml");
+    }
+
+    @Test
+    public void verifyV2NoChannels() {
+        verifyV2("no-channels.yaml");
+    }
+
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---
@@ -40,6 +60,21 @@ public class AAR051OperationIdCamelCaseCheckTest extends BaseCheckTest {
     @Test
     public void verifyV3InvalidOperationId() {
         verifyV3("invalid-operation-id.yaml");
+    }
+
+    @Test
+    public void verifyV3EmptyOperationKey() {
+        verifyV3("empty-operation-key.yaml");
+    }
+
+    @Test
+    public void verifyV3StructuralEdgeCases() {
+        verifyV3("structural-edge-cases.yaml");
+    }
+
+    @Test
+    public void verifyV3NoOperations() {
+        verifyV3("no-operations.yaml");
     }
 
     // --- V31 Tests ---

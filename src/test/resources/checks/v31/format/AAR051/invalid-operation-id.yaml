@@ -3,7 +3,8 @@ info:
   title: Invalid Operation IDs
   version: 1.0.0
 servers:
-  - host: api.example.com
+  production:
+    host: api.example.com
     protocol: wss
 channels:
   messages:
@@ -14,20 +15,23 @@ channels:
 operations:
   SendMessage: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: send
-    channel: messages
-  ReceiveMessage:
+    channel:
+      $ref: '#/channels/messages'
+  receive_message: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: receive
-    channel: messages
-    operationId: on_message_received # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
-  NullOperationId:
+    channel:
+      $ref: '#/channels/messages'
+  process-topic: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: send
-    channel: messages
-    operationId: null # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
-  NonStringOperationId:
+    channel:
+      $ref: '#/channels/messages'
+  2sendMessage: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
     action: send
-    channel: messages
-    operationId: 12345 # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
-  EmptyStringOperationId:
-    action: send
-    channel: messages
-    operationId: "" # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+    channel:
+      $ref: '#/channels/messages'
+components:
+  operations:
+    SharedOperation: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      action: receive
+      channel:
+        $ref: '#/channels/messages'

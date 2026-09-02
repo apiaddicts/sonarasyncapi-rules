@@ -30,8 +30,8 @@ channels:
           type: object
   /reservations:
     description: Canal para operaciones relacionadas con reservas.
-    subscribe:
-      operationId: null # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+    subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId: null
       summary: Operación para recibir reservas.
       message:
         contentType: application/json
@@ -53,3 +53,89 @@ channels:
         contentType: application/json
         payload:
           type: object
+    subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId: ~
+      summary: Operación para recibir facturas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /shipments:
+    description: Canal que ejercita variantes de formato no camelCase.
+    publish:
+      operationId: 2procesarEnvio # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId que empieza por dígito.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: procesar-envio # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId en kebab-case.
+      message:
+        payload:
+          type: object
+  /returns:
+    description: Canal que ejercita mayúsculas y espacios.
+    publish:
+      operationId: PROCESAR_DEVOLUCION # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId en SCREAMING_SNAKE_CASE.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: "procesar devolucion" # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId con espacios interiores.
+      message:
+        payload:
+          type: object
+  /refunds:
+    description: Canal que ejercita espacios al final y caracteres no ASCII.
+    publish:
+      operationId: "procesarReembolso " # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId con espacio final.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: procesarDevolucióN # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId con caracteres acentuados.
+      message:
+        payload:
+          type: object
+  /audits:
+    description: Canal que ejercita operationId con tipos no escalares.
+    publish:
+      operationId: true # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId booleano.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: {name: auditar} # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId como objeto.
+      message:
+        payload:
+          type: object
+  /alerts:
+    description: Canal que ejercita operationId como lista.
+    publish:
+      operationId: [enviarAlerta] # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId como lista.
+      message:
+        payload:
+          type: object
+components:
+  channels:
+    /notifications:
+      description: Canal reutilizable definido en components.
+      subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+        summary: Operación sin operationId dentro de components.
+        message:
+          payload:
+            type: object
+      publish:
+        operationId: Enviar_Notificacion # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+        summary: Operación de components con operationId inválido.
+        message:
+          payload:
+            type: object

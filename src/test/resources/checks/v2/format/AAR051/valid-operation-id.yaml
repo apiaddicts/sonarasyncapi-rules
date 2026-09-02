@@ -29,3 +29,39 @@ channels:
         contentType: application/json
         payload:
           type: object
+  /invoices:
+    description: Canal que ejercita los límites del patrón camelCase.
+    publish:
+      operationId: a
+      summary: operationId de una sola letra minúscula.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: procesarFacturaDeClienteConDescuentoAplicadoYRevisado
+      summary: operationId camelCase largo.
+      message:
+        payload:
+          type: object
+  /payments:
+    description: Canal para notificar pagos.
+    publish:
+      operationId: notificarPago
+      summary: Operación para notificar un pago.
+      message:
+        payload:
+          type: object
+  x-internal-routing:
+    description: Clave de extensión, no es un canal, no debe evaluarse.
+    publish:
+      summary: Operación sin operationId dentro de una extensión.
+components:
+  channels:
+    /reservations:
+      description: Canal reutilizable definido en components.
+      subscribe:
+        operationId: obtenerReserva
+        summary: Operación para recibir reservas.
+        message:
+          payload:
+            type: object

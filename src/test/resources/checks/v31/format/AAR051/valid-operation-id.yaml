@@ -3,7 +3,8 @@ info:
   title: Valid Operation IDs
   version: 1.0.0
 servers:
-  - host: api.example.com
+  production:
+    host: api.example.com
     protocol: wss
 channels:
   messages:
@@ -12,11 +13,27 @@ channels:
       Message:
         payload: {type: object}
 operations:
-  SendMessage:
+  sendMessage:
     action: send
-    channel: messages
-    operationId: solicitarBeca
-  ReceiveMessage:
+    channel:
+      $ref: '#/channels/messages'
+  receiveMessage:
     action: receive
-    channel: messages
-    operationId: processTopic2Topic3
+    channel:
+      $ref: '#/channels/messages'
+  processTopic2Topic3:
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+  reuseSharedOperation:
+    $ref: '#/components/operations/sharedOperation'
+  x-internal-operation:
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+components:
+  operations:
+    sharedOperation:
+      action: receive
+      channel:
+        $ref: '#/channels/messages'
