@@ -1,0 +1,10 @@
+asyncapi: 3.1.0 # Compliant: 3.1.0 is part of the default allow-list
+info:
+  title: My Async API
+  version: 1.0.0
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        payload: {type: object}

@@ -1,0 +1,28 @@
+asyncapi: '3.0.0'
+info:
+  title: Avro Namespace OneOf V3
+  version: '1.0.0'
+channels:
+  orders:
+    address: orders
+    messages:
+      Multi:
+        oneOf:
+          - payload:
+              schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+              schema:
+                type: record
+                name: OrderA
+                namespace: org.example.a
+                fields:
+                  - name: id
+                    type: string
+          - payload:
+              schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+              schema:
+                type: record
+                name: OrderB
+                namespace: org.madrid.p001.cmd.orders
+                fields:
+                  - name: id
+                    type: string

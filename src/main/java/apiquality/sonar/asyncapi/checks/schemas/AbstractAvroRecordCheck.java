@@ -24,9 +24,21 @@ public abstract class AbstractAvroRecordCheck extends BaseCheck {
             JsonNode inner = node.get("schema");
             if (inner == null || inner.isMissing() || inner.isNull()) return;
             node = inner;
+        } else {
+            JsonNode wrapped = unwrapSchemaWrapper(node);
+            if (wrapped != null) node = wrapped;
         }
         if (!isAvroRecord(node)) return;
         visitAvroRecord(node);
+    }
+
+    private static JsonNode unwrapSchemaWrapper(JsonNode node) {
+        if (node == null || node.isMissing() || node.isNull() || !node.isObject()) return null;
+        JsonNode type = node.get("type");
+        if (!type.isMissing() && !type.isNull()) return null;
+        JsonNode inner = node.get("schema");
+        if (inner == null || inner.isMissing() || inner.isNull() || !inner.isObject()) return null;
+        return inner;
     }
 
     protected abstract void visitAvroRecord(JsonNode node);

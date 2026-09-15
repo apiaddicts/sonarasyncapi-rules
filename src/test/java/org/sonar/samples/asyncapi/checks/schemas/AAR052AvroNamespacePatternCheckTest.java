@@ -117,6 +117,16 @@ public class AAR052AvroNamespacePatternCheckTest extends BaseCheckTest {
     }
 
     @Test
+    public void verifyV2NamespaceWrapperMessageLevel() {
+        verifyV2("namespace-wrapper-message-level.yaml");
+    }
+
+    @Test
+    public void verifyV2NamespacePatternOneOf() {
+        verifyV2("namespace-pattern-oneof.yaml");
+    }
+
+    @Test
     public void verifyV3NamespacePatternValidApp() {
         verifyV3("namespace-pattern-valid-app.yaml");
     }
@@ -210,6 +220,16 @@ public class AAR052AvroNamespacePatternCheckTest extends BaseCheckTest {
     public void verifyV3NamespaceCustomPattern() {
         check = customPatternCheck();
         verifyV3("namespace-custom-pattern.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespaceWrapperMessageLevel() {
+        verifyV3("namespace-wrapper-message-level.yaml");
+    }
+
+    @Test
+    public void verifyV3NamespacePatternOneOf() {
+        verifyV3("namespace-pattern-oneof.yaml");
     }
 
     // A check configured with a custom `pattern` RuleProperty, used to prove the override

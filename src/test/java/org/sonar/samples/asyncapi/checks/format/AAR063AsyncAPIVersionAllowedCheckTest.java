@@ -65,6 +65,7 @@ public class AAR063AsyncAPIVersionAllowedCheckTest extends BaseCheckTest {
 
     @Test
     public void verifyV3NotAllowed() {
+        ((AAR063AsyncAPIVersionAllowedCheck) check).allowedVersions = "2.6.0";
         verifyV3("not-allowed.yaml");
     }
 
@@ -82,7 +83,18 @@ public class AAR063AsyncAPIVersionAllowedCheckTest extends BaseCheckTest {
 
     @Test
     public void verifyV31NotAllowed() {
+        ((AAR063AsyncAPIVersionAllowedCheck) check).allowedVersions = "2.6.0";
         verifyV31("not-allowed.yaml");
+    }
+
+    @Test
+    public void verifyV3AllowedByDefault() {
+        verifyV3("allowed.yaml");
+    }
+
+    @Test
+    public void verifyV31AllowedByDefault() {
+        verifyV31("allowed.yaml");
     }
 
     @Override
@@ -95,6 +107,6 @@ public class AAR063AsyncAPIVersionAllowedCheckTest extends BaseCheckTest {
     @Override
     public void verifyParameters() {
         assertNumberOfParameters(1);
-        assertParameterProperties("allowedVersions", "2.6.0", RuleParamType.STRING);
+        assertParameterProperties("allowedVersions", "2.6.0,3.0.0,3.1.0", RuleParamType.STRING);
     }
 }

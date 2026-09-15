@@ -1,0 +1,23 @@
+asyncapi: 2.6.0
+info:
+  title: Content Type Avro Missing On Avro Message V2
+  version: 1.0.0
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message: # Noncompliant {{AAR060: An Avro message must declare a contentType matching 'application/*+avro'}}
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: record
+          name: OrderValue
+          namespace: org.madrid.p001.cmd.orders
+          fields:
+            - name: id
+              type: string
+  ordersNotAvro:
+    subscribe:
+      operationId: receiveOrderNotAvro
+      message:
+        payload:
+          type: object

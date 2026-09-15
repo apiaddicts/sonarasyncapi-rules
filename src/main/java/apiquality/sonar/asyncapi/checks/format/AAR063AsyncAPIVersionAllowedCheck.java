@@ -37,7 +37,7 @@ public class AAR063AsyncAPIVersionAllowedCheck extends BaseCheck {
 
     public static final String CHECK_KEY = "AAR063";
     private static final String MESSAGE = "AAR063.error";
-    private static final String DEFAULT_ALLOWED_VERSIONS = "2.6.0";
+    private static final String DEFAULT_ALLOWED_VERSIONS = "2.6.0,3.0.0,3.1.0";
 
     @RuleProperty(
         key = "allowedVersions",
