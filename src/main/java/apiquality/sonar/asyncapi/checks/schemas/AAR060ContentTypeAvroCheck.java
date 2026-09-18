@@ -6,6 +6,7 @@ import org.sonar.check.Rule;
 import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 import apiquality.sonar.asyncapi.checks.BaseCheck;
+import apiquality.sonar.asyncapi.utils.AvroUtils;
 
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -14,12 +15,21 @@ import java.util.regex.Pattern;
 public class AAR060ContentTypeAvroCheck extends BaseCheck {
     public static final String CHECK_KEY = "AAR060";
     private static final String ERROR_KEY = "AAR060.error";
+    private static final String MISSING_ERROR_KEY = "AAR060.missing.error";
     private static final Pattern AVRO_CONTENT_TYPE =
             Pattern.compile("^application/.{1,255}\\+avro$");
+
+    private boolean hasDefaultContentType;
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
         return Sets.newHashSet(AsyncApiGrammar.ROOT, AsyncApiGrammar.MESSAGE);
+    }
+
+    @Override
+    protected void visitFile(JsonNode root) {
+        hasDefaultContentType = isDeclared(root.get("defaultContentType"));
+        super.visitFile(root);
     }
 
     @Override
@@ -43,7 +53,23 @@ public class AAR060ContentTypeAvroCheck extends BaseCheck {
             }
             return;
         }
-        checkContentType(effectiveContentType(message));
+        JsonNode effective = effectiveContentType(message);
+        if (!isDeclared(effective)) {
+            if (AvroUtils.isAvroMessage(message) && !hasDefaultContentType) {
+                addIssue(CHECK_KEY, translate(MISSING_ERROR_KEY), anchorFor(message));
+            }
+            return;
+        }
+        checkContentType(effective);
+    }
+
+    private static JsonNode anchorFor(JsonNode message) {
+        JsonNode keyNode = message.key();
+        return (keyNode == null || keyNode.isMissing()) ? message : keyNode;
+    }
+
+    private static boolean isDeclared(JsonNode node) {
+        return node != null && !node.isMissing() && !node.isNull();
     }
 
     private JsonNode effectiveContentType(JsonNode message) {

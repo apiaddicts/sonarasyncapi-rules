@@ -103,6 +103,26 @@ public class AAR060ContentTypeAvroCheckTest extends BaseCheckTest {
         verifyV3("content-type-traits.yaml");
     }
 
+    @Test
+    public void verifyV2ContentTypeMissingOnAvroMessage() {
+        verifyV2("content-type-missing-on-avro-message.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeMissingOnAvroMessage() {
+        verifyV3("content-type-missing-on-avro-message.yaml");
+    }
+
+    @Test
+    public void verifyV2ContentTypeMissingWithDefault() {
+        verifyV2("content-type-missing-with-default.yaml");
+    }
+
+    @Test
+    public void verifyV3ContentTypeMissingWithDefault() {
+        verifyV3("content-type-missing-with-default.yaml");
+    }
+
     @Override
     public void verifyRule() {
         assertRuleProperties("AAR060 - ContentTypeAvro - The message contentType must be application/*+avro",
