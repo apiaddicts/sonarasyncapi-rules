@@ -1,0 +1,25 @@
+asyncapi: 3.1.0
+info:
+  title: Traits Content Type
+  version: 1.0.0
+servers:
+  - host: api.example.com
+    protocol: wss
+channels:
+  inlineTrait:
+    address: inlineTrait
+    messages:
+      Inline:
+        traits:
+          - contentType: application/json
+        payload:
+          type: object
+  traitWithoutContentType:
+    address: traitWithoutContentType
+    messages:
+      NoTrait: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - headers:
+              type: object
+        payload:
+          type: object

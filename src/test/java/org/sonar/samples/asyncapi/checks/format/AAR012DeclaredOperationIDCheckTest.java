@@ -49,6 +49,6 @@ public class AAR012DeclaredOperationIDCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR012 - DeclaredOperationID - Each operation should have a unique operator", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR012 - DeclaredOperationID - Each operation must declare an operationId", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

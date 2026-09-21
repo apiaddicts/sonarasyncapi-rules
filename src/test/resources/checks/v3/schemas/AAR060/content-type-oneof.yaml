@@ -1,0 +1,16 @@
+asyncapi: 3.0.0
+info:
+  title: Content Type Avro OneOf V3
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      Multi:
+        oneOf:
+          - contentType: application/json # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+            payload:
+              type: object
+          - contentType: application/avro+avro
+            payload:
+              type: object

@@ -1,0 +1,47 @@
+asyncapi: '2.6.0'
+info:
+  title: Null Spellings API
+  version: '1.0.0'
+channels:
+  lowercase/null:
+    publish: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId: null
+      message:
+        payload:
+          type: object
+  capitalised/null:
+    publish: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId: Null
+      message:
+        payload:
+          type: object
+  uppercase/null:
+    publish: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId: NULL
+      message:
+        payload:
+          type: object
+  tilde/null:
+    publish: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId: ~
+      message:
+        payload:
+          type: object
+  implicit/null:
+    publish: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId:
+      message:
+        payload:
+          type: object
+  empty/string:
+    publish:
+      operationId: '' # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      message:
+        payload:
+          type: object
+  quoted/null-string:
+    publish:
+      operationId: 'null'
+      message:
+        payload:
+          type: object

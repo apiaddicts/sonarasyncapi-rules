@@ -1,0 +1,10 @@
+asyncapi: 3.0.0
+info:
+  title: Channel Naming Convention Invalid Uppercase V3
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: beca.Cmd.alumnos.registro-bonificacion.beca # Noncompliant {{AAR053: Channel name must follow the naming convention <cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]: lowercase alphanumeric segments separated by dots, with hyphens allowed only within a segment and no underscores}}
+    messages:
+      Registration:
+        payload: {type: object}

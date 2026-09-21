@@ -34,3 +34,54 @@ components:
           headers:
             someHeader: someValue
 </pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: No Examples
+  version: '1.0.0'
+servers:
+  default:
+    host: api.example.com
+    protocol: wss
+channels:
+  users:
+    address: users
+    messages:
+      User: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR031: All examples in message object should follow payload and headers schemas}}</span>
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Examples
+  version: '1.0.0'
+servers:
+  default:
+    host: api.example.com
+    protocol: wss
+channels:
+  users:
+    address: users
+    messages:
+      UserSignup:
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+            email:
+              type: string
+        examples:
+          - name: user-signup-example
+            payload:
+              id: '123'
+              email: user@example.com
+</pre>

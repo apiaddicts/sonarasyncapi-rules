@@ -1,0 +1,47 @@
+asyncapi: '2.6.0'
+info:
+  title: Traits Content Type
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'wss'
+channels:
+  inlineTrait:
+    subscribe:
+      operationId: receiveInline
+      message:
+        traits:
+          - contentType: application/json
+        payload:
+          type: object
+  referencedTrait:
+    subscribe:
+      operationId: receiveReferenced
+      message:
+        traits:
+          - $ref: '#/components/messageTraits/JsonTrait'
+        payload:
+          type: object
+  lastTraitDeclares:
+    subscribe:
+      operationId: receiveLast
+      message:
+        traits:
+          - contentType: null
+          - contentType: application/json
+        payload:
+          type: object
+  ownWinsOverTrait:
+    subscribe:
+      operationId: receiveOwn
+      message:
+        contentType: application/xml
+        traits:
+          - contentType: null
+        payload:
+          type: object
+components:
+  messageTraits:
+    JsonTrait:
+      contentType: application/json

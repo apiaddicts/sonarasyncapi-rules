@@ -1,5 +1,5 @@
 asyncapi: 3.0.0
-info: # Noncompliant {{AAR011: License should be documented}}
+info: # Noncompliant {{AAR011: The 'info' object must contain a 'license' field.}}
   title: No License
   version: 1.0.0
 servers:

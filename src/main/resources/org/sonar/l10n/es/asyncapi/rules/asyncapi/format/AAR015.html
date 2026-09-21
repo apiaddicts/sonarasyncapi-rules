@@ -1,7 +1,49 @@
-<p></p>
+<p>La API debe indicar el contacto en el objeto info</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR015: El objeto 'info' debe contener una sección 'contact'.}}</span>
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets: {}
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  contact:
+    name: hola
+    email: enrgomez2002@gmail.com
+    url: https://support.example.com
+channels:
+  /pets: {}
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR015: El objeto 'info' debe contener una sección 'contact'.}}</span>
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  pets: {}
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  contact:
+    name: hola
+    email: enrgomez2002@gmail.com
+    url: https://support.example.com
+channels:
+  pets: {}
 </pre>

@@ -1,0 +1,19 @@
+asyncapi: '2.6.0'
+info:
+  title: Content Type OneOf
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'wss'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        oneOf:
+          - contentType: application/json
+            payload:
+              type: object
+          - payload: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+              type: object

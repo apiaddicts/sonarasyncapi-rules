@@ -79,6 +79,18 @@ public class AAR026MessageSchemasCheck extends BaseCheck {
     if (operation.isMissing() || operation.isNull()) return;
     JsonNode message = operation.get("message");
     if (message.isMissing() || message.isNull()) return;
+
+    JsonNode oneOf = message.propertyMap().get("oneOf");
+    if (oneOf != null && !oneOf.isMissing() && !oneOf.isNull()) {
+      for (JsonNode member : oneOf.elements()) {
+        checkMessageRef(member);
+      }
+      return;
+    }
+    checkMessageRef(message);
+  }
+
+  private void checkMessageRef(JsonNode message) {
     JsonNode ref = message.propertyMap().get("$ref");
     if (ref == null || ref.isMissing() || ref.isNull()) {
       addIssue(CHECK_KEY, translate("AAR026.error"), message.key());

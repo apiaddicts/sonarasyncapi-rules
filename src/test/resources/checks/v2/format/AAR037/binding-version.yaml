@@ -8,12 +8,12 @@ servers:
     protocol: kafka
     description: Kafka broker server
     bindings:
-      kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+      kafka: # Noncompliant {{AAR037: Binding must specify a 'bindingVersion' field.}}
         clientId: example-client
 channels:
   /noncompliant-topic:
     bindings:
-      kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+      kafka: # Noncompliant {{AAR037: Binding must specify a 'bindingVersion' field.}}
         clientId: example-client
   /compliant-topic:
     bindings:
@@ -23,12 +23,12 @@ channels:
     subscribe:
       operationId: consumeKafkaMessages
       bindings:
-        kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+        kafka: # Noncompliant {{AAR037: Binding must specify a 'bindingVersion' field.}}
           clientId: example-client
       message:
         contentType: application/json
         bindings:
-          kafka: # Noncompliant {{AAR037: You must specify the version of the binding}}
+          kafka: # Noncompliant {{AAR037: Binding must specify a 'bindingVersion' field.}}
             contentType: application/json
         payload:
           type: object

@@ -1,0 +1,11 @@
+asyncapi: '2.4.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  production:
+    url: broker.example.com:9092
+    protocol: https # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+    description: Wrong protocol for the Kafka context
+channels:
+  user-events: {}

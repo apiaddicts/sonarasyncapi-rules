@@ -1,0 +1,38 @@
+asyncapi: '2.6.0'
+info:
+  title: Subscribe Group Required - Invalid Group Variants V2
+  version: '1.0.0'
+channels:
+  empty-group:
+    subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+      operationId: consumeEmpty
+      x-scs-group: ''
+  whitespace-group:
+    subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+      operationId: consumeWhitespace
+      x-scs-group: '   '
+  object-group:
+    subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+      operationId: consumeObject
+      x-scs-group:
+        nested: value
+  array-group:
+    subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+      operationId: consumeArray
+      x-scs-group:
+        - a
+        - b
+  kafka-no-groupid:
+    subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+      operationId: consumeNoGroupId
+      bindings:
+        kafka:
+          bindingVersion: '0.5.0'
+  empty-groupid:
+    subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+      operationId: consumeEmptyGroupId
+      bindings:
+        kafka:
+          groupId: ''
+  empty-subscribe:
+    subscribe: {} # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}

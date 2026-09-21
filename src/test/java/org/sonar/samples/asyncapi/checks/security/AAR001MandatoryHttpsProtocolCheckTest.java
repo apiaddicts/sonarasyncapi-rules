@@ -99,6 +99,6 @@ public class AAR001MandatoryHttpsProtocolCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR001 - MandatoryHttpsProtocol - Https protocol is mandatory", RuleType.VULNERABILITY, Severity.CRITICAL, tags("safety"));
+        assertRuleProperties("AAR001 - MandatoryHttpsProtocol - Servers must use a secure protocol", RuleType.VULNERABILITY, Severity.CRITICAL, tags("safety"));
     }
 }

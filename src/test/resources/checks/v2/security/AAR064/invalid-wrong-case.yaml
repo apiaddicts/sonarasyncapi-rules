@@ -1,0 +1,16 @@
+asyncapi: '2.4.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  upper:
+    url: u:9092
+    protocol: KAFKA # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+  mixedSsl:
+    url: m:9092
+    protocol: Kafka-SSL # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+  weird:
+    url: w:9092
+    protocol: kAfKa # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+channels:
+  user-events: {}

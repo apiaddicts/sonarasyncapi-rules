@@ -99,34 +99,55 @@ This plugin is supported by SonarQube versions greater or equal to `6.7.4`
 
 ## 📑 Current Rules
 
-- **AAR001MandatoryHttpsProtocolCheck**: Protocol https is mandatory.
-- **AAR008DefinedServerCheck**: Define 'servers' is mandatory.
-- **AAR009DeclaredTagCheck**: Associate a tag to this operation.
-- **AAR010DocumentedTagCheck**: Tags should be documented.
-- **AAR011DefinedLicenseCheck**: License should be documented.
-- **AAR012DeclaredOperationIDCheck**: Each operation should have a unique operator (Operation ID).
-- **AAR013DuplicateOperationIDCheck**: There cannot be two unique operations (OperationID) that are the same.
-- **AAR015UndefiendContactCheck**: API should indicate the contact in the info object.
-- **AAR016ContactPropertiesCheck**: Contact should contain name, url, and email fields.
-- **AAR017UndefinedUrlLicenseCheck**: The license object must have the url field.
+- **AAR001MandatoryHttpsProtocolCheck**: Server must use a secure protocol (https, wss, amqps, etc).
+- **AAR008DefinedServerCheck**: The AsyncAPI document must define at least one server in the 'servers' object.
+- **AAR009DeclaredTagCheck**: Operation must declare at least one tag.
+- **AAR010DocumentedTagCheck**: Tag should have a 'description' field.
+- **AAR011DefinedLicenseCheck**: The 'info' object must contain a 'license' field.
+- **AAR012DeclaredOperationIDCheck**: Operation must declare an 'operationId'.
+- **AAR013DuplicateOperationIDCheck**: There cannot be two operations with the same operationId.
+- **AAR015UndefiendContactCheck**: The 'info' object must contain a 'contact' section.
+- **AAR016ContactPropertiesCheck**: The 'contact' object must include 'name', 'url', and 'email' fields.
+- **AAR017UndefinedUrlLicenseCheck**: The 'license' object must include a 'url' field.
 - **AAR018SecuritySchemasCheck**: The security scheme must be among those allowed by the organization and must be complete.
-- **AAR019IDSchemasCheck**: The identifier must be defined.
-- **AAR021ProvideOpSummaryCheck**: Provide a summary for each operation.
-- **AAR022DescriptionDiffersSummaryCheck**: Operation description must differ from its summary.
+- **AAR019IDSchemasCheck**: The AsyncAPI document should define an 'id' field.
+- **AAR021ProvideOpSummaryCheck**: Operation must have a 'summary' field.
+- **AAR022DescriptionDiffersSummaryCheck**: The 'description' field must not be identical to the 'summary' field.
 - **AAR024MessageValidationCheck**: All messages sent and received must comply with the message schema specified in the documentation.
 - **AAR026MessageSchemasCheck**: Message schemas are recommended to be found in components.
 - **AAR029MandatoryDescriptionCheck**: Each channel and each operation must have a description that explains its purpose and function.
 - **AAR031MessageExamplesCheck**: All examples in message object should follow payload and headers schemas.
-- **AAR032NumericParameterIntegrityCheck**: Numeric parameters should have minimum, maximum, or format restriction.
-- **AAR033StringParameterIntegrityCheck**: String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction.
-- **AAR034NumericFormatCheck**: Numeric types require a valid format.
-- **AAR035MessageTitleCheck**: It is recommended to have a title per message.
-- **AAR036BadDescriptionCheck**: The description must begin with the first capital letter and end with a point.
-- **AAR037BindingVersionCheck**: You must specify the version of the binding.
-- **AAR040DefinedChannelServersCheck**: Channel server must be defined in the servers object.
-- **AAR041ComponetChannelServerCheck**: It is recommended to add the servers and channels to component.
-- **AAR042MessageIdentifierCheck**: It is recommended to have a unique identifier per message.
-- **AAR043SecurityChannelCheck**: It is recommended to add the security scheme to be used to each channel.
+- **AAR032NumericParameterIntegrityCheck**: Numeric property should have at least one of: minimum, maximum, format, enum, or const restriction.
+- **AAR033StringParameterIntegrityCheck**: String property should have at least one of: minLength, maxLength, pattern, enum, const, or format restriction.
+- **AAR034NumericFormatCheck**: Numeric property must specify a valid 'format' (int32, int64, float, double).
+- **AAR035MessageTitleCheck**: Message should have a 'title' field.
+- **AAR036BadDescriptionCheck**: The description must begin with a capital letter and end with a period.
+- **AAR037BindingVersionCheck**: Binding must specify a 'bindingVersion' field.
+- **AAR040DefinedChannelServersCheck**: Channel references a server that is not defined in the 'servers' object.
+- **AAR041ComponetChannelServerCheck**: Consider defining reusable server and channel references in 'components'.
+- **AAR042MessageIdentifierCheck**: Message should have a 'messageId' field for unique identification.
+- **AAR043SecurityChannelCheck**: Channel should define a security scheme in its operations or bindings.
+- **AAR044AvroNamespaceCheck**: Avro record must declare a `namespace` field to avoid name collisions across services.
+- **AAR045AvroNamespaceNamingCheck**: Avro `namespace` must follow lowercase dot notation, e.g. `org.example.company`.
+- **AAR046AvroRecordDocCheck**: Avro record should include a `doc` description at the record level.
+- **AAR047AvroFieldDocCheck**: Each Avro field should include a `doc` description.
+- **AAR048AvroNameNomenclatureCheck**: Avro record and field names must match the Avro naming specification (`^[A-Za-z_][A-Za-z0-9_]*$`).
+- **AAR049AvroDefaultNullCheck**: Avro fields with a nullable union type must define `default: null` for backward-compatible schema evolution.
+- **AAR050InfoTitleRequiredCheck**: The info.title field must exist and not be empty.
+- **AAR051OperationIdCamelCaseCheck**: The operationId must be present and follow camelCase naming convention.
+- **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (record, enum or fixed) is required and must follow the corporate pattern.
+- **AAR053ChannelNamingConventionCheck**: The channel name must follow the corporate topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]`.
+- **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc`, `cmd` or `sys`.
+- **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears, must have `subject`, `ref` and `referenceName` on every item.
+- **AAR056AvroSchemaFormatCheck**: When `schemaFormat` indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`.
+- **AAR057ErrorTopicDocumentedCheck**: At least one channel must be documented as an error topic following `<topicOriginal>.[<consumerGroup>.]error.<n>`.
+- **AAR058RetryTopicNamingConventionCheck**: If a channel name contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`.
+- **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record, including records nested inside `fields[].type`, unions, arrays and maps, must be in CamelCase with an uppercase first letter.
+- **AAR060ContentTypeAvroCheck**: A message's `contentType` (and the document-level `defaultContentType`) must match `application/*+avro`.
+- **AAR061ProcessorFunctionNamePairedCheck**: Every `x-scs-function-name` must be paired one-to-one between a producing (`publish`/`send`) and a consuming (`subscribe`/`receive`) operation.
+- **AAR062SubscribeGroupRequiredCheck**: Each consuming operation (v2 `subscribe`, v3 `action: receive`) must declare a consumer group via `x-scs-group` or `bindings.kafka.groupId`.
+- **AAR063AsyncAPIVersionAllowedCheck**: The root `asyncapi` version must be one of the versions allowed by the organization (configurable via `allowedVersions`; default `2.6.0`).
+- **AAR064KafkaProtocolRequiredCheck**: In the Kafka context, the server protocol must be `kafka` or `kafka-ssl` (not `https`, `wss`, etc.).
 
 ## 💛 Sponsors
 <img src="https://apiaddicts.cloudappi.net/web/image/4248/LOGOCloudappi2020Versiones-01.png" alt="cloudappi" width="150"/>

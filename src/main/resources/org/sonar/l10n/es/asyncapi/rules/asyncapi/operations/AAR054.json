@@ -1,0 +1,13 @@
+{
+    "title": "AAR054 - ClassificationValidValues - La clasificación del channel debe ser cdc, cmd o sys",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MAJOR"
+}

@@ -1,0 +1,14 @@
+asyncapi: '2.6.0'
+info:
+  title: X Payload References Empty Subject V2
+  version: '1.0.0'
+channels:
+  beca.evt.alumnos.registro-bonificacion.beca:
+    subscribe:
+      message:
+        payload:
+          type: object
+        x-payload-references:
+          - subject: '' # Noncompliant {{AAR055: Item in 'x-payload-references' is missing the required non-empty field 'subject'}}
+            ref: https://svn.example.com/schemas/avro/Ciudadano.avsc
+            referenceName: org.madrid.core.payload.alumnos.Ciudadano

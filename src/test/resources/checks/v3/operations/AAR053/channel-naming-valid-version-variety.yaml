@@ -1,0 +1,15 @@
+asyncapi: 3.0.0
+info:
+  title: Channel Naming Convention Valid Version Variety V3
+  version: 1.0.0
+channels:
+  scholarshipRegistrationV3:
+    address: beca.cmd.alumnos.registro-bonificacion.beca.v3
+    messages:
+      Registration:
+        payload: {type: object}
+  scholarshipRegistrationV10:
+    address: beca.cmd.alumnos.registro-bonificacion.beca.v10
+    messages:
+      Registration:
+        payload: {type: object}

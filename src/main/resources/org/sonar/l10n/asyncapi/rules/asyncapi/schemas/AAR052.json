@@ -1,0 +1,13 @@
+{
+    "title": "AAR052 - AvroNamespacePattern - Avro namespace must follow the corporate pattern",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

@@ -1,0 +1,31 @@
+asyncapi: '2.6.0'
+info:
+  title: Avro Namespace Wrapper Message Level V2
+  version: '1.0.0'
+channels:
+  ordersOk:
+    subscribe:
+      operationId: receiveOrderOk
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          schema:
+            type: record
+            name: OrderOk
+            namespace: org.madrid.p001.cmd.orders
+            fields:
+              - name: id
+                type: string
+  ordersBad:
+    subscribe:
+      operationId: receiveOrderBad
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          schema: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+            type: record
+            name: OrderBad
+            namespace: org.example.bad
+            fields:
+              - name: id
+                type: string

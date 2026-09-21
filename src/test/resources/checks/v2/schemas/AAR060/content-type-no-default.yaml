@@ -1,0 +1,22 @@
+asyncapi: '2.6.0'
+info:
+  title: Content Type Avro No Default V2
+  version: '1.0.0'
+channels:
+  orders:
+    subscribe:
+      message:
+        contentType: application/avro+avro
+        payload:
+          type: object
+  events:
+    publish:
+      message:
+        payload:
+          type: object
+components:
+  messages:
+    Reusable:
+      contentType: application/vnd.apache.avro+avro
+      payload:
+        type: object

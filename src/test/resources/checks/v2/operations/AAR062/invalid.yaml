@@ -1,0 +1,14 @@
+asyncapi: '2.6.0'
+info:
+  title: Subscribe Group Required - Invalid V2
+  version: '1.0.0'
+channels:
+  alta.beca:
+    subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+      operationId: consumeAlta
+  baja.beca:
+    subscribe: # Noncompliant {{AAR062: Each consuming operation must declare a consumer group via 'x-scs-group' or 'bindings.kafka.groupId'}}
+      operationId: consumeBaja
+  salida.beca:
+    publish:
+      operationId: produceSalida

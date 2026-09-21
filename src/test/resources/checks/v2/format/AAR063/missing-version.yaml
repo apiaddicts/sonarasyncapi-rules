@@ -1,0 +1,5 @@
+info:
+  title: My Async API
+  version: '1.0.0'
+channels:
+  /pets: {}

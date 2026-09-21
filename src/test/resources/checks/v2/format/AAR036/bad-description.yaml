@@ -5,9 +5,9 @@ info:
   description: API que demuestra el uso de operationId único en cada operación.
 channels:
   /pets: 
-    description: hola # Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}
+    description: hola # Noncompliant {{AAR036: The description must begin with a capital letter and end with a period.}}
     subscribe: 
-      description: hola # Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}
+      description: hola # Noncompliant {{AAR036: The description must begin with a capital letter and end with a period.}}
       operationId: getPets
       message:
         contentType: application/json

@@ -81,9 +81,16 @@ public class AAR037BindingVersionCheck extends BaseCheck {
 
         checkBindings(operation.get(BINDINGS_KEY));
         JsonNode message = operation.get("message");
-        if (!isNotPresent(message)) {
-            checkBindings(message.get(BINDINGS_KEY));
+        if (isNotPresent(message)) return;
+
+        JsonNode oneOf = message.get("oneOf");
+        if (!isNotPresent(oneOf)) {
+            for (JsonNode member : oneOf.elements()) {
+                checkBindings(member.get(BINDINGS_KEY));
+            }
+            return;
         }
+        checkBindings(message.get(BINDINGS_KEY));
     }
 
     private void checkBindings(JsonNode bindingsNode) {

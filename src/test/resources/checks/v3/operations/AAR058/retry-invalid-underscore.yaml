@@ -1,0 +1,11 @@
+asyncapi: 3.0.0
+info:
+  title: Retry Topic Naming Convention Invalid Underscore V3
+  version: 1.0.0
+channels:
+  solicitudBecaRetryGrupo1:
+    address: beca_cmd.alumnos.solicitud.beca.grupo1.retry.1 # Noncompliant {{AAR058: Channel name contains '.retry.' but does not follow the required pattern '<topicOriginal>.<consumerGroup>.retry.<n>'}}
+    messages:
+      SolicitudBecaMessage:
+        payload:
+          type: object

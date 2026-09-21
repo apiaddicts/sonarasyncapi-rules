@@ -12,7 +12,7 @@ channels:
       operationId: receiveCarga
       message:
         schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
-        payload: # Noncompliant {{AAR019: The identifier must be defined}}
+        payload: # Noncompliant {{AAR019: The AsyncAPI document should define an 'id' field.}}
           type: record
           name: CargaValue
           namespace: com.example.avro

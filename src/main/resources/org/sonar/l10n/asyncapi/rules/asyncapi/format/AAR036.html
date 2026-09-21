@@ -8,9 +8,9 @@ info:
   description: API que demuestra el uso de operationId único en cada operación.
 channels:
   /pets: 
-    description: hola <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}</span>
+    description: hola <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR036: The description must begin with a capital letter and end with a period.}}</span>
     subscribe: 
-      description: hola <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR036: The description must begin with the first capital letter and end with point}}</span>
+      description: hola <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR036: The description must begin with a capital letter and end with a period.}}</span>
       operationId: getPets
       message:
         contentType: application/json
@@ -40,8 +40,8 @@ info:
 channels:
   /pets: 
     description: Hola.
-    subscribe: 
-      description: Hola. 
+    subscribe:
+      description: Hola.
       operationId: getPets
       message:
         contentType: application/json
@@ -60,4 +60,68 @@ channels:
                 type: string
                 description: Especie de la mascota.
 
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API that demonstrates the use of a unique operationId in each operation.
+servers:
+  production:
+    host: api.example.com
+    protocol: kafka
+channels:
+  pets:
+    address: pets
+    description: hello <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR036: The description must begin with a capital letter and end with a period.}}</span>
+    messages:
+      Pet:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+operations:
+  getPets:
+    action: receive
+    description: hello <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR036: The description must begin with a capital letter and end with a period.}}</span>
+    channel:
+      $ref: '#/channels/pets'
+    messages:
+      - $ref: '#/channels/pets/messages/Pet'
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API that demonstrates the use of a unique operationId in each operation.
+servers:
+  production:
+    host: api.example.com
+    protocol: kafka
+channels:
+  pets:
+    address: pets
+    description: Hello.
+    messages:
+      Pet:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+operations:
+  getPets:
+    action: receive
+    description: Hello.
+    channel:
+      $ref: '#/channels/pets'
+    messages:
+      - $ref: '#/channels/pets/messages/Pet'
 </pre>

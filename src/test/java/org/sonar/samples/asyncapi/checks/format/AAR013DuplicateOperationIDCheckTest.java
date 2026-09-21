@@ -49,6 +49,6 @@ public class AAR013DuplicateOperationIDCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR013 - DuplicateOperationID - There cannot be two unique operations that are the same", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR013 - DuplicateOperationID - There cannot be two operations with the same operationId", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

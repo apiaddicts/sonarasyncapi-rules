@@ -1,5 +1,5 @@
 {
-    "title": "AAR033 - StringParameterIntegrity - String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction",
+    "title": "AAR033 - StringParameterIntegrity - String properties should declare a value restriction",
     "type": "BUG",
     "status": "ready",
     "remediation": {

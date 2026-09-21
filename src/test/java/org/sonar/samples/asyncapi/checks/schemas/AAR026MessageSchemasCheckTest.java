@@ -24,6 +24,16 @@ public class AAR026MessageSchemasCheckTest extends BaseCheckTest {
         verifyV2("message-schemas.yaml");
     }
 
+    @Test
+    public void verifyInV2OneOfCompliant() {
+        verifyV2("message-oneof-compliant.yaml");
+    }
+
+    @Test
+    public void verifyInV2OneOfNoncompliant() {
+        verifyV2("message-oneof-noncompliant.yaml");
+    }
+
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---

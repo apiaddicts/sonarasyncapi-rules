@@ -5,7 +5,7 @@ info:
 servers:
   default:
     url: 'http://localhost:8080'
-    protocol: 'http' # Noncompliant {{AAR001: Protocol https is mandatory}}
+    protocol: 'http' # Noncompliant {{AAR001: Server must use a secure protocol (https, wss, amqps, etc).}}
     description: Servidor por defecto para la tienda de mascotas
 channels:
   /pets: {}

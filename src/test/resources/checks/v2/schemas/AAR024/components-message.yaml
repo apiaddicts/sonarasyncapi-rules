@@ -1,0 +1,21 @@
+asyncapi: '2.4.0'
+info:
+  title: Components Message
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'wss'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        contentType: application/json
+        payload:
+          type: object
+components:
+  messages:
+    OrderCreated: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+      payload:
+        type: object

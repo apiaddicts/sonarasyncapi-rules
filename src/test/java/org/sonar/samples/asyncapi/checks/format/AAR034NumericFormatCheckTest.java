@@ -24,11 +24,16 @@ public class AAR034NumericFormatCheckTest extends BaseCheckTest {
         verifyV2("numeric-format.yaml");
     }
 
-    
+
     // ============= V3.0+ Tests =============
+
+    @Test
+    public void verifyInV3() {
+        verifyV3("numeric-format.yaml");
+    }
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR034 - NumericFormat - Numeric types requires a valid format", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR034 - NumericFormat - Numeric types require a valid format", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

@@ -1,0 +1,37 @@
+# Noncompliant {{AAR026: Message schemas are recommended to be found in components}}
+asyncapi: '2.6.0'
+info:
+  title: Example API
+  version: '1.0.0'
+  description: An API example with a oneOf message wrapper, one member defined inline.
+
+servers:
+  production:
+    url: api.example.com
+    protocol: https
+
+channels:
+  user/signedup:
+    publish:
+      operationId: userSignedUp
+      message:
+        oneOf:
+          - $ref: '#/components/messages/UserCreated'
+          - name: UserUpdatedMessage
+            contentType: application/json
+            payload:
+              type: object
+              properties:
+                userId:
+                  type: string
+
+components:
+  messages:
+    UserCreated:
+      name: UserCreatedMessage
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          userId:
+            type: string

@@ -1,7 +1,125 @@
-<p></p>
+<p>Los tipos numéricos requieren un formato válido</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  version: '1.0.0'
+  title: AsyncAPI Petstore
+channels:
+  /invoices:
+    description: Channel for invoices
+    publish:
+      summary: Publish invoice data
+      operationId: publishInvoice
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            price:
+              type: number
+              format: double
+            nested:
+              type: object
+              properties:
+                value:
+                  type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR034: La propiedad numérica debe especificar un 'format' válido (int32, int64, float, double).}}</span>
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  version: '1.0.0'
+  title: AsyncAPI Petstore
+channels:
+  /invoices:
+    description: Channel for invoices
+    publish:
+      summary: Publish invoice data
+      operationId: publishInvoice
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            price:
+              type: number
+              format: double
+            nested:
+              type: object
+              properties:
+                value:
+                  type: number
+                  format: int64
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  version: '1.0.0'
+  title: AsyncAPI Petstore
+servers:
+  production:
+    host: broker.example.com
+    protocol: kafka
+channels:
+  invoices:
+    address: invoices
+    messages:
+      Invoice:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            price:
+              type: number
+              format: double
+            nested:
+              type: object
+              properties:
+                value:
+                  type: number <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR034: La propiedad numérica debe especificar un 'format' válido (int32, int64, float, double).}}</span>
+operations:
+  publishInvoice:
+    action: send
+    channel:
+      $ref: '#/channels/invoices'
+    messages:
+      - $ref: '#/channels/invoices/messages/Invoice'
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  version: '1.0.0'
+  title: AsyncAPI Petstore
+servers:
+  production:
+    host: broker.example.com
+    protocol: kafka
+channels:
+  invoices:
+    address: invoices
+    messages:
+      Invoice:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            price:
+              type: number
+              format: double
+            nested:
+              type: object
+              properties:
+                value:
+                  type: number
+                  format: int64
+operations:
+  publishInvoice:
+    action: send
+    channel:
+      $ref: '#/channels/invoices'
+    messages:
+      - $ref: '#/channels/invoices/messages/Invoice'
 </pre>

@@ -1,0 +1,40 @@
+asyncapi: 3.0.0
+info:
+  title: Processor Function Name Paired - Unbalanced V3
+  version: 1.0.0
+channels:
+  a-in:
+    address: a.in
+  b-out:
+    address: b.out
+operations:
+  sendOne:
+    action: send
+    channel:
+      $ref: '#/channels/b-out'
+    x-scs-function-name: excessSend
+  sendTwo:
+    action: send
+    channel:
+      $ref: '#/channels/b-out'
+    x-scs-function-name: excessSend # Noncompliant {{AAR061: The x-scs-function-name 'excessSend' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  receiveOne:
+    action: receive
+    channel:
+      $ref: '#/channels/a-in'
+    x-scs-function-name: excessSend
+  receiveTwo:
+    action: receive
+    channel:
+      $ref: '#/channels/a-in'
+    x-scs-function-name: excessReceive
+  receiveThree:
+    action: receive
+    channel:
+      $ref: '#/channels/a-in'
+    x-scs-function-name: excessReceive # Noncompliant {{AAR061: The x-scs-function-name 'excessReceive' must be paired one-to-one between a publish/send and a subscribe/receive operation}}
+  sendThree:
+    action: send
+    channel:
+      $ref: '#/channels/b-out'
+    x-scs-function-name: excessReceive

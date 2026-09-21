@@ -1,0 +1,141 @@
+asyncapi: '2.4.0'
+info:
+  title: Invalid OperationId Example API
+  version: '1.0.0'
+  description: API con operationId ausente o que no respeta camelCase.
+channels:
+  /pets:
+    description: Canal para operaciones relacionadas con mascotas.
+    subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para recibir la lista de mascotas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      operationId: on_pet_updated # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para actualizar una mascota.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /orders:
+    description: Canal para operaciones relacionadas con pedidos.
+    publish:
+      operationId: OnOrderPlaced # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para procesar pedidos.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /reservations:
+    description: Canal para operaciones relacionadas con reservas.
+    subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId: null
+      summary: Operación para recibir reservas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      operationId: 12345 # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para publicar reservas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /invoices:
+    description: Canal para operaciones relacionadas con facturas.
+    publish:
+      operationId: "" # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: Operación para publicar facturas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      operationId: ~
+      summary: Operación para recibir facturas.
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  /shipments:
+    description: Canal que ejercita variantes de formato no camelCase.
+    publish:
+      operationId: 2procesarEnvio # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId que empieza por dígito.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: procesar-envio # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId en kebab-case.
+      message:
+        payload:
+          type: object
+  /returns:
+    description: Canal que ejercita mayúsculas y espacios.
+    publish:
+      operationId: PROCESAR_DEVOLUCION # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId en SCREAMING_SNAKE_CASE.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: "procesar devolucion" # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId con espacios interiores.
+      message:
+        payload:
+          type: object
+  /refunds:
+    description: Canal que ejercita espacios al final y caracteres no ASCII.
+    publish:
+      operationId: "procesarReembolso " # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId con espacio final.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: procesarDevolucióN # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId con caracteres acentuados.
+      message:
+        payload:
+          type: object
+  /audits:
+    description: Canal que ejercita operationId con tipos no escalares.
+    publish:
+      operationId: true # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId booleano.
+      message:
+        payload:
+          type: object
+    subscribe:
+      operationId: {name: auditar} # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId como objeto.
+      message:
+        payload:
+          type: object
+  /alerts:
+    description: Canal que ejercita operationId como lista.
+    publish:
+      operationId: [enviarAlerta] # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+      summary: operationId como lista.
+      message:
+        payload:
+          type: object
+components:
+  channels:
+    /notifications:
+      description: Canal reutilizable definido en components.
+      subscribe: # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+        summary: Operación sin operationId dentro de components.
+        message:
+          payload:
+            type: object
+      publish:
+        operationId: Enviar_Notificacion # Noncompliant {{AAR051: The operationId must be present and follow camelCase naming convention}}
+        summary: Operación de components con operationId inválido.
+        message:
+          payload:
+            type: object

@@ -1,0 +1,18 @@
+asyncapi: 3.1.0
+info:
+  title: Avro Schema Format Wrong Version V31
+  version: 1.0.0
+channels:
+  carga:
+    address: carga
+    messages:
+      CargaMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.8.0' # Noncompliant {{AAR056: The 'schemaFormat' value 'application/vnd.apache.avro;version=1.8.0' must be exactly 'application/vnd.apache.avro;version=1.9.0' when the payload uses Avro}}
+          schema:
+            type: record
+            name: CargaValue
+            namespace: com.example.avro
+            fields:
+              - name: id
+                type: string

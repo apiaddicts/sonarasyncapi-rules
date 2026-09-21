@@ -1,0 +1,19 @@
+asyncapi: '2.6.0'
+info:
+  title: Subscribe Group Required - Skip Cases V2
+  version: '1.0.0'
+channels:
+  ref-subscribe:
+    subscribe:
+      $ref: '#/channels/valid-scalar/subscribe'
+  null-subscribe:
+    subscribe: null
+  producer-only:
+    publish:
+      operationId: produceOnly
+  valid-scalar:
+    subscribe:
+      operationId: consumeScalar
+      bindings:
+        kafka:
+          groupId: scalar.beca.1

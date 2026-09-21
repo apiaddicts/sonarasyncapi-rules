@@ -1,0 +1,13 @@
+{
+    "title": "AAR056 - AvroSchemaFormat - El schemaFormat debe ser application/vnd.apache.avro;version=1.9.0",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

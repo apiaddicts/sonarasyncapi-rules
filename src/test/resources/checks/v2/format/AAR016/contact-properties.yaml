@@ -3,7 +3,7 @@ info:
   title: Unique Operation ID Example API
   version: '1.0.0'
   description: API que demuestra el uso de operationId único en cada operación.
-  contact: # Noncompliant {{AAR016: Contact should contain name, url and email fields}}
+  contact: # Noncompliant {{AAR016: The 'contact' object must include 'name', 'url', and 'email' fields.}}
     name: hola
 channels:
   /pets: {}

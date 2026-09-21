@@ -1,0 +1,17 @@
+asyncapi: '2.6.0'
+info:
+  title: Retry Topic Naming Convention Valid V2
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.solicitud.beca.grupo1.retry.1:
+    subscribe:
+      operationId: receiveSolicitudBecaRetryGrupo1
+      message:
+        payload:
+          type: object
+  beca.cmd.alumnos.solicitud.beca:
+    subscribe:
+      operationId: receiveSolicitudBeca
+      message:
+        payload:
+          type: object

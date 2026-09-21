@@ -1,0 +1,13 @@
+{
+    "title": "AAR050 - InfoTitleRequired - El campo info.title debe existir y no estar vacío",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+}

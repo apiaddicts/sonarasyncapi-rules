@@ -1,0 +1,48 @@
+<p>A Spring Cloud Stream processor is assembled by the JAPI generator from the two operations that share the same <code>x-scs-function-name</code>: the one that produces to a topic (AsyncAPI 2 <code>publish</code> / AsyncAPI 3 <code>send</code>) and the one that consumes from a topic (AsyncAPI 2 <code>subscribe</code> / AsyncAPI 3 <code>receive</code>). Every <code>x-scs-function-name</code> value used in the document must therefore be paired one-to-one between a producing and a consuming operation, so the generator links them into a single processor (for example <code>processTopic2Topic3</code> declared on both). Operations that do not declare <code>x-scs-function-name</code> are not reported.</p>
+<h2>Noncompliant Code Example (AsyncAPI 2)</h2>
+<pre>
+channels:
+  topic2:
+    publish:
+      operationId: consumeTopic2
+      x-scs-function-name: processTopic2Topic3 # Noncompliant - no subscribe/send shares this value
+  topic3:
+    subscribe:
+      operationId: produceTopic3
+      x-scs-function-name: processTopic3 # Noncompliant - no publish/receive shares this value
+</pre>
+<h2>Compliant Solution (AsyncAPI 2)</h2>
+<pre>
+channels:
+  topic2:
+    publish:
+      operationId: consumeTopic2
+      x-scs-function-name: processTopic2Topic3
+  topic3:
+    subscribe:
+      operationId: produceTopic3
+      x-scs-function-name: processTopic2Topic3
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+operations:
+  consumeTopic2:
+    action: receive
+    channel:
+      $ref: '#/channels/topic2'
+    x-scs-function-name: processTopic2Topic3 # Noncompliant - no send operation shares this value
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+operations:
+  consumeTopic2:
+    action: receive
+    channel:
+      $ref: '#/channels/topic2'
+    x-scs-function-name: processTopic2Topic3
+  produceTopic3:
+    action: send
+    channel:
+      $ref: '#/channels/topic3'
+    x-scs-function-name: processTopic2Topic3
+</pre>

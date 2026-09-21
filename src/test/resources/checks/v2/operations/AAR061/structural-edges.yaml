@@ -1,0 +1,14 @@
+asyncapi: '2.6.0'
+info:
+  title: Processor Function Name Paired - Structural Edges V2
+  version: '1.0.0'
+channels:
+  null-channel: null
+  scalar-channel: just-a-string
+  empty-channel: {}
+  null-function:
+    publish:
+      operationId: nullFn
+      x-scs-function-name: null
+  missing-operations:
+    description: a channel with neither publish nor subscribe

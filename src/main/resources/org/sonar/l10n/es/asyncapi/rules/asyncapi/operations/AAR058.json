@@ -1,0 +1,13 @@
+{
+    "title": "AAR058 - RetryTopicNamingConvention - Los channels de retry deben seguir el patrón correcto",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MINOR"
+}

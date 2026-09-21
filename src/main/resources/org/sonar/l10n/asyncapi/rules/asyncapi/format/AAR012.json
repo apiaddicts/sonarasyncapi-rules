@@ -1,5 +1,5 @@
 {
-    "title": "AAR012 - DeclaredOperationID - Each operation should have a unique operator",
+    "title": "AAR012 - DeclaredOperationID - Each operation must declare an operationId",
     "type": "BUG",
     "status": "ready",
     "remediation": {

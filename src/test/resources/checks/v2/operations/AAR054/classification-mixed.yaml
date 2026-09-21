@@ -1,0 +1,23 @@
+asyncapi: '2.6.0'
+info:
+  title: Classification Mixed V2
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.registro-bonificacion.beca:
+    subscribe:
+      operationId: receiveCmd
+      message:
+        payload:
+          type: object
+  beca.evt.alumnos.registro-bonificacion.beca: # Noncompliant {{AAR054: Channel name's classification segment (2nd segment) must be one of: cdc, cmd, sys}}
+    subscribe:
+      operationId: receiveEvt
+      message:
+        payload:
+          type: object
+  beca.sys.alumnos.registro-bonificacion.beca:
+    subscribe:
+      operationId: receiveSys
+      message:
+        payload:
+          type: object

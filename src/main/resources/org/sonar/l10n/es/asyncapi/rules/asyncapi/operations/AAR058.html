@@ -1,0 +1,58 @@
+<p>Si el nombre de un channel (la clave de propiedad del channel en AsyncAPI 2, o el <code>address</code> del channel en AsyncAPI 3) contiene <code>.retry.</code>, debe seguir el patrón <code>&lt;topicOriginal&gt;.&lt;grupo_consumo&gt;.retry.&lt;n&gt;</code> (ej.: <code>beca.cmd.alumnos.solicitud.beca.grupo1.retry.1</code>), que Spring requiere de forma exacta para enrutar los mensajes de reprocesamiento automático.</p>
+<p>Los channels cuyo nombre no contenga <code>.retry.</code> no son channels de retry y esta regla no los afecta. Es una comprobación por channel: cada channel que parece ser de retry se valida individualmente, y se reporta una incidencia por cada uno que no coincida con el patrón requerido.</p>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Beca API
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.solicitud.beca.grupo1.retry.abc:
+    subscribe:
+      operationId: receiveSolicitudBecaRetryGrupo1
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+asyncapi: '2.6.0'
+info:
+  title: Beca API
+  version: '1.0.0'
+channels:
+  beca.cmd.alumnos.solicitud.beca.grupo1.retry.1:
+    subscribe:
+      operationId: receiveSolicitudBecaRetryGrupo1
+      message:
+        payload:
+          type: object
+</pre>
+<h2>Ejemplo Noncompliant (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Beca API
+  version: 1.0.0
+channels:
+  solicitudBecaRetryGrupo1:
+    address: beca.cmd.alumnos.solicitud.beca.grupo1.retry.abc
+    messages:
+      SolicitudBecaMessage:
+        payload:
+          type: object
+</pre>
+<h2>Solución Compliant (AsyncAPI 3)</h2>
+<pre>
+asyncapi: 3.0.0
+info:
+  title: Beca API
+  version: 1.0.0
+channels:
+  solicitudBecaRetryGrupo1:
+    address: beca.cmd.alumnos.solicitud.beca.grupo1.retry.1
+    messages:
+      SolicitudBecaMessage:
+        payload:
+          type: object
+</pre>

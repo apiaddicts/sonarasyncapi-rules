@@ -1,0 +1,19 @@
+asyncapi: '2.4.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  good1:
+    url: g1:9092
+    protocol: kafka
+  bad1:
+    url: b1:9092
+    protocol: https # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+  good2:
+    url: g2:9092
+    protocol: kafka-ssl
+  bad2:
+    url: b2:9092
+    protocol: mqtt # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+channels:
+  user-events: {}

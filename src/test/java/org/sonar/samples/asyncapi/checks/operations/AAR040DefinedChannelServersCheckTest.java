@@ -24,7 +24,12 @@ public class AAR040DefinedChannelServersCheckTest extends BaseCheckTest {
         verifyV2("defined-channels-server.yaml");
     }
 
-    
+    @Test
+    public void verifyInV2WithUndefinedChannelServer() {
+        verifyV2("undefined-channel-server.yaml");
+    }
+
+
     // ============= V3.0+ Tests =============
 
     // --- V3 Tests ---

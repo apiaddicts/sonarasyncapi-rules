@@ -1,0 +1,7 @@
+asyncapi: 3.1.0
+info:
+  title: Classification Null Address V31
+  version: 1.0.0
+channels:
+  dynamicReplyChannel:
+    address: null

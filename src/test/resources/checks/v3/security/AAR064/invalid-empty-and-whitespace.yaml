@@ -1,0 +1,20 @@
+asyncapi: '3.0.0'
+info:
+  title: My Async API
+  version: '1.0.0'
+servers:
+  emptyProto:
+    host: e:9092
+    protocol: '' # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+  spacesProto:
+    host: s:9092
+    protocol: '   ' # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+  paddedProto:
+    host: p:9092
+    protocol: ' kafka ' # Noncompliant {{AAR064: The server protocol must be 'kafka' or 'kafka-ssl'}}
+channels:
+  userEvents:
+    address: user-events
+    messages:
+      Event:
+        payload: {type: object}

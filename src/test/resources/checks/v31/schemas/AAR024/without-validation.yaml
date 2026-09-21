@@ -9,6 +9,6 @@ channels:
   orders:
     address: orders
     messages:
-      Order: # Noncompliant {{AAR024: All messages sent and received must comply with the message schema specified in the documentation}}
+      Order: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
         payload:
           type: object

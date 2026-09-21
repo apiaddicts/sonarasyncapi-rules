@@ -24,7 +24,11 @@ public class AAR037BindingVersionCheckTest extends BaseCheckTest {
         verifyV2("binding-version.yaml");
     }
 
-    
+    @Test
+    public void verifyInV2OneOf() {
+        verifyV2("binding-version-oneof.yaml");
+    }
+
     // ============= V3.0+ Tests =============
 
     @Override

@@ -1,0 +1,13 @@
+{
+  "title": "AAR064 - KafkaProtocolRequired - El protocolo del servidor debe ser kafka o kafka-ssl",
+  "type": "VULNERABILITY",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "10min"
+  },
+  "tags": [
+    "safety"
+  ],
+  "defaultSeverity": "CRITICAL"
+}

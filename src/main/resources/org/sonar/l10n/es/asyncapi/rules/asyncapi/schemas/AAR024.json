@@ -1,5 +1,5 @@
 {
-    "title": "AAR024 - MessageValidation - Todos los mensajes enviados y recibidos deben cumplir con el esquema de mensaje especificado en la documentación",
+    "title": "AAR024 - MessageValidation - Cada mensaje debe declarar un contentType salvo que sea un mensaje Avro",
     "type": "BUG",
     "status": "ready",
     "remediation": {

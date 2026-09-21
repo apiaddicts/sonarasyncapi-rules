@@ -1,0 +1,38 @@
+asyncapi: '2.6.0'
+info:
+  title: Example API
+  version: '1.0.0'
+  description: An API example with a oneOf message wrapper, all members using $ref.
+
+servers:
+  production:
+    url: api.example.com
+    protocol: https
+
+channels:
+  user/signedup:
+    publish:
+      operationId: userSignedUp
+      message:
+        oneOf:
+          - $ref: '#/components/messages/UserCreated'
+          - $ref: '#/components/messages/UserUpdated'
+
+components:
+  messages:
+    UserCreated:
+      name: UserCreatedMessage
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          userId:
+            type: string
+    UserUpdated:
+      name: UserUpdatedMessage
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          userId:
+            type: string

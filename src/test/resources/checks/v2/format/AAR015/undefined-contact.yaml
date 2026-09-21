@@ -1,5 +1,5 @@
 asyncapi: '2.4.0'
-info: # Noncompliant {{AAR015: Api should indicate the contact in the info object}}
+info: # Noncompliant {{AAR015: The 'info' object must contain a 'contact' section.}}
   title: Unique Operation ID Example API
   version: '1.0.0'
   description: API que demuestra el uso de operationId único en cada operación.

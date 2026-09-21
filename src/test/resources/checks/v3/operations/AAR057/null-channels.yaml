@@ -1,0 +1,5 @@
+asyncapi: 3.0.0
+info:
+  title: Error Topic Documented Example
+  version: 1.0.0
+channels: null # Noncompliant {{AAR057: At least one channel must be documented as an error topic following the pattern '<topicOriginal>.[<consumerGroup>.]error.<n>'}}

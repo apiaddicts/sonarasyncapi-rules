@@ -35,12 +35,16 @@ public class AAR001MandatoryHttpsProtocolCheck extends BaseCheck {
         }
 
         if (AsyncAPIVersionDetector.isVersion3Plus(node)) {
-            // v3+: servers is an array
-            for (JsonNode server : serversNode.elements()) {
-                checkServer(server);
+            if (serversNode.isArray()) {
+                for (JsonNode server : serversNode.elements()) {
+                    checkServer(server);
+                }
+            } else {
+                for (JsonNode server : serversNode.propertyMap().values()) {
+                    checkServer(server);
+                }
             }
         } else {
-            // v2: servers is a map
             for (Map.Entry<String, JsonNode> entry : serversNode.propertyMap().entrySet()) {
                 checkServerV2(entry.getValue());
             }

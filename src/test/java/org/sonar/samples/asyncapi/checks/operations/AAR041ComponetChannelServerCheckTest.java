@@ -41,6 +41,6 @@ public class AAR041ComponetChannelServerCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR041 - ComponetChannelServer - It is recommend to add the servers and channels to component", RuleType.BUG, Severity.MAJOR, tags("operations"));
+        assertRuleProperties("AAR041 - ComponetChannelServer - It is recommended to add servers and channels to components", RuleType.BUG, Severity.MAJOR, tags("operations"));
     }
 }

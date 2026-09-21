@@ -6,7 +6,7 @@ info:
   title: Unique Operation ID Example API
   version: '1.0.0'
   description: API que demuestra el uso de operationId único en cada operación.
-  license: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR017: The license object must have the url field}}</span>
+  license: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR017: The 'license' object must include a 'url' field.}}</span>
     name: Apache 2.0
 channels:
   /pets: {}
@@ -23,4 +23,29 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 channels:
   /pets: {}
+</pre>
+<h2>Noncompliant Code Example (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  license: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR017: The 'license' object must include a 'url' field.}}</span>
+    name: Apache 2.0
+channels:
+  pets: {}
+</pre>
+<h2>Compliant Solution (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+channels:
+  pets: {}
 </pre>

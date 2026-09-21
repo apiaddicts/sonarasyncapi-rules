@@ -1,0 +1,31 @@
+<p>El campo <code>name</code> de cada record Avro debe estar en CamelCase con la primera letra mayúscula (ej.: <code>SolicitudComunicacion</code>, <code>ResultadoComunicacionMail</code>). Esto aplica tanto al record de nivel superior como a cualquier record anidado dentro de <code>fields[].type</code> (como tipo anidado directo, dentro de una unión, dentro de <code>items</code> de un array, o dentro de <code>values</code> de un map). AAR048 ya valida que los nombres Avro usen solo caracteres válidos, pero no exige esta convención de mayúsculas/minúsculas.</p>
+<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: SolicitudComunicacion
+  namespace: org.example.orders
+  fields:
+    - name: resultado
+      type:
+        type: record
+        name: resultado_comunicacion_mail # Noncompliant - el nombre del record anidado no está en CamelCase
+        fields:
+          - name: estado
+            type: string
+</pre>
+<h2>Solución Compliant (AsyncAPI 2)</h2>
+<pre>
+payload:
+  type: record
+  name: SolicitudComunicacion
+  namespace: org.example.orders
+  fields:
+    - name: resultado
+      type:
+        type: record
+        name: ResultadoComunicacionMail
+        fields:
+          - name: estado
+            type: string
+</pre>

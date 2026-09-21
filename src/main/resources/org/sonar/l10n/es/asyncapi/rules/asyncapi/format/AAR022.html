@@ -1,7 +1,139 @@
-<p></p>
+<p>La descripción de la operación debe diferir de su resumen</p>
 <h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets:
+    description: Canal para operaciones relacionadas con mascotas.
+    subscribe: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR022: El campo 'description' no debe ser idéntico al campo 'summary'.}}</span>
+      operationId: getPets
+      summary: Operación para recibir la lista de mascotas.
+      description: Operación para recibir la lista de mascotas.
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
 </pre>
 <h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
+asyncapi: '2.4.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  /pets:
+    description: Canal para operaciones relacionadas con mascotas.
+    subscribe:
+      operationId: getPets
+      summary: Operación para recibir la lista de mascotas.
+      description: hola
+      message:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  pets:
+    address: /pets
+    description: Canal para operaciones relacionadas con mascotas.
+    messages:
+      PetsList:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+operations:
+  getPets: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR022: El campo 'description' no debe ser idéntico al campo 'summary'.}}</span>
+    action: receive
+    summary: Operación para recibir la lista de mascotas.
+    description: Operación para recibir la lista de mascotas.
+    channel:
+      $ref: '#/channels/pets'
+    messages:
+      - $ref: '#/channels/pets/messages/PetsList'
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Unique Operation ID Example API
+  version: '1.0.0'
+  description: API que demuestra el uso de operationId único en cada operación.
+channels:
+  pets:
+    address: /pets
+    description: Canal para operaciones relacionadas con mascotas.
+    messages:
+      PetsList:
+        contentType: application/json
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID de la mascota.
+              name:
+                type: string
+                description: Nombre de la mascota.
+              species:
+                type: string
+                description: Especie de la mascota.
+operations:
+  getPets:
+    action: receive
+    summary: Operación para recibir la lista de mascotas.
+    description: hola
+    channel:
+      $ref: '#/channels/pets'
+    messages:
+      - $ref: '#/channels/pets/messages/PetsList'
 </pre>

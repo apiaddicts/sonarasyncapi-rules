@@ -1,0 +1,22 @@
+asyncapi: '2.6.0'
+info:
+  title: Avro Record Name CamelCase - Name Guard V2
+  version: '1.0.0'
+components:
+  schemas:
+    MissingName:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        namespace: org.example.orders
+        fields:
+          - name: id
+            type: string
+    NullName:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: null
+        fields:
+          - name: id
+            type: string

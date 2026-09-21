@@ -1,0 +1,38 @@
+asyncapi: '2.6.0'
+info:
+  title: Avro Record Name CamelCase - Non-String Name V2
+  version: '1.0.0'
+components:
+  schemas:
+    NumberName:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: 123 # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string
+    BooleanName:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: true # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string
+    ObjectName:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: {} # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string
+    ArrayName:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: [] # Noncompliant {{AAR059: Avro record name must be in CamelCase with an uppercase first letter (e.g. SolicitudComunicacion, ResultadoComunicacionMail)}}
+        fields:
+          - name: id
+            type: string

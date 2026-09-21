@@ -1,0 +1,30 @@
+asyncapi: '2.6.0'
+info:
+  title: Content Type Avro Invalid V2
+  version: '1.0.0'
+defaultContentType: application/json # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        contentType: application/json # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
+  events:
+    publish:
+      operationId: sendEvents
+      message:
+        oneOf:
+          - contentType: text/plain # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+            payload:
+              type: object
+          - contentType: application/vnd.apache.avro+avro
+            payload:
+              type: object
+components:
+  messages:
+    ReusableBad:
+      contentType: application/xml # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+      payload:
+        type: object

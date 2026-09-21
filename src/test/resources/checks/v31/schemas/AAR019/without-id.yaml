@@ -10,7 +10,7 @@ channels:
     address: users
     messages:
       User:
-        payload: # Noncompliant {{AAR019: The identifier must be defined}}
+        payload: # Noncompliant {{AAR019: The AsyncAPI document should define an 'id' field.}}
           type: object
           properties:
             name:

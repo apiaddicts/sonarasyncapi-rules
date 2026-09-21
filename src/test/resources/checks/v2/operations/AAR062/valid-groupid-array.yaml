@@ -1,0 +1,13 @@
+asyncapi: '2.6.0'
+info:
+  title: Subscribe Group Required - Array groupId is a declared group V2
+  version: '1.0.0'
+channels:
+  array.beca:
+    subscribe:
+      operationId: consumeArray
+      bindings:
+        kafka:
+          groupId:
+            - array.beca.1
+            - array.beca.2

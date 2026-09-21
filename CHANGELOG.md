@@ -5,6 +5,113 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] - 2026-09-20
+
+Consolidates all changes shipped across `2.0.2-beta-1` through `2.0.2-beta-7` (kept below for history).
+
+### Added
+- **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
+- `AbstractSchemaPropertyCheck` base class for property-level JSON Schema checks (subscribes to `SCHEMA`/`PAYLOAD_SCHEMA` and iterates `properties` at any depth); v2 + v3 test fixtures for AAR032/AAR033/AAR034.
+- **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
+- **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (`record`, `enum` or `fixed`) is required and must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
+- **AAR053ChannelNamingConventionCheck**: The channel name (AsyncAPI 2.x channel key, or AsyncAPI 3.x+ `address`) must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]` (BUG / MAJOR).
+- **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc` (Change Data Capture), `cmd` (command that triggers a domain modification), or `sys` (internal system topic, not intended for public consumption) (BUG / MAJOR).
+- **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears in the document, must be an array whose items each define non-empty `subject`, `ref` and `referenceName` fields (BUG / MAJOR).
+- **AAR056AvroSchemaFormatCheck**: Wherever `schemaFormat` appears in the document (message-level in v2, `message.payload` Multi-Format Schema Object in v3, or a `components.schemas` entry) and indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`, the standard version used across the Style Guide examples (BUG / MAJOR).
+- **AAR057ErrorTopicDocumentedCheck**: At least one channel (a channel key in v2, or a channel's `address` in v3) must be documented as an error topic following `<topicOriginal>.[<consumerGroup>.]error.<n>`, the exact pattern Spring requires to route error messages (BUG / MAJOR).
+- **AAR058RetryTopicNamingConventionCheck**: If a channel name (a channel key in v2, or a channel's `address` in v3) contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`, the exact pattern Spring requires for automatic retry reprocessing (BUG / MINOR).
+- **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record must be in CamelCase with an uppercase first letter, including records nested inside `fields[].type`, unions, arrays, and maps (BUG / MAJOR).
+- **AAR060ContentTypeAvroCheck**: A message's `contentType` (and the document-level `defaultContentType`) must match `application/*+avro`, the pattern Confluent's KafkaAvroDeserializer expects, so the payload can be deserialized (BUG / MAJOR).
+- **AAR061ProcessorFunctionNamePairedCheck**: Every `x-scs-function-name` must be paired one-to-one between a producing (`publish`/`send`) and a consuming (`subscribe`/`receive`) operation, so the JAPI generator links them into a single processor (BUG / MINOR).
+- **AAR062SubscribeGroupRequiredCheck**: Each consuming operation (v2 `subscribe`, v3 `action: receive`) must declare a consumer group via `x-scs-group` or `bindings.kafka.groupId`, so the messaging platform can bind it to a durable, load-balanced consumer group (BUG / MAJOR).
+- **AAR063AsyncAPIVersionAllowedCheck**: The root `asyncapi` version must be one of the versions allowed by the organization. The allow-list is configurable via the `allowedVersions` rule property (comma-separated); default `2.6.0,3.0.0,3.1.0` (BUG / MAJOR).
+- **AAR064KafkaProtocolRequiredCheck**: In the Kafka context, each server protocol must be `kafka` or `kafka-ssl`; other protocols such as `https` or `wss` are not permitted. Servers defined under `components.servers` are validated as well (VULNERABILITY / CRITICAL).
+
+### Changed
+- **AAR047AvroFieldDocCheck**: Lowered the default severity from `INFO` to `MINOR`.
+- Harmonized rule messages and titles (EN + ES): reworded ~23 rules to clearer, field-naming text and fixed typos/imprecise descriptions. Updated the coupled test-class assertions and EN/ES HTML docs.
+- **AAR024MessageValidationCheck**: Reworded the rule title, description and message (EN + ES) to state the rule's actual behavior — each message must declare a `contentType` unless it is an Avro message.
+- **AAR060ContentTypeAvroCheck**: Documentation (EN + ES) now states how an absent `contentType` is split between AAR024 and this rule.
+
+### Fixed
+- Bumped `asyncapi-front-end` and `asyncapi-test-tools` to `2.0.2-beta-3`.
+- `AAR026MessageSchemasCheck`: validate each member of a `message.oneOf`.
+- `AAR037BindingVersionCheck`: check bindings on every member of a `message.oneOf` wrapper.
+- **AAR001MandatoryHttpsProtocolCheck**: v3+ server iteration now handles both map form (standard) and array form; previously only array form was checked, silently skipping map-form servers.
+- **AAR032NumericParameterIntegrityCheck** now validates numeric properties. It now checks every numeric property (in `components.schemas` and message payloads, at any depth) for a `minimum`/`maximum`, `format`, `enum` or `const` restriction.
+- **AAR033StringParameterIntegrityCheck**: implemented (was an empty stub class that raised nothing). Checks every string property for a `minLength`/`maxLength`/`pattern`/`enum`/`const`/`format` restriction.
+- **AAR034NumericFormatCheck**: implemented (was an empty stub class that raised nothing). Checks that a numeric property's declared `format` is `int32`, `int64`, `float` or `double`.
+- **AAR051OperationIdCamelCaseCheck**: in AsyncAPI 3.x the operation identifier is its key in the `operations` map, not the `operationId` field that 3.x removed, so that key is now what must follow camelCase.
+- **AbstractAvroRecordCheck**: The Avro schema nested under `payload.schema` is now reached when the Avro `schemaFormat` marker is declared at message level instead of inside the payload. The traversal previously descended into `schema` only when `schemaFormat` was present on the node itself, so that shape was never validated. Applies to every check built on this base, AAR052 included.
+
+## [2.0.2-beta-7] - 2026-09-18
+
+### Fixed
+- **AbstractAvroRecordCheck**: The Avro schema nested under `payload.schema` is now reached when the Avro `schemaFormat` marker is declared at message level instead of inside the payload. The traversal previously descended into `schema` only when `schemaFormat` was present on the node itself, so that shape was never validated. Applies to every check built on this base, AAR052 included.
+
+### Changed
+- **AAR063AsyncAPIVersionAllowedCheck**: The default `allowedVersions` value is now `2.6.0,3.0.0,3.1.0`, covering the versions the front end is able to parse. Organizations that need a narrower allow-list must configure it explicitly.
+- **AAR060ContentTypeAvroCheck**: Documentation (EN + ES) now states how an absent `contentType` is split between AAR024 and this rule.
+
+## [2.0.2-beta-6] - 2026-09-01
+
+### Fixed
+- **AAR051OperationIdCamelCaseCheck**: in AsyncAPI 3.x the operation identifier is its key in the `operations` map, not the `operationId` field that 3.x removed, so that key is now what must follow camelCase.
+- **AAR024MessageValidationCheck**: Reworded the rule title, description and message (EN + ES) to state the rule's actual behavior — each message must declare a `contentType` unless it is an Avro message.
+
+## [2.0.2-beta-5] - 2026-08-19
+
+### Added
+- **AAR060ContentTypeAvroCheck**: A message's `contentType` (and the document-level `defaultContentType`) must match `application/*+avro`, the pattern Confluent's KafkaAvroDeserializer expects, so the payload can be deserialized (BUG / MAJOR).
+- **AAR061ProcessorFunctionNamePairedCheck**: Every `x-scs-function-name` must be paired one-to-one between a producing (`publish`/`send`) and a consuming (`subscribe`/`receive`) operation, so the JAPI generator links them into a single processor (BUG / MINOR).
+- **AAR062SubscribeGroupRequiredCheck**: Each consuming operation (v2 `subscribe`, v3 `action: receive`) must declare a consumer group via `x-scs-group` or `bindings.kafka.groupId`, so the messaging platform can bind it to a durable, load-balanced consumer group (BUG / MAJOR).
+- **AAR063AsyncAPIVersionAllowedCheck**: The root `asyncapi` version must be one of the versions allowed by the organization. The allow-list is configurable via the `allowedVersions` rule property (comma-separated); default `2.6.0` (BUG / MAJOR).
+- **AAR064KafkaProtocolRequiredCheck**: In the Kafka context, each server protocol must be `kafka` or `kafka-ssl`; other protocols such as `https` or `wss` are not permitted. Servers defined under `components.servers` are validated as well (VULNERABILITY / CRITICAL).
+
+## [2.0.2-beta-4] - 2026-07-22
+
+### Added
+- `AbstractSchemaPropertyCheck` base class for property-level JSON Schema checks (subscribes to `SCHEMA`/`PAYLOAD_SCHEMA` and iterates `properties` at any depth); v2 + v3 test fixtures for AAR032/AAR033/AAR034.
+- **AAR051OperationIdCamelCaseCheck**: The `operationId` must be present and follow camelCase naming convention (BUG / MAJOR).
+- **AAR052AvroNamespacePatternCheck**: The `namespace` of a named Avro schema (`record`, `enum` or `fixed`) is required and must follow the corporate pattern `org.madrid.<cod_poaps>.<classification>.<domain>` (application schemas) or `org.madrid.common.<domain>` (common schemas) (BUG / MAJOR).
+- **AAR053ChannelNamingConventionCheck**: The channel name (AsyncAPI 2.x channel key, or AsyncAPI 3.x+ `address`) must follow the Kafka topic naming convention `<cod_poaps>.<classification>.<domain>.<origin>.<scope>[.<version>]` (BUG / MAJOR).
+- **AAR054ClassificationValidValuesCheck**: The channel name's classification segment (2nd segment) must be `cdc` (Change Data Capture), `cmd` (command that triggers a domain modification), or `sys` (internal system topic, not intended for public consumption) (BUG / MAJOR).
+- **AAR055XPayloadReferencesWellFormedCheck**: The `x-payload-references` extension, wherever it appears in the document, must be an array whose items each define non-empty `subject`, `ref` and `referenceName` fields (BUG / MAJOR).
+- **AAR056AvroSchemaFormatCheck**: Wherever `schemaFormat` appears in the document (message-level in v2, `message.payload` Multi-Format Schema Object in v3, or a `components.schemas` entry) and indicates Avro, it must be exactly `application/vnd.apache.avro;version=1.9.0`, the standard version used across the Style Guide examples (BUG / MAJOR).
+- **AAR057ErrorTopicDocumentedCheck**: At least one channel (a channel key in v2, or a channel's `address` in v3) must be documented as an error topic following `<topicOriginal>.[<consumerGroup>.]error.<n>`, the exact pattern Spring requires to route error messages (BUG / MAJOR).
+- **AAR058RetryTopicNamingConventionCheck**: If a channel name (a channel key in v2, or a channel's `address` in v3) contains `.retry.`, it must follow `<topicOriginal>.<consumerGroup>.retry.<n>`, the exact pattern Spring requires for automatic retry reprocessing (BUG / MINOR).
+- **AAR059AvroRecordNameCamelCaseCheck**: The `name` field of every Avro record must be in CamelCase with an uppercase first letter, including records nested inside `fields[].type`, unions, arrays, and maps (BUG / MAJOR).
+
+### Changed
+- **AAR047AvroFieldDocCheck**: Lowered the default severity from `INFO` to `MINOR`.
+
+### Changed
+- Harmonized rule messages and titles (EN + ES): reworded ~23 rules to clearer, field-naming text and fixed typos/imprecise descriptions. Updated the coupled test-class assertions and EN/ES HTML docs.
+
+### Fixed
+- **AAR032NumericParameterIntegrityCheck** now validates numeric properties. It now checks every numeric property (in `components.schemas` and message payloads, at any depth) for a `minimum`/`maximum`, `format`, `enum` or `const` restriction.
+- **AAR033StringParameterIntegrityCheck**: implemented (was an empty stub class that raised nothing). Checks every string property for a `minLength`/`maxLength`/`pattern`/`enum`/`const`/`format` restriction.
+- **AAR034NumericFormatCheck**: implemented (was an empty stub class that raised nothing). Checks that a numeric property's declared `format` is `int32`, `int64`, `float` or `double`.
+
+## [2.0.2-beta-3] - 2026-07-21
+
+### Fixed
+- Bumped `asyncapi-front-end` and `asyncapi-test-tools` to `2.0.2-beta-3`.
+- `AAR026MessageSchemasCheck`: validate each member of a `message.oneOf`.
+- `AAR037BindingVersionCheck`: check bindings on every member of a `message.oneOf` wrapper.
+
+### Added
+- **AAR050InfoTitleRequiredCheck**: The `info.title` field must exist and not be empty, so the AsyncAPI title reliably identifies the messaging contract (BUG / MAJOR).
+
+## [2.0.2-beta-2] - 2026-06-25
+
+- Bumped `asyncapi-front-end` and `asyncapi-test-tools` to `2.0.2-beta-2`.
+- Fix `AAR001MandatoryHttpsProtocolCheck`: v3+ server iteration now handles both map form (standard) and array form; previously only array form was checked, silently skipping map-form servers.
+
+## [2.0.2-beta-1] - 2026-06-25
+
+### Fixed
+- Bumped `asyncapi-front-end` and `asyncapi-test-tools` to `2.0.2-beta-1`.
 
 ## [2.0.1] - 2026-06-09
 

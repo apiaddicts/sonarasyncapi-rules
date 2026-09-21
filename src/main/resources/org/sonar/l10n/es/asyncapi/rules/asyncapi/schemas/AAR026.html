@@ -65,5 +65,51 @@ channels:
                 type: string
               timestamp:
                 type: string
-                format: date-time    
+                format: date-time
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: No Schema
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR026: Message schemas are recommended to be found in components}}</span>
+        contentType: application/json
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Message Schemas
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  events:
+    address: events
+    messages:
+      Event:
+        $ref: '#/components/messages/Event'
+components:
+  messages:
+    Event:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
 </pre>

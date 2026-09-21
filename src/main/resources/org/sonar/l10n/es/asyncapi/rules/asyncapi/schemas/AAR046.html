@@ -1,5 +1,5 @@
-<p>Los registros Avro deberían incluir un campo <code>doc</code> a nivel de registro para describir el propósito del esquema.</p>
-<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<p>Los registros Avro deberían incluir un campo <code>doc</code> a nivel de registro para describir el propósito del esquema. Esto mejora la legibilidad y el soporte de las herramientas.</p>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
 payload:
   type: record
@@ -9,14 +9,57 @@ payload:
     - name: id
       type: string
 </pre>
-<h2>Solución Compliant (AsyncAPI 2)</h2>
+<h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
 payload:
   type: record
   name: OrderValue
   namespace: org.example.orders
-  doc: "Representa un pedido realizado en el sistema"
+  doc: "Represents an order placed in the system"
   fields:
     - name: id
       type: string
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Record Doc
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR046: El registro Avro debería incluir el campo doc con una descripción}}</span>
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Record Doc
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            doc: "Represents an order placed in the system"
+            fields:
+              - name: id
+                type: string
 </pre>

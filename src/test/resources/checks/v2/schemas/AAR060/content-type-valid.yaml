@@ -1,0 +1,25 @@
+asyncapi: '2.6.0'
+info:
+  title: Content Type Avro Valid V2
+  version: '1.0.0'
+defaultContentType: application/vnd.apache.avro+avro
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        contentType: application/avro+avro
+        payload:
+          type: object
+  events:
+    publish:
+      operationId: sendEvents
+      message:
+        payload:
+          type: object
+components:
+  messages:
+    Reusable:
+      contentType: application/vnd.apache.avro+avro
+      payload:
+        type: object

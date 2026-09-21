@@ -1,0 +1,17 @@
+asyncapi: '2.6.0'
+info:
+  title: Content Type Avro Non String V2
+  version: '1.0.0'
+channels:
+  numeric:
+    subscribe:
+      message:
+        contentType: 123 # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object
+  boolean:
+    subscribe:
+      message:
+        contentType: true # Noncompliant {{AAR060: The contentType must match 'application/*+avro'}}
+        payload:
+          type: object

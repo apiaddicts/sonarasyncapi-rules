@@ -1,5 +1,5 @@
 {
-    "title": "AAR013 - DuplicateOperationID - No puede haber dos operaciones únicas que sean iguales",
+    "title": "AAR013 - DuplicateOperationID - No puede haber dos operaciones con el mismo operationId",
     "type": "BUG",
     "status": "ready",
     "remediation": {

@@ -21,7 +21,7 @@ operations:
     action: send
     channel: events1
     operationId: publishEvent
-  PublishEvent2: # Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}
+  PublishEvent2: # Noncompliant {{AAR013: There cannot be two operations with the same operationId.}}
     action: send
     channel: events2
     operationId: publishEvent

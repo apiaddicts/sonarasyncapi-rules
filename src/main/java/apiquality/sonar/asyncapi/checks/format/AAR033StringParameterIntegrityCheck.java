@@ -19,16 +19,27 @@
  */
 package apiquality.sonar.asyncapi.checks.format;
 
-import com.google.common.collect.Sets;
-import com.sonar.sslr.api.AstNodeType;
 import org.sonar.check.Rule;
-import org.apiaddicts.apitools.dosonarapi.api.v4.AsyncApiGrammar;
-import apiquality.sonar.asyncapi.checks.BaseCheck;
 import org.apiaddicts.apitools.dosonarapi.sslr.yaml.grammar.JsonNode;
 
-import java.util.Set;
-
 @Rule(key = AAR033StringParameterIntegrityCheck.CHECK_KEY)
-public class AAR033StringParameterIntegrityCheck extends BaseCheck {
+public class AAR033StringParameterIntegrityCheck extends AbstractSchemaPropertyCheck {
     public static final String CHECK_KEY = "AAR033";
+    private static final String ERROR_KEY = "AAR033.error";
+
+    @Override
+    protected void checkProperty(JsonNode property, JsonNode anchor) {
+        if (!"string".equals(typeOf(property))) {
+            return;
+        }
+        boolean hasRestriction = present(property, "minLength")
+                || present(property, "maxLength")
+                || present(property, "pattern")
+                || present(property, "const")
+                || present(property, "format")
+                || hasNonEmptyEnum(property);
+        if (!hasRestriction) {
+            addIssue(CHECK_KEY, translate(ERROR_KEY), anchor.key());
+        }
+    }
 }

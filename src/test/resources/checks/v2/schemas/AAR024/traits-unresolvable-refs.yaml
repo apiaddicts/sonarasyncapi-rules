@@ -1,0 +1,55 @@
+asyncapi: '2.6.0'
+info:
+  title: Traits With Unresolvable Refs
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'wss'
+channels:
+  externalTraitRef:
+    subscribe:
+      operationId: receiveExternal
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - $ref: 'https://example.com/traits.yaml#/JsonTrait'
+        payload:
+          type: object
+  danglingTraitRef:
+    subscribe:
+      operationId: receiveDangling
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - $ref: '#/components/messageTraits/Missing'
+        payload:
+          type: object
+  traitRefThroughScalar:
+    subscribe:
+      operationId: receiveThroughScalar
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - $ref: '#/info/title/nested'
+        payload:
+          type: object
+  circularTraitRef:
+    subscribe:
+      operationId: receiveCircular
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - $ref: '#/components/messageTraits/LoopA'
+        payload:
+          type: object
+  scalarTraitMember:
+    subscribe:
+      operationId: receiveScalarMember
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - not-an-object
+        payload:
+          type: object
+components:
+  messageTraits:
+    LoopA:
+      $ref: '#/components/messageTraits/LoopB'
+    LoopB:
+      $ref: '#/components/messageTraits/LoopA'

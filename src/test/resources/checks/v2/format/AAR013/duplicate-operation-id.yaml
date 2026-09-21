@@ -25,7 +25,7 @@ channels:
               species:
                 type: string
                 description: Especie de la mascota.
-    publish: # Noncompliant {{AAR013: There cannot be two unique operations (OperationID) that are the same}}
+    publish: # Noncompliant {{AAR013: There cannot be two operations with the same operationId.}}
       operationId: hola
       summary: Operación para crear una nueva mascota.
       message:

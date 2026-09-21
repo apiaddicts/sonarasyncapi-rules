@@ -1,0 +1,13 @@
+{
+    "title": "AAR062 - SubscribeGroupRequired - Las operaciones subscribe deben declarar el grupo de consumo",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "operations"
+    ],
+    "defaultSeverity": "MAJOR"
+}

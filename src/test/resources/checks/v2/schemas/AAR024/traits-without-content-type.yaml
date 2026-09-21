@@ -1,0 +1,43 @@
+asyncapi: '2.6.0'
+info:
+  title: Traits Without Content Type
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'wss'
+channels:
+  traitWithoutContentType:
+    subscribe:
+      operationId: receiveNoTrait
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - headers:
+              type: object
+        payload:
+          type: object
+  ownNullWinsOverTrait:
+    subscribe:
+      operationId: receiveOwnNull
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        contentType: null
+        traits:
+          - contentType: application/json
+        payload:
+          type: object
+  lastTraitNullWins:
+    subscribe:
+      operationId: receiveLastNull
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits:
+          - contentType: application/json
+          - contentType: null
+        payload:
+          type: object
+  traitsNotAnArray:
+    subscribe:
+      operationId: receiveScalarTraits
+      message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+        traits: not-an-array
+        payload:
+          type: object

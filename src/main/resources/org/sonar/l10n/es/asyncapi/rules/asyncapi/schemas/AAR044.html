@@ -1,5 +1,5 @@
 <p>Los registros Avro deben declarar un <code>namespace</code> para evitar colisiones de nombres y permitir la evolución del esquema entre diferentes servicios y equipos.</p>
-<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
 message:
   schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
@@ -10,7 +10,7 @@ message:
       - name: id
         type: string
 </pre>
-<h2>Solución Compliant (AsyncAPI 2)</h2>
+<h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
 message:
   schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
@@ -21,4 +21,45 @@ message:
     fields:
       - name: id
         type: string
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Namespace Required
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR044: El registro Avro debe tener el campo namespace definido}}</span>
+            type: record
+            name: OrderValue
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Namespace Required
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
 </pre>

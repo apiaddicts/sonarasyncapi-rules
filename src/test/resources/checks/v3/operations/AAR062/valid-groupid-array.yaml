@@ -1,0 +1,17 @@
+asyncapi: 3.0.0
+info:
+  title: Subscribe Group Required - Array groupId is a declared group V3
+  version: 1.0.0
+channels:
+  array-beca:
+    address: array.beca
+operations:
+  consumeArray:
+    action: receive
+    channel:
+      $ref: '#/channels/array-beca'
+    bindings:
+      kafka:
+        groupId:
+          - array.beca.1
+          - array.beca.2

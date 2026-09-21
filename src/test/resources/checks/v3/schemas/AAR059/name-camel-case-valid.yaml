@@ -1,0 +1,102 @@
+asyncapi: 3.0.0
+info:
+  title: Avro Record Name CamelCase Valid V3
+  version: 1.0.0
+channels:
+  flat:
+    address: flat
+    messages:
+      flatMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: SolicitudComunicacion
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+  nested:
+    address: nested
+    messages:
+      nestedMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: SolicitudComunicacion
+            namespace: org.example.orders
+            fields:
+              - name: resultado
+                type:
+                  type: record
+                  name: ResultadoComunicacionMail
+                  fields:
+                    - name: estado
+                      type: string
+  union:
+    address: union
+    messages:
+      unionMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: SolicitudConUnion
+            fields:
+              - name: detalle
+                type:
+                  - "null"
+                  - type: record
+                    name: DetalleUnion
+                    fields:
+                      - name: valor
+                        type: string
+  arrayOfRecords:
+    address: array-of-records
+    messages:
+      arrayMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: SolicitudConArray
+            fields:
+              - name: items
+                type:
+                  type: array
+                  items:
+                    type: record
+                    name: ItemArray
+                    fields:
+                      - name: valor
+                        type: string
+  mapOfRecords:
+    address: map-of-records
+    messages:
+      mapMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: SolicitudConMap
+            fields:
+              - name: valores
+                type:
+                  type: map
+                  values:
+                    type: record
+                    name: ValorMap
+                    fields:
+                      - name: valor
+                        type: string
+components:
+  schemas:
+    OrphanRecord:
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      schema:
+        type: record
+        name: OrphanRecordValue
+        fields:
+          - name: id
+            type: string

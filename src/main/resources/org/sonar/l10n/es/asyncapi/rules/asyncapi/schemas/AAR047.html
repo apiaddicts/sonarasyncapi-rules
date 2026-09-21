@@ -1,5 +1,5 @@
-<p>Los campos Avro deberían incluir un atributo <code>doc</code> para describir el propósito de cada campo.</p>
-<h2>Ejemplo Noncompliant (AsyncAPI 2)</h2>
+<p>Los campos Avro deberían incluir un atributo <code>doc</code> para describir el propósito de cada campo. Esto mejora la visibilidad del esquema y la comprensión por parte de los consumidores.</p>
+<h2>Ejemplo de código no compatible (AsyncAPI 2)</h2>
 <pre>
 payload:
   type: record
@@ -9,7 +9,7 @@ payload:
     - name: id
       type: string
 </pre>
-<h2>Solución Compliant (AsyncAPI 2)</h2>
+<h2>Solución compatible (AsyncAPI 2)</h2>
 <pre>
 payload:
   type: record
@@ -18,5 +18,48 @@ payload:
   fields:
     - name: id
       type: string
-      doc: "El identificador único del pedido"
+      doc: "The unique order identifier"
+</pre>
+<h2>Ejemplo de código no compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Field Doc
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema: <span class="error-info" style="color: #FD8E18;"># Noncompliant {{AAR047: El campo Avro debería incluir el atributo doc con una descripción}}</span>
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+</pre>
+<h2>Solución compatible (AsyncAPI 3)</h2>
+<pre>
+asyncapi: '3.0.0'
+info:
+  title: Avro Field Doc
+  version: 1.0.0
+channels:
+  orders:
+    address: orders
+    messages:
+      OrderMessage:
+        payload:
+          schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+          schema:
+            type: record
+            name: OrderValue
+            namespace: org.example.orders
+            fields:
+              - name: id
+                type: string
+                doc: "The unique order identifier"
 </pre>

@@ -1,0 +1,13 @@
+{
+    "title": "AAR063 - AsyncAPIVersionAllowed - The asyncapi version must be one of the versions allowed by the organization",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "format"
+    ],
+    "defaultSeverity": "MAJOR"
+}

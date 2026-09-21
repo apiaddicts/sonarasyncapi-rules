@@ -1,0 +1,10 @@
+asyncapi: 3.1.0
+info:
+  title: Classification Invalid Unquoted Boolean Address V31
+  version: 1.0.0
+channels:
+  scholarshipRegistration:
+    address: true # Noncompliant {{AAR054: Channel name's classification segment (2nd segment) must be one of: cdc, cmd, sys}}
+    messages:
+      Registration:
+        payload: {type: object}

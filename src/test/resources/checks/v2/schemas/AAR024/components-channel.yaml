@@ -1,0 +1,19 @@
+asyncapi: '2.6.0'
+info:
+  title: Components Channel
+  version: '1.0.0'
+servers:
+  production:
+    url: 'api.example.com'
+    protocol: 'wss'
+channels:
+  orders:
+    $ref: '#/components/channels/orders'
+components:
+  channels:
+    orders:
+      subscribe:
+        operationId: receiveOrder
+        message: # Noncompliant {{AAR024: Each message must declare a 'contentType' unless it is an Avro message}}
+          payload:
+            type: object

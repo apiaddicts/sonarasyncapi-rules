@@ -10,7 +10,7 @@ channels:
   carga:
     subscribe:
       operationId: receiveCarga
-      message: # Noncompliant {{AAR035: It is recommended to have a title per message}}
+      message: # Noncompliant {{AAR035: Message should have a 'title' field.}}
         schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
         payload:
           type: record

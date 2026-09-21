@@ -1,0 +1,25 @@
+asyncapi: '2.6.0'
+info:
+  title: Avro Schema Format OneOf Nested V2
+  version: '1.0.0'
+channels:
+  carga:
+    subscribe:
+      message:
+        oneOf:
+          - schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+            payload:
+              type: record
+              name: ValidMember
+              namespace: com.example.avro
+              fields:
+                - name: id
+                  type: string
+          - schemaFormat: 'application/vnd.apache.avro;version=1.8.0' # Noncompliant {{AAR056: The 'schemaFormat' value 'application/vnd.apache.avro;version=1.8.0' must be exactly 'application/vnd.apache.avro;version=1.9.0' when the payload uses Avro}}
+            payload:
+              type: record
+              name: WrongMember
+              namespace: com.example.avro
+              fields:
+                - name: id
+                  type: string

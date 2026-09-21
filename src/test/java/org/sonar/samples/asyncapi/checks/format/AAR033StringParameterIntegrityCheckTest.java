@@ -24,11 +24,16 @@ public class AAR033StringParameterIntegrityCheckTest extends BaseCheckTest {
         verifyV2("string-parameter-integrity.yaml");
     }
 
-    
+
     // ============= V3.0+ Tests =============
+
+    @Test
+    public void verifyInV3() {
+        verifyV3("string-parameter-integrity.yaml");
+    }
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR033 - StringParameterIntegrity - String parameters should have minLength, maxLength, pattern (regular expression), or enum restriction", RuleType.BUG, Severity.MAJOR, tags("format"));
+        assertRuleProperties("AAR033 - StringParameterIntegrity - String properties should declare a value restriction", RuleType.BUG, Severity.MAJOR, tags("format"));
     }
 }

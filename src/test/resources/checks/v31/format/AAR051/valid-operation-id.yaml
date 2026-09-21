@@ -1,0 +1,39 @@
+asyncapi: 3.1.0
+info:
+  title: Valid Operation IDs
+  version: 1.0.0
+servers:
+  production:
+    host: api.example.com
+    protocol: wss
+channels:
+  messages:
+    address: messages
+    messages:
+      Message:
+        payload: {type: object}
+operations:
+  sendMessage:
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+  receiveMessage:
+    action: receive
+    channel:
+      $ref: '#/channels/messages'
+  processTopic2Topic3:
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+  reuseSharedOperation:
+    $ref: '#/components/operations/sharedOperation'
+  x-internal-operation:
+    action: send
+    channel:
+      $ref: '#/channels/messages'
+components:
+  operations:
+    sharedOperation:
+      action: receive
+      channel:
+        $ref: '#/channels/messages'

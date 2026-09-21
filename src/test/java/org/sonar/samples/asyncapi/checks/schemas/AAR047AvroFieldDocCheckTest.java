@@ -41,6 +41,6 @@ public class AAR047AvroFieldDocCheckTest extends BaseCheckTest {
 
     @Override
     public void verifyRule() {
-        assertRuleProperties("AAR047 - AvroFieldDoc - Avro fields should include a doc description", RuleType.CODE_SMELL, Severity.INFO, tags("schemas"));
+        assertRuleProperties("AAR047 - AvroFieldDoc - Avro fields should include a doc description", RuleType.CODE_SMELL, Severity.MINOR, tags("schemas"));
     }
 }

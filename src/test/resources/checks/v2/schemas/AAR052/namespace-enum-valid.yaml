@@ -1,0 +1,17 @@
+asyncapi: '2.4.0'
+info:
+  title: Avro Namespace Enum Valid V2
+  version: '1.0.0'
+channels:
+  orders:
+    subscribe:
+      operationId: receiveOrder
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: enum
+          name: OrderStatus
+          namespace: org.madrid.p001.core.orders
+          symbols:
+            - NEW
+            - SHIPPED

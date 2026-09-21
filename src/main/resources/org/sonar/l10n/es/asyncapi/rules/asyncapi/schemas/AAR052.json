@@ -1,0 +1,13 @@
+{
+    "title": "AAR052 - AvroNamespacePattern - El namespace del schema Avro debe seguir el patrón corporativo",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "5mn"
+    },
+    "tags": [
+      "schemas"
+    ],
+    "defaultSeverity": "MAJOR"
+}

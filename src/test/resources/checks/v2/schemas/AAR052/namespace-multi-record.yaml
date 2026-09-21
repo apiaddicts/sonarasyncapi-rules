@@ -1,0 +1,51 @@
+asyncapi: '2.4.0'
+info:
+  title: Avro Namespace Multi Record V2
+  version: '1.0.0'
+channels:
+  ordersValidApp:
+    subscribe:
+      operationId: receiveOrdersValidApp
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: record
+          name: OrderValue
+          namespace: org.madrid.p001.core.orders
+          fields:
+            - name: id
+              type: string
+  ordersInvalid:
+    subscribe:
+      operationId: receiveOrdersInvalid
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+          type: record
+          name: OrderValue
+          namespace: org.example.orders
+          fields:
+            - name: id
+              type: string
+  statusEnumValidCommon:
+    subscribe:
+      operationId: receiveStatusEnumValidCommon
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload:
+          type: enum
+          name: OrderStatus
+          namespace: org.madrid.common.orders
+          symbols:
+            - NEW
+            - SHIPPED
+  hashFixedInvalid:
+    subscribe:
+      operationId: receiveHashFixedInvalid
+      message:
+        schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+        payload: # Noncompliant {{AAR052: Avro namespace must follow the corporate pattern: org.madrid.<cod_poaps>.<classification>.<domain> for application schemas, or org.madrid.common.<domain> for common schemas}}
+          type: fixed
+          name: OrderHash
+          namespace: org.example.hash
+          size: 16

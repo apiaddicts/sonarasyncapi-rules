@@ -1,5 +1,5 @@
 {
-    "title": "AAR041 - ComponetChannelServer - Se recomienda agregar los servidores y channels al componente",
+    "title": "AAR041 - ComponetChannelServer - Se recomienda agregar servidores y channels a components",
     "type": "BUG",
     "status": "ready",
     "remediation": {

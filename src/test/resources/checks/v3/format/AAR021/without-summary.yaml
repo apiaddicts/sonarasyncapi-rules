@@ -12,6 +12,6 @@ channels:
       Event:
         payload: {type: object}
 operations:
-  SendEvent: # Noncompliant {{AAR021: Provide a summary for each operation}}
+  SendEvent: # Noncompliant {{AAR021: Operation must have a 'summary' field.}}
     action: send
     channel: events
