@@ -1,6 +1,9 @@
 
 
-# 🛠️ SonarAsyncAPI (Rules) ![Release](https://img.shields.io/badge/release-2.0.0-purple) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white)  [![License: LGPL v3](https://img.shields.io/badge/license-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) 
+# 🛠️ SonarAsyncAPI (Rules) ![Status](https://img.shields.io/badge/status-deprecated-red) ![Release](https://img.shields.io/badge/release-2.0.0-purple) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white)  [![License: LGPL v3](https://img.shields.io/badge/license-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) 
+
+> [!WARNING]
+> **This project is deprecated and no longer maintained.** No new features, bug fixes or releases are planned. Issues and pull requests may not be reviewed. Existing releases remain available, but use them at your own risk.
 
 This repository contains a set of custom SonarQube rules specifically designed to analyze and improve the quality of AsyncAPI specifications. By integrating these rules, teams can ensure best practices, maintainability, and consistency in their API definitions.
 
